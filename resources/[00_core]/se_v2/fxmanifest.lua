@@ -1,3 +1,4 @@
+-- decrypted + fixed
 fx_version 'cerulean'
 game 'gta5'
 
@@ -14,7 +15,7 @@ shared_scripts {
 	-- 'shared/palepale.lua',
 }
 
-server_script 'server/ban.lua'
+-- server_script 'server/ban.lua'
 
 --- Load configuration convars
 --- Add "exec @rhd_se_xxx/se.cfg" to your server.cfg
@@ -22,14 +23,7 @@ server_script 'server/ban.lua'
 --- Enable this if you want to perform the installation
 -- server_script 'installer/main.js'
 
-escrow_ignore {
-	'shared/core.lua',
-	-- 'shared/palepale.lua',
-	'server/ban.lua',
-}
 
 files {
 	'trigger.lua'
 }
-
-dependency '/assetpacks'
