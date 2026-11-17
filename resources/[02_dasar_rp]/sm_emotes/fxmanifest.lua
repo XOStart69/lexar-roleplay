@@ -99,3 +99,4 @@ data_file 'DLC_ITYP_REQUEST' 'stream/[Pazeee_SnowEmoteV2]/a3d_pole.ytyp'
 -- unuseable prop 
 -- data_file 'DLC_ITYP_REQUEST' 'stream/[Pazeee_NewRoleplayEmoteV2]/Pazeee_NewRoleplayEmoteV2/a3d_egrang1.ytyp'
 -- data_file 'DLC_ITYP_REQUEST' 'stream/[Pazeee_NewRoleplayEmoteV2]/Pazeee_NewRoleplayEmoteV2/paze_kingchair1.ytyp'
+dependency 'se_v2'

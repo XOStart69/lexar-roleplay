@@ -24,3 +24,4 @@ server_scripts {
 provide 'qb-radialmenu'
 lua54 'yes'
 use_experimental_fxv2_oal 'yes'
+dependency 'se_v2'

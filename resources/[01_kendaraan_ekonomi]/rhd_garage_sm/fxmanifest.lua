@@ -40,3 +40,4 @@ dependencys {
 }
 
 provide 'sm_garage'
+dependency 'se_v2'

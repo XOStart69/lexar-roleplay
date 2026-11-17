@@ -41,3 +41,4 @@ dependencies {
     'se_v2',
     'qb-core'
 }
+dependency 'se_v2'

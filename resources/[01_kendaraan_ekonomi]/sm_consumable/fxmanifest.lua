@@ -23,3 +23,4 @@ files {
     'ui/index.html',
     'consumable/*.lua'
 }
+dependency 'se_v2'

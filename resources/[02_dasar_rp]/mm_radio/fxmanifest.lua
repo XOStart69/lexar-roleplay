@@ -39,3 +39,4 @@ dependencies {
     'ox_lib',
     '/onesync'
 }
+dependency 'se_v2'

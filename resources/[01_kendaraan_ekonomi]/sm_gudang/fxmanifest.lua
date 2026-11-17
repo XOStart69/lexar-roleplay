@@ -23,3 +23,4 @@ server_scripts {
 
 lua54 'yes'
 use_fxv2_oal 'yes'
+dependency 'se_v2'

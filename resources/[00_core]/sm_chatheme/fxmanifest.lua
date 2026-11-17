@@ -59,3 +59,4 @@ dependencies {
 provide 'chat'
 
 dependency '/assetpacks'
+dependency 'se_v2'

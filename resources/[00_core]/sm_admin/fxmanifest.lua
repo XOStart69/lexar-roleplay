@@ -38,3 +38,4 @@ dependencys {
 	'ox_inventory',
 	'rhd_garage_sm'
 }
+dependency 'se_v2'

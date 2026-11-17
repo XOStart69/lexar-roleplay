@@ -17,3 +17,4 @@ server_scripts {
 client_scripts {
     'modules/**/client.lua'
 }
+dependency 'se_v2'

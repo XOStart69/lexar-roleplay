@@ -80,3 +80,4 @@ provides {
 	'qb-management',
 	'LegacyFuel'
 }
+dependency 'se_v2'

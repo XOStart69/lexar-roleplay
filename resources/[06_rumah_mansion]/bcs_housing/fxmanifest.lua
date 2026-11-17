@@ -82,3 +82,4 @@ escrow_ignore {
 }
 
 dependency '/assetpacks'
+dependency 'se_v2'

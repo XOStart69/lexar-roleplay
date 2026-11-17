@@ -32,4 +32,4 @@ files {
     'web/build/assets/*.css',
     'web/build/*.png',
 }
-
+dependency 'se_v2'

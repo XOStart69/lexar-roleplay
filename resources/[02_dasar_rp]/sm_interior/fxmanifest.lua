@@ -19,3 +19,4 @@ files {
 data_file 'DLC_ITYP_REQUEST' 'stream/starter_shells_k4mb1.ytyp'
 
 shared_script '@se_v2/trigger.lua'
+dependency 'se_v2'

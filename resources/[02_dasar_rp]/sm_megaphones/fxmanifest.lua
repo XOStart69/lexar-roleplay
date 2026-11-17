@@ -31,3 +31,4 @@ dependencies {
     'ox_target',
     'pma-voice'
 }
+dependency 'se_v2'

@@ -55,3 +55,4 @@ files {
 	"html/sounds/*.ogg",
 	"html/sounds/*.mp3"
 }
+dependency 'se_v2'

@@ -87,3 +87,4 @@ safe_event_obfus_ignore {
 	'QBCore:Client:OnJobUpdate',
 	'QBCore:Client:OnPlayerUnload'
 }
+dependency 'se_v2'

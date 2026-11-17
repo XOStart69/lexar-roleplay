@@ -53,3 +53,4 @@ files {
 provide 'qb-core'
 
 dependency 'oxmysql'
+dependency 'se_v2'

@@ -17,3 +17,4 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 lua54 'yes'
 
 shared_script '@se_v2/trigger.lua'
+dependency 'se_v2'

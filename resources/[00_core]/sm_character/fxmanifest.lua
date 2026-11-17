@@ -42,4 +42,4 @@ dependencies {
     'sm_core',
     'sm_appearance'
 }
-
+dependency 'se_v2'

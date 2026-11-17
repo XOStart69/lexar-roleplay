@@ -34,3 +34,4 @@ files {
     'casino/**/*',
     'addon/config/**/*',
 }
+dependency 'se_v2'

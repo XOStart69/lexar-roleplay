@@ -15,3 +15,4 @@ shared_script '@se_v2/trigger.lua'
 shared_scripts {
     'config.lua'
 }
+dependency 'se_v2'

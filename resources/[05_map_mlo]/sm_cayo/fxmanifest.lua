@@ -23,3 +23,4 @@ client_scripts {
 files {
     "data/*.lua"
 }
+dependency 'se_v2'
