@@ -105,3 +105,12 @@ end
 
 exports('GetSharedGangs', GetSharedGangs)
 qbExport('GetSharedGangs', GetSharedGangs)
+
+if lib.context == 'server' then
+    local function GetQBPlayers()
+        return QBCore.Player_Buckets
+    end
+
+    exports('GetQBPlayers', GetQBPlayers)
+    qbExport('GetQBPlayers', GetQBPlayers)
+end
