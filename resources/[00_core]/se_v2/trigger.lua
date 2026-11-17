@@ -98,11 +98,7 @@ if L10_1 then
   L12_1 = exports
   L11_1 = L12_1[L1_1]
 else
-  L12_1 = GetResourceState
-  L13_1 = "se_v2"
-  L12_1 = L12_1(L13_1)
-  L12_1 = exports
-  L11_1 = "started" == L12_1 and L11_1
+  L11_1 = GetResourceState("se_v2") == "started"
 end
 L12_1 = {}
 L13_1 = {}
