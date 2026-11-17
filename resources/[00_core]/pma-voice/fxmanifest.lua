@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 game 'common'
 
 fx_version 'cerulean'
@@ -11,7 +18,6 @@ dependencies {
 
 lua54 'yes'
 
-shared_script '@se_v2/trigger.lua'
 shared_script 'shared.lua'
 
 client_scripts {

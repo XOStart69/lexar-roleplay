@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 
 game 'gta5'
@@ -6,10 +13,8 @@ author 'RHD Team'
 description 'Core resource for the framework, contains all the core functionality and features'
 version '1.3.0'
 
-shared_script '@se_v2/trigger.lua'
 
 shared_scripts {
-    '@ox_lib/init.lua',
     'modules/lib.lua',
     'config.lua',
     'shared/locale.lua',

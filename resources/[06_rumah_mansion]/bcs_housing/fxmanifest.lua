@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
@@ -24,9 +31,7 @@ files {
 data_file 'DLC_ITYP_REQUEST' 'whiteroom.ytyp'
 data_file 'DLC_ITYP_REQUEST' 'signboard_potato.ytyp'
 
-shared_script '@se_v2/trigger.lua'
 shared_scripts {
-	'@ox_lib/init.lua',
 	'utils.lua',
 	'config/*.lua',
 	'modules/init.lua',

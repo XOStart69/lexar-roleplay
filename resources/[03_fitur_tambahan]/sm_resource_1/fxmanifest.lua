@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 game 'gta5'
 
@@ -12,9 +19,7 @@ ui_page 'interface/wrapper/index.html'
 
 locales_path 'interface/sm_audio/locales'
 
-shared_script '@se_v2/trigger.lua'
 shared_scripts {
-	'@ox_lib/init.lua',
 	'localmodule.lua',
 	'@sm_core/modules/playerdata.lua',
 	'@sm_core/modules/lib.lua',

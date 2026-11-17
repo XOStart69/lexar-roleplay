@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 -- FXVersion Version
 fx_version 'cerulean'
 
@@ -23,5 +30,4 @@ files {
 
 lua54 'yes'
 
-shared_script '@se_v2/trigger.lua'
 dependency 'se_v2'

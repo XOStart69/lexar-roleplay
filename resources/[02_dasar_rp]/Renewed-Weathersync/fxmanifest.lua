@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
@@ -7,10 +14,6 @@ name 'Renewed Weather Sync'
 author 'FjamZoo - Renewed Scripts'
 version '1.1.8'
 
-shared_script '@se_v2/trigger.lua'
-shared_scripts{
-    '@ox_lib/init.lua'
-}
 
 client_scripts {
     'client/*.lua',

@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 
 game "gta5"
@@ -12,9 +19,7 @@ lua54 'yes'
 ui_page 'build/index.html'
 -- ui_page 'http://localhost:3000/' --for dev
 
-shared_script '@se_v2/trigger.lua'
 shared_script {
-    "@ox_lib/init.lua",
     "shared/**"
 }
 

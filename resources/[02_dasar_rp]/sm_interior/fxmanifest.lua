@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 
 game 'gta5'
@@ -18,5 +25,4 @@ files {
 
 data_file 'DLC_ITYP_REQUEST' 'stream/starter_shells_k4mb1.ytyp'
 
-shared_script '@se_v2/trigger.lua'
 dependency 'se_v2'

@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 --[[ FX Information ]] --
 fx_version 'cerulean'
 
@@ -11,9 +18,7 @@ license 'GPL-3.0-or-later'
 author 'Overextended'
 repository 'https://github.com/overextended/ox_doorlock'
 --[[ Manifest ]] --
-shared_script '@se_v2/trigger.lua'
 shared_scripts {
-	'@ox_lib/init.lua',
 	'config.lua'
 }
 client_scripts {

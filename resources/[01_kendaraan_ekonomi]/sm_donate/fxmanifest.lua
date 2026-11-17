@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
@@ -7,9 +14,7 @@ description 'SatuMimpi Donate'
 
 ui_page 'web/build/index.html'
 
-shared_script '@se_v2/trigger.lua'
 shared_scripts {
-    '@ox_lib/init.lua',
     'config/settings.lua',
     'config/vip/main.lua',
     'config/vip/translate.lua',

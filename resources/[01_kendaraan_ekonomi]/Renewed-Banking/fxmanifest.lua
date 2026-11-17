@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 
 game 'gta5'
@@ -9,9 +16,7 @@ version '2.1.4'
 
 lua54 'yes'
 
-shared_script '@se_v2/trigger.lua'
 shared_scripts {
-    '@ox_lib/init.lua',
     'config.lua'
 }
 

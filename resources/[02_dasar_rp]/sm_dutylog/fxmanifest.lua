@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 
 lua54 'yes'
@@ -11,7 +18,6 @@ server_scripts {
     'server/**.lua'
 }
 
-shared_script '@se_v2/trigger.lua'
 shared_scripts {
     'config.lua'
 }

@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 game 'gta5'
 
@@ -10,9 +17,7 @@ lua54 'yes'
 use_experimental_fxv2_oal 'yes'
 ui_page 'interface/wrapper/index.html'
 
-shared_script '@se_v2/trigger.lua'
 shared_scripts {
-	'@ox_lib/init.lua',
 	'localmodule.lua',
 	'@sm_core/modules/playerdata.lua',
 	'@sm_core/modules/lib.lua',

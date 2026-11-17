@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 game 'gta5'
 
@@ -8,9 +15,7 @@ repository 'https://github.com/FD-Scripts/sm_megaphones'
 version '1.0.5'
 lua54 'yes'
 
-shared_script '@se_v2/trigger.lua'
 shared_scripts {
-    '@ox_lib/init.lua',
     'shared/config.lua'
 }
 

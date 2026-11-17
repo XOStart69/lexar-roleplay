@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 -- Resource Metadata
 fx_version 'cerulean'
 games { 'gta5' }
@@ -10,9 +17,7 @@ ui_page {
     "web/dist/index.html"
 }
 
-shared_script '@se_v2/trigger.lua'
 shared_scripts {
-    '@ox_lib/init.lua',
     'locales/*.lua',
     'shared/config.lua',
     'shared/drift.lua',

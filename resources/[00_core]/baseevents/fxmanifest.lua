@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 -- This resource is part of the default Cfx.re asset pack (cfx-server-data)
 -- Altering or recreating for local use only is strongly discouraged.
 
@@ -16,5 +23,4 @@ game 'gta5'
 
 lua54 'yes'
 
-shared_script '@se_v2/trigger.lua'
 dependency 'se_v2'

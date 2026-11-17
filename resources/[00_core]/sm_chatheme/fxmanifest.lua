@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 
 game { 'gta5' }
@@ -9,9 +16,7 @@ version '1.0.1'
 author 'vezironi'
 description 'A template for creating FiveM scripts with a modular structure.'
 
-shared_script '@se_v2/trigger.lua'
 shared_scripts {
-    '@ox_lib/init.lua',
     '@sm_core/modules/playerdata.lua',
     'config/*.lua',
     'locales/*.lua',

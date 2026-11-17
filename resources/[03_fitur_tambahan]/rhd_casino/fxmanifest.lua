@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
@@ -10,10 +17,8 @@ ui_page 'html/index.html'
 
 dependency 'oxmysql'
 
-shared_script '@se_v2/trigger.lua'
 
 shared_scripts {
-    '@ox_lib/init.lua',
     '@sm_core/modules/playerdata.lua',
     'shared.lua'
 }

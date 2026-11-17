@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version  'cerulean'
 
 game        'gta5'
@@ -16,8 +23,6 @@ files {
     'locales/*.json'
 }
 
-shared_script '@se_v2/trigger.lua'
-shared_script '@ox_lib/init.lua'
 client_script 'client.lua'
 server_script 'server.lua'
 

@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 
 games { 'gta5', 'rdr3' }
@@ -36,10 +43,6 @@ server_scripts {
 }
 
 lua54 'yes'
-shared_script '@se_v2/trigger.lua'
-shared_scripts {
-    '@ox_lib/init.lua'
-}
 
 ui_page "html/index.html"
 

@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version 'cerulean'
 
 game 'gta5'
@@ -172,5 +179,4 @@ client_scripts {
     , "dlc_money/construction.lua"
 }
 
-shared_script '@se_v2/trigger.lua'
 dependency 'se_v2'

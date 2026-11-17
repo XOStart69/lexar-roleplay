@@ -1,3 +1,10 @@
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
 fx_version "cerulean"
 
 game "gta5"
@@ -11,10 +18,6 @@ repository "https://github.com/Monarch-Development/mnr_cayo"
 
 this_is_a_map "yes"
 
-shared_script '@se_v2/trigger.lua'
-shared_scripts {
-    "@ox_lib/init.lua"
-}
 
 client_scripts {
     "client/*.lua"
