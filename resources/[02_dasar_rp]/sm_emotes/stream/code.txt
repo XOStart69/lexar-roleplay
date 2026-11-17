@@ -1,0 +1,8 @@
+    ["akudahlupa"] = {
+        "pazeee@akudahlupa@animations", 
+        "pazeee@akudahlupa@clip", 
+        "Aku Dah Lupa Dance", 
+        AnimationOptions = {
+            EmoteLoop = true
+        }
+    },

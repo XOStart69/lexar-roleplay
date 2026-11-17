@@ -1,0 +1,80 @@
+return {
+    item = 'torture_kit',
+
+    placeDistance = 6.0,
+    interactDistance = 1.5,
+    nearbyDistance = 5.0,
+    breakDistance = 15.0,
+    actionCooldown = 1000,
+    damagePerScene = 10,
+
+    controls = {
+        place = 38,
+        cancel = 194,
+        rotateLeft = 174,
+        rotateRight = 175,
+    },
+
+    models = {
+        Trolley = 'p_cs_trolley_01_s',
+        Jerrycan = 'w_am_jerrycan',
+        Wrench = 'prop_cs_wrench',
+        Syringe = 'prop_syringe_01',
+        Battery = 'prop_torture_01',
+        Pliers = 'p_pliers_01_s',
+        Clip1 = 'p_ld_crocclips01_s',
+        Clip2 = 'p_ld_crocclips02_s',
+        Chair = 'prop_torture_ch_01',
+    },
+
+    labels = {
+        title = 'Torture Kit',
+        placeHint = '[kbd]E[/kbd] Pasang  [kbd]BACKSPACE[/kbd] Batal\n[kbd]←[/kbd] [kbd]→[/kbd] Putar',
+        selectPlayer = 'Pilih Korban',
+        removeKit = 'Simpan Torture Kit',
+        selectScene = 'Pilih Penyiksaan',
+        endTorture = 'Akhiri Penyiksaan',
+        exit = 'Keluar',
+
+        scenes = {
+            wrench = 'Kunci Inggris',
+            syringe = 'Suntikan',
+            jerrycan = 'Waterboarding',
+            pullTooth = 'Cabut Gigi',
+            electrocute = 'Setrum',
+        },
+
+        actions = {
+            ['wrench-left'] = 'Pukul Kiri',
+            ['wrench-middle'] = 'Pukul Tengah',
+            ['wrench-right'] = 'Pukul Kanan',
+            ['jerrycan-drown'] = 'Siram Air',
+            ['jerrycan-stop'] = 'Hentikan',
+            ['pullTooth-pull'] = 'Jepit Gigi',
+            ['pullTooth-stop'] = 'Cabut',
+            ['electrocute-left'] = 'Setrum Kiri',
+            ['electrocute-both'] = 'Setrum Keduanya',
+            ['electrocute-right'] = 'Setrum Kanan',
+            ['electrocute-spark-stop'] = 'Percikan Listrik',
+            ['electrocute-both-stop'] = 'Hentikan Setrum',
+        },
+
+        reasons = {
+            cooldown = 'Tunggu sebentar.',
+            vehicle = 'Tidak bisa dari dalam kendaraan.',
+            placed = 'Kamu sudah memasang torture kit.',
+            noItem = 'Kamu tidak punya torture kit.',
+            tooFar = 'Posisi terlalu jauh.',
+            noKit = 'Torture kit tidak ditemukan.',
+            noObjects = 'Objek torture kit belum siap.',
+            self = 'Tidak bisa menyiksa diri sendiri.',
+            busy = 'Kamu sedang dalam penyiksaan.',
+            targetBusy = 'Orang ini sedang dalam penyiksaan.',
+            targetFar = 'Korban terlalu jauh dari kursi.',
+            noPlayers = 'Tidak ada orang di dekat torture kit.',
+            full = 'Tas kamu penuh.',
+            invalid = 'Aksi tidak valid.',
+            wentFar = 'Penyiksaan berakhir karena terlalu jauh.',
+        },
+    },
+}

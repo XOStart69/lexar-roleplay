@@ -1,0 +1,5 @@
+localmodule 'modules.client_main'
+localmodule 'modules.client_rollers'
+localmodule 'modules.client_dyno'
+localmodule 'modules.client_volume'
+localmodule 'modules.client_spots'

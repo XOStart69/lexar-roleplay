@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+
+		<!-- WEAPON_COMBATPDW -->
+		<Item>
+			<modelName>W_SB_PDW</modelName>
+			<txdName>W_SB_PDW</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_SB_PDW_Mag1</modelName>
+			<txdName>W_SB_PDW_Mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_SB_PDW_Mag2</modelName>
+			<txdName>W_SB_PDW_Mag2</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		
+		<!-- WEAPON VARIANT MODELS -->
+		<Item>
+			<modelName>W_AR_AdvancedRifle_Luxe</modelName>
+			<txdName>W_AR_AdvancedRifle_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_AR_AssaultRifle_Luxe</modelName>
+			<txdName>W_AR_AssaultRifle_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_AR_CarbineRifle_Luxe</modelName>
+			<txdName>W_AR_CarbineRifle_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<ExpressionDictionaryName>W_AR_CarbineRifle</ExpressionDictionaryName>
+			<ExpressionName>w_ar_carbinerifle</ExpressionName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>W_AR_CarbineRifle_Luxe2</modelName>
+			<txdName>W_AR_CarbineRifle_Luxe2</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>W_AR_CarbineRifle_Luxe3</modelName>
+			<txdName>W_AR_CarbineRifle_Luxe3</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>W_AR_CarbineRifle_Luxe4</modelName>
+			<txdName>W_AR_CarbineRifle_Luxe4</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>W_PI_APPistol_Luxe</modelName>
+			<txdName>W_PI_APPistol_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>	
+		<Item>
+			<modelName>W_PI_HeavyPistol_Luxe</modelName>
+			<txdName>W_PI_HeavyPistol_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>W_PI_Pistol_Luxe</modelName>
+			<txdName>W_PI_Pistol_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_PI_Pistol50_Luxe</modelName>
+			<txdName>W_PI_Pistol50_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_SB_MicroSMG_Luxe</modelName>
+			<txdName>W_SB_MicroSMG_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_SB_SMG_Luxe</modelName>
+			<txdName>W_SB_SMG_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_SG_Sawnoff_Luxe</modelName>
+			<txdName>W_SG_Sawnoff_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_SR_MarksmanRifle_Luxe</modelName>
+			<txdName>W_SR_MarksmanRifle_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_SR_SniperRifle_Luxe</modelName>
+			<txdName>W_SR_SniperRifle_Luxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		
+		<!-- COMPONENT VARIANT MODELS -->
+		<!-- CLIPS -->
+		<Item>
+			<modelName>W_AR_AdvancedRifle_LUXE_mag1</modelName>
+			<txdName>W_AR_AdvancedRifle_LUXE_mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_AR_AdvancedRifle_LUXE_mag2</modelName>
+			<txdName>W_AR_AdvancedRifle_LUXE_mag2</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_AR_AssaultRifle_LUXE_Mag1</modelName>
+			<txdName>W_AR_AssaultRifle_LUXE_Mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_AR_AssaultRifle_LUXE_Mag2</modelName>
+			<txdName>W_AR_AssaultRifle_LUXE_Mag2</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_AR_CarbineRifle_LUXE_mag1</modelName>
+			<txdName>W_AR_CarbineRifle_LUXE_mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_AR_CarbineRifle_LUXE2_mag1</modelName>
+			<txdName>W_AR_CarbineRifle_LUXE2_mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_AR_CarbineRifle_LUXE3_mag1</modelName>
+			<txdName>W_AR_CarbineRifle_LUXE3_mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_AR_CarbineRifle_LUXE4_mag1</modelName>
+			<txdName>W_AR_CarbineRifle_LUXE4_mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_AR_CarbineRifle_LUXE_mag2</modelName>
+			<txdName>W_AR_CarbineRifle_LUXE_mag2</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>W_PI_Pistol_LUXE_Mag1</modelName>
+			<txdName>W_PI_Pistol_LUXE_Mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_PI_Pistol_LUXE_Mag2</modelName>
+			<txdName>W_PI_Pistol_LUXE_Mag2</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_PI_Pistol50_Mag1_LUXE</modelName>
+			<txdName>W_PI_Pistol50_Mag1_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_PI_Pistol50_Mag2_LUXE</modelName>
+			<txdName>W_PI_Pistol50_Mag2_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_PI_APPistol_Mag1_LUXE</modelName>
+			<txdName>W_PI_APPistol_Mag1_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_PI_APPistol_Mag2_LUXE</modelName>
+			<txdName>W_PI_APPistol_Mag2_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_PI_HeavyPistol_LUXE_Mag1</modelName>
+			<txdName>W_PI_HeavyPistol_LUXE_Mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_PI_HeavyPistol_LUXE_Mag2</modelName>
+			<txdName>W_PI_HeavyPistol_LUXE_Mag2</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>W_SB_MicroSMG_Mag1_LUXE</modelName>
+			<txdName>W_SB_MicroSMG_Mag1_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_SB_MicroSMG_Mag2_LUXE</modelName>
+			<txdName>W_SB_MicroSMG_Mag2_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_SB_SMG_LUXE_Mag1</modelName>
+			<txdName>W_SB_SMG_LUXE_Mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_SB_SMG_LUXE_Mag2</modelName>
+			<txdName>W_SB_SMG_LUXE_Mag2</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_SR_SniperRifle_Mag1_LUXE</modelName>
+			<txdName>W_SR_SniperRifle_Mag1_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_SR_MarksmanRifle_LUXE_Mag1</modelName>
+			<txdName>W_SR_MarksmanRifle_LUXE_Mag1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_SR_MarksmanRifle_LUXE_Mag2</modelName>
+			<txdName>W_SR_MarksmanRifle_LUXE_Mag2</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<!-- FLASHLIGHTS -->
+		<Item>
+			<modelName>W_AT_AR_Flsh_LUXE</modelName>
+			<txdName>W_AT_AR_Flsh_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_AT_PI_Flsh_LUXE</modelName>
+			<txdName>W_AT_PI_Flsh_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<!-- GRIPS -->
+		<Item>
+			<modelName>W_AT_AR_AFGrip_LUXE</modelName>
+			<txdName>W_AT_AR_AFGrip_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<!-- SUPPRESSORS -->
+		<Item>
+			<modelName>W_AT_PI_Supp_LUXE</modelName>
+			<txdName>W_AT_PI_Supp_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_AT_PI_Supp_LUXE_2</modelName>
+			<txdName>W_AT_PI_Supp_LUXE_2</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_AT_AR_Supp_LUXE</modelName>
+			<txdName>W_AT_AR_Supp_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_AT_AR_Supp_Luxe_02</modelName>
+			<txdName>W_AT_AR_Supp_Luxe_02</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_AT_SR_Supp_LUXE</modelName>
+			<txdName>W_AT_SR_Supp_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<!-- SCOPES -->
+		<Item>
+			<modelName>W_AT_Scope_Large_LUXE</modelName>
+			<txdName>W_AT_Scope_Large_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_AT_Scope_Macro_LUXE</modelName>
+			<txdName>W_AT_Scope_Macro_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_AT_Scope_Macro_02_LUXE</modelName>
+			<txdName>W_AT_Scope_Macro_02_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>	
+		<Item>
+			<modelName>W_AT_Scope_Max_LUXE</modelName>
+			<txdName>W_AT_Scope_Max_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_AT_Scope_Medium_LUXE</modelName>
+			<txdName>W_AT_Scope_Medium_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_AT_Scope_Small_LUXE</modelName>
+			<txdName>W_AT_Scope_Small_LUXE</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF - 8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+			<modelName>w_at_scope_mediumpdmcxspear</modelName>
+			<txdName>w_at_scope_mediumpdmcxspear</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_at_ar_supppdmcxspear</modelName>
+			<txdName>w_at_ar_supppdmcxspear</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_at_ar_flshpdmcxspear</modelName>
+			<txdName>w_at_ar_flshpdmcxspear</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_cr_barrelpdmcxspear_1</modelName>
+			<txdName>w_ar_cr_barrelpdmcxspear_1</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_pdmcxspear_mag2</modelName>
+			<txdName>w_ar_pdmcxspear_mag2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_pdmcxspear_mag1</modelName>
+			<txdName>w_ar_pdmcxspear_mag1</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+		<Item>
+			<modelName>w_ar_pdmcxspear</modelName>
+			<txdName>w_ar_pdmcxspear</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>
+

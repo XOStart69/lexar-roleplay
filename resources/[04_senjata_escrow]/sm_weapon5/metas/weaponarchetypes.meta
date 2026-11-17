@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF - 8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+			<modelName>w_me_bladedbat</modelName>
+			<txdName>w_me_bladedbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_bladehatchet</modelName>
+			<txdName>w_me_bladehatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_hatchet</modelName>
+			<txdName>w_me_hatchet</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_me_brakediscaxe</modelName>
+			<txdName>w_me_brakediscaxe</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_clawaxe</modelName>
+			<txdName>w_me_clawaxe</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_customaxe</modelName>
+			<txdName>w_me_customaxe</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_enhancedbat</modelName>
+			<txdName>w_me_enhancedbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_giveway</modelName>
+			<txdName>w_me_giveway</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_grinderbat</modelName>
+			<txdName>w_me_grinderbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_hunterhatchet</modelName>
+			<txdName>w_me_hunterhatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_hatchet</modelName>
+			<txdName>w_me_hatchet</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_me_lucille</modelName>
+			<txdName>w_me_lucille</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_zmachette_lr</modelName>
+			<txdName>w_me_zmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_sickle</modelName>
+			<txdName>w_me_sickle</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_hatchet</modelName>
+			<txdName>w_me_hatchet</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_me_smallaxe</modelName>
+			<txdName>w_me_smallaxe</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_hatchet</modelName>
+			<txdName>w_me_hatchet</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_me_spikeysickle</modelName>
+			<txdName>w_me_spikeysickle</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_hatchet</modelName>
+			<txdName>w_me_hatchet</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_me_wrenchknife_01</modelName>
+			<txdName>w_me_wrenchknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_zhalberd</modelName>
+			<txdName>w_me_zhalberd</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_zhammer</modelName>
+			<txdName>w_me_zhammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_zkattana_lr</modelName>
+			<txdName>w_me_zkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_zaxe</modelName>
+			<txdName>w_me_zaxe</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_zhatchet</modelName>
+			<txdName>w_me_zhatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_hatchet</modelName>
+			<txdName>w_me_hatchet</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

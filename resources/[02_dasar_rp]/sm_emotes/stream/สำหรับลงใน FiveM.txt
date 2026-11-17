@@ -1,0 +1,9 @@
+	["00000jarp_beautyandbeat_alone_left"] = {"jarp_beautyandbeat", "jarp_beautyandbeat_left_clip",  "Jarp Beauty And A Beat~o~ Left", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }}, 			
+	
+	["00000jarp_beautyandbeat_alone_right"] = {"jarp_beautyandbeat", "jarp_beautyandbeat_right_clip",  "Jarp Beauty And A Beat~o~ Right", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }}, 	

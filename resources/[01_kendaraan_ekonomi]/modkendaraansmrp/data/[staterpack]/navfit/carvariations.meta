@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CVehicleModelInfoVariation>
+  <variationData>
+    <Item>
+      <modelName>navfit</modelName>
+      <colors>
+        <Item>
+          <indices content="char_array">
+            27
+            1
+            0
+            13
+          </indices>
+          <liveries/>
+        </Item>
+      </colors>
+      <kits>
+        <Item>65646453453_navfit_modkit</Item>
+      </kits>
+      <windowsWithExposedEdges />
+      <plateProbabilities>
+        <Probabilities />
+      </plateProbabilities>
+      <lightSettings value="1" />
+      <sirenSettings value="0" />
+    </Item>
+  </variationData>
+</CVehicleModelInfoVariation>

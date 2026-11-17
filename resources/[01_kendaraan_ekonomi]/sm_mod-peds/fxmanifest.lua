@@ -1,0 +1,36 @@
+
+
+
+
+
+
+
+fx_version 'bodacious'
+
+game 'gta5'
+
+developer "NIRP MODS"
+author "NIRP MODS"
+
+files {
+	'data/**/peds.meta',
+	'data/**/weaponcomponents.meta',
+	'data/**/weaponarchetypes.meta',
+	'data/**/weaponanimations.meta',
+	'data/**/pedpersonality.meta',
+	'data/**/weapons.meta',
+	'rcore_overlays_satumimpi.xml',
+}
+
+
+data_file 'PED_METADATA_FILE' 'data/**/peds.meta'
+
+
+data_file 'WEAPONCOMPONENTSINFO_FILE' 'data/**/weaponcomponents.meta'
+data_file 'WEAPON_METADATA_FILE' 'data/**/weaponarchetypes.meta'
+data_file 'WEAPON_ANIMATIONS_FILE' 'data/**/weaponanimations.meta'
+data_file 'PED_PERSONALITY_FILE' 'data/**/pedpersonality.meta'
+data_file 'WEAPONINFO_FILE' 'data/**/weapons.meta'
+data_file 'PED_OVERLAY_FILE' 'rcore_overlays_satumimpi.xml'
+
+client_script 'cl_weaponNames.lua'

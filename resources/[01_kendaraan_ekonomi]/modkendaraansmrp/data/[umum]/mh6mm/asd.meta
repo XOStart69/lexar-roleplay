@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CVehicleMetadataMgr>
+
+  <VehicleSeatInfos>
+
+    <!-- PILOT -->
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_AH6M_PILOT</Name>
+      <SeatBoneName>seat_dside_f</SeatBoneName>
+    </Item>
+
+    <!-- COPILOT -->
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_AH6M_COPILOT</Name>
+      <SeatBoneName>seat_pside_f</SeatBoneName>
+    </Item>
+
+    <!-- CUSTOM REAR LEFT -->
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_DSIDE_R2</Name>
+      <SeatBoneName>seat_dside_r2</SeatBoneName>
+    </Item>
+
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_DSIDE_R3</Name>
+      <SeatBoneName>seat_dside_r3</SeatBoneName>
+    </Item>
+
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_DSIDE_R4</Name>
+      <SeatBoneName>seat_dside_r4</SeatBoneName>
+    </Item>
+
+    <!-- CUSTOM REAR RIGHT -->
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_PSIDE_R2</Name>
+      <SeatBoneName>seat_pside_r2</SeatBoneName>
+    </Item>
+
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_PSIDE_R3</Name>
+      <SeatBoneName>seat_pside_r3</SeatBoneName>
+    </Item>
+
+  </VehicleSeatInfos>
+
+
+  <VehicleEntryPointInfos>
+
+    <!-- FRONT -->
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_FRONT_LEFT</Name>
+      <DoorBoneName>door_dside_f</DoorBoneName>
+      <VehicleSide>SIDE_LEFT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_AH6M_PILOT"/>
+      </AccessableSeats>
+    </Item>
+
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_FRONT_RIGHT</Name>
+      <DoorBoneName>door_pside_f</DoorBoneName>
+      <VehicleSide>SIDE_RIGHT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_AH6M_COPILOT"/>
+      </AccessableSeats>
+    </Item>
+
+    <!-- LEFT SIDE -->
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_REAR_LEFT_1</Name>
+      <DoorBoneName>seat_dside_r2</DoorBoneName>
+      <VehicleSide>SIDE_LEFT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_DSIDE_R2"/>
+      </AccessableSeats>
+    </Item>
+
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_REAR_LEFT_2</Name>
+      <DoorBoneName>seat_dside_r3</DoorBoneName>
+      <VehicleSide>SIDE_LEFT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_DSIDE_R3"/>
+      </AccessableSeats>
+    </Item>
+
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_REAR_LEFT_3</Name>
+      <DoorBoneName>seat_dside_r4</DoorBoneName>
+      <VehicleSide>SIDE_LEFT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_DSIDE_R4"/>
+      </AccessableSeats>
+    </Item>
+
+    <!-- RIGHT SIDE -->
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_REAR_RIGHT_1</Name>
+      <DoorBoneName>seat_pside_r2</DoorBoneName>
+      <VehicleSide>SIDE_RIGHT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_PSIDE_R2"/>
+      </AccessableSeats>
+    </Item>
+
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_REAR_RIGHT_2</Name>
+      <DoorBoneName>seat_pside_r3</DoorBoneName>
+      <VehicleSide>SIDE_RIGHT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_PSIDE_R3"/>
+      </AccessableSeats>
+    </Item>
+
+  </VehicleEntryPointInfos>
+
+
+  <VehicleLayoutInfos>
+
+    <Item type="CVehicleLayoutInfo">
+      <Name>LAYOUT_HELI_MH6M</Name>
+
+      <Seats>
+
+        <!-- FRONT -->
+        <Item>
+          <SeatInfo ref="SEAT_AH6M_PILOT"/>
+          <SeatAnimInfo ref="SEAT_ANIM_HELI_HAVOK_FRONT"/>
+        </Item>
+
+        <Item>
+          <SeatInfo ref="SEAT_AH6M_COPILOT"/>
+          <SeatAnimInfo ref="SEAT_ANIM_HELI_HAVOK_FRONT"/>
+        </Item>
+
+        <!-- LEFT -->
+        <Item>
+          <SeatInfo ref="SEAT_DSIDE_R2"/>
+          <SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_LEFT"/>
+        </Item>
+
+        <Item>
+          <SeatInfo ref="SEAT_DSIDE_R3"/>
+          <SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_LEFT"/>
+        </Item>
+
+        <Item>
+          <SeatInfo ref="SEAT_DSIDE_R4"/>
+          <SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_LEFT"/>
+        </Item>
+
+        <!-- RIGHT -->
+        <Item>
+          <SeatInfo ref="SEAT_PSIDE_R2"/>
+          <SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_RIGHT"/>
+        </Item>
+
+        <Item>
+          <SeatInfo ref="SEAT_PSIDE_R3"/>
+          <SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_RIGHT"/>
+        </Item>
+
+      </Seats>
+
+
+      <EntryPoints>
+
+        <Item>
+          <EntryPointInfo ref="ENTRY_FRONT_LEFT"/>
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_HELI_FRONT_LEFT"/>
+        </Item>
+
+        <Item>
+          <EntryPointInfo ref="ENTRY_FRONT_RIGHT"/>
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_HELI_FRONT_RIGHT"/>
+        </Item>
+
+        <Item>
+          <EntryPointInfo ref="ENTRY_REAR_LEFT_1"/>
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_LEFT"/>
+        </Item>
+
+        <Item>
+          <EntryPointInfo ref="ENTRY_REAR_RIGHT_1"/>
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_RIGHT"/>
+        </Item>
+
+      </EntryPoints>
+
+    </Item>
+
+  </VehicleLayoutInfos>
+
+</CVehicleMetadataMgr>

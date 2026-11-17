@@ -1,0 +1,16 @@
+-- Generated with Durty Cloth Tool v3.2.0.5 (https://gta.clothing)
+
+fx_version 'cerulean'
+
+game { 'gta5' }
+
+author 'larestia'
+description 'larestia unbranded clothing pack v3'
+version 'v3'
+
+files {
+  'mp_f_freemode_01_mp_f_larestia_shop.meta',
+}
+
+data_file 'SHOP_PED_APPAREL_META_FILE' 'mp_f_freemode_01_mp_f_larestia_shop.meta'
+dependency '/assetpacks'

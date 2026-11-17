@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fwClipSetManager>
+  <clipSets>
+    <Item type="fwClipSet" key="sm_ktwr_rifle_std_low_ready">
+      <fallbackId>weapons@rifle@</fallbackId>
+      <clipDictionaryName>sm_ktwr_rifle_std_low_ready</clipDictionaryName>
+      <clipItems />
+      <moveNetworkFlags />
+    </Item>
+    <Item type="fwClipSet" key="sm_ktwr_rifle_sling_relaxed">
+      <fallbackId>weapons@rifle@</fallbackId>
+      <clipDictionaryName>sm_ktwr_rifle_sling_relaxed</clipDictionaryName>
+      <clipItems />
+      <moveNetworkFlags />
+    </Item>
+    <Item type="fwClipSet" key="sm_ktwr_pistol_comp_low_ready">
+      <fallbackId>weapons@pistol@</fallbackId>
+      <clipDictionaryName>sm_ktwr_pistol_comp_low_ready</clipDictionaryName>
+      <clipItems />
+      <moveNetworkFlags />
+    </Item>
+  </clipSets>
+  <clipDictionaryMetadatas />
+  <memoryGroupMetadatas />
+</fwClipSetManager>

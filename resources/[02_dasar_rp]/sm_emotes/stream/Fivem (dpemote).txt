@@ -1,0 +1,16 @@
+    ["0000oudhajima_dont_do_that1l"] = {"oudoud@hajima_dont_do_that", "oudoud_hajima_dont_do_that_l", "OudOud Hajima Dont Do That ~g~ Left", AnimationOptions =
+    {
+        EmoteLoop = true
+    }},
+
+    ["0000oudhajima_dont_do_that2m"] = {"oudoud@hajima_dont_do_that", "oudoud_hajima_dont_do_that_m", "OudOud Hajima Dont Do That ~g~ Middle", AnimationOptions =
+    {
+        EmoteLoop = true
+    }},
+
+
+    ["0000oudhajima_dont_do_that3r"] = {"oudoud@hajima_dont_do_that", "oudoud_hajima_dont_do_that_r", "OudOud Hajima Dont Do That ~g~ Right", AnimationOptions =
+    {
+        EmoteLoop = true
+    }},
+

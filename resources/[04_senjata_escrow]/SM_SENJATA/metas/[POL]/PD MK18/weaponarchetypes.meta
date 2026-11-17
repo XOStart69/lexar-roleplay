@@ -1,0 +1,35 @@
+<?xml version="1" encoding="UTF-8"?>
+<CWeaponModelInfo__InitDataList>
+  <InitDatas>
+    <Item>
+      <lodDist value="500"></lodDist>
+      <modelName>W_AR_MK18MD</modelName>
+      <txdName>W_AR_MK18MD</txdName>
+      <ptfxAssetName>NULL</ptfxAssetName>
+    </Item>
+    <Item>
+      <modelName>w_at_scope_mk18md</modelName>
+      <txdName>w_at_scope_mk18md</txdName>
+      <ptfxAssetName>NULL</ptfxAssetName>
+      <lodDist value="100.0"></lodDist>
+    </Item>
+    <Item>
+      <modelName>w_ar_mk18md_mag1</modelName>
+      <txdName>w_ar_mk18md_mag1</txdName>
+      <ptfxAssetName>NULL</ptfxAssetName>
+      <lodDist value="100.0"></lodDist>
+    </Item>
+    <Item>
+      <modelName>w_at_mk18md_supp</modelName>
+      <txdName>w_at_mk18md_supp</txdName>
+      <ptfxAssetName>NULL</ptfxAssetName>
+      <lodDist value="100.0"></lodDist>
+    </Item>
+    <Item>
+      <modelName>w_at_mk18md_flsh</modelName>
+      <txdName>w_at_mk18md_flsh</txdName>
+      <ptfxAssetName>NULL</ptfxAssetName>
+      <lodDist value="100.0"></lodDist>
+    </Item>
+  </InitDatas>
+</CWeaponModelInfo__InitDataList>

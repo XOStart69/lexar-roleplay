@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CWeaponComponentInfoBlob>
+  <Infos>
+    <Item type="CWeaponComponentScopeInfo">
+      <Name>COMPONENT_AT_SCOPE_MK18MD</Name>
+      <Model>w_at_scope_mk18md</Model>
+      <LocName>WCT_SCOPE_MED</LocName>
+      <LocDesc>WCD_SCOPE_MED</LocDesc>
+      <AttachBone>AAPScop</AttachBone>
+      <WeaponAttachBone>WAPScop</WeaponAttachBone>
+      <AccuracyModifier type="NULL"></AccuracyModifier>
+      <DamageModifier type="NULL"></DamageModifier>
+      <bShownOnWheel value="true"></bShownOnWheel>
+      <CreateObject value="true"></CreateObject>
+      <HudDamage value="0"></HudDamage>
+      <HudSpeed value="0"></HudSpeed>
+      <HudCapacity value="0"></HudCapacity>
+      <HudAccuracy value="5"></HudAccuracy>
+      <HudRange value="0"></HudRange>
+      <CameraHash></CameraHash>
+      <RecoilShakeAmplitude value="0.280000"></RecoilShakeAmplitude>
+      <ExtraZoomFactorForAccurateMode value="1.200000"></ExtraZoomFactorForAccurateMode>
+      <Reticule value="0"></Reticule>
+      <ReticuleHash></ReticuleHash>
+    </Item>
+    <Item type="CWeaponComponentClipInfo">
+      <Name>COMPONENT_MK18MD_CLIP_01</Name>
+      <Model>w_ar_mk18md_mag1</Model>
+      <LocName>WCT_CLIP1</LocName>
+      <LocDesc>WCD_CR_CLIP1</LocDesc>
+      <AttachBone>AAPClip</AttachBone>
+      <WeaponAttachBone>WAPClip</WeaponAttachBone>
+      <AccuracyModifier type="NULL"></AccuracyModifier>
+      <DamageModifier type="NULL"></DamageModifier>
+      <bShownOnWheel value="false"></bShownOnWheel>
+      <CreateObject value="true"></CreateObject>
+      <HudDamage value="0"></HudDamage>
+      <HudSpeed value="0"></HudSpeed>
+      <HudCapacity value="0"></HudCapacity>
+      <HudAccuracy value="0"></HudAccuracy>
+      <HudRange value="0"></HudRange>
+      <ClipSize value="60"></ClipSize>
+      <AmmoInfo></AmmoInfo>
+      <ReloadData ref="RELOAD_DEFAULT"></ReloadData>
+    </Item>
+    <Item type="CWeaponComponentSuppressorInfo">
+      <Name>COMPONENT_AT_MK18MD_SUPP</Name>
+      <Model>w_at_mk18md_supp</Model>
+      <LocName>WCT_SUPP</LocName>
+      <LocDesc>WCD_AR_SUPP</LocDesc>
+      <AttachBone>AAPSupp</AttachBone>
+      <WeaponAttachBone>WAPSupp</WeaponAttachBone>
+      <AccuracyModifier type="NULL"></AccuracyModifier>
+      <DamageModifier type="CWeaponDamageModifier">
+        <DamageModifier value="1.000000"></DamageModifier>
+      </DamageModifier>
+      <bShownOnWheel value="true"></bShownOnWheel>
+      <CreateObject value="true"></CreateObject>
+      <HudDamage value="-5"></HudDamage>
+      <HudSpeed value="0"></HudSpeed>
+      <HudCapacity value="0"></HudCapacity>
+      <HudAccuracy value="0"></HudAccuracy>
+      <HudRange value="-5"></HudRange>
+      <MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+      <FlashFx>muz_pistol_silencer</FlashFx>
+    </Item>
+    <Item type="CWeaponComponentFlashLightInfo">
+      <Name>COMPONENT_AT_MK18MD_FLSH</Name>
+      <Model>w_at_mk18md_flsh</Model>
+      <LocName>WCT_FLASH</LocName>
+      <LocDesc>WCD_FLASH</LocDesc>
+      <AttachBone>AAPFlsh</AttachBone>
+      <WeaponAttachBone>WAPFlshLasr</WeaponAttachBone>
+      <AccuracyModifier type="NULL"></AccuracyModifier>
+      <DamageModifier type="NULL"></DamageModifier>
+      <bShownOnWheel value="true"></bShownOnWheel>
+      <CreateObject value="true"></CreateObject>
+      <HudDamage value="0"></HudDamage>
+      <HudSpeed value="0"></HudSpeed>
+      <HudCapacity value="0"></HudCapacity>
+      <HudAccuracy value="0"></HudAccuracy>
+      <HudRange value="0"></HudRange>
+      <MainLightIntensity value="6.000000"></MainLightIntensity>
+      <MainLightColor value="0x00FFFFFF"></MainLightColor>
+      <MainLightRange value="20.000000"></MainLightRange>
+      <MainLightFalloffExponent value="32.000000"></MainLightFalloffExponent>
+      <MainLightInnerAngle value="0.000000"></MainLightInnerAngle>
+      <MainLightOuterAngle value="20.000000"></MainLightOuterAngle>
+      <MainLightCoronaIntensity value="3.000000"></MainLightCoronaIntensity>
+      <MainLightCoronaSize value="0.200000"></MainLightCoronaSize>
+      <MainLightVolumeIntensity value="0.120000"></MainLightVolumeIntensity>
+      <MainLightVolumeSize value="0.030000"></MainLightVolumeSize>
+      <MainLightVolumeExponent value="0.010000"></MainLightVolumeExponent>
+      <MainLightVolumeOuterColor value="0x00FFFFFF"></MainLightVolumeOuterColor>
+      <MainLightShadowFadeDistance value="15.000000"></MainLightShadowFadeDistance>
+      <MainLightSpecularFadeDistance value="15.000000"></MainLightSpecularFadeDistance>
+      <SecondaryLightIntensity value="4.000000"></SecondaryLightIntensity>
+      <SecondaryLightColor value="0x00FFFFFF"></SecondaryLightColor>
+      <SecondaryLightRange value="6.000000"></SecondaryLightRange>
+      <SecondaryLightFalloffExponent value="64.000000"></SecondaryLightFalloffExponent>
+      <SecondaryLightInnerAngle value="0.000000"></SecondaryLightInnerAngle>
+      <SecondaryLightOuterAngle value="60.000000"></SecondaryLightOuterAngle>
+      <SecondaryLightVolumeIntensity value="0.300000"></SecondaryLightVolumeIntensity>
+      <SecondaryLightVolumeSize value="0.400000"></SecondaryLightVolumeSize>
+      <SecondaryLightVolumeExponent value="24.000000"></SecondaryLightVolumeExponent>
+      <SecondaryLightVolumeOuterColor value="0x00FFFFFF"></SecondaryLightVolumeOuterColor>
+      <SecondaryLightFadeDistance value="10.000000"></SecondaryLightFadeDistance>
+      <fTargetDistalongAimCamera value="8.000000"></fTargetDistalongAimCamera>
+      <FlashLightBone>Gun_FLMuzzle</FlashLightBone>
+      <FlashLightBoneBulbOn>Bulb_On</FlashLightBoneBulbOn>
+      <FlashLightBoneBulbOff>Bulb_Off</FlashLightBoneBulbOff>
+    </Item>
+  </Infos>
+  <InfoBlobName></InfoBlobName>
+</CWeaponComponentInfoBlob>

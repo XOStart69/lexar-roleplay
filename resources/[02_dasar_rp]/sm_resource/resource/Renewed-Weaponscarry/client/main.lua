@@ -1,0 +1,1 @@
+localmodule 'modules.inventory'

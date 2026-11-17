@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FiveM Death Screen</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="injury-content">
+      <p class="status-text" id="status-text">You are <span class="critical" id="condition-text">unconscious</span></p>
+      <div class="timer" id="timer">30:00</div>
+      <p class="instruction" id="event-instruction">
+        <span class="key" id="event-key">/helpme</span> <span id="event-text">untuk magic revive</span>
+      </p>
+      <p class="instruction" id="ems-instruction">
+        <span class="initial-text">Press </span><span class="key" id="e-key">E</span> <span id="ems-text">to call EMS or </span>
+        <span class="key" id="h-key">H</span> <span>for /helpme</span>
+      </p>
+      <!-- ADDED: Ragdoll instruction -->
+      <p class="instruction" id="ragdoll-instruction">
+        <span class="initial-text">Press </span><span class="key" id="g-key">G</span> <span id="ragdoll-text">to refresh body</span>
+      </p>
+      <p class="instruction" id="emergency-instruction">
+        <span class="key" id="emergency-key">/911</span> <span>Jika EMS tidak ada respond</span>
+      </p>
+      <div class="respawn-instruction" id="respawn-instruction">
+          <span class="hold-text">Hold</span>
+          <span class="key">Space</span>
+          <span class="respawn-text">to respawn for</span>
+          <span class="time-value">$1000</span>
+      </div>
+      <p class="inventory-warning" id="inventory-warning">Kamu akan kehilangan semua barang di inventory jika memilih respawn</p>
+      <div class="progress-container">
+        <div class="progress-bar" id="respawn-progress"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="module" src="./script.js"></script>
+</body>
+</html>

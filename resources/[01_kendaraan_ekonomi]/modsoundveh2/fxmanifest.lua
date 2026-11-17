@@ -1,0 +1,115 @@
+fx_version 'cerulean'
+game 'gta5'
+
+files {
+
+'audioconfig/*.dat10',
+'audioconfig/*.dat10.nametable',
+'audioconfig/*.dat10.rel',
+'audioconfig/*.dat151',
+'audioconfig/*.dat151.nametable',
+'audioconfig/*.dat151.rel',
+'audioconfig/*.dat54',
+'audioconfig/*.dat54.nametable',
+'audioconfig/*.dat54.rel',
+'sfx/**/*.awc',
+
+}
+
+--sound
+data_file 'AUDIO_SYNTHDATA' 'audioconfig/aqls7raceswap_amp.dat'
+data_file 'AUDIO_GAMEDATA' 'audioconfig/aqls7raceswap_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/aqls7raceswap_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_aqls7raceswap'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/kc124yamh125cc_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/kc124yamh125cc_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_kc124yamh125cc'
+
+data_file 'AUDIO_SYNTHDATA' 'audioconfig/lg53fer488capri_amp.dat'
+data_file 'AUDIO_GAMEDATA' 'audioconfig/lg53fer488capri_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/lg53fer488capri_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_lg53fer488capri'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/ta176m177_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/ta176m177_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_ta176m177'
+
+data_file 'AUDIO_SYNTHDATA' 'audioconfig/lg115classicf1v10_amp.dat'
+data_file 'AUDIO_GAMEDATA' 'audioconfig/lg115classicf1v10_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/lg115classicf1v10_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_lg115classicf1v10'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/kc228m5s63tpops_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/kc228m5s63tpops_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_kc228m5s63tpops'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/r34sound_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/r34sound_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_r34sound'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/rb26dett_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/rb26dett_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_rb26dett'
+
+data_file "AUDIO_SYNTHDATA" "audioconfig/lg21focusrs_amp.dat"
+data_file "AUDIO_GAMEDATA" "audioconfig/lg21focusrs_game.dat"
+data_file "AUDIO_SOUNDDATA" "audioconfig/lg21focusrs_sounds.dat"
+data_file "AUDIO_WAVEPACK" "sfx/dlc_lg21focusrs"
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/st28t2jzgte_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/st28t2jzgte_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_st28t2jzgte'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/npolchar_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/npolchar_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_npolchar'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/ecoboostv6_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/ecoboostv6_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_ecoboostv6'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/cvpiv8_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/cvpiv8_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_cvpiv8'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/fordvoodoo_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/fordvoodoo_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_fordvoodoo'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/ecoboostv6_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/ecoboostv6_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_ecoboostv6'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/hemisound_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/hemisound_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_hemisound'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/sr13b199_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/sr13b199_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_sr13b199'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/elegyx_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/elegyx_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_elegyx'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/szkgsxryoshimuraeng_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/szkgsxryoshimuraeng_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_szkgsxryoshimuraeng'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/kc214ls3catback_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/kc214ls3catback_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_kc214ls3catback'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/str17mach1gen1_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/str17mach1gen1_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_str17mach1gen1'
+
+data_file 'AUDIO_GAMEDATA' 'audioconfig/st74cb4f_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/st74cb4f_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_st74cb4f'
+
+data_file 'AUDIO_SYNTHDATA' 'audioconfig/mx5nasound_amp.dat'
+data_file 'AUDIO_GAMEDATA' 'audioconfig/mx5nasound_game.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/mx5nasound_sounds.dat'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_mx5nasound'

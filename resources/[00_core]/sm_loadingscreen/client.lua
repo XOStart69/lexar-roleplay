@@ -1,0 +1,5 @@
+AddEventHandler("playerSpawned", function()
+    print("[SM] - Loading Screen Off")
+    ShutdownLoadingScreen()
+    ShutdownLoadingScreenNui()
+end)

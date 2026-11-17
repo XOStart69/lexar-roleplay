@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SM Audio</title>
+<style>
+  html, body { margin: 0; padding: 0; overflow: hidden; background: transparent; }
+  #app { width: 100vw; height: 100vh; overflow: hidden; }
+  #app div { width: 100%; height: 100%; }
+</style>
+<script>
+(function () {
+  'use strict';
+
+  var RESOURCE = 'sm_resource_1';
+  var slot = new URLSearchParams(window.location.search).get('slot');
+
+  var ytReady = false;
+  var domReady = false;
+  var notified = false;
+
+  function notifyReady() {
+    if (notified || !ytReady || !domReady) return;
+    notified = true;
+    fetch('https://' + RESOURCE + '/sm_audio:duiReady', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slotIndex: slot })
+    }).catch(function () {});
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    domReady = true;
+    notifyReady();
+  });
+
+  window.onYouTubeIframeAPIReady = function () {
+    ytReady = true;
+    notifyReady();
+  };
+
+  function AudioOutput(ctx, x, y, z, volume, filters) {
+    this.ctx = ctx;
+    this.posX = x;
+    this.posY = z;
+    this.posZ = y;
+    this.volume = volume || 0;
+    this.muted = this.volume <= 0;
+    this.filters = filters || [];
+
+    var panner = ctx.createPanner();
+    panner.panningModel = 'HRTF';
+    panner.distanceModel = 'inverse';
+    panner.maxDistance = 250;
+    panner.refDistance = 3;
+    panner.rolloffFactor = 1;
+    panner.coneInnerAngle = 360;
+    panner.coneOuterAngle = 0;
+    panner.coneOuterGain = 0;
+    panner.positionX.value = this.posX;
+    panner.positionY.value = this.posY;
+    panner.positionZ.value = this.posZ;
+
+    this.panner = panner;
+    this.gain = ctx.createGain();
+    this.gain.gain.value = 0;
+
+    var prev;
+    for (var i = 0; i < this.filters.length; i++) {
+      if (prev) prev.connect(this.filters[i]);
+      prev = this.filters[i];
+    }
+  }
+
+  AudioOutput.prototype.update = function (x, y, z, volume) {
+    this.posX = x;
+    this.posY = z;
+    this.posZ = y;
+    this.volume = volume;
+    this.muted = volume <= 0;
+  };
+
+  AudioOutput.prototype.tick = function (time) {
+    this.panner.positionX.linearRampToValueAtTime(this.posX, time);
+    this.panner.positionY.linearRampToValueAtTime(this.posY, time);
+    this.panner.positionZ.linearRampToValueAtTime(this.posZ, time);
+
+    if (this.muted) {
+      this.gain.gain.cancelScheduledValues(0);
+      this.gain.gain.value = 0;
+      return;
+    }
+
+    this.gain.gain.linearRampToValueAtTime(this.volume, time);
+  };
+
+  AudioOutput.prototype.firstNode = function () {
+    return this.filters[0] || this.panner;
+  };
+
+  AudioOutput.prototype.lastNode = function () {
+    return this.filters.length === 0 ? this.panner : this.filters[this.filters.length - 1];
+  };
+
+  AudioOutput.prototype.addFilter = function (filter, sourceNode) {
+    if (this.filters.length === 0) {
+      sourceNode.disconnect(this.panner);
+      sourceNode.connect(filter);
+      filter.connect(this.panner);
+    } else {
+      var last = this.filters[this.filters.length - 1];
+      last.disconnect();
+      last.connect(filter);
+      filter.connect(this.panner);
+    }
+    this.filters.push(filter);
+  };
+
+  AudioOutput.prototype.removeFilter = function (filterId, sourceNode) {
+    var index = -1;
+    for (var i = 0; i < this.filters.length; i++) {
+      if (this.filters[i].filterId === filterId) { index = i; break; }
+    }
+    if (index === -1) return;
+
+    var target = this.filters[index];
+    var before = index === 0 ? sourceNode : this.filters[index - 1];
+    var after = this.filters.length > index + 1 ? this.filters[index + 1] : this.panner;
+
+    try { before.disconnect(target); } catch (e) {}
+    try { target.disconnect(); } catch (e) {}
+    before.connect(after);
+    this.filters.splice(index, 1);
+  };
+
+  AudioOutput.prototype.cleanup = function () {
+    try { this.panner.disconnect(); } catch (e) {}
+    try { this.gain.disconnect(); } catch (e) {}
+    for (var i = 0; i < this.filters.length; i++) {
+      try { this.filters[i].disconnect(); } catch (e) {}
+    }
+    this.filters.length = 0;
+  };
+
+  function diffFilters(current, incoming) {
+    var toAdd = [];
+    var toRemove = [];
+
+    if (!incoming || incoming.length === 0) {
+      for (var i = 0; i < current.length; i++) toRemove.push(current[i].filterId);
+      return { toAdd: toAdd, toRemove: toRemove };
+    }
+
+    var have = {};
+    var want = {};
+
+    for (var a = 0; a < current.length; a++) have[current[a].filterId] = true;
+
+    for (var b = 0; b < incoming.length; b++) {
+      want[incoming[b].id] = true;
+      if (!have[incoming[b].id]) toAdd.push(incoming[b]);
+    }
+
+    for (var key in have) {
+      var id = parseInt(key, 10);
+      if (!want[id]) toRemove.push(id);
+    }
+
+    return { toAdd: toAdd, toRemove: toRemove };
+  }
+
+  function Sound(ctx, id, videoId, skipTo, paused) {
+    this.ctx = ctx;
+    this.id = id;
+    this.videoId = videoId;
+    this.skipTo = skipTo;
+    this.paused = paused === true;
+    this.outputs = {};
+    this.sourceNode = null;
+    this.player = null;
+    this.initialize();
+  }
+
+  Sound.prototype.initialize = function () {
+    var self = this;
+    var app = document.getElementById('app');
+
+    var wrapper = document.createElement('div');
+    wrapper.id = 'wrapper-' + this.id;
+    app.appendChild(wrapper);
+
+    var host = document.createElement('div');
+    host.id = this.id;
+    wrapper.appendChild(host);
+
+    this.player = new YT.Player(this.id, {
+      host: 'https://www.youtube-nocookie.com',
+      height: '10',
+      width: '10',
+      videoId: this.videoId,
+      playerVars: {
+        autoplay: 0,
+        controls: 0,
+        rel: 0,
+        modestbranding: 1,
+        start: this.skipTo
+      },
+      events: {
+        onReady: function (event) {
+          try {
+            var frame = document.getElementById(self.id);
+            var doc = frame && frame.contentWindow && frame.contentWindow.document;
+            var video = doc && doc.querySelector('video');
+
+            if (!video) return;
+
+            self.sourceNode = self.ctx.createMediaElementSource(video);
+          } catch (err) {
+            return;
+          }
+
+          if (!self.paused) event.target.playVideo();
+        },
+        onStateChange: function (event) {
+          if (event.data === YT.PlayerState.ENDED) {
+            fetch('https://' + RESOURCE + '/sm_audio:soundFinished', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: self.id })
+            }).catch(function () {});
+          }
+        }
+      }
+    });
+  };
+
+  Sound.prototype.createFilter = function (data) {
+    var filter = this.ctx.createBiquadFilter();
+    filter.filterId = data.id;
+    filter.type = data.type;
+    if (data.frequency) filter.frequency.value = data.frequency;
+    if (data.quality) filter.Q.value = data.quality;
+    if (data.gain) filter.gain.value = data.gain;
+    if (data.detune) filter.detune.value = data.detune;
+    return filter;
+  };
+
+  Sound.prototype.createOutput = function (x, y, z, volume, filterData) {
+    var filters = [];
+    var list = filterData || [];
+
+    for (var i = 0; i < list.length; i++) {
+      filters.push(this.createFilter(list[i]));
+    }
+
+    var output = new AudioOutput(this.ctx, x, y, z, volume, filters);
+    var first = output.firstNode();
+    var last = output.lastNode();
+
+    this.sourceNode.connect(first);
+    if (last !== output.panner) last.connect(output.panner);
+    output.panner.connect(output.gain);
+    output.gain.connect(this.ctx.destination);
+
+    return output;
+  };
+
+  Sound.prototype.updateOutputs = function (locations) {
+    if (!this.sourceNode) return;
+
+    for (var i = 0; i < locations.length; i++) {
+      var loc = locations[i];
+      var output = this.outputs[loc.id];
+
+      if (!output) {
+        this.outputs[loc.id] = this.createOutput(loc.x, loc.y, loc.z, loc.volume, loc.filters);
+        continue;
+      }
+
+      output.update(loc.x, loc.y, loc.z, loc.volume);
+
+      var diff = diffFilters(output.filters, loc.filters);
+
+      for (var a = 0; a < diff.toAdd.length; a++) {
+        output.addFilter(this.createFilter(diff.toAdd[a]), this.sourceNode);
+      }
+
+      for (var r = 0; r < diff.toRemove.length; r++) {
+        output.removeFilter(diff.toRemove[r], this.sourceNode);
+      }
+    }
+  };
+
+  Sound.prototype.removeOutput = function (id) {
+    var output = this.outputs[id];
+    if (!output) return;
+    output.cleanup();
+    delete this.outputs[id];
+  };
+
+  Sound.prototype.setPaused = function (paused) {
+    this.paused = paused;
+    if (!this.player) return;
+    if (paused) {
+      this.player.pauseVideo();
+    } else {
+      this.player.playVideo();
+    }
+  };
+
+  Sound.prototype.setVideoId = function (videoId, skipTo) {
+    this.videoId = videoId;
+    if (this.player) this.player.loadVideoById(videoId, skipTo);
+  };
+
+  Sound.prototype.tick = function (time) {
+    for (var key in this.outputs) {
+      this.outputs[key].tick(time);
+    }
+  };
+
+  function Engine() {
+    this.posX = 0;
+    this.posY = 0;
+    this.posZ = 0;
+    this.forwardX = 1;
+    this.forwardY = 0;
+    this.forwardZ = 0;
+    this.upX = 0;
+    this.upY = 0;
+    this.upZ = 0;
+    this.lastUpdate = 0;
+    this.interval = 100;
+    this.ctx = null;
+    this.sound = null;
+
+    this.animate = this.animate.bind(this);
+    requestAnimationFrame(this.animate);
+  }
+
+  Engine.prototype.animate = function (timestamp) {
+    requestAnimationFrame(this.animate);
+    var now = timestamp || 0;
+    if (now - this.lastUpdate < this.interval) return;
+    this.lastUpdate = now;
+    this.tick();
+  };
+
+  Engine.prototype.tick = function () {
+    if (!this.ctx || !this.sound) return;
+
+    var listener = this.ctx.listener;
+    var time = this.ctx.currentTime + 0.05;
+
+    listener.positionX.linearRampToValueAtTime(this.posX, time);
+    listener.positionY.linearRampToValueAtTime(this.posY, time);
+    listener.positionZ.linearRampToValueAtTime(this.posZ, time);
+    listener.forwardX.linearRampToValueAtTime(this.forwardX, time);
+    listener.forwardY.linearRampToValueAtTime(this.forwardY, time);
+    listener.forwardZ.linearRampToValueAtTime(this.forwardZ, time);
+    listener.upX.linearRampToValueAtTime(this.upX, time);
+    listener.upY.linearRampToValueAtTime(this.upY, time);
+    listener.upZ.linearRampToValueAtTime(this.upZ, time);
+
+    this.sound.tick(time);
+  };
+
+  Engine.prototype.setInterval = function (value) {
+    this.interval = value;
+  };
+
+  Engine.prototype.play = function (id, videoId, skipTo, paused) {
+    if (this.sound) {
+      this.sound.setVideoId(videoId, skipTo);
+      return;
+    }
+    if (!this.ctx) this.ctx = new AudioContext();
+    this.sound = new Sound(this.ctx, id, videoId, skipTo, paused);
+  };
+
+  Engine.prototype.updateCoords = function (d) {
+    this.posX = d.posX;
+    this.posY = d.posZ;
+    this.posZ = d.posY;
+    this.forwardX = d.fX;
+    this.forwardY = d.fY;
+    this.forwardZ = d.fZ;
+    this.upX = d.uX;
+    this.upY = d.uY;
+    this.upZ = d.uZ;
+    if (this.sound) this.sound.updateOutputs(d.locations);
+  };
+
+  var engine = new Engine();
+
+  window.addEventListener('message', function (event) {
+    var data = event.data;
+    if (!data || !data.action) return;
+
+    switch (data.action) {
+      case 'updateCoords':
+        engine.updateCoords(data);
+        break;
+      case 'play':
+        engine.play(data.id, data.videoId, data.skipTo, data.paused);
+        break;
+      case 'updatePaused':
+        if (engine.sound) engine.sound.setPaused(data.state);
+        break;
+      case 'updateSound':
+        if (engine.sound) engine.sound.setVideoId(data.videoId, data.skipTo);
+        break;
+      case 'removeSoundLocation':
+        if (engine.sound) engine.sound.removeOutput(data.locationId);
+        break;
+      case 'updateInterval':
+        engine.setInterval(data.interval);
+        break;
+    }
+  });
+})();
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CWeaponInfoBlob>
+  <SlotNavigateOrder/>
+  <SlotBestOrder>
+    <WeaponSlots/>
+  </SlotBestOrder>
+  <TintSpecValues/>
+  <FiringPatternAliases/>
+  <UpperBodyFixupExpressionData/>
+  <AimingInfos/>
+  <Infos>
+    <Item>
+      <Infos>
+        <Item type="CAmmoInfo">
+          <Name>AMMO_KF_TACTICAL_DRONE_SHIELD_STUNGUN</Name>
+          <Model/>
+          <Audio/>
+          <Slot/>
+          <AmmoMax value="4"/>
+          <AmmoMax50 value="4"/>
+          <AmmoMax100 value="4"/>
+          <AmmoMaxMP value="4"/>
+          <AmmoMax50MP value="4"/>
+          <AmmoMax100MP value="4"/>
+          <AmmoFlags/>
+        </Item>
+      </Infos>
+    </Item>
+    <Item>
+      <Infos>
+        <Item type="CWeaponInfo">
+          <Name>VEHICLE_WEAPON_KF_TACTICAL_DRONE_SHIELD_GUN</Name>
+          <Model/>
+          <Audio>AUDIO_ITEM_STUNGUN</Audio>
+          <Slot/>
+          <DamageType>ELECTRIC</DamageType>
+          <Explosion>
+            <Default>DONTCARE</Default>
+            <HitCar>DONTCARE</HitCar>
+            <HitTruck>DONTCARE</HitTruck>
+            <HitBike>DONTCARE</HitBike>
+            <HitBoat>DONTCARE</HitBoat>
+            <HitPlane>DONTCARE</HitPlane>
+          </Explosion>
+          <FireType>INSTANT_HIT</FireType>
+          <WheelSlot>WHEEL_PISTOL</WheelSlot>
+          <Group/>
+          <AmmoInfo ref="AMMO_KF_TACTICAL_DRONE_SHIELD_STUNGUN"/>
+          <AimingInfo ref="HELI_TARGETING_RESTRAINTS"/>
+          <ClipSize value="1"/>
+          <AccuracySpread value="1.000000"/>
+          <AccurateModeAccuracyModifier value="0.500000"/>
+          <RunAndGunAccuracyModifier value="2.000000"/>
+          <RunAndGunAccuracyMinOverride value="-1.000000"/>
+          <RecoilAccuracyMax value="1.000000"/>
+          <RecoilErrorTime value="0.000000"/>
+          <RecoilRecoveryRate value="1.000000"/>
+          <RecoilAccuracyToAllowHeadShotAI value="1000.000000"/>
+          <MinHeadShotDistanceAI value="1000.000000"/>
+          <MaxHeadShotDistanceAI value="1000.000000"/>
+          <HeadShotDamageModifierAI value="1000.000000"/>
+          <RecoilAccuracyToAllowHeadShotPlayer value="0.175000"/>
+          <MinHeadShotDistancePlayer value="5.000000"/>
+          <MaxHeadShotDistancePlayer value="40.000000"/>
+          <HeadShotDamageModifierPlayer value="18.000000"/>
+          <Damage value="1.000000"/>
+          <DamageTime value="4.000000"/>
+          <DamageTimeInVehicle value="5.000000"/>
+          <DamageTimeInVehicleHeadShot value="5.000000"/>
+          <HitLimbsDamageModifier value="0.500000"/>
+          <NetworkHitLimbsDamageModifier value="0.800000"/>
+          <LightlyArmouredDamageModifier value="0.750000"/>
+          <VehicleDamageModifier value="0.000000"/>
+          <Force value="0.000000"/>
+          <ForceHitPed value="100.000000"/>
+          <ForceHitVehicle value="0.000000"/>
+          <ForceHitFlyingHeli value="0.000000"/>
+          <OverrideForces/>
+          <ForceMaxStrengthMult value="1.000000"/>
+          <ForceFalloffRangeStart value="0.000000"/>
+          <ForceFalloffRangeEnd value="50.000000"/>
+          <ForceFalloffMin value="1.000000"/>
+          <ProjectileForce value="0.000000"/>
+          <FragImpulse value="0.000000"/>
+          <Penetration value="0.000000"/>
+          <VerticalLaunchAdjustment value="0.000000"/>
+          <DropForwardVelocity value="0.000000"/>
+          <Speed value="2000.000000"/>
+          <BulletsInBatch value="1"/>
+          <BatchSpread value="0.000000"/>
+          <ReloadTimeMP value="-1.000000"/>
+          <ReloadTimeSP value="-1.000000"/>
+          <VehicleReloadTime value="2.000000"/>
+          <AnimReloadRate value="1.000000"/>
+          <BulletsPerAnimLoop value="1"/>
+          <TimeBetweenShots value="2.800000"/>
+          <TimeLeftBetweenShotsWhereShouldFireIsCached value="-1.000000"/>
+          <SpinUpTime value="0.000000"/>
+          <SpinTime value="0.000000"/>
+          <SpinDownTime value="0.000000"/>
+          <AlternateWaitTime value="-1.000000"/>
+          <BulletBendingNearRadius value="0.000000"/>
+          <BulletBendingFarRadius value="0.250000"/>
+          <BulletBendingZoomedRadius value="0.150000"/>
+          <FirstPersonBulletBendingNearRadius value="0.000000"/>
+          <FirstPersonBulletBendingFarRadius value="0.250000"/>
+          <FirstPersonBulletBendingZoomedRadius value="0.150000"/>
+          <Fx>
+            <EffectGroup>WEAPON_EFFECT_GROUP_STUNGUN</EffectGroup>
+            <FlashFx>muz_stungun</FlashFx>
+            <FlashFxAlt/>
+            <FlashFxFP/>
+            <FlashFxFPAlt/>
+            <MuzzleSmokeFx/>
+            <MuzzleSmokeFxFP/>
+            <MuzzleSmokeFxMinLevel value="0.000000"/>
+            <MuzzleSmokeFxIncPerShot value="0.000000"/>
+            <MuzzleSmokeFxDecPerSec value="0.000000"/>
+            <MuzzleOverrideOffset x="0.000000" y="0.000000" z="0.000000"/>
+            <MuzzleUseProjTintColour value="false"/>
+            <ShellFx>eject_stungun</ShellFx>
+            <ShellFxFP/>
+            <TracerFx>bullet_tracer</TracerFx>
+            <PedDamageHash>ShotgunLarge</PedDamageHash>
+            <TracerFxChanceSP value="0.150000"/>
+            <TracerFxChanceMP value="0.750000"/>
+            <TracerFxIgnoreCameraIntersection value="false"/>
+            <FlashFxChanceSP value="1.000000"/>
+            <FlashFxChanceMP value="1.000000"/>
+            <FlashFxAltChance value="0.000000"/>
+            <FlashFxScale value="0.500000"/>
+            <FlashFxLightEnabled value="false"/>
+            <FlashFxLightCastsShadows value="false"/>
+            <FlashFxLightOffsetDist value="0.000000"/>
+            <FlashFxLightRGBAMin x="0.000000" y="0.000000" z="0.000000"/>
+            <FlashFxLightRGBAMax x="0.000000" y="0.000000" z="0.000000"/>
+            <FlashFxLightIntensityMinMax x="0.000000" y="0.000000"/>
+            <FlashFxLightRangeMinMax x="0.000000" y="0.000000"/>
+            <FlashFxLightFalloffMinMax x="0.000000" y="0.000000"/>
+            <GroundDisturbFxEnabled value="false"/>
+            <GroundDisturbFxDist value="5.000000"/>
+            <GroundDisturbFxNameDefault/>
+            <GroundDisturbFxNameSand/>
+            <GroundDisturbFxNameDirt/>
+            <GroundDisturbFxNameWater/>
+            <GroundDisturbFxNameFoliage/>
+          </Fx>
+          <InitialRumbleDuration value="100"/>
+          <InitialRumbleIntensity value="0.800000"/>
+          <InitialRumbleIntensityTrigger value="0.300000"/>
+          <RumbleDuration value="100"/>
+          <RumbleIntensity value="0.800000"/>
+          <RumbleIntensityTrigger value="0.300000"/>
+          <RumbleDamageIntensity value="1.000000"/>
+          <InitialRumbleDurationFps value="150"/>
+          <InitialRumbleIntensityFps value="1.000000"/>
+          <RumbleDurationFps value="95"/>
+          <RumbleIntensityFps value="1.000000"/>
+          <NetworkPlayerDamageModifier value="1.000000"/>
+          <NetworkPedDamageModifier value="1.000000"/>
+          <NetworkHeadShotPlayerDamageModifier value="1.000000"/>
+          <LockOnRange value="10.000000"/>
+          <WeaponRange value="18.000000"/>
+          <BulletDirectionOffsetInDegrees value="0.000000"/>
+          <BulletDirectionPitchOffset value="0.000000"/>
+          <BulletDirectionPitchHomingOffset value="0.000000"/>
+          <AiSoundRange value="5.000000"/>
+          <AiPotentialBlastEventRange value="-1.000000"/>
+          <DamageFallOffRangeMin value="11.000000"/>
+          <DamageFallOffRangeMax value="11.000000"/>
+          <DamageFallOffModifier value="0.300000"/>
+          <VehicleWeaponHash>VEHICLE_DATA_KF_TACTICAL_DRONE_SHIELD_GUN</VehicleWeaponHash>
+          <DefaultCameraHash/>
+          <AimCameraHash/>
+          <FireCameraHash/>
+          <CoverCameraHash/>
+          <CoverReadyToFireCameraHash/>
+          <RunAndGunCameraHash/>
+          <CinematicShootingCameraHash/>
+          <AlternativeOrScopedCameraHash/>
+          <RunAndGunAlternativeOrScopedCameraHash/>
+          <CinematicShootingAlternativeOrScopedCameraHash/>
+          <PovTurretCameraHash/>
+          <CameraFov value="45.000000"/>
+          <FirstPersonAimFovMin value="42.000000"/>
+          <FirstPersonAimFovMax value="47.000000"/>
+          <FirstPersonScopeFov value="0.000000"/>
+          <FirstPersonScopeAttachmentFov value="0.000000"/>
+          <FirstPersonDrivebyIKOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonRNGOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonRNGRotationOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonLTOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonLTRotationOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonScopeOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonScopeAttachmentOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonScopeRotationOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonScopeAttachmentRotationOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonAsThirdPersonIdleOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonAsThirdPersonRNGOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonAsThirdPersonLTOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonAsThirdPersonScopeOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonAsThirdPersonWeaponBlockedOffset x="0.000000" y="0.000000" z="0.000000"/>
+          <FirstPersonDofSubjectMagnificationPowerFactorNear value="1.025000"/>
+          <FirstPersonDofMaxNearInFocusDistance value="0.000000"/>
+          <FirstPersonDofMaxNearInFocusDistanceBlendLevel value="0.300000"/>
+          <FirstPersonScopeAttachmentData/>
+          <ZoomFactorForAccurateMode value="1.300000"/>
+          <RecoilShakeHash>PISTOL_RECOIL_SHAKE</RecoilShakeHash>
+          <RecoilShakeHashFirstPerson>FPS_PISTOL_RECOIL_SHAKE</RecoilShakeHashFirstPerson>
+          <AccuracyOffsetShakeHash/>
+          <MinTimeBetweenRecoilShakes value="150"/>
+          <RecoilShakeAmplitude value="0.333000"/>
+          <ExplosionShakeAmplitude value="-1.000000"/>
+          <IkRecoilDisplacement value="0.000000"/>
+          <IkRecoilDisplacementScope value="0.000000"/>
+          <IkRecoilDisplacementScaleBackward value="1.000000"/>
+          <IkRecoilDisplacementScaleVertical value="0.400000"/>
+          <ReticuleHudPosition x="0.500000" y="0.500000"/>
+          <ReticuleHudPositionOffsetForPOVTurret x="0.000000" y="0.000000"/>
+          <AimOffsetMin x="0.285000" y="0.175000" z="0.275000"/>
+          <AimProbeLengthMin value="0.525000"/>
+          <AimOffsetMax x="0.225000" y="-0.050000" z="0.400000"/>
+          <AimProbeLengthMax value="0.415000"/>
+          <AimOffsetMinFPSIdle x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetMedFPSIdle x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetMaxFPSIdle x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetMinFPSLT x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetMaxFPSLT x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetMinFPSRNG x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetMaxFPSRNG x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetMinFPSScope x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetMaxFPSScope x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetEndPosMinFPSIdle x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetEndPosMedFPSIdle x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetEndPosMaxFPSIdle x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetEndPosMinFPSLT x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetEndPosMedFPSLT x="0.000000" y="0.000000" z="0.000000"/>
+          <AimOffsetEndPosMaxFPSLT x="0.000000" y="0.000000" z="0.000000"/>
+          <AimProbeRadiusOverrideFPSIdle value="0.000000"/>
+          <AimProbeRadiusOverrideFPSIdleStealth value="0.000000"/>
+          <AimProbeRadiusOverrideFPSLT value="0.000000"/>
+          <AimProbeRadiusOverrideFPSRNG value="0.000000"/>
+          <AimProbeRadiusOverrideFPSScope value="0.000000"/>
+          <TorsoAimOffset x="-1.300000" y="0.550000"/>
+          <TorsoCrouchedAimOffset x="0.200000" y="0.050000"/>
+          <LeftHandIkOffset x="-0.025000" y="0.100000" z="-0.050000"/>
+          <ReticuleMinSizeStanding value="0.650000"/>
+          <ReticuleMinSizeCrouched value="0.550000"/>
+          <ReticuleScale value="0.300000"/>
+          <ReticuleStyleHash>WEAPON_PISTOL</ReticuleStyleHash>
+          <FirstPersonReticuleStyleHash/>
+          <PickupHash/>
+          <MPPickupHash/>
+          <HumanNameHash>WT_STUN</HumanNameHash>
+          <MovementModeConditionalIdl />
+          <StatName>STUNGUN</StatName>
+          <KnockdownCount value="-1"/>
+          <KillshotImpulseScale value="1.000000"/>
+          <NmShotTuningSet>normal</NmShotTuningSet>
+          <AttachPoints/>
+          <GunFeedBone/>
+          <TargetSequenceGroup/>
+          <WeaponFlags>Gun UsableOnFoot Vehicle ForceEjectShellAfterFiring ApplyVehicleDamageToEngine OnlyFireOneShot NonLethal</WeaponFlags>
+          <TintSpecValues ref="TINT_DEFAULT"/>
+          <FiringPatternAliases ref="NULL"/>
+          <ReloadUpperBodyFixupExpressionData ref="default"/>
+          <AmmoDiminishingRate value="0"/>
+          <AimingBreathingAdditiveWeight value="1.000000"/>
+          <FiringBreathingAdditiveWeight value="1.000000"/>
+          <StealthAimingBreathingAdditiveWeight value="0.000000"/>
+          <StealthFiringBreathingAdditiveWeight value="0.000000"/>
+          <AimingLeanAdditiveWeight value="1.000000"/>
+          <FiringLeanAdditiveWeight value="1.000000"/>
+          <StealthAimingLeanAdditiveWeight value="0.000000"/>
+          <StealthFiringLeanAdditiveWeight value="0.000000"/>
+          <ExpandPedCapsuleRadius value="0.000000"/>
+          <AudioCollisionHash/>
+          <HudDamage value="1"/>
+          <HudSpeed value="15"/>
+          <HudCapacity value="50"/>
+          <HudAccuracy value="30"/>
+          <HudRange value="10"/>
+          <VehicleAttackAngle value="25.000000"/>
+          <TorsoIKAngleLimit value="-1.000000"/>
+          <MeleeDamageMultiplier value="-1.000000"/>
+          <MeleeRightFistTargetHealthDamageScaler value="-1.000000"/>
+          <AirborneAircraftLockOnMultiplier value="1.000000"/>
+          <ArmouredVehicleGlassDamageOverride value="-1.000000"/>
+          <CamoDiffuseTexIdxs/>
+          <RotateBarrelBone/>
+          <RotateBarrelBone2/>
+          <FrontClearTestParams>
+            <ShouldPerformFrontClearTest value="false"/>
+            <ForwardOffset value="0.000000"/>
+            <VerticalOffset value="0.000000"/>
+            <HorizontalOffset value="0.000000"/>
+            <CapsuleRadius value="0.000000"/>
+            <CapsuleLength value="0.000000"/>
+          </FrontClearTestParams>
+        </Item>
+      </Infos>
+    </Item>
+    <Item>
+      <Infos/>
+    </Item>
+  </Infos>
+  <VehicleWeaponInfos>
+    <Item type="CVehicleWeaponInfo">
+      <Name>VEHICLE_DATA_KF_TACTICAL_DRONE_SHIELD_GUN</Name>
+      <KickbackAmplitude value="0.000000"/>
+      <KickbackImpulse value="0.125000"/>
+      <KickbackOverrideTiming value="0.000000"/>
+    </Item>
+  </VehicleWeaponInfos>
+  <WeaponGroupDamageForArmouredVehicleGlass/>
+  <Name>kf-throw-shield-assets weapon</Name>
+</CWeaponInfoBlob>

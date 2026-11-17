@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+    <InitDatas>
+        <!-- Bottle -->
+        <Item>
+            <modelName>W_ME_JPX_ICHIGO_SWORD</modelName>
+            <txdName>W_ME_JPX_ICHIGO_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_KYORAKU_SWORD</modelName>
+            <txdName>W_ME_JPX_KYORAKU_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_MAYURI_SWORD</modelName>
+            <txdName>W_ME_JPX_MAYURI_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_RENJI_SWORD</modelName>
+            <txdName>W_ME_JPX_RENJI_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_GRIMMJOW_SWORD</modelName>
+            <txdName>W_ME_JPX_GRIMMJOW_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_TOSHIRO_SWORD</modelName>
+            <txdName>W_ME_JPX_TOSHIRO_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_ULQUIORRA_SWORD</modelName>
+            <txdName>W_ME_JPX_ULQUIORRA_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_URAHARA_SWORD</modelName>
+            <txdName>W_ME_JPX_URAHARA_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+  
+
+    </InitDatas>
+</CWeaponModelInfo__InitDataList>

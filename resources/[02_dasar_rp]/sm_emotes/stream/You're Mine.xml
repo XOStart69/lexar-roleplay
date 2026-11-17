@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<SpoonerPlacements>
+	<Note />
+	<AudioFile volume="400" />
+	<ClearDatabase>false</ClearDatabase>
+	<ClearWorld>0</ClearWorld>
+	<ClearMarkers>false</ClearMarkers>
+	<IPLsToLoad load_mp_maps="false" load_sp_maps="false" />
+	<IPLsToRemove />
+	<InteriorsToEnable />
+	<InteriorsToCap />
+	<WeatherToSet></WeatherToSet>
+	<TimecycleModifier strength="1"></TimecycleModifier>
+	<StartTaskSequencesOnLoad>true</StartTaskSequencesOnLoad>
+	<ReferenceCoords>
+		<X>47.3268585</X>
+		<Y>551.241333</Y>
+		<Z>183.344223</Z>
+	</ReferenceCoords>
+	<Placement>
+		<ModelHash>0x9c9effd8</ModelHash>
+		<Type>1</Type>
+		<Dynamic>true</Dynamic>
+		<FrozenPos>true</FrozenPos>
+		<HashName>Freemode Female</HashName>
+		<InitialHandle>219915</InitialHandle>
+		<TaskSequence>
+			<Task>
+				<Type>14</Type>
+				<Duration>10500</Duration>
+				<KeepTaskRunningAfterTime>1</KeepTaskRunningAfterTime>
+				<IsLoopedTask>false</IsLoopedTask>
+				<AnimDict>you'remine1@kyunnies</AnimDict>
+				<AnimName>you'remine1_clip</AnimName>
+				<Speed>4</Speed>
+				<SpeedMultiplier>-4</SpeedMultiplier>
+				<Flag>1</Flag>
+				<LockPos>false</LockPos>
+				<OverrideDurationToNormalSpeedAnimDuration>false</OverrideDurationToNormalSpeedAnimDuration>
+			</Task>
+		</TaskSequence>
+		<PedProperties>
+			<IsStill>true</IsStill>
+			<CanRagdoll>false</CanRagdoll>
+			<HasShortHeight>false</HasShortHeight>
+			<Armour>0</Armour>
+			<CurrentWeapon>0xa2719263</CurrentWeapon>
+			<PedProps>
+				<_0>-1,-1</_0>
+				<_1>-1,-1</_1>
+				<_2>-1,-1</_2>
+				<_3>-1,-1</_3>
+				<_4>-1,-1</_4>
+				<_5>-1,-1</_5>
+				<_6>-1,-1</_6>
+				<_7>-1,-1</_7>
+				<_8>-1,-1</_8>
+				<_9>-1,-1</_9>
+			</PedProps>
+			<PedComps>
+				<_0>0,0</_0>
+				<_1>0,0</_1>
+				<_2>15,0</_2>
+				<_3>0,0</_3>
+				<_4>47,0</_4>
+				<_5>-1,0</_5>
+				<_6>151,0</_6>
+				<_7>0,0</_7>
+				<_8>14,0</_8>
+				<_9>568,11</_9>
+				<_10>195,0</_10>
+				<_11>49,0</_11>
+			</PedComps>
+			<HeadFeatures WasInArray="true">
+				<ShapeAndSkinTone>
+					<ShapeFatherId>21</ShapeFatherId>
+					<ShapeMotherId>21</ShapeMotherId>
+					<ShapeOverrideId>0</ShapeOverrideId>
+					<ToneFatherId>7</ToneFatherId>
+					<ToneMotherId>7</ToneMotherId>
+					<ToneOverrideId>1</ToneOverrideId>
+					<ShapeVal>0</ShapeVal>
+					<ToneVal>0</ToneVal>
+					<OverrideVal>0</OverrideVal>
+					<IsP>0</IsP>
+				</ShapeAndSkinTone>
+				<HairColour>0</HairColour>
+				<HairColourStreaks>0</HairColourStreaks>
+				<EyeColour>8</EyeColour>
+				<FacialFeatures>
+					<_0>0.000000</_0>
+					<_1>0.000000</_1>
+					<_2>0.000000</_2>
+					<_3>0.000000</_3>
+					<_4>0.000000</_4>
+					<_5>0.000000</_5>
+					<_6>0.000000</_6>
+					<_7>0.000000</_7>
+					<_8>0.000000</_8>
+					<_9>0.000000</_9>
+					<_10>0.000000</_10>
+					<_11>0.000000</_11>
+					<_12>0.000000</_12>
+					<_13>0.000000</_13>
+					<_14>0.000000</_14>
+					<_15>0.000000</_15>
+					<_16>0.000000</_16>
+					<_17>0.000000</_17>
+					<_18>0.000000</_18>
+					<_19>0.000000</_19>
+				</FacialFeatures>
+				<Overlays>
+					<_0 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_1 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_2 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_3 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_4 index="255" colour="0" colourSecondary="0" opacity="0.420000553" />
+					<_5 index="255" colour="0" colourSecondary="0" opacity="0.620000362" />
+					<_6 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_7 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_8 index="1" colour="23" colourSecondary="0" opacity="0.420000553" />
+					<_9 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_10 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_11 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_12 index="255" colour="0" colourSecondary="0" opacity="1" />
+				</Overlays>
+			</HeadFeatures>
+			<TattooLogoDecals />
+			<RelationshipGroupAltered>false</RelationshipGroupAltered>
+			<RelationshipGroup>0x6f0783f5</RelationshipGroup>
+			<ScenarioActive>false</ScenarioActive>
+			<AnimActive>false</AnimActive>
+		</PedProperties>
+		<OpacityLevel>255</OpacityLevel>
+		<LodDistance>16960</LodDistance>
+		<IsVisible>true</IsVisible>
+		<MaxHealth>200</MaxHealth>
+		<Health>200</Health>
+		<HasGravity>true</HasGravity>
+		<IsOnFire>false</IsOnFire>
+		<IsInvincible>true</IsInvincible>
+		<IsBulletProof>true</IsBulletProof>
+		<IsCollisionProof>false</IsCollisionProof>
+		<IsExplosionProof>true</IsExplosionProof>
+		<IsFireProof>false</IsFireProof>
+		<IsMeleeProof>true</IsMeleeProof>
+		<IsOnlyDamagedByPlayer>false</IsOnlyDamagedByPlayer>
+		<PositionRotation>
+			<X>46.6100197</X>
+			<Y>549.860046</Y>
+			<Z>183.699997</Z>
+			<Pitch>-0</Pitch>
+			<Roll>-0</Roll>
+			<Yaw>-36.115612</Yaw>
+		</PositionRotation>
+		<Attachment isAttached="false" />
+	</Placement>
+	<Placement>
+		<ModelHash>0x705e61f2</ModelHash>
+		<Type>1</Type>
+		<Dynamic>true</Dynamic>
+		<FrozenPos>true</FrozenPos>
+		<HashName>Freemode Male</HashName>
+		<InitialHandle>220171</InitialHandle>
+		<TaskSequence>
+			<Task>
+				<Type>14</Type>
+				<Duration>12000</Duration>
+				<KeepTaskRunningAfterTime>1</KeepTaskRunningAfterTime>
+				<IsLoopedTask>false</IsLoopedTask>
+				<AnimDict>you'remine2@kyunnies</AnimDict>
+				<AnimName>you'remine2_clip</AnimName>
+				<Speed>4</Speed>
+				<SpeedMultiplier>-4</SpeedMultiplier>
+				<Flag>1</Flag>
+				<LockPos>false</LockPos>
+				<OverrideDurationToNormalSpeedAnimDuration>false</OverrideDurationToNormalSpeedAnimDuration>
+			</Task>
+		</TaskSequence>
+		<PedProperties>
+			<IsStill>true</IsStill>
+			<CanRagdoll>false</CanRagdoll>
+			<HasShortHeight>false</HasShortHeight>
+			<Armour>0</Armour>
+			<CurrentWeapon>0xa2719263</CurrentWeapon>
+			<PedProps>
+				<_0>-1,-1</_0>
+				<_1>-1,-1</_1>
+				<_2>-1,-1</_2>
+				<_3>-1,-1</_3>
+				<_4>-1,-1</_4>
+				<_5>-1,-1</_5>
+				<_6>-1,-1</_6>
+				<_7>-1,-1</_7>
+				<_8>-1,-1</_8>
+				<_9>-1,-1</_9>
+			</PedProps>
+			<PedComps>
+				<_0>0,0</_0>
+				<_1>0,0</_1>
+				<_2>19,0</_2>
+				<_3>0,0</_3>
+				<_4>4,0</_4>
+				<_5>0,0</_5>
+				<_6>1,0</_6>
+				<_7>0,0</_7>
+				<_8>15,0</_8>
+				<_9>0,0</_9>
+				<_10>0,0</_10>
+				<_11>1,0</_11>
+			</PedComps>
+			<HeadFeatures WasInArray="true">
+				<ShapeAndSkinTone>
+					<ShapeFatherId>31</ShapeFatherId>
+					<ShapeMotherId>31</ShapeMotherId>
+					<ShapeOverrideId>0</ShapeOverrideId>
+					<ToneFatherId>7</ToneFatherId>
+					<ToneMotherId>1</ToneMotherId>
+					<ToneOverrideId>1</ToneOverrideId>
+					<ShapeVal>0</ShapeVal>
+					<ToneVal>0</ToneVal>
+					<OverrideVal>0</OverrideVal>
+					<IsP>0</IsP>
+				</ShapeAndSkinTone>
+				<HairColour>0</HairColour>
+				<HairColourStreaks>0</HairColourStreaks>
+				<EyeColour>8</EyeColour>
+				<FacialFeatures>
+					<_0>0.000000</_0>
+					<_1>0.000000</_1>
+					<_2>0.000000</_2>
+					<_3>0.000000</_3>
+					<_4>0.000000</_4>
+					<_5>0.000000</_5>
+					<_6>0.000000</_6>
+					<_7>0.000000</_7>
+					<_8>0.000000</_8>
+					<_9>0.000000</_9>
+					<_10>0.000000</_10>
+					<_11>0.000000</_11>
+					<_12>0.000000</_12>
+					<_13>0.000000</_13>
+					<_14>0.000000</_14>
+					<_15>0.000000</_15>
+					<_16>0.000000</_16>
+					<_17>0.000000</_17>
+					<_18>0.000000</_18>
+					<_19>0.000000</_19>
+				</FacialFeatures>
+				<Overlays>
+					<_0 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_1 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_2 index="1" colour="7" colourSecondary="0" opacity="1" />
+					<_3 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_4 index="255" colour="0" colourSecondary="0" opacity="0.590000391" />
+					<_5 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_6 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_7 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_8 index="1" colour="0" colourSecondary="0" opacity="0.590000391" />
+					<_9 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_10 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_11 index="255" colour="0" colourSecondary="0" opacity="1" />
+					<_12 index="255" colour="0" colourSecondary="0" opacity="1" />
+				</Overlays>
+			</HeadFeatures>
+			<TattooLogoDecals />
+			<RelationshipGroupAltered>false</RelationshipGroupAltered>
+			<RelationshipGroup>0xfade4843</RelationshipGroup>
+			<ScenarioActive>false</ScenarioActive>
+			<AnimActive>false</AnimActive>
+		</PedProperties>
+		<OpacityLevel>255</OpacityLevel>
+		<LodDistance>16960</LodDistance>
+		<IsVisible>true</IsVisible>
+		<MaxHealth>200</MaxHealth>
+		<Health>200</Health>
+		<HasGravity>true</HasGravity>
+		<IsOnFire>false</IsOnFire>
+		<IsInvincible>false</IsInvincible>
+		<IsBulletProof>false</IsBulletProof>
+		<IsCollisionProof>false</IsCollisionProof>
+		<IsExplosionProof>false</IsExplosionProof>
+		<IsFireProof>false</IsFireProof>
+		<IsMeleeProof>false</IsMeleeProof>
+		<IsOnlyDamagedByPlayer>false</IsOnlyDamagedByPlayer>
+		<PositionRotation>
+			<X>46.6074448</X>
+			<Y>549.844299</Y>
+			<Z>183.700226</Z>
+			<Pitch>-0</Pitch>
+			<Roll>-0</Roll>
+			<Yaw>-35.0703354</Yaw>
+		</PositionRotation>
+		<Attachment isAttached="false" />
+	</Placement>
+</SpoonerPlacements>

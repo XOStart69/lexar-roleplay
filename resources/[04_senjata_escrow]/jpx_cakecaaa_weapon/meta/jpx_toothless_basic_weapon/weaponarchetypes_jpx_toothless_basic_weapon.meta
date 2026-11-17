@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+    <InitDatas>
+        <!-- Bottle -->
+        <Item>
+            <modelName>W_ME_JPX_TOOTHLESS_BOTTLE</modelName>
+            <txdName>W_ME_JPX_TOOTHLESS_BOTTLE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_LIGHT_FURY_BOTTLE</modelName>
+            <txdName>W_ME_JPX_LIGHT_FURY_BOTTLE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!--Knife -->
+        <Item>
+            <modelName>W_ME_JPX_TOOTHLESS_KNIFE</modelName>
+            <txdName>W_ME_JPX_TOOTHLESS_KNIFE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_LIGHT_FURY_KNIFE</modelName>
+            <txdName>W_ME_JPX_LIGHT_FURY_KNIFE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Poolcue -->
+        <Item>
+            <modelName>W_ME_JPX_TOOTHLESS_POOLCUE</modelName>
+            <txdName>W_ME_JPX_TOOTHLESS_POOLCUE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_LIGHT_FURY_POOLCUE</modelName>
+            <txdName>W_ME_JPX_LIGHT_FURY_POOLCUE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Knuckle -->
+        <Item>
+            <modelName>W_ME_JPX_TOOTHLESS_KNUCKLE</modelName>
+            <txdName>W_ME_JPX_TOOTHLESS_KNUCKLE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_LIGHT_FURY_KNUCKLE</modelName>
+            <txdName>W_ME_JPX_LIGHT_FURY_KNUCKLE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Revolver Gun -->
+        <Item>
+            <modelName>W_PI_JPX_TOOTHLESS_REVOLVER_GUN</modelName>
+            <txdName>W_PI_JPX_TOOTHLESS_REVOLVER_GUN</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_TOOTHLESS_REVOLVER_GUN_mag1</modelName>
+            <txdName>W_PI_JPX_TOOTHLESS_REVOLVER_GUN_mag1</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_TOOTHLESS_REVOLVER_GUN_g</modelName>
+            <txdName>W_PI_JPX_TOOTHLESS_REVOLVER_GUN_g</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_TOOTHLESS_REVOLVER_GUN_b</modelName>
+            <txdName>W_PI_JPX_TOOTHLESS_REVOLVER_GUN_b</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+
+        <Item>
+            <modelName>W_PI_JPX_LIGHT_FURY_REVOLVER_GUN</modelName>
+            <txdName>W_PI_JPX_LIGHT_FURY_REVOLVER_GUN</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_LIGHT_FURY_REVOLVER_GUN_mag1</modelName>
+            <txdName>W_PI_JPX_LIGHT_FURY_REVOLVER_GUN_mag1</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_LIGHT_FURY_REVOLVER_GUN_g</modelName>
+            <txdName>W_PI_JPX_LIGHT_FURY_REVOLVER_GUN_g</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_LIGHT_FURY_REVOLVER_GUN_b</modelName>
+            <txdName>W_PI_JPX_LIGHT_FURY_REVOLVER_GUN_b</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+    </InitDatas>
+</CWeaponModelInfo__InitDataList>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RHD Nui Handler</title>
+    <script src="./vue.js"></script>
+    <link rel="stylesheet" href="wrapper.css"/>
+</head>
+<body>
+    <div id="app">
+        <div id="frames">
+            <div
+                v-for="(frame, name) in frames"
+                :key="name"
+                :style="getFrameStyle(frame)"
+                :ref="el => setFrameRef(name, el)"
+            >
+                <iframe
+                    v-if="frame.mounted"
+                    :key="frame.gen"
+                    :src="frame.url"
+                    :ref="el => setIframeRef(name, el)"
+                    @load="onIframeLoad(name)"
+                    allow="clipboard-write"
+                ></iframe>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="wrapper.js"></script>
+    <script type="module" src="capture.js"></script>
+</body>
+</html>

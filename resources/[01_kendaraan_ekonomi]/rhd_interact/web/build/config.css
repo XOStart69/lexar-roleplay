@@ -1,0 +1,18 @@
+:root {
+  --color-rhd: #008580;
+
+  --color-font: rgb(255, 255, 255);
+  --color-icon: var(--color-rhd);
+  --color-point: #008580;
+  --color-point-shadow: #008580;
+
+  --color-progress-bg: #25262b;
+
+  /* Transparent color variants — edit rgba values directly */
+  --color-active-bg: rgba(26, 27, 30, 0.55);
+  --color-inactive-bg: rgba(37, 38, 43, 0.25);
+  --color-active-border: rgba(37, 38, 43, 0.50);
+  --color-inactive-border: rgba(37, 38, 43, 0.10);
+  --color-pb-bg: rgba(26, 27, 30, 0.50);
+  --color-pb-border: rgba(37, 38, 43, 0.45);
+}

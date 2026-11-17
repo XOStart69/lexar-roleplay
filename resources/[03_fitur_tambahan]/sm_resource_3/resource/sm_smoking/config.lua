@@ -1,0 +1,26 @@
+return {
+    lighter = 'lighter',
+    removeStress = true,
+    disableCombat = true,
+    stressInterval = 120000,
+    cigaretteSmoke = 0.03,
+    cigarSmoke = 0.05,
+    unpackTime = 4000,
+    packs = {
+        { pack = 'redw', cigarette = 'redwcig', amount = 12 },
+        { pack = 'marlboro', cigarette = 'marlborocig', amount = 12 },
+        { pack = 'packrokom', cigarette = 'rokokbatanganm', amount = 12 },
+        { pack = 'cigarpack', cigarette = 'cigar', amount = 12 },
+        { pack = 'gpipepack', cigarette = 'gpipe', amount = 12 },
+        { pack = 'packcerutus', cigarette = 'cerutubatangans', amount = 12 },
+    },
+    smokes = {
+        cigar = { prop = 'prop_cigar_01', stress = 1, type = 'cigar' },
+        gpipe = { prop = 'prop_cigar_01', stress = 1, type = 'cigar' },
+        cerutubatangans = { prop = 'prop_cigar_01', stress = 1, type = 'cigar' },
+        davidoffcigar = { prop = 'prop_cigar_01', stress = 1, type = 'cigar' },
+        redwcig = { prop = 'ng_proc_cigarette01a', stress = 1, type = 'cigarette' },
+        marlborocig = { prop = 'ng_proc_cigarette01a', stress = 1, type = 'cigarette' },
+        rokokbatanganm = { prop = 'ng_proc_cigarette01a', stress = 1, type = 'cigarette' },
+    },
+}

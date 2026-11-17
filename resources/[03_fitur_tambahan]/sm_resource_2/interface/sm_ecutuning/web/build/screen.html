@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: local("Rajdhani");
+}
+body {
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  background: #12283c;
+  font-family:
+    "Rajdhani",
+    "Segoe UI",
+    sans-serif;
+  color: #ffffff;
+}
+#wrap {
+  width: 1280px;
+  height: 720px;
+  display: flex;
+  flex-direction: column;
+  padding: 38px 46px;
+  transform-origin: center center;
+}
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 26px;
+}
+.ttl {
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #6df0ff;
+  line-height: 1;
+}
+.sub {
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: #9db4c7;
+  margin-top: 6px;
+}
+.phase {
+  font-size: 19px;
+  letter-spacing: 3px;
+  padding: 11px 26px;
+  border-radius: 999px;
+  background: rgba(25, 224, 255, .12);
+  border: 2px solid rgba(25, 224, 255, .32);
+  color: #6df0ff;
+}
+.phase.run {
+  background: rgba(240, 207, 92, .14);
+  border-color: rgba(240, 207, 92, .4);
+  color: #ffe07a;
+}
+.vals {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+.v {
+  background: rgba(255, 255, 255, .13);
+  border-radius: 20px;
+  padding: 18px 10px;
+  text-align: center;
+}
+.v b {
+  display: block;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 700;
+}
+.v i {
+  font-style: normal;
+  font-size: 17px;
+  letter-spacing: 3px;
+  color: #9db4c7;
+}
+.v.ps b {
+  color: #6df0ff;
+}
+.v.nm b {
+  color: #ffe07a;
+}
+.v.g b,
+.v.s b {
+  color: #ffffff;
+}
+.chart {
+  flex: 1;
+  background: rgba(255, 255, 255, .10);
+  border-radius: 22px;
+  padding: 14px 18px;
+}
+svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+#grid line {
+  stroke: rgba(255, 255, 255, .16);
+  stroke-width: 1.5;
+}
+#axis text {
+  font-size: 15px;
+}
+#axis .ps {
+  fill: rgba(25, 224, 255, .6);
+}
+#axis .nm {
+  fill: rgba(240, 207, 92, .6);
+}
+#axis .x {
+  fill: rgba(255, 255, 255, .35);
+}
+#peaks text {
+  font-size: 18px;
+  font-weight: 700;
+}
+#rpeaks circle {
+  fill: #d98cff;
+  opacity: .85;
+}
+#rpeaks text {
+  font-size: 16px;
+  font-weight: 600;
+  fill: #d98cff;
+  opacity: .85;
+}
+#peaks .lps {
+  fill: #6df0ff;
+}
+#peaks .lnm {
+  fill: #ffe07a;
+}
+.heat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #9db4c7;
+}
+.heat .ht {
+  flex: 1;
+  height: 12px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .16);
+  overflow: hidden;
+}
+.heat .hf {
+  height: 100%;
+  width: 0%;
+  background: #6df0ff;
+  border-radius: 99px;
+  transition: width .2s linear;
+}
+.heat .hf.warn {
+  background: #ffe07a;
+}
+.heat .hf.hot {
+  background: #ff6b6b;
+}
+.heat b {
+  min-width: 60px;
+  text-align: right;
+  color: #ffffff;
+}
+.heat .hw {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #ffb020;
+  border: 1px solid rgba(255, 176, 32, .45);
+  background: rgba(255, 176, 32, .12);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+.foot {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  margin-top: 16px;
+  font-size: 17px;
+  letter-spacing: 2px;
+}
+.lg {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.lg::before {
+  content: "";
+  width: 26px;
+  height: 5px;
+  border-radius: 3px;
+}
+.lg.ps {
+  color: #6df0ff;
+}
+.lg.ps::before {
+  background: #6df0ff;
+}
+.lg.nm {
+  color: #ffe07a;
+}
+.lg.nm::before {
+  background: #ffe07a;
+}
+.lg.ref {
+  color: #d98cff;
+}
+.lg.ref::before {
+  background: #d98cff;
+  opacity: .85;
+}
+.brand {
+  margin-left: auto;
+  color: #3d4d5c;
+  letter-spacing: 4px;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div class="head">
+    <div>
+      <div class="ttl">DYNO</div>
+      <div class="sub" id="model">...</div>
+    </div>
+    <div class="phase" id="phase">READY</div>
+  </div>
+
+  <div class="vals">
+    <div class="v ps"><b id="ps">0</b><i>PS</i></div>
+    <div class="v nm"><b id="nm">0</b><i>Nm</i></div>
+    <div class="v g"><b id="gear">N</b><i>GEAR</i></div>
+    <div class="v s"><b id="kmh">0</b><i>KM/H</i></div>
+  </div>
+
+  <div class="chart">
+    <svg viewBox="0 0 1120 300" preserveAspectRatio="none">
+      <defs><linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#6df0ff" stop-opacity="0.42"/>
+        <stop offset="1" stop-color="#6df0ff" stop-opacity="0"/>
+      </linearGradient></defs>
+      <g id="grid"></g>
+      <polygon id="area" fill="url(#fill)" points=""></polygon>
+      <polyline id="rps" fill="none" stroke="#d98cff" stroke-width="3.4" opacity="0.7"
+                stroke-linejoin="round" stroke-linecap="round"></polyline>
+      <polyline id="rnm" fill="none" stroke="#d98cff" stroke-width="2.8" opacity="0.7"
+                stroke-dasharray="9 6" stroke-linejoin="round" stroke-linecap="round"></polyline>
+      <polyline id="lnm" fill="none" stroke="#ffe07a" stroke-width="4"
+                stroke-dasharray="9 6" stroke-linejoin="round" stroke-linecap="round"></polyline>
+      <polyline id="lps" fill="none" stroke="#6df0ff" stroke-width="5"
+                stroke-linejoin="round" stroke-linecap="round"></polyline>
+      <g id="axis"></g>
+      <g id="rpeaks"></g>
+      <g id="peaks"></g>
+    </svg>
+  </div>
+
+  <div class="heat"><span>TEMP</span><div class="ht"><div class="hf" id="heat"></div></div><b id="heatv">0&deg;C</b><span id="heatwin" class="hw" style="display:none">OUT OF RANGE</span></div>
+
+  <div class="foot">
+    <span class="lg ps" id="lgps">0 PS</span>
+    <span class="lg nm" id="lgnm">0 Nm</span>
+    <span class="lg ref" id="lgref" style="display:none">Previous</span>
+    <span class="brand" id="brand">SM ECU TUNING</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  var W = 1120, H = 300, L = 62, R = 62, T = 14, B = 32;
+  var $ = function(i) {
+    return document.getElementById(i);
+  };
+  var hist = [], win = 8e3, sPs = 400, sNm = 600, rMin = 1e3, rMax = 8e3;
+  function grid() {
+    var w = W - L - R, h = H - T - B, o = "";
+    for (var i = 0; i <= 4; i++) {
+      var y = T + h * (i / 4);
+      o += '<line x1="' + L + '" y1="' + y + '" x2="' + (W - R) + '" y2="' + y + '"></line>';
+    }
+    for (var j = 0; j <= 5; j++) {
+      var x = L + w * (j / 5);
+      o += '<line x1="' + x + '" y1="' + T + '" x2="' + x + '" y2="' + (H - B) + '"></line>';
+    }
+    $("grid").innerHTML = o;
+  }
+  grid();
+  function axis(xLabels) {
+    var w = W - L - R, h = H - T - B, o = "";
+    for (var i = 0; i <= 4; i++) {
+      var y = T + h * (i / 4);
+      o += '<text class="ps" x="' + (L - 10) + '" y="' + (y + 5) + '" text-anchor="end">' + Math.round(sPs * (1 - i / 4)) + "</text>";
+      o += '<text class="nm" x="' + (W - R + 10) + '" y="' + (y + 5) + '" text-anchor="start">' + Math.round(sNm * (1 - i / 4)) + "</text>";
+    }
+    for (var j = 0; j <= 5; j++) {
+      var x = L + w * (j / 5);
+      o += '<text class="x" x="' + x + '" y="' + (H - 8) + '" text-anchor="middle">' + xLabels[j] + "</text>";
+    }
+    $("axis").innerHTML = o;
+  }
+  function drawLive(ps, nm) {
+    $("rps").setAttribute("points", "");
+    $("rnm").setAttribute("points", "");
+    if ($("rpeaks")) $("rpeaks").innerHTML = "";
+    if ($("lgref")) $("lgref").style.display = "none";
+    var now = Date.now();
+    hist.push({ t: now, p: ps, n: nm });
+    while (hist.length && now - hist[0].t > win) hist.shift();
+    var w = W - L - R, h = H - T - B, pp = [], pn = [];
+    for (var i = 0; i < hist.length; i++) {
+      var s = hist[i], x = L + w * (1 - (now - s.t) / win);
+      pp.push(x.toFixed(1) + "," + (T + h * (1 - Math.min(1, s.p / sPs))).toFixed(1));
+      pn.push(x.toFixed(1) + "," + (T + h * (1 - Math.min(1, s.n / sNm))).toFixed(1));
+    }
+    $("lps").setAttribute("points", pp.join(" "));
+    $("lnm").setAttribute("points", pn.join(" "));
+    $("area").setAttribute("points", pp.length > 1 ? pp[0].split(",")[0] + "," + (T + h) + " " + pp.join(" ") + " " + pp[pp.length - 1].split(",")[0] + "," + (T + h) : "");
+    $("peaks").innerHTML = "";
+    var secs = Math.round(win / 1e3), lab = [];
+    for (var j = 0; j <= 5; j++) {
+      var v = -Math.round(secs * (1 - j / 5));
+      lab.push(v === 0 ? "now" : v + "s");
+    }
+    axis(lab);
+  }
+  var ref = null;
+  function drawRef(sp, sn) {
+    var lp = $("rps"), ln = $("rnm"), mk = $("rpeaks"), lg = $("lgref");
+    if (lg) lg.style.display = ref && ref.length ? "flex" : "none";
+    if (!ref || !ref.length) {
+      lp.setAttribute("points", "");
+      ln.setAttribute("points", "");
+      if (mk) mk.innerHTML = "";
+      return;
+    }
+    var w = W - L - R, h = H - T - B, pp = [], pn = [], pi = 0, ni = 0;
+    for (var i = 0; i < ref.length; i++) {
+      var c = ref[i], x = L + w * Math.max(0, Math.min(1, c.r || 0));
+      pp.push(x.toFixed(1) + "," + (T + h * (1 - Math.min(1, (c.p || 0) / sp))).toFixed(1));
+      pn.push(x.toFixed(1) + "," + (T + h * (1 - Math.min(1, (c.n || 0) / sn))).toFixed(1));
+      if ((c.p || 0) >= (ref[pi].p || 0)) pi = i;
+      if ((c.n || 0) >= (ref[ni].n || 0)) ni = i;
+    }
+    lp.setAttribute("points", pp.join(" "));
+    ln.setAttribute("points", pn.join(" "));
+    if (mk) {
+      var px = L + w * (ref[pi].r || 0), py = T + h * (1 - Math.min(1, (ref[pi].p || 0) / sp));
+      var nx = L + w * (ref[ni].r || 0), ny = T + h * (1 - Math.min(1, (ref[ni].n || 0) / sn));
+      mk.innerHTML = '<circle cx="' + nx.toFixed(1) + '" cy="' + ny.toFixed(1) + '" r="5"></circle><text x="' + nx.toFixed(1) + '" y="' + (ny + 20).toFixed(1) + '" text-anchor="middle">' + Math.round(ref[ni].n || 0) + ' Nm</text><circle cx="' + px.toFixed(1) + '" cy="' + py.toFixed(1) + '" r="5"></circle><text x="' + px.toFixed(1) + '" y="' + (py + 20).toFixed(1) + '" text-anchor="middle">' + Math.round(ref[pi].p || 0) + " PS</text>";
+    }
+  }
+  function drawCurve(curve) {
+    var w = W - L - R, h = H - T - B;
+    if (!curve || curve.length < 2) {
+      $("lps").setAttribute("points", "");
+      $("lnm").setAttribute("points", "");
+      $("area").setAttribute("points", "");
+      $("peaks").innerHTML = "";
+      return;
+    }
+    var mp = 1, mn = 1;
+    for (var i = 0; i < curve.length; i++) {
+      if (curve[i].p > mp) mp = curve[i].p;
+      if (curve[i].n > mn) mn = curve[i].n;
+    }
+    var np = Math.ceil(mp / 50) * 50, nn = Math.ceil(mn / 50) * 50;
+    var pp = [], pn = [], pi = 0, ni = 0;
+    for (var k = 0; k < curve.length; k++) {
+      var c = curve[k], x = L + w * Math.max(0, Math.min(1, c.r));
+      pp.push(x.toFixed(1) + "," + (T + h * (1 - c.p / np)).toFixed(1));
+      pn.push(x.toFixed(1) + "," + (T + h * (1 - c.n / nn)).toFixed(1));
+      if (c.p >= curve[pi].p) pi = k;
+      if (c.n >= curve[ni].n) ni = k;
+    }
+    $("lps").setAttribute("points", pp.join(" "));
+    $("lnm").setAttribute("points", pn.join(" "));
+    $("area").setAttribute(
+      "points",
+      pp[0].split(",")[0] + "," + (T + h) + " " + pp.join(" ") + " " + pp[pp.length - 1].split(",")[0] + "," + (T + h)
+    );
+    sPs = np;
+    sNm = nn;
+    drawRef(np, nn);
+    var lab = [];
+    for (var j = 0; j <= 5; j++) lab.push(Math.round((rMin + (rMax - rMin) * (j / 5)) / 100) * 100);
+    axis(lab);
+    var px = L + w * curve[pi].r, py = T + h * (1 - curve[pi].p / np);
+    var nx = L + w * curve[ni].r, ny = T + h * (1 - curve[ni].n / nn);
+    $("peaks").innerHTML = '<circle cx="' + nx.toFixed(1) + '" cy="' + ny.toFixed(1) + '" r="6" fill="#ffe07a"></circle><text class="lnm" x="' + nx.toFixed(1) + '" y="' + (ny - 14).toFixed(1) + '" text-anchor="middle">' + Math.round(curve[ni].n) + ' Nm</text><circle cx="' + px.toFixed(1) + '" cy="' + py.toFixed(1) + '" r="6" fill="#6df0ff"></circle><text class="lps" x="' + px.toFixed(1) + '" y="' + (py - 14).toFixed(1) + '" text-anchor="middle">' + Math.round(curve[pi].p) + " PS</text>";
+  }
+  function applyLayout(o) {
+    var w = $("wrap");
+    if (!w) return;
+    var t = "";
+    if (o.offX || o.offY) t += "translate(" + (o.offX || 0) + "px," + (o.offY || 0) + "px) ";
+    t += "scale(" + (o.flipX ? -1 : 1) * (o.zoom || 1) + "," + (o.flipY ? -1 : 1) * (o.zoom || 1) + ")";
+    w.style.transform = t;
+    if (o.bg) document.body.style.background = o.bg;
+  }
+  window.addEventListener("message", function(e) {
+    var d = e.data;
+    if (!d) return;
+    if (d.type === "layout") {
+      applyLayout(d);
+      return;
+    }
+    if (d.type === "idle") {
+      $("model").textContent = "READY";
+      $("phase").textContent = "READY";
+      $("phase").className = "phase";
+      $("ps").textContent = "0";
+      $("nm").textContent = "0";
+      $("gear").textContent = "N";
+      $("kmh").textContent = "0";
+      $("lgps").textContent = "0 PS";
+      $("lgnm").textContent = "0 Nm";
+      hist = [];
+      ref = null;
+      drawCurve(null);
+      drawRef(sPs, sNm);
+      return;
+    }
+    if (d.type !== "live") return;
+    if (d.scalePs) sPs = d.scalePs;
+    if (d.scaleNm) sNm = d.scaleNm;
+    if (d.rpmMin) rMin = d.rpmMin;
+    if (d.rpmMax) rMax = d.rpmMax;
+    if (d.window) win = d.window;
+    if (d.brand) $("brand").textContent = d.brand;
+    ref = d.ref || null;
+    $("model").textContent = (d.model || "").toUpperCase() + (d.drive ? "  ·  " + d.drive : "");
+    $("ps").textContent = d.ps || 0;
+    $("nm").textContent = d.nm || 0;
+    $("gear").textContent = d.gear === 0 || d.gear === "N" ? "N" : d.gear;
+    $("kmh").textContent = d.kmh || 0;
+    if ($("heat")) {
+      var hv = d.heat || 0, lo = d.heatLo || 30, hi = d.heatMax || 140;
+      var pct = Math.max(0, Math.min(100, (hv - lo) / Math.max(1, hi - lo) * 100));
+      $("heat").style.width = pct + "%";
+      $("heat").className = "hf" + (hv >= (d.heatMax || 140) ? " hot" : hv > (d.heatWarn || 115) ? " warn" : "");
+      $("heatv").textContent = hv + "°C";
+      if ($("heatwin")) $("heatwin").style.display = d.heatOk === false ? "inline" : "none";
+    }
+    $("lgps").textContent = (d.ps || 0) + " PS";
+    $("lgnm").textContent = (d.nm || 0) + " Nm";
+    var measuring = d.phase === "measuring" || d.phase === "done";
+    var ph = $("phase");
+    ph.textContent = d.phase === "measuring" ? "MEASURING" : d.phase === "done" ? "DONE" : "READY";
+    ph.className = "phase" + (measuring ? " run" : "");
+    if (measuring) {
+      drawCurve(d.curve);
+    } else {
+      drawLive(d.ps || 0, d.nm || 0);
+    }
+  });
+})();
+</script>
+</body>
+</html>

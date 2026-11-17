@@ -1,0 +1,11 @@
+fx_version 'cerulean'
+game { 'gta5' }
+
+
+files {
+  'mp_f_freemode_01_female_freemode_business_shop.meta',
+  'pedalternatevariations.meta'
+}
+
+data_file 'SHOP_PED_APPAREL_META_FILE' 'mp_f_freemode_01_female_freemode_business_shop.meta'
+data_file 'ALTERNATE_VARIATIONS_FILE' 'pedalternatevariations.meta'

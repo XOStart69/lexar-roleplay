@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CPedModelInfo__PersonalityDataList>
+	<MovementModeUnholsterData>
+		<Item>
+			<Name>UNHOLSTER_UNARMED</Name>
+			<UnholsterClips>
+				<Item>
+					<Weapons>
+						<Item>WEAPON_WMOLOTOV</Item>
+					</Weapons>
+					<Clip>unarmed_holster_unarmed</Clip>
+				</Item>
+			</UnholsterClips>
+		</Item>
+		<Item>
+			<Name>UNHOLSTER_2H_MELEE</Name>
+			<UnholsterClips>
+				<Item>
+					<Weapons>
+						<Item>WEAPON_WMOLOTOV</Item>
+					</Weapons>
+					<Clip>2h_melee_holster_unarmed</Clip>
+				</Item>
+			</UnholsterClips>
+		</Item>
+		<Item>
+			<Name>UNHOLSTER_1H</Name>
+			<UnholsterClips>
+				<Item>
+					<Weapons>
+						<Item>WEAPON_WMOLOTOV</Item>
+					</Weapons>
+					<Clip>1h_holster_unarmed</Clip>
+				</Item>
+			</UnholsterClips>
+		</Item>
+		<Item>
+			<Name>UNHOLSTER_2H</Name>
+			<UnholsterClips>
+				<Item>
+					<Weapons>
+						<Item>WEAPON_WMOLOTOV</Item>
+					</Weapons>
+					<Clip>2h_holster_unarmed</Clip>
+				</Item>
+			</UnholsterClips>
+		</Item>
+		<Item>
+			<Name>UNHOLSTER_MINIGUN</Name>
+			<UnholsterClips>
+				<Item>
+					<Weapons>
+						<Item>WEAPON_WMOLOTOV</Item>
+					</Weapons>
+					<Clip>mini_holster_2h_unarmed</Clip>
+				</Item>
+			</UnholsterClips>
+		</Item>
+		<Item>
+			<Name>UNHOLSTER_UNARMED_STEALTH</Name>
+			<UnholsterClips>
+				<Item>
+					<Weapons>
+						<Item>WEAPON_WMOLOTOV</Item>
+					</Weapons>
+					<Clip>unarmed_holster_unarmed</Clip>
+				</Item>
+			</UnholsterClips>
+		</Item>
+		<Item>
+			<Name>UNHOLSTER_2H_MELEE_STEALTH</Name>
+			<UnholsterClips>
+				<Item>
+					<Weapons>
+						<Item>WEAPON_WMOLOTOV</Item>
+					</Weapons>
+					<Clip>unarmed_holster_unarmed</Clip>
+				</Item>
+			</UnholsterClips>
+		</Item>
+		<Item>
+			<Name>UNHOLSTER_1H_STEALTH</Name>
+			<UnholsterClips>
+				<Item>
+					<Weapons>
+						<Item>WEAPON_WMOLOTOV</Item>
+					</Weapons>
+					<Clip>1h_holster_unarmed</Clip>
+				</Item>
+			</UnholsterClips>
+		</Item>
+		<Item>
+			<Name>UNHOLSTER_2H_STEALTH</Name>
+			<UnholsterClips>
+				<Item>
+					<Weapons>
+						<Item>WEAPON_WMOLOTOV</Item>
+					</Weapons>
+					<Clip>2h_holster_unarmed</Clip>
+				</Item>
+			</UnholsterClips>
+		</Item>
+	</MovementModeUnholsterData>
+	<MovementModes>
+		<Item>
+			<Name>DEFAULT_ACTION</Name>
+			<MovementModes>
+				<Item>
+					<Item>
+						<Weapons>
+						</Weapons>
+						<ClipSets>
+							<Item>
+								<MovementClipSetId>move_action@p_m_zero@unarmed@core</MovementClipSetId>
+								<WeaponClipSetId/>
+								<WeaponClipFilterId/>
+								<UpperBodyShadowExpressionEnabled value="false"/>
+								<UpperBodyFeatheredLeanEnabled value="false"/>
+								<UseWeaponAnimsForGrip value="true"/>
+								<UseLeftHandIk value="false"/>
+								<IdleTransitions>
+									<Item>MOVE_ACTION@GENERIC@TRANS@UNARMED</Item>
+								</IdleTransitions>
+								<IdleTransitionBlendOutTime value="0.500000"/>
+								<UnholsterClipSetId>MOVE_ACTION@P_M_ZERO@HOLSTER</UnholsterClipSetId>
+								<UnholsterClipData ref="UNHOLSTER_UNARMED"/>
+							</Item>
+						</ClipSets>
+					</Item>
+				</Item>
+				<Item>
+					<Item>
+						<Weapons>
+						</Weapons>
+						<ClipSets>
+							<Item>
+								<MovementClipSetId>move_stealth@p_m_zero@unarmed@core</MovementClipSetId>
+								<WeaponClipSetId>Wpn_StickyBomb_Stealth_WeaponHolding</WeaponClipSetId>
+								<WeaponClipFilterId>UpperbodyAndIk_filter</WeaponClipFilterId>
+								<UpperBodyShadowExpressionEnabled value="true"/>
+								<UpperBodyFeatheredLeanEnabled value="false"/>
+								<UseWeaponAnimsForGrip value="false"/>
+								<UseLeftHandIk value="false"/>
+								<IdleTransitions>
+									<Item>move_stealth@generic@trans@unarmed</Item>
+								</IdleTransitions>
+								<IdleTransitionBlendOutTime value="0.500000"/>
+								<UnholsterClipSetId>move_stealth@p_m_zero@holster</UnholsterClipSetId>
+								<UnholsterClipData ref="UNHOLSTER_UNARMED_STEALTH"/>
+							</Item>
+						</ClipSets>
+					</Item>
+					<Item>
+						<Weapons>
+							<Item>WEAPON_WMOLOTOV</Item>
+						</Weapons>
+						<ClipSets>
+							<Item>
+								<MovementClipSetId>move_stealth@p_m_zero@unarmed@core</MovementClipSetId>
+								<WeaponClipSetId>Wpn_Grenade_Stealth_WeaponHolding</WeaponClipSetId>
+								<WeaponClipFilterId>UpperbodyAndIk_filter</WeaponClipFilterId>
+								<UpperBodyShadowExpressionEnabled value="true"/>
+								<UpperBodyFeatheredLeanEnabled value="false"/>
+								<UseWeaponAnimsForGrip value="false"/>
+								<UseLeftHandIk value="false"/>
+								<IdleTransitions>
+									<Item>move_stealth@generic@trans@unarmed</Item>
+								</IdleTransitions>
+								<IdleTransitionBlendOutTime value="0.500000"/>
+								<UnholsterClipSetId>move_stealth@p_m_zero@holster</UnholsterClipSetId>
+								<UnholsterClipData ref="UNHOLSTER_UNARMED_STEALTH"/>
+							</Item>
+						</ClipSets>
+					</Item>
+				</Item>
+			</MovementModes>
+		</Item>
+	</MovementModes>
+</CPedModelInfo__PersonalityDataList>
+

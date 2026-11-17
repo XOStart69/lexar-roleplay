@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+    <InitDatas>
+        <!-- Bottle -->
+        <Item>
+            <modelName>W_ME_JPX_CYBER_GUITAR</modelName>
+            <txdName>W_ME_JPX_CYBER_GUITAR</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_HYPER_SPEAR</modelName>
+            <txdName>W_ME_JPX_HYPER_SPEAR</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_HYPER_SWORD</modelName>
+            <txdName>W_ME_JPX_HYPER_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_IRIS_SWORD</modelName>
+            <txdName>W_ME_JPX_IRIS_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_VICTORY_AXE</modelName>
+            <txdName>W_ME_JPX_VICTORY_AXE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Poolcue -->
+        <Item>
+            <modelName>W_ME_JPX_CYBER_GLAIVE</modelName>
+            <txdName>W_ME_JPX_CYBER_GLAIVE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_CYBER_STAFF</modelName>
+            <txdName>W_ME_JPX_CYBER_STAFF</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_CYBER_SWORD</modelName>
+            <txdName>W_ME_JPX_CYBER_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_VICTORY_HAMMER</modelName>
+            <txdName>W_ME_JPX_VICTORY_HAMMER</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_VICTORY_SPEAR</modelName>
+            <txdName>W_ME_JPX_VICTORY_SPEAR</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Machete -->
+        <Item>
+            <modelName>W_ME_JPX_VICTORY_SWORD</modelName>
+            <txdName>W_ME_JPX_VICTORY_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Knuckle -->
+        <Item>
+            <modelName>W_ME_JPX_HYPER_GAUNTLET</modelName>
+            <txdName>W_ME_JPX_HYPER_GAUNTLET</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Revolver Gun -->
+        <Item>
+            <modelName>W_PI_JPX_CYBER_GUN</modelName>
+            <txdName>W_PI_JPX_CYBER_GUN</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_CYBER_GUN_mag1</modelName>
+            <txdName>W_PI_JPX_CYBER_GUN_mag1</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_CYBER_GUN_g</modelName>
+            <txdName>W_PI_JPX_CYBER_GUN_g</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_CYBER_GUN_b</modelName>
+            <txdName>W_PI_JPX_CYBER_GUN_b</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+    </InitDatas>
+</CWeaponModelInfo__InitDataList>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Satu Mimpi - Loading Screen</title>
+	<link rel="stylesheet" href="assets/css/style.css">
+	<script src="config.js"></script>
+</head>
+<body>
+	<div id="bg"></div>
+	<div id="shade"></div>
+	<canvas id="snow"></canvas>
+
+	<header class="brand enter">
+		<img src="assets/img/smlogo.png" class="brand-logo" alt="">
+		<div class="brand-text">
+			<span class="eyebrow" id="brandSub"></span>
+			<h1 class="display" id="brandName"></h1>
+			<div class="accent-bar"></div>
+			<p id="brandDesc"></p>
+		</div>
+	</header>
+
+	<nav class="socials enter" id="socials"></nav>
+
+	<aside class="card team enter" id="team" hidden>
+		<div class="card-head">
+			<div>
+				<span class="eyebrow">Satu Mimpi</span>
+				<h2 class="display">Server Team</h2>
+			</div>
+			<span class="label num" id="teamCount"></span>
+		</div>
+		<div class="team-list" id="teamList"></div>
+	</aside>
+
+	<aside class="card tips enter" id="tips" hidden>
+		<div class="card-head">
+			<div>
+				<span class="eyebrow">Roleplay Rules</span>
+				<h2 class="display">Tips</h2>
+			</div>
+			<span class="label num" id="tipCounter"></span>
+		</div>
+		<div class="tip" id="tipBody"></div>
+		<div class="tip-foot">
+			<div class="tip-dots" id="tipDots"></div>
+			<div class="tip-nav">
+				<button class="icon-btn" id="tipPrev" aria-label="Previous"></button>
+				<button class="icon-btn" id="tipNext" aria-label="Next"></button>
+			</div>
+		</div>
+		<div class="tip-progress"><div id="tipBar"></div></div>
+	</aside>
+
+	<section class="card music enter" id="music" hidden>
+		<img class="music-art" src="assets/img/smlogo.png" alt="">
+		<div class="music-body">
+			<div class="music-meta">
+				<span class="label">Now playing</span>
+				<div class="music-title" id="songTitle"></div>
+				<div class="music-artist" id="songArtist"></div>
+			</div>
+			<div class="music-ctrl">
+				<button class="icon-btn" id="btnPlay" aria-label="Play/Pause"></button>
+				<button class="icon-btn" id="btnMute" aria-label="Mute"></button>
+				<div class="slider">
+					<div class="slider-track"><div class="slider-fill" id="volFill"></div></div>
+					<input type="range" min="0" max="100" step="1" id="volume" aria-label="Volume">
+				</div>
+				<span class="vol-text num" id="volText"></span>
+			</div>
+		</div>
+	</section>
+
+	<footer class="loader enter">
+		<div class="loader-row">
+			<div class="loader-info">
+				<span class="eyebrow" id="loadStep">Loading</span>
+				<span class="display loader-stage" id="loadStage">Preparing</span>
+			</div>
+			<span class="loader-pct num" id="loadPct">0%</span>
+		</div>
+		<div class="loader-track"><div id="loadBar"></div></div>
+	</footer>
+
+	<script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Lockpick</title>
+  <style>
+    html {
+      background: transparent;
+    }
+
+    body {
+      margin: 0;
+      background: transparent;
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      caret-color: #00000000;
+      overflow: hidden;
+      user-select: none;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    #instructions {
+      background-color: rgba(20, 21, 24, 0.92);
+      position: absolute;
+      bottom: 55%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 10;
+      color: #e6e8eb;
+    }
+
+    #instructions p {
+      margin: 3px 0;
+      font-size: 14px;
+    }
+
+    .key-highlight {
+      background: rgba(0, 204, 201, 0.82);
+      color: #04191c;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+
+    #lock-container {
+      width: 400px;
+      height: 300px;
+      background-image: url("images/lock.png");
+      background-size: cover;
+      margin: 0 auto;
+      border: 2px solid #000;
+      position: relative;
+      background-color: #ccc;
+      z-index: 1;
+      margin-top: 79.88px;
+    }
+
+    #hook {
+      position: absolute;
+      width: 827px;
+      height: 65px;
+      cursor: pointer;
+      z-index: 2;
+      filter: drop-shadow(3px 3px 2px #00000077);
+    }
+
+    #top {
+      position: relative;
+      background-image: url("images/top2.png");
+      background-size: cover;
+      height: 37px;
+      width: 307px;
+      left: 0;
+      top: 50%;
+      transform: translate(4px, 11px);
+    }
+
+    #bottom {
+      position: relative;
+      background-image: url("images/bottom2.png");
+      background-size: cover;
+      top: 0;
+      float: right;
+      height: 65px;
+      width: 542px;
+    }
+
+    #end {
+      position: absolute;
+      height: 30px;
+      width: 10px;
+      float: left;
+      top: 70%;
+      margin-left: 10px;
+    }
+
+    #tension-wrench {
+      position: absolute;
+      width: 65px;
+      height: 211px;
+      background-image: url("images/wrench.png");
+      background-size: cover;
+      left: 380px;
+      top: 250px;
+      transform-origin: center 10px;
+      perspective: 100px;
+      filter: drop-shadow(3px 3px 2px #00000077);
+      transition-duration: 1.0s;
+    }
+
+    .rotate {
+      transform: rotateX(80deg);
+    }
+
+    #score {
+      margin-top: 20px;
+    }
+
+    .pin {
+      width: 20px;
+      height: 43px;
+      background-image: url("images/pin.png");
+      background-size: cover;
+      position: relative;
+      transform-origin: center bottom;
+      filter: drop-shadow(2px 2px 1px #00000077);
+    }
+
+    .pin.correct {
+      transition-duration: 0.2s;
+      background: linear-gradient(green, green), url("images/pin.png");
+      background-blend-mode: hue;
+      -webkit-mask-image: url("images/pin.png");
+    }
+
+    .pin.incorrect {
+      background: linear-gradient(red, red), url("images/pin.png");
+      background-blend-mode: hue;
+      -webkit-mask-image: url("images/pin.png");
+      animation: shake 0.5s;
+      animation-iteration-count: infinite;
+    }
+
+    .shake {
+      animation: shake 0.5s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translate(1px, 1px) rotate(0deg);
+      }
+
+      10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+      }
+
+      20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+      }
+
+      30% {
+        transform: translate(3px, 2px) rotate(0deg);
+      }
+
+      40% {
+        transform: translate(1px, -1px) rotate(1deg);
+      }
+
+      50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+      }
+
+      60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+      }
+
+      70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+      }
+
+      80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+      }
+
+      90% {
+        transform: translate(1px, 2px) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+      }
+    }
+
+    .shake-small {
+      animation: shake-small 0.5s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes shake-small {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      10% {
+        transform: rotate(-1deg);
+      }
+
+      20% {
+        transform: rotate(1deg);
+      }
+
+      30% {
+        transform: rotate(0deg);
+      }
+
+      40% {
+        transform: rotate(1deg);
+      }
+
+      50% {
+        transform: rotate(-1deg);
+      }
+
+      60% {
+        transform: rotate(0deg);
+      }
+
+      70% {
+        transform: rotate(-1deg);
+      }
+
+      80% {
+        transform: rotate(1deg);
+      }
+
+      90% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(-1deg);
+      }
+    }
+
+    .pin-container {
+      position: absolute;
+      transform-origin: center bottom;
+      transition-duration: 0.2s;
+    }
+
+    .pin-container:has(.pin.incorrect) {
+      transform: translateY(-40%) !important;
+    }
+
+    .pin-container:has(.pin.correct) {
+      top: 122px !important;
+    }
+
+    .pin-slide {
+      position: absolute;
+      height: 100%;
+      width: 22px;
+      background-color: #666;
+      z-index: -1;
+      pointer-events: none;
+      background-image: url("images/slot.png");
+      background-size: cover;
+    }
+
+    .spring {
+      position: absolute;
+      top: 10px;
+      width: 20px;
+      height: 141px;
+      background-image: url("images/spring.png");
+      background-size: cover;
+      transform-origin: center top;
+      transition-duration: 0.2s;
+    }
+
+    .pin-slide:has(.pin.correct) .spring {
+      transform: scaleY(0.778) !important;
+    }
+
+    .hide {
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="instructions" class="hide">
+    <p>Tahan <span class="key-highlight">D</span> untuk menahan tension | <span class="key-highlight">ESC</span> untuk batal</p>
+  </div>
+
+  <div id="lock-container" class="hide">
+    <div id="hook">
+      <div id="end"></div>
+      <div id="top"></div>
+      <div id="bottom"></div>
+    </div>
+    <div id="tension-wrench"></div>
+  </div>
+
+  <script>
+    const end = document.getElementById('end');
+    const hook = document.getElementById('hook');
+    const hookTop = document.getElementById('top');
+    const hookBottom = document.getElementById('bottom');
+    const wrench = document.getElementById('tension-wrench');
+    const lockContainer = document.getElementById('lock-container');
+    const instructions = document.getElementById('instructions');
+
+    const sounds = {
+      break: new Audio('sounds/break.wav'),
+      click: new Audio('sounds/click.wav'),
+      tap: new Audio('sounds/tap.wav'),
+      unlock: new Audio('sounds/unlock.mp3'),
+    };
+
+    let resourceName = 'sm_resource_2';
+    let frameId = 'sm_lockpick';
+    let difficulty = 2;
+    let attempts = 3;
+    let pinAmt = 9;
+    let pins = [];
+    let correctOrder = [];
+    let currentPin = 0;
+    let isPinning = false;
+    let cooldown = false;
+    let running = false;
+
+    function post(name) {
+      fetch(`https://${resourceName}/${frameId}:${name}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+        body: '{}',
+      }).catch(() => {});
+    }
+
+    function playSound(name) {
+      const sound = sounds[name];
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+    }
+
+    function showGame() {
+      lockContainer.classList.remove('hide');
+      instructions.classList.remove('hide');
+    }
+
+    function hideGame() {
+      lockContainer.classList.add('hide');
+      instructions.classList.add('hide');
+    }
+
+    function finish(result) {
+      if (!running) return;
+      running = false;
+      hideGame();
+      releaseTension();
+      post(result);
+    }
+
+    function setUpGame(diff, pinsNo, strength) {
+      const currentPins = lockContainer.querySelectorAll('.pin-slide');
+      for (let i = 0; i < currentPins.length; i++) {
+        currentPins[i].remove();
+      }
+      currentPin = 0;
+      cooldown = false;
+      releaseTension();
+      pins = [];
+      difficulty = Math.min(5, Math.max(1, Number(diff) || 2));
+      pinAmt = Math.min(9, Math.max(3, Number(pinsNo) || 4));
+      attempts = Math.max(1, Math.floor((Number(strength) || 0.5) * pinAmt));
+      createPins();
+      positionPins();
+      running = true;
+      showGame();
+    }
+
+    function createPins() {
+      for (let i = 0; i < pinAmt; i++) {
+        pins.push(`pin${i + 1}`);
+      }
+      correctOrder = shuffleArray(pins.slice());
+      pins.forEach((pinId) => {
+        const pinElement = document.createElement('div');
+        pinElement.id = pinId;
+        pinElement.classList.add('pin');
+        const pinElementContainer = document.createElement('div');
+        pinElementContainer.classList.add('pin-container');
+        pinElementContainer.appendChild(pinElement);
+        const pinElementSlide = document.createElement('div');
+        pinElementSlide.classList.add('pin-slide');
+        const pinSpring = document.createElement('div');
+        pinSpring.classList.add('spring');
+        pinElementSlide.appendChild(pinSpring);
+        pinElementSlide.appendChild(pinElementContainer);
+        lockContainer.appendChild(pinElementSlide);
+      });
+    }
+
+    lockContainer.addEventListener('mousemove', moveHook);
+
+    document.addEventListener('keydown', (event) => {
+      if (!running) return;
+      if ((event.key === 'd' || event.key === 'D') && !isPinning) {
+        applyTension();
+      } else if (event.key === 'Backspace' || event.key === 'Escape') {
+        finish('close');
+      }
+    });
+
+    document.addEventListener('keyup', (event) => {
+      if ((event.key === 'd' || event.key === 'D') && isPinning) {
+        releaseTension();
+      }
+    });
+
+    function moveHook(event) {
+      if (!running) return;
+      const rect = lockContainer.getBoundingClientRect();
+      const hookRect = end.getBoundingClientRect();
+      const x = event.clientX - rect.left - end.offsetWidth - 5 / 2;
+      const y = event.clientY - rect.top - end.offsetHeight - 37 / 2;
+
+      const minX = 0;
+      const maxX = rect.width - hookRect.width;
+      const minY = (rect.height / 2) - 40;
+      const maxY = rect.height - hookRect.height - 80;
+      const rotY = (rect.height / 2) + 20;
+
+      hook.style.left = `${Math.max(minX, Math.min(x, maxX))}px`;
+      hook.style.top = `${Math.max(rotY, Math.min(y, maxY))}px`;
+
+      if (y < rotY && y > minY) {
+        hook.style.transform = `rotate(${- (y - rotY) / 8}deg)`;
+      } else if (y > rotY) {
+        hook.style.transform = '';
+      }
+
+      checkPinCollision();
+    }
+
+    function checkPinCollision() {
+      const endRect = end.getBoundingClientRect();
+      const pinElements = lockContainer.getElementsByClassName('pin');
+      const lockRect = lockContainer.getBoundingClientRect();
+      const threshold = 145 + (6 - difficulty);
+
+      for (let i = 0; i < pinElements.length; i++) {
+        const pin = pinElements[i];
+        const container = pin.parentNode;
+        const spring = container.parentNode.querySelector('.spring');
+        const pinRect = pin.getBoundingClientRect();
+
+        if (
+          endRect.left < pinRect.right &&
+          endRect.right > pinRect.left &&
+          endRect.top - 3 < pinRect.bottom &&
+          endRect.bottom > pinRect.top
+        ) {
+          const scale = ((parseInt(container.style.top) + 20) - (parseInt(lockRect.top) - 12)) / 135 + 0.23;
+          if (!isPinning) {
+            spring.style.transform = `scaleY(${scale})`;
+            container.style.top = parseInt(endRect.top) - 126 + 'px';
+          } else if (parseInt(container.style.top) > 145) {
+            spring.style.transform = `scaleY(${scale})`;
+            container.style.top = parseInt(endRect.top) - 126 + 'px';
+            if (parseInt(container.style.top) < threshold && !pin.classList.contains('shake')) {
+              if (pin.id !== correctOrder[currentPin] && !pin.classList.contains('correct')) {
+                pin.classList.add('shake');
+              }
+            }
+          } else if (!cooldown) {
+            selectPin(pin);
+          }
+        } else {
+          pin.classList.remove('shake');
+          spring.style.transform = '';
+          container.style.top = (lockRect.height / 2) + 'px';
+        }
+      }
+    }
+
+    function breakHook() {
+      const options = { duration: 700, easing: 'ease-out' };
+      hookTop.animate([
+        { transform: 'translate(4px, 11px)', opacity: 1 },
+        { transform: 'translate(-196px, -89px) rotate(-400deg)', opacity: 0 },
+      ], options);
+      hookBottom.animate([
+        { transform: 'none', opacity: 1 },
+        { transform: 'translate(200px, 100px) rotate(400deg)', opacity: 0 },
+      ], options);
+      playSound('break');
+    }
+
+    function resetPins() {
+      const pinElements = lockContainer.getElementsByClassName('pin');
+      for (let i = 0; i < pinElements.length; i++) {
+        pinElements[i].classList.remove('correct');
+      }
+      currentPin = 0;
+    }
+
+    function applyTension() {
+      isPinning = true;
+      wrench.classList.add('shake-small');
+    }
+
+    function releaseTension() {
+      isPinning = false;
+      wrench.classList.remove('shake-small');
+      resetPins();
+    }
+
+    function selectPin(pinElement) {
+      if (pinElement.classList.contains('correct')) return;
+
+      if (pinElement.id === correctOrder[currentPin]) {
+        currentPin++;
+        pinElement.classList.add('correct');
+        playSound('click');
+        if (currentPin === correctOrder.length) {
+          cooldown = true;
+          setTimeout(() => {
+            playSound('unlock');
+            wrench.classList.remove('shake-small');
+            setTimeout(() => {
+              wrench.classList.add('rotate');
+              setTimeout(() => {
+                wrench.classList.remove('rotate');
+                finish('succeed');
+              }, 1000);
+            }, 50);
+          }, 250);
+        }
+        return;
+      }
+
+      if (cooldown) return;
+
+      pinElement.classList.remove('shake');
+      cooldown = true;
+      attempts--;
+      pinElement.classList.add('incorrect');
+      playSound('tap');
+
+      if (attempts <= 0) {
+        breakHook();
+        setTimeout(() => finish('failed'), 500);
+      }
+
+      setTimeout(() => {
+        cooldown = false;
+        pinElement.classList.remove('incorrect');
+      }, 700);
+    }
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function positionPins() {
+      const lockRect = lockContainer.getBoundingClientRect();
+      const pinWidth = 20;
+      const spacing = (lockRect.width - pins.length * pinWidth) / (pins.length + 1);
+      let leftOffset = spacing;
+
+      for (let i = 0; i < pins.length; i++) {
+        const pin = document.getElementById(pins[i]).parentNode.parentNode;
+        pin.style.left = leftOffset + 'px';
+        pin.style.top = '0px';
+        pin.querySelector('.pin-container').style.top = (lockRect.height / 2) + 'px';
+        leftOffset += pinWidth + spacing;
+      }
+    }
+
+    window.addEventListener('message', (event) => {
+      const message = event.data;
+      if (!message) return;
+
+      if (message.__frameInit) {
+        resourceName = message.resourceName || resourceName;
+        frameId = message.frameId || frameId;
+        post('ready');
+        return;
+      }
+
+      if (message.action === 'startLockpick') {
+        const data = message.data || {};
+        setUpGame(data.difficulty, data.pins, data.strength);
+      } else if (message.action === 'stop') {
+        running = false;
+        hideGame();
+        releaseTension();
+      }
+    });
+  </script>
+</body>
+
+</html>

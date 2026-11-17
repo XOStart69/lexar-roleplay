@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="MainContainer" id="mainContainer">
+			<div class="BagBg">
+				<div class="bag-panel">
+					<div class="bag-flap" id="bagFlap">
+						<div class="flap-inner">
+							<p class="zipper-status" id="zipperStatus">Tarik untuk buka</p>
+							<div class="zipper-track-v">
+								<div class="zipper-progress" id="zipperProgress"></div>
+								<div class="zipper-teeth-v"></div>
+								<div class="zipper-handle" id="zipperHandle">
+									<div class="handle-icon"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="BagInside" id="bagMenu">
+						<button class="menu-close" id="menuClose" aria-label="Tutup">
+							<svg width="1.2vh" height="1.2vh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+						</button>
+						<div class="bag-title">Outfit Tersimpan</div>
+						<div class="owner-badge" id="ownerBadge">
+							<span class="owner-tag">Milik</span>
+							<span class="owner-name" id="ownerName">-</span>
+							<span class="owner-cid" id="ownerCid"></span>
+						</div>
+						<div class="outfit-grid" id="outfitGrid"></div>
+						<div class="selected-info">
+							<span class="selected-label">Dipilih</span>
+							<span class="selected-name" id="selectedName">-</span>
+						</div>
+						<div class="quick-actions">
+							<button class="qbtn qbtn-cancel" id="qbtnCancel">Batal</button>
+							<button class="qbtn qbtn-use" id="qbtnUse" disabled>Pakai</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antitroll Timer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/app.css" />
+    <script src="../../wrapper/vue.js"></script>
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="content" v-show="show">
+            <div class="main-text">
+                <h1 class="newPlayer">~ Warga Baru ~</h1>
+                <h2 class="description">
+                    Tunggu sampai waktu habis..<br>
+                    Sementara anda tidak bisa mengeluarkan senjata
+                </h2>
+            </div>
+            <div class="timer">
+                <a class="timer">
+                    <i class="fas fa-clock"></i>
+                    <span>{{ formattedTime }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

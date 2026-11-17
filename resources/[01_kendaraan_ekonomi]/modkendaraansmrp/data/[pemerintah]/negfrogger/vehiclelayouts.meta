@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CVehicleMetadataMgr>
+  <VehicleEntryPointInfos>
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_POINT_HELI_FRONT_LEFT_9S</Name>
+      <DoorBoneName />
+      <SecondDoorBoneName />
+      <DoorHandleBoneName />
+      <WindowId>INVALID</WindowId>
+      <VehicleSide>SIDE_LEFT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_STANDARD_FRONT_LEFT" />
+      </AccessableSeats>
+      <VehicleExtraPointsInfo ref="NULL" />
+      <Flags />
+      <BlockJackReactionSides />
+    </Item>
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_POINT_HELI_FRONT_RIGHT_9S</Name>
+      <DoorBoneName />
+      <SecondDoorBoneName />
+      <DoorHandleBoneName />
+      <WindowId>INVALID</WindowId>
+      <VehicleSide>SIDE_RIGHT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_STANDARD_FRONT_RIGHT" />
+      </AccessableSeats>
+      <VehicleExtraPointsInfo ref="NULL" />
+      <Flags />
+      <BlockJackReactionSides />
+    </Item>
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_POINT_HELI_REAR_LEFT_9S</Name>
+      <DoorBoneName />
+      <SecondDoorBoneName />
+      <DoorHandleBoneName />
+      <WindowId>INVALID</WindowId>
+      <VehicleSide>SIDE_LEFT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_STANDARD_REAR_LEFT" />
+        <Item ref="SEAT_EXTRA_NO_SHUFFLE_LEFT_1" />
+        <Item ref="SEAT_EXTRA_NO_SHUFFLE_LEFT_2" />
+        <Item ref="SEAT_EXTRA_NO_SHUFFLE_LEFT_3" />
+      </AccessableSeats>
+      <VehicleExtraPointsInfo ref="NULL" />
+      <Flags />
+      <BlockJackReactionSides />
+    </Item>
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_POINT_HELI_REAR_RIGHT_9S</Name>
+      <DoorBoneName />
+      <SecondDoorBoneName />
+      <DoorHandleBoneName />
+      <WindowId>INVALID</WindowId>
+      <VehicleSide>SIDE_RIGHT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_STANDARD_REAR_RIGHT" />
+        <Item ref="SEAT_EXTRA_NO_SHUFFLE_LEFT_1" />
+        <Item ref="SEAT_EXTRA_NO_SHUFFLE_RIGHT_1" />
+        <Item ref="SEAT_EXTRA_NO_SHUFFLE_RIGHT_2" />
+      </AccessableSeats>
+      <VehicleExtraPointsInfo ref="NULL" />
+      <Flags />
+      <BlockJackReactionSides />
+    </Item>
+  </VehicleEntryPointInfos>
+  <VehicleLayoutInfos>
+    <Item type="CVehicleLayoutInfo">
+      <Name>LAYOUT_HELI_SWAT_9SEATS</Name>
+      <Seats>
+        <!-- Seat 0: Pilot (front left) -->
+        <Item>
+          <SeatInfo ref="SEAT_STANDARD_FRONT_LEFT" />
+          <SeatAnimInfo ref="SEAT_ANIM_HELI_FROGGER_FRONT_LEFT" />
+        </Item>
+        <!-- Seat 1: Co-Pilot (front right) -->
+        <Item>
+          <SeatInfo ref="SEAT_STANDARD_FRONT_RIGHT" />
+          <SeatAnimInfo ref="SEAT_ANIM_HELI_FRONT_RIGHT" />
+        </Item>
+        <!-- Seat 2: Rear Left Cabin (inside) -->
+        <Item>
+          <SeatInfo ref="SEAT_STANDARD_REAR_LEFT" />
+          <SeatAnimInfo ref="SEAT_ANIM_HELI_FROGGER_REAR_LEFT" />
+        </Item>
+        <!-- Seat 3: Rear Right Cabin (inside) -->
+        <Item>
+          <SeatInfo ref="SEAT_STANDARD_REAR_RIGHT" />
+          <SeatAnimInfo ref="SEAT_ANIM_HELI_FROGGER_REAR_RIGHT" />
+        </Item>
+        <!-- Seat 4: Rear Middle Cabin (inside - seat_dside_r1) -->
+        <Item>
+          <SeatInfo ref="SEAT_EXTRA_NO_SHUFFLE_LEFT_1" />
+          <SeatAnimInfo ref="SEAT_ANIM_HELI_FROGGER_REAR_LEFT" />
+        </Item>
+        <!-- Seat 5: Left Skirt Front Sitting (seat_dside_r2) -->
+        <Item>
+          <SeatInfo ref="SEAT_EXTRA_NO_SHUFFLE_LEFT_2" />
+          <SeatAnimInfo ref="SEAT_ANIM_PLANE_TITAN_LEFT" />
+        </Item>
+        <!-- Seat 6: Left Skirt Rear Sitting (seat_dside_r3) -->
+        <Item>
+          <SeatInfo ref="SEAT_EXTRA_NO_SHUFFLE_LEFT_3" />
+          <SeatAnimInfo ref="SEAT_ANIM_PLANE_TITAN_LEFT" />
+        </Item>
+        <!-- Seat 7: Right Skirt Front Sitting (seat_pside_r1) -->
+        <Item>
+          <SeatInfo ref="SEAT_EXTRA_NO_SHUFFLE_RIGHT_1" />
+          <SeatAnimInfo ref="SEAT_ANIM_PLANE_TITAN_RIGHT" />
+        </Item>
+        <!-- Seat 8: Right Skirt Rear Sitting (seat_pside_r2) -->
+        <Item>
+          <SeatInfo ref="SEAT_EXTRA_NO_SHUFFLE_RIGHT_2" />
+          <SeatAnimInfo ref="SEAT_ANIM_PLANE_TITAN_RIGHT" />
+        </Item>
+      </Seats>
+      <EntryPoints>
+        <!-- Front Left (Open Cockpit) -> Pilot -->
+        <Item>
+          <EntryPointInfo ref="ENTRY_POINT_HELI_FRONT_LEFT_9S" />
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_HELI_FRONT_LEFT" />
+        </Item>
+        <!-- Front Right (Open Cockpit) -> Co-Pilot -->
+        <Item>
+          <EntryPointInfo ref="ENTRY_POINT_HELI_FRONT_RIGHT_9S" />
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_HELI_FRONT_RIGHT" />
+        </Item>
+        <!-- Rear Left -> Rear Left & Middle Cabin + Left Skirt Seats -->
+        <Item>
+          <EntryPointInfo ref="ENTRY_POINT_HELI_REAR_LEFT_9S" />
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_HELI_FROGGER_REAR_LEFT" />
+        </Item>
+        <!-- Rear Right -> Rear Right & Middle Cabin + Right Skirt Seats -->
+        <Item>
+          <EntryPointInfo ref="ENTRY_POINT_HELI_REAR_RIGHT_9S" />
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_HELI_FROGGER_REAR_RIGHT" />
+        </Item>
+      </EntryPoints>
+      <LayoutFlags>StreamAnims UseFinerAlignTolerance Use2DBodyBlend</LayoutFlags>
+      <BicycleInfo ref="NULL" />
+      <HandsUpClipSetId>busted_vehicle_std</HandsUpClipSetId>
+      <SteeringWheelOffset x="0.000000" y="0.350000" z="0.320000" />
+    </Item>
+  </VehicleLayoutInfos>
+</CVehicleMetadataMgr>

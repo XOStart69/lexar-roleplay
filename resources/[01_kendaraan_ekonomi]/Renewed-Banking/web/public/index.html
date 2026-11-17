@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+      <!--
+        Tailwind is precompiled to ./build/tailwind.css instead of loading
+        cdn.tailwindcss.com. The CDN ships a ~4MB in-browser JIT compiler and
+        needs a live network fetch on every NUI load; inside CEF that is both
+        slow and a crash risk. The theme below now lives in the build config
+        (see the resource README) - edit it there and rebuild, not here.
+
+        Fonts are bundled locally for the same reason.
+      -->
+      <link rel="stylesheet" href="./fonts/fonts.css" />
+      <link rel="stylesheet" href="./build/tailwind.css" />
+
+      <link rel="stylesheet" href="./global.css" />
+      <link rel="stylesheet" href="./build/bundle.css" />
+
+      <script defer src="./build/bundle.js"></script>
+
+      <title>Fleeca Banking</title>
+  </head>
+
+  <body class="font-sans text-fleeca-text bg-transparent"></body>
+</html>

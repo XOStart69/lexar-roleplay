@@ -1,0 +1,12 @@
+    ["00000jarp_barbie_couple_right"] = {"jarp_barbie_couples_right", "jarp_barbie_couple_right_clip", "Jarp Barbie Girl~g~ Right", "00000jarp_barbie_couple_left", AnimationOptions =
+    {
+        EmoteLoop = true,
+        SyncOffsetFront = 0.6,
+    }},  
+    
+    ["00000jarp_barbie_couple_left"] = {"jarp_barbie_couples_left", "jarp_barbie_couple_left_clip", "Jarp Barbie Girl~g~ Left", "00000jarp_barbie_couple_right", AnimationOptions =
+    {
+        EmoteLoop = true,
+        SyncOffsetFront = 0.6,
+    }},   
+	

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sm_printer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: transparent !important;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            color: #e6e6e6;
+        }
+
+        #stage {
+            display: none;
+            position: fixed;
+            inset: 0;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        #stage.active { display: flex; }
+
+        #panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: min(1080px, 92vw);
+            max-height: 92vh;
+            padding: 12px;
+            background: #1a1b1e;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+        }
+
+        #image {
+            display: block;
+            max-width: 100%;
+            max-height: calc(92vh - 74px);
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        #message {
+            display: none;
+            min-width: 280px;
+            padding: 24px 12px;
+            text-align: center;
+            color: #a6a7ab;
+        }
+
+        #footer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: #909296;
+        }
+
+        #close {
+            padding: 6px 16px;
+            border: 0;
+            border-radius: 4px;
+            background: rgba(0, 204, 201, 0.82);
+            color: #04191c;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        #close:hover { background: #00ccc9; }
+    </style>
+</head>
+<body>
+    <div id="stage">
+        <div id="panel">
+            <img id="image" alt="">
+            <div id="message">Gambar tidak bisa dimuat.</div>
+            <div id="footer">
+                <span>ESC untuk menutup</span>
+                <button id="close" type="button">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const MAX_PIXELS = 16000000;
+        const stage = document.getElementById('stage');
+        const panel = document.getElementById('panel');
+        const image = document.getElementById('image');
+        const message = document.getElementById('message');
+
+        let resource = 'sm_resource_1';
+        let frameId = 'sm_printer';
+        let readySent = false;
+        let open = false;
+
+        const post = (name) =>
+            fetch(`https://${resource}/${frameId}:${name}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                body: '{}',
+            }).catch(() => {});
+
+        const showError = () => {
+            image.style.display = 'none';
+            message.style.display = 'block';
+        };
+
+        const close = () => {
+            if (!open) return;
+            open = false;
+            stage.classList.remove('active');
+            image.onload = null;
+            image.onerror = null;
+            image.removeAttribute('src');
+            post('closed');
+        };
+
+        const show = ({ url }) => {
+            open = true;
+            image.style.display = 'block';
+            message.style.display = 'none';
+            image.decoding = 'async';
+            image.onerror = showError;
+            image.onload = () => {
+                if (image.naturalWidth * image.naturalHeight > MAX_PIXELS) {
+                    image.removeAttribute('src');
+                    showError();
+                }
+            };
+            image.src = url;
+            stage.classList.add('active');
+        };
+
+        document.getElementById('close').addEventListener('click', close);
+        stage.addEventListener('click', (event) => {
+            if (!panel.contains(event.target)) close();
+        });
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') close();
+        });
+
+        window.addEventListener('message', (event) => {
+            const data = event.data;
+            if (!data) return;
+
+            if (data.__frameInit) {
+                resource = data.resourceName || resource;
+                frameId = data.frameId || frameId;
+
+                if (!readySent) {
+                    readySent = true;
+                    post('ready');
+                }
+                return;
+            }
+
+            if (data.action === 'show' && data.data) show(data.data);
+            else if (data.action === 'close') close();
+        });
+    </script>
+</body>
+</html>

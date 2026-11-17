@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PedDecorationCollection>
+    <bRequiredForSync value="true"/>
+    <presets>
+        <Item>
+            <uvPos x="0.225000" y="0.500000"/>
+            <scale x="0.35" y="0.35"/>
+            <rotation value="0"/>
+            <nameHash>cry_baby_angel_M</nameHash>
+            <txdHash>cry_baby_angel</txdHash>
+            <txtHash>cry_baby_angel</txtHash>
+            <zone>ZONE_TORSO</zone>
+            <type>TYPE_TATTOO</type>
+            <faction>FM</faction>
+            <garment>ALL</garment>
+            <gender>GENDER_MALE</gender>
+        </Item>
+        <Item>
+            <uvPos x="0.225000" y="0.500000"/>
+            <scale x="0.35" y="0.35"/>
+            <rotation value="0"/>
+            <nameHash>cry_baby_angel_F</nameHash>
+            <txdHash>cry_baby_angel</txdHash>
+            <txtHash>cry_baby_angel</txtHash>
+            <zone>ZONE_TORSO</zone>
+            <type>TYPE_TATTOO</type>
+            <faction>FM_F</faction>
+            <garment>ALL</garment>
+            <gender>GENDER_FEMALE</gender>
+        </Item>
+        <Item>
+            <uvPos x="0.225000" y="0.500000"/>
+            <scale x="0.35" y="0.35"/>
+            <rotation value="0"/>
+            <nameHash>brother_fall_M</nameHash>
+            <txdHash>brother_fall</txdHash>
+            <txtHash>brother_fall</txtHash>
+            <zone>ZONE_TORSO</zone>
+            <type>TYPE_TATTOO</type>
+            <faction>FM</faction>
+            <garment>ALL</garment>
+            <gender>GENDER_MALE</gender>
+        </Item>
+        <Item>
+            <uvPos x="0.225000" y="0.500000"/>
+            <scale x="0.35" y="0.35"/>
+            <rotation value="0"/>
+            <nameHash>brother_fall_F</nameHash>
+            <txdHash>brother_fall</txdHash>
+            <txtHash>brother_fall</txtHash>
+            <zone>ZONE_TORSO</zone>
+            <type>TYPE_TATTOO</type>
+            <faction>FM_F</faction>
+            <garment>ALL</garment>
+            <gender>GENDER_FEMALE</gender>
+        </Item>
+        <Item>
+            <uvPos x="0.5" y="0.5"/>
+            <scale x="0.6" y="0.45"/>
+            <rotation value="0"/>
+            <nameHash>skull_neck_M</nameHash>
+            <txdHash>skull_neck</txdHash>
+            <txtHash>skull_neck</txtHash>
+            <zone>ZONE_HEAD</zone>
+            <type>TYPE_TATTOO</type>
+            <faction>FM</faction>
+            <garment>ALL</garment>
+            <gender>GENDER_MALE</gender>
+        </Item>
+        <Item>
+            <uvPos x="0.7" y="0.1"/>
+            <scale x="0.5" y="0.2"/>
+            <rotation value="0"/>
+            <nameHash>skull_neck_F</nameHash>
+            <txdHash>skull_neck</txdHash>
+            <txtHash>skull_neck</txtHash>
+            <zone>ZONE_HEAD</zone>
+            <type>TYPE_TATTOO</type>
+            <faction>FM_F</faction>
+            <garment>ALL</garment>
+            <gender>GENDER_FEMALE</gender>
+        </Item>
+        <Item>
+            <uvPos x="0.5" y="0.35"/>
+            <scale x="0.4" y="0.4"/>
+            <rotation value="0"/>
+            <nameHash>rocket_torso_M</nameHash>
+            <txdHash>rocket_torso</txdHash>
+            <txtHash>rocket_torso</txtHash>
+            <zone>ZONE_TORSO</zone>
+            <type>TYPE_TATTOO</type>
+            <faction>FM</faction>
+            <garment>ALL</garment>
+            <gender>GENDER_MALE</gender>
+        </Item>
+        <Item>
+            <uvPos x="0.5" y="0.35"/>
+            <scale x="0.4" y="0.4"/>
+            <rotation value="0"/>
+            <nameHash>rocket_torso_F</nameHash>
+            <txdHash>rocket_torso</txdHash>
+            <txtHash>rocket_torso</txtHash>
+            <zone>ZONE_TORSO</zone>
+            <type>TYPE_TATTOO</type>
+            <faction>FM_F</faction>
+            <garment>ALL</garment>
+            <gender>GENDER_FEMALE</gender>
+        </Item>
+    </presets>
+    <nameHash>rcore_overlays_nusa-indah-roleplay</nameHash>
+</PedDecorationCollection>

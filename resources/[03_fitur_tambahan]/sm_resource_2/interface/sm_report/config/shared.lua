@@ -1,0 +1,26 @@
+return {
+    command = 'report',
+    cooldown = 60,
+    maxActiveReports = 3,
+    messageInterval = 1000,
+    maxSubject = 20,
+    maxDescription = 2000,
+    maxMessage = 1000,
+    historyLimit = 50,
+    resolvedLimit = 30,
+    messageLimit = 200,
+    topRating = false,
+    categories = {
+        { id = 'general', label = 'Umum' },
+        { id = 'bug', label = 'Bug' },
+        { id = 'player', label = 'Laporkan Pemain' },
+        { id = 'question', label = 'Pertanyaan' },
+        { id = 'other', label = 'Lainnya' },
+    },
+    priorities = {
+        { id = 0, label = 'Rendah' },
+        { id = 1, label = 'Normal' },
+        { id = 2, label = 'Tinggi' },
+        { id = 3, label = 'Mendesak' },
+    },
+}

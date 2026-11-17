@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sm_jumpscare</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: transparent !important;
+        }
+
+        #stage {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #000;
+        }
+
+        #stage.active {
+            display: block;
+            animation: fadeIn 0.1s ease-in;
+        }
+
+        #stage.shake {
+            animation: shake 0.5s;
+        }
+
+        #image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: scaleIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleIn { from { transform: scale(0.8); } to { transform: scale(1); } }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <div id="stage">
+        <img id="image" alt="">
+    </div>
+
+    <script>
+        const MAX_PIXELS = 16000000;
+        const stage = document.getElementById('stage');
+        const image = document.getElementById('image');
+
+        let resource = 'sm_resource_1';
+        let frameId = 'sm_jumpscare';
+        let hideTimer = null;
+        let loadTimer = null;
+        let readySent = false;
+
+        const post = (name) =>
+            fetch(`https://${resource}/${frameId}:${name}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                body: '{}',
+            }).catch(() => {});
+
+        const clearTimers = () => {
+            clearTimeout(hideTimer);
+            clearTimeout(loadTimer);
+            hideTimer = null;
+            loadTimer = null;
+        };
+
+        const close = () => {
+            clearTimers();
+            stage.classList.remove('active', 'shake');
+            image.onload = null;
+            image.onerror = null;
+            image.removeAttribute('src');
+            post('closed');
+        };
+
+        const show = ({ url, duration, timeout }) => {
+            clearTimers();
+            image.decoding = 'async';
+            image.onerror = close;
+
+            image.onload = () => {
+                clearTimeout(loadTimer);
+
+                if (image.naturalWidth * image.naturalHeight > MAX_PIXELS) {
+                    close();
+                    return;
+                }
+
+                stage.classList.add('active', 'shake');
+                setTimeout(() => stage.classList.remove('shake'), 500);
+                hideTimer = setTimeout(close, duration);
+            };
+
+            loadTimer = setTimeout(close, timeout);
+            image.src = url;
+        };
+
+        window.addEventListener('message', (event) => {
+            const message = event.data;
+            if (!message) return;
+
+            if (message.__frameInit) {
+                resource = message.resourceName || resource;
+                frameId = message.frameId || frameId;
+
+                if (!readySent) {
+                    readySent = true;
+                    post('ready');
+                }
+                return;
+            }
+
+            if (message.action === 'show' && message.data) show(message.data);
+        });
+    </script>
+</body>
+</html>

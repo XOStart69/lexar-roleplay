@@ -1,0 +1,140 @@
+{
+  "source": "images/human.webp",
+  "width": 363,
+  "height": 686,
+  "format": "webp",
+  "regions": {
+    "head": {
+      "mask": "images/body-parts/masks/head.webp",
+      "piece": "images/body-parts/pieces/head.webp",
+      "bounds": {
+        "left": 147,
+        "top": 0,
+        "width": 69,
+        "height": 83
+      },
+      "pixels": 4153
+    },
+    "neck": {
+      "mask": "images/body-parts/masks/neck.webp",
+      "piece": "images/body-parts/pieces/neck.webp",
+      "bounds": {
+        "left": 154,
+        "top": 72,
+        "width": 54,
+        "height": 45
+      },
+      "pixels": 1453
+    },
+    "chest": {
+      "mask": "images/body-parts/masks/chest.webp",
+      "piece": "images/body-parts/pieces/chest.webp",
+      "bounds": {
+        "left": 114,
+        "top": 100,
+        "width": 137,
+        "height": 108
+      },
+      "pixels": 12228
+    },
+    "abdomen": {
+      "mask": "images/body-parts/masks/abdomen.webp",
+      "piece": "images/body-parts/pieces/abdomen.webp",
+      "bounds": {
+        "left": 118,
+        "top": 199,
+        "width": 126,
+        "height": 155
+      },
+      "pixels": 12302
+    },
+    "right_arm": {
+      "mask": "images/body-parts/masks/right_arm.webp",
+      "piece": "images/body-parts/pieces/right_arm.webp",
+      "bounds": {
+        "left": 35,
+        "top": 114,
+        "width": 86,
+        "height": 219
+      },
+      "pixels": 6619
+    },
+    "left_arm": {
+      "mask": "images/body-parts/masks/left_arm.webp",
+      "piece": "images/body-parts/pieces/left_arm.webp",
+      "bounds": {
+        "left": 242,
+        "top": 116,
+        "width": 84,
+        "height": 214
+      },
+      "pixels": 6437
+    },
+    "right_hand": {
+      "mask": "images/body-parts/masks/right_hand.webp",
+      "piece": "images/body-parts/pieces/right_hand.webp",
+      "bounds": {
+        "left": 0,
+        "top": 306,
+        "width": 56,
+        "height": 77
+      },
+      "pixels": 2176
+    },
+    "left_hand": {
+      "mask": "images/body-parts/masks/left_hand.webp",
+      "piece": "images/body-parts/pieces/left_hand.webp",
+      "bounds": {
+        "left": 306,
+        "top": 301,
+        "width": 57,
+        "height": 82
+      },
+      "pixels": 2278
+    },
+    "right_leg": {
+      "mask": "images/body-parts/masks/right_leg.webp",
+      "piece": "images/body-parts/pieces/right_leg.webp",
+      "bounds": {
+        "left": 109,
+        "top": 284,
+        "width": 75,
+        "height": 338
+      },
+      "pixels": 14113
+    },
+    "left_leg": {
+      "mask": "images/body-parts/masks/left_leg.webp",
+      "piece": "images/body-parts/pieces/left_leg.webp",
+      "bounds": {
+        "left": 180,
+        "top": 283,
+        "width": 74,
+        "height": 339
+      },
+      "pixels": 14060
+    },
+    "right_foot": {
+      "mask": "images/body-parts/masks/right_foot.webp",
+      "piece": "images/body-parts/pieces/right_foot.webp",
+      "bounds": {
+        "left": 108,
+        "top": 618,
+        "width": 47,
+        "height": 68
+      },
+      "pixels": 1812
+    },
+    "left_foot": {
+      "mask": "images/body-parts/masks/left_foot.webp",
+      "piece": "images/body-parts/pieces/left_foot.webp",
+      "bounds": {
+        "left": 208,
+        "top": 618,
+        "width": 48,
+        "height": 68
+      },
+      "pixels": 1824
+    }
+  }
+}

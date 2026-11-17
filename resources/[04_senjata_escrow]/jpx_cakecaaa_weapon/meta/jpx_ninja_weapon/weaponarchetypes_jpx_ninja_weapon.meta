@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <CWeaponModelInfo__InitDataList>
+        <InitDatas>
+            <!-- Bottle -->
+                <Item>
+                    <modelName>W_ME_JPX_BASHOSEN</modelName>
+                    <txdName>W_ME_JPX_BASHOSEN</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_KONAN_SPEAR</modelName>
+                    <txdName>W_ME_JPX_KONAN_SPEAR</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_NARUTO_JUMP_FORCE</modelName>
+                    <txdName>W_ME_JPX_NARUTO_JUMP_FORCE</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_PAPER_BOMB_KUNAI</modelName>
+                    <txdName>W_ME_JPX_PAPER_BOMB_KUNAI</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_RIKUDOU_MADARA</modelName>
+                    <txdName>W_ME_JPX_RIKUDOU_MADARA</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_SASUKE_SWORD</modelName>
+                    <txdName>W_ME_JPX_SASUKE_SWORD</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+            <!-- Poolcue/1Hand -->
+                <Item>
+                    <modelName>W_ME_JPX_GUNBAI</modelName>
+                    <txdName>W_ME_JPX_GUNBAI</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_HIDAN_SCYTHE</modelName>
+                    <txdName>W_ME_JPX_HIDAN_SCYTHE</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_HIRAMEKAREI</modelName>
+                    <txdName>W_ME_JPX_HIRAMEKAREI</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_KOTETSU</modelName>
+                    <txdName>W_ME_JPX_KOTETSU</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_KUBIKIRIBOCHO</modelName>
+                    <txdName>W_ME_JPX_KUBIKIRIBOCHO</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_SAMEHADA</modelName>
+                    <txdName>W_ME_JPX_SAMEHADA</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_SAMEHADA2</modelName>
+                    <txdName>W_ME_JPX_SAMEHADA2</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+                <Item>
+                    <modelName>W_ME_JPX_TEMARI_FAN</modelName>
+                    <txdName>W_ME_JPX_TEMARI_FAN</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+            <!-- Knuckle -->
+                <Item>
+                    <modelName>W_ME_JPX_CHIDORI</modelName>
+                    <txdName>W_ME_JPX_CHIDORI</txdName>
+                    <ptfxAssetName>NULL</ptfxAssetName>
+                    <lodDist value="50" />
+                </Item>
+        </InitDatas>
+    </CWeaponModelInfo__InitDataList>

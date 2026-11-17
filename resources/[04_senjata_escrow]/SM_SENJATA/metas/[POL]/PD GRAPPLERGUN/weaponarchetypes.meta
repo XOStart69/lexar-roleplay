@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<!-- ### Auto Crossbow ### -->
+		<Item>
+			<modelName>w_lr_autocross</modelName>
+			<txdName>w_lr_autocross</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>w_lr_autocross_mag1</modelName>
+			<txdName>w_lr_autocross</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="100"/>
+		</Item>
+		<Item>
+			<modelName>w_lr_autocross_scope_small</modelName>
+			<txdName>w_lr_autocross_scope_small</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>w_lr_autocross_bolt</modelName>
+			<txdName>w_lr_autocross_bolt</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>w_lr_autocross_flsh</modelName>
+			<txdName>w_lr_autocross_flsh</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

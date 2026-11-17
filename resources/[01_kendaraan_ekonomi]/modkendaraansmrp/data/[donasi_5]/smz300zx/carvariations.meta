@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CVehicleModelInfoVariation>
+  <variationData>
+    <Item>
+      <modelName>smz300zx</modelName>
+      <colors>
+        <Item>
+          <indices content="char_array">
+            111
+            40
+            4
+            156
+            43
+            27
+          </indices>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            31
+            98
+            40
+            156
+            99
+            27
+          </indices>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            31
+            98
+            40
+            156
+            99
+            27
+          </indices>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            74
+            1
+            78
+            156
+            2
+            27
+          </indices>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            147
+            1
+            22
+            156
+            2
+            27
+          </indices>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            0
+            40
+            1
+            156
+            43
+            27
+          </indices>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            37
+            1
+            98
+            156
+            2
+            27
+          </indices>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            141
+            98
+            82
+            156
+            99
+            27
+          </indices>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            4
+            1
+            5
+            156
+            2
+            27
+          </indices>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            27
+            98
+            28
+            156
+            99
+            27
+          </indices>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            138
+            1
+            37
+            156
+            2
+            27
+          </indices>
+        </Item>
+      </colors>
+      <kits>
+        <Item>1351723634_smz300zx_modkit</Item>
+      </kits>
+      <windowsWithExposedEdges/>
+      <plateProbabilities>
+        <Probabilities>
+          <Item>
+            <Name>Standard White</Name>
+            <Value value="70"/>
+          </Item>
+          <Item>
+            <Name>White Plate 2</Name>
+            <Value value="30"/>
+          </Item>
+        </Probabilities>
+      </plateProbabilities>
+      <lightSettings value="2"/>
+      <sirenSettings value="0"/>
+    </Item>
+  </variationData>
+</CVehicleModelInfoVariation>

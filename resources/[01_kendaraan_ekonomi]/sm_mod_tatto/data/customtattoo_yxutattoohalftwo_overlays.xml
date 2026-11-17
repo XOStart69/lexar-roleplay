@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PedDecorationCollection>
+  <bRequiredForSync value="true" />
+  <presets>
+    <Item>
+      <uvPos x="0.500000" y="0.790000" />
+      <scale x="0.150000" y="0.200000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_HALFTWO_001_F</nameHash>
+      <txdHash>yxu_tat_halftwo_001</txdHash>
+      <txtHash>yxu_tat_halftwo_001</txtHash>
+      <zone>ZONE_LEFT_ARM</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.745000" y="0.390000" />
+      <scale x="0.330000" y="0.330000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_HALFTWO_002_F</nameHash>
+      <txdHash>yxu_tat_halftwo_002</txdHash>
+      <txtHash>yxu_tat_halftwo_002</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.500000" y="0.250000" />
+      <scale x="0.230000" y="0.230000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_HALFTWO_003_M</nameHash>
+      <txdHash>yxu_tat_halftwo_003</txdHash>
+      <txtHash>yxu_tat_halftwo_003</txtHash>
+      <zone>ZONE_HEAD</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.500000" y="0.250000" />
+      <scale x="0.230000" y="0.230000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_HALFTWO_003_F</nameHash>
+      <txdHash>yxu_tat_halftwo_003</txdHash>
+      <txtHash>yxu_tat_halftwo_003</txtHash>
+      <zone>ZONE_HEAD</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.770000" y="0.345000" />
+      <scale x="0.130000" y="0.110000" />
+      <rotation value="24.840000" />
+      <nameHash>YXU_TAT_HALFTWO_004_M</nameHash>
+      <txdHash>yxu_tat_halftwo_004</txdHash>
+      <txtHash>yxu_tat_halftwo_004</txtHash>
+      <zone>ZONE_HEAD</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.770000" y="0.345000" />
+      <scale x="0.130000" y="0.110000" />
+      <rotation value="24.840000" />
+      <nameHash>YXU_TAT_HALFTWO_004_F</nameHash>
+      <txdHash>yxu_tat_halftwo_004</txdHash>
+      <txtHash>yxu_tat_halftwo_004</txtHash>
+      <zone>ZONE_HEAD</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.770000" y="0.345000" />
+      <scale x="0.130000" y="0.110000" />
+      <rotation value="24.840000" />
+      <nameHash>YXU_TAT_HALFTWO_005_M</nameHash>
+      <txdHash>yxu_tat_halftwo_005</txdHash>
+      <txtHash>yxu_tat_halftwo_005</txtHash>
+      <zone>ZONE_HEAD</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.770000" y="0.345000" />
+      <scale x="0.130000" y="0.110000" />
+      <rotation value="24.840000" />
+      <nameHash>YXU_TAT_HALFTWO_005_F</nameHash>
+      <txdHash>yxu_tat_halftwo_005</txdHash>
+      <txtHash>yxu_tat_halftwo_005</txtHash>
+      <zone>ZONE_HEAD</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.745000" y="0.390000" />
+      <scale x="0.330000" y="0.330000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_HALFTWO_006_M</nameHash>
+      <txdHash>yxu_tat_halftwo_006</txdHash>
+      <txtHash>yxu_tat_halftwo_006</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.745000" y="0.390000" />
+      <scale x="0.330000" y="0.330000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_HALFTWO_006_F</nameHash>
+      <txdHash>yxu_tat_halftwo_006</txdHash>
+      <txtHash>yxu_tat_halftwo_006</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.740000" y="0.620000" />
+      <scale x="0.170000" y="0.150000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_HALFTWO_007_F</nameHash>
+      <txdHash>yxu_tat_halftwo_007</txdHash>
+      <txtHash>yxu_tat_halftwo_007</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+	<Item>
+      <uvPos x="0.740000" y="0.620000" />
+      <scale x="0.170000" y="0.150000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_HALFTWO_008_F</nameHash>
+      <txdHash>yxu_tat_halftwo_008</txdHash>
+      <txtHash>yxu_tat_halftwo_008</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+      <award />
+      <awardLevel />
+    </Item>
+  </presets>
+  <nameHash>yxutattoohalftwo_overlays</nameHash>
+   <medalLocations content="vector2_array">
+    0.140000	0.070000
+    0.370000	0.070000
+    0.600000	0.070000
+    0.835000	0.070000
+    0.140000	0.150000
+    0.370000	0.150000
+    0.600000	0.150000
+    0.835000	0.150000
+    0.140000	0.230000
+    0.370000	0.230000
+    0.600000	0.230000
+    0.835000	0.230000
+    0.100000	0.700000
+    0.300000	0.700000
+    0.500000	0.700000
+    0.700000	0.700000
+  </medalLocations>
+  <medalScale x="0.240000" y="0.100000" />
+</PedDecorationCollection>

@@ -1,0 +1,112 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { overflow: hidden; background: transparent; font-family: 'Segoe UI', Arial, sans-serif; }
+.hidden { display: none !important; }
+
+:root {
+    --accent: #c2410c;
+    --bg: #111214;
+    --bg-2: #18191c;
+    --text: #f4f4f5;
+    --muted: #a1a1aa;
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-120%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-120%); opacity: 0; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+}
+
+#mwBar {
+    position: fixed;
+    top: 9%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: min(520px, 90vw);
+    z-index: 9999;
+    background: var(--bg);
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    overflow: hidden;
+    animation: slideDown 0.4s ease-out forwards;
+}
+
+#mwBar.closing {
+    animation: slideUp 0.35s ease-in forwards;
+}
+
+.mw-strip {
+    height: 3px;
+    background: var(--accent);
+}
+
+.mw-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px 2px;
+}
+
+.mw-header h1 {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--text);
+}
+
+.mw-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: blink 1s linear infinite;
+    flex-shrink: 0;
+}
+
+.mw-timer {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.mw-sub {
+    padding: 0 14px 8px 32px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+}
+
+.mw-body {
+    padding: 10px 14px 12px;
+    background: var(--bg-2);
+    border-top: 1px solid #27272a;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--text);
+}
+
+.mw-progress {
+    height: 3px;
+    background: #27272a;
+}
+
+.mw-progress-fill {
+    height: 100%;
+    width: 100%;
+    background: var(--accent);
+    transform-origin: left;
+}

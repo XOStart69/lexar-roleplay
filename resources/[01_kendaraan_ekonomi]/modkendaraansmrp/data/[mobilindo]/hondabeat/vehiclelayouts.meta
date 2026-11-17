@@ -1,0 +1,3595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CVehicleMetadataMgr>
+  <EntryAnimVariations>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_STANDARD_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@std@perp_ds@jacking@2h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>RIFLES</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@std@perp_ds@jacking@1h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionArePedConfigFlagsSet">
+              <Result>False</Result>
+              <ConfigFlags>CPED_CONFIG_FLAG_WillArrestRatherThanJack</ConfigFlags>
+            </Item>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>PISTOLS</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@std@cop_ds@arrest</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionArePedConfigFlagsSet">
+              <Result>True</Result>
+              <ConfigFlags>CPED_CONFIG_FLAG_WillArrestRatherThanJack</ConfigFlags>
+            </Item>
+            <Item type="CScenarioConditionArePedConfigFlagsSetOnOtherPed">
+              <Result>False</Result>
+              <ConfigFlags>CPED_CONFIG_FLAG_CanBeArrested</ConfigFlags>
+            </Item>
+          </Conditions>
+          <ActionFlags>IsArrest</ActionFlags>
+        </Item>
+      </JackingAnims>
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@std@exit_skydive@fds</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_STANDARD_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@std@exit_skydive@fps</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_STANDARD_REAR_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@std@exit_skydive@rds</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_STANDARD_REAR_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@std@exit_skydive@rps</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_HELICOPTER_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@heli@perp_ds@jacking@1h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>PISTOLS</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@heli@perp_ds@jacking@2h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>RIFLES</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+      </JackingAnims>
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@helicopter@exit_skydive@fds</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_HELICOPTER_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@heli@perp_ps@jacking@1h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>PISTOLS</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@heli@perp_ps@jacking@2h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>RIFLES</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+      </JackingAnims>
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@helicopter@exit_skydive@fps</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_HELICOPTER_ANNIHILATOR_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@helicopter@annihilator@exit_skydive@fds</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_HELICOPTER_ANNIHILATOR_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@helicopter@annihilator@exit_skydive@fps</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_HELICOPTER_BUZZARD_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@heli@perp_ds@jacking@2h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>RIFLES</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+      </JackingAnims>
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@helicopter@exit_skydive@fds</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_HELICOPTER_BUZZARD_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@heli@perp_ps@jacking@2h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>RIFLES</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+      </JackingAnims>
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@helicopter@exit_skydive@fps</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_HELICOPTER_REAR_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@helicopter@exit_skydive@rds</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_HELICOPTER_REAR_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@helicopter@exit_skydive@rps</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_LOW_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@low@entry_exit@0h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+            <Item type="CVehicleConditionRoofState">
+              <Result>True</Result>
+              <RoofState>HasRoof RoofIsDown</RoofState>
+            </Item>
+            <Item type="CScenarioConditionModel">
+              <Result>False</Result>
+              <ModelSet ref="P_M_ZERO" />
+            </Item>
+          </Conditions>
+          <ActionFlags>RemoveWeapons</ActionFlags>
+        </Item>
+      </EntryAnims>
+      <JackingAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@low@perp_ds@jacking@1h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionArePedConfigFlagsSet">
+              <Result>False</Result>
+              <ConfigFlags>CPED_CONFIG_FLAG_WillArrestRatherThanJack</ConfigFlags>
+            </Item>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>PISTOLS</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@low@perp_ds@jacking@2h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>RIFLES</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@low@cop_ds@arrest</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionArePedConfigFlagsSet">
+              <Result>True</Result>
+              <ConfigFlags>CPED_CONFIG_FLAG_WillArrestRatherThanJack</ConfigFlags>
+            </Item>
+          </Conditions>
+          <ActionFlags>IsArrest</ActionFlags>
+        </Item>
+      </JackingAnims>
+      <ExitAnims />
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_LOW_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims />
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_CUBAN_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@cuban@front@ds@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_CUBAN_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@cuban@front@ps@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_DUSTER_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@duster@front@ds@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_DUSTER_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@duster@front@ps@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_DUSTER_REAR_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@duster@rear@ds@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_DUSTER_REAR_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@duster@rear@ps@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_LAZER_FRONT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@lazer@front@common@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_MAMMATUS_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@mammatus@front@ds@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_MAMMATUS_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@mammatus@front@ps@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_SHAMAL_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@shamal@front@ds@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_SHAMAL_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@shamal@front@ps@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_STUNT_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@stunt@front@ds@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_STUNT_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@stunt@front@ps@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_TITAN_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@titan@front@ds@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_PLANE_TITAN_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@plane@titan@front@ps@skydive</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_VAN_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@van@perp_ds@jacking@1h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionArePedConfigFlagsSet">
+              <Result>False</Result>
+              <ConfigFlags>CPED_CONFIG_FLAG_WillArrestRatherThanJack</ConfigFlags>
+            </Item>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>PISTOLS</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@van@perp_ds@jacking@2h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>RIFLES</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@van@cop_ds@arrest</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionArePedConfigFlagsSet">
+              <Result>True</Result>
+              <ConfigFlags>CPED_CONFIG_FLAG_WillArrestRatherThanJack</ConfigFlags>
+            </Item>
+          </Conditions>
+          <ActionFlags>IsArrest</ActionFlags>
+        </Item>
+      </JackingAnims>
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@van@exit_skydive@fds</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_VAN_FRONT_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@van@perp_ps@jacking@1h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>PISTOLS</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@van@perp_ps@jacking@2h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>RIFLES</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+      </JackingAnims>
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@van@exit_skydive@fps</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_VAN_REAR_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@van@exit_skydive@rds</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_VAN_REAR_RIGHT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims />
+      <ExitAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@veh@van@exit_skydive@rps</ClipSet>
+          <AssociatedSpeech />
+          <Conditions />
+          <ActionFlags>IsSkyDive</ActionFlags>
+        </Item>
+      </ExitAnims>
+    </Item>
+    <Item type="CEntryAnimVariations">
+      <Name>ENTRY_ANIM_VARIATIONS_TRUCK_FRONT_LEFT</Name>
+      <Flags />
+      <Conditions />
+      <EntryAnims />
+      <JackingAnims>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@truck@perp_ds@jacking@1h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>PISTOLS</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+        <Item type="CConditionalClipSet">
+          <ClipSet>clipset@truck@perp_ds@jacking@2h</ClipSet>
+          <AssociatedSpeech />
+          <Conditions>
+            <Item type="CScenarioConditionIsMultiplayerGame">
+              <Result>False</Result>
+            </Item>
+            <Item type="CScenarioConditionHasProp">
+              <Result>True</Result>
+              <PropSet>RIFLES</PropSet>
+            </Item>
+            <Item type="CVehicleConditionEntryPointHasOpenableDoor">
+              <Result>True</Result>
+            </Item>
+          </Conditions>
+          <ActionFlags />
+        </Item>
+      </JackingAnims>
+      <ExitAnims />
+    </Item>
+  </EntryAnimVariations>
+  <VehicleSeatInfos>
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_BIKE_FRONT</Name>
+      <SeatBoneName>seat_f</SeatBoneName>
+      <ShuffleLink />
+      <RearSeatLink />
+      <DefaultCarTask>TASK_DRIVE_WANDER</DefaultCarTask>
+      <SeatFlags>IsFrontSeat NoIndirectExit</SeatFlags>
+      <HairScale value="0.000000" />
+    </Item>
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_BIKE_REAR</Name>
+      <SeatBoneName>seat_r</SeatBoneName>
+      <ShuffleLink>SEAT_BIKE_FRONT</ShuffleLink>
+      <RearSeatLink />
+      <DefaultCarTask>TASK_DRIVE_WANDER</DefaultCarTask>
+      <SeatFlags>NoIndirectExit</SeatFlags>
+      <HairScale value="0.000000" />
+    </Item>
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_BIKE_REAR_2</Name>
+      <SeatBoneName>seat_r2</SeatBoneName>
+      <ShuffleLink>SEAT_BIKE_FRONT</ShuffleLink>
+      <RearSeatLink />
+      <DefaultCarTask>TASK_DRIVE_WANDER</DefaultCarTask>
+      <SeatFlags>NoIndirectExit</SeatFlags>
+      <HairScale value="0.000000" />
+    </Item>
+  </VehicleSeatInfos>
+  <VehicleSeatAnimInfos>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_CHOPPER_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_CHOPPER" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_CHOPPER_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>CHOPPER_BIKE_FRONT_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims SupportsInAirState UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_CHOPPER_REAR</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_CHOPPER_PASSENGER" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_CHOPPER_REAR" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>CHOPPER_BIKE_REAR_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_SCOOTER_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_SCOOTER" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_SCOOTER_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>SCOOTER_BIKE_FRONT_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims SupportsInAirState UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_SCOOTER_REAR</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_SCOOTER_REAR" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_SCOOTER_REAR" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>SCOOTER_BIKE_REAR_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_DIRT_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_DIRT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_DIRT_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>DIRT_BIKE_FRONT_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims SupportsInAirState UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_DIRT_REAR</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_DIRT_PASSENGER" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_DIRT_REAR" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>DIRT_BIKE_REAR_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_FREEWAY_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_FREE" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_FREEWAY_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>FREEWAY_BIKE_FRONT_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims SupportsInAirState UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_FREEWAY_REAR</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_FREEWAY_PASSENGER" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_FREEWAY_REAR" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>FREEWAY_BIKE_REAR_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims SupportsInAirState UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_SPORT_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_SPORT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_SPORT_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>SPORT_BIKE_FRONT_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_SPORT_REAR</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_SPORT_PASSENGER" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_SPORT_REAR" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>SPORT_BIKE_REAR_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_QUAD_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_QUAD" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_QUAD_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>BIKE_QUAD_FRONT_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseBikeInVehicleAnims UseTorsoLeanIK</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BICYCLE_BMX_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BICYCLE_BMX_FRONT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BMX_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>BMX_FRONT_STILL</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_BICYCLE</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseTorsoLeanIK</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BICYCLE_CRUISER_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BICYCLE_CRUISER_FRONT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_CRUISER_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>CRUISER_FRONT_STILL</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_BICYCLE</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseTorsoLeanIK</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BICYCLE_MOUNTAIN_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BICYCLE_MOUNTAIN_FRONT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_MOUNTAIN_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>MOUNTAIN_FRONT_STILL</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_BICYCLE</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseTorsoLeanIK</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BICYCLE_ROAD_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BICYCLE_ROAD_FRONT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_ROAD_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>ROAD_BIKE_STILL</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_BICYCLE</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseTorsoLeanIK</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BICYCLE_FIXTER_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BICYCLE_ROAD_FRONT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_FIXTER_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>ROAD_BIKE_STILL</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_BICYCLE</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseTorsoLeanIK</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_JETSKI_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_JETSKI" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_JETSKI_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>JETSKI_BOAT_FRONT_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseJetSkiInVehicleAnims PreventShuffleJack RagdollWhenVehicleUpsideDown UseTorsoLeanIK</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_JETSKI_REAR</Name>
+      <DriveByInfo ref="DRIVEBY_JETSKI_PASSENGER" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_JETSKI_REAR" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>JETSKI_BOAT_REAR_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseJetSkiInVehicleAnims PreventShuffleJack RagdollWhenVehicleUpsideDown UseTorsoLeanIK</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_MARQUIS_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_MARQUIS_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_MARQUIS_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>BOAT_STANDING</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.030000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_MARQUIS_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_MARQUIS_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@boat@marquis@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@passenger@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand HasPanicAnims PreventShuffleJack RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_PREDATOR_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_PREDATOR_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_PREDATOR_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@predator@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_STANDING</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.030000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_PREDATOR_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_PREDATOR_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_PREDATOR_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@predator@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_STANDING</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll WeaponAttachedToLeftHand PreventShuffleJack RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.030000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_JETMAX_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_SPEED_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@speed@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_DRIVER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_JETMAX_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_SPEED_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@boat@speed@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@speed@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand HasPanicAnims PreventShuffleJack RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_SPEED_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_SPEED_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@boat@speed@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@passenger@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked CanDetachViaRagdoll HasPanicAnims RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_SPEED_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_SPEED_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@boat@speed@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@passenger@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked CanDetachViaRagdoll HasPanicAnims PreventShuffleJack RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_PASSENGER_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_PASSENGER_REAR" />
+      <PanicClipSet>clipset@veh@boat@passenger@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@passenger@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked CanDetachViaRagdoll HasPanicAnims RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_PASSENGER_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_PASSENGER_REAR" />
+      <PanicClipSet>clipset@veh@boat@passenger@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@passenger@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked CanDetachViaRagdoll HasPanicAnims PreventShuffleJack RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_TROPIC_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_TROPIC_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@speed@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_DRIVER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_TROPIC_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_TROPIC_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@boat@tropic@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@speed@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand HasPanicAnims PreventShuffleJack RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_SQUALO_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_SQUALO_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@speed@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_DRIVER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_SQUALO_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_SPEED_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_SQUALO_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@boat@squalo@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@speed@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand HasPanicAnims PreventShuffleJack RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_DINGHY_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_DINGHY_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_SPEED_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@speed@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_DRIVER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BOAT_DINGHY_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BOAT_DINGHY_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BOAT_SPEED_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@boat@speed@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BOAT_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>PreventShuffleJack RagdollWhenVehicleUpsideDown UseBoatInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_SUBMERSIBLE_FRONT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_SUBMERSIBLE_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.040000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_STANDARD_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@std@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@std@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@std@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_STANDARD</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.040000" />
+      <ExitToAimInfoName>STANDARD</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_STANDARD_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@std@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@std@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>STD_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_STANDARD</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>STANDARD</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_STANDARD_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_REAR_LEFT" />
+      <PanicClipSet>clipset@veh@std@rds@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@std@rds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>STD_CAR_REAR_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_STANDARD</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>STANDARD</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_STANDARD_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_REAR_RIGHT" />
+      <PanicClipSet>clipset@veh@std@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@std@rps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>STD_CAR_REAR_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_STANDARD</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>STANDARD</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+	 <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_STD_HIGHWINDOW_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@std@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@std@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@std@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_STANDARD</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.040000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_STD_HIGHWINDOW_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@std@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@std@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>STD_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_STANDARD</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_STD_HIGHWINDOW_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_REAR_LEFT" />
+      <PanicClipSet>clipset@veh@std@rds@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@std@rds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>STD_CAR_REAR_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_STANDARD</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_STD_HIGHWINDOW_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_REAR_RIGHT" />
+      <PanicClipSet>clipset@veh@std@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@std@rps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>STD_CAR_REAR_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_STANDARD</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_STD_ZTYPE_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_STD_ZTYPE_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@std@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@std@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@std@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_STANDARD</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.040000" />
+      <ExitToAimInfoName>STANDARD</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_STD_ZTYPE_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_STD_ZTYPE_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@std@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@std@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>STD_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_STANDARD</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>STANDARD</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_LOW_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_LOW_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_LOW_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@low@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@low@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@low@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>LOW_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_LOW</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>LOW</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_LOW_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_LOW_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_LOW_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_LOW_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_LOW_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@low@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@low@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>LOW_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_LOW</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseCloseDoorBlendAnims UseStandardInVehicleAnims HasPanicAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>LOW</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_LOW_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_LOW_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_LOW_RESTRICTED_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_LOW_TIGHT_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_LOW_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@low@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@low@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@low@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>LOW_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_LOW</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_LOW_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_LOW_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_LOW_RESTRICTED_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_LOW_TIGHT_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_LOW_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@low@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@low@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>LOW_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_CAR_LOW</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims UseCloseDoorBlendAnims HasPanicAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_LOW_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_LOW_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_LOW_DUNE_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_LOW_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_LOW_DUNE_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@low@dune@front@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@low@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>LOW_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_LOW_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_LOW_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@van@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@van@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims WeaponAttachedToLeftHand PreventShuffleJack UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_REAR_LEFT" />
+      <PanicClipSet>clipset@veh@van@rds_rear@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@rds_rear@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_REAR_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_REAR_RIGHT" />
+      <PanicClipSet>clipset@veh@van@rps_rear@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@rps_rear@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_REAR_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_CADDY_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_CADDY_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@van@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_EXTRA_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_REAR_LEFT" />
+      <PanicClipSet>clipset@veh@van@rds_rear@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_REAR_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_EXTRA_RIGHT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_REAR_RIGHT" />
+      <PanicClipSet>clipset@veh@van@rps_rear@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_REAR_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_MULE_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_MULE_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@van@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@van@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_MULE_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_MULE_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_POLICE_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_POLICE_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@van@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@van@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_VAN_POLICE_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_POLICE_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims WeaponAttachedToLeftHand PreventShuffleJack UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_RIOT_VAN_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_RIOT_VAN_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@van@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@van@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>RIOT</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_RIOT_VAN_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_RIOT_VAN_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>RIOT</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_TRUCK_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_TRUCK_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_TRUCK_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@truck@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@truck@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@truck@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>TRUCK_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TRUCK</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_TRUCK_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_TRUCK_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_TRUCK_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_TRUCK_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_TRUCK_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@truck@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@truck@ps@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>TRUCK_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TRUCK</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims HasPanicAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_TRUCK_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_TRUCK_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_FIRETRUCK_FRONT_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@van@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@van@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_FIRETRUCK_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_RIOT_VAN_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_FIRETRUCK_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_FIRETRUCK_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_TRUCK_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@truck@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>TRUCK_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_TRUCK_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_TRUCK_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_FIRETRUCK_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_FIRETRUCK_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_TRUCK_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@truck@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>TRUCK_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_TRUCK_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_TRUCK_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_FIRETRUCK_STANDING_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_FIRETRUCK_STANDING_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_FIRE_TRUCK_BACK_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand CanDetachViaRagdoll AttachLeftHand AttachLeftFoot AttachRightHand AttachRightFoot CannotBeJacked UseBasicAnims PreventShuffleJack NoIK KeepCollisionOnWhenInVehicle RagdollAtExtremeVehicleOrientation NoShunts</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_FIRETRUCK_STANDING_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_FIRETRUCK_STANDING_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_FIRE_TRUCK_BACK_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll AttachLeftHand AttachLeftFoot AttachRightHand AttachRightFoot CannotBeJacked UseBasicAnims PreventShuffleJack NoIK KeepCollisionOnWhenInVehicle RagdollAtExtremeVehicleOrientation NoShunts</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_FIRETRUCK_EXTRA_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_FIRETRUCK_EXTRA_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_TRUCK_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+	  <LowLODIdleAnim>TRUCK_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_TRUCK_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_TRUCK_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_FIRETRUCK_EXTRA_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_FIRETRUCK_EXTRA_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_TRUCK_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+	  <LowLODIdleAnim>TRUCK_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_TRUCK_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_TRUCK_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_HELI_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_HELI_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_HELI_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_HELI_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_HELI_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_HELI_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_HELI_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_HELI_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_HELI_REAR_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_REAR_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_HELI_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_HELI_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_HELI_REAR_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_REAR_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_HELI_FROGGER_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_HELI_FROGGER_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_HELI_FROGGER_REAR_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_HELI_FROGGER_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_HELI_FROGGER_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_HELI_FROGGER_REAR_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_CUBAN_FRONT_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_CUBAN_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_CUBAN_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_PLANE_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_CUBAN_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_MAMMATUS_FRONT_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_MAMMATUS_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_MAMMATUS_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_PLANE_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_MAMMATUS_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_MAMMATUS_REAR_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_REAR_LEFT" />
+      <PanicClipSet>clipset@veh@van@rds_rear@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_REAR_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims HasPanicAnims PreventShuffleJack CanWarpToDriverSeatIfNoDriver</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_MAMMATUS_REAR_RIGHT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_REAR_RIGHT" />
+      <PanicClipSet>clipset@veh@van@rps_rear@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_REAR_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims HasPanicAnims PreventShuffleJack CanWarpToDriverSeatIfNoDriver</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_DUSTER_DRIVER</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_DUSTER_DRIVER" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_DUSTER_PASSENGER</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_DUSTER_PASSENGER" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_JET_FRONT_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_JET_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack UseDirectEntryOnlyWhenEntering</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_JET_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_HELI_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_JET_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims PreventShuffleJack UseDirectEntryOnlyWhenEntering</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_JUMBO_FRONT_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_JET_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack UseDirectEntryOnlyWhenEntering</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_JUMBO_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_HELI_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_JET_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims PreventShuffleJack CanWarpToDriverSeatIfNoDriver UseDirectEntryOnlyWhenEntering</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_STUNT_FRONT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_STUNT_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_LAZER_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_FIGHTER_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_LAZER_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_TITAN_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_PASSENGER" />
+      <PanicClipSet>clipset@veh@bus@passenger@rds@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims DisableAbnormalExits UseDirectEntryOnlyWhenEntering</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_TITAN_RIGHT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_PASSENGER" />
+      <PanicClipSet>clipset@veh@bus@passenger@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims DisableAbnormalExits UseDirectEntryOnlyWhenEntering</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_VELUM_REAR_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_HELI_FROGGER_REAR_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims PreventShuffleJack CanWarpToDriverSeatIfNoDriver</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_VELUM_REAR_RIGHT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_HELI_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims PreventShuffleJack CanWarpToDriverSeatIfNoDriver</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_CRANE_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BULLDOZER_FRONT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_CRANE_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@handler@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.040000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BULLDOZER_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BULLDOZER_FRONT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BULLDOZER_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@bulldozer@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_FORKLIFT_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_FORKLIFT_FRONT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_FORKLIFT_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@forklift@ds@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_MOWER</Name>
+      <DriveByInfo ref="DRIVEBY_MOWER" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_MOWER_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@mower@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>MOWER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseStandardInVehicleAnims RagdollWhenVehicleUpsideDown</SeatAnimFlags>
+      <SteeringSmoothing value="0.040000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_4X4_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_RIOT_VAN_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@van@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@van@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_4X4_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_RIOT_VAN_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims WeaponAttachedToLeftHand UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_4X4_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_REAR_LEFT" />
+      <PanicClipSet>clipset@veh@std@rds@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@std@rds@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>STD_CAR_REAR_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_4X4_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_REAR_RIGHT" />
+      <PanicClipSet>clipset@veh@std@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@std@rps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>STD_CAR_REAR_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_RANGER_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@van@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@van@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_RANGER_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims WeaponAttachedToLeftHand UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_RANGER_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_RANGER_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>STANDARD</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_RANGER_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_RANGER_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>STANDARD</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_RANGER_SANDKING_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@van@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@van@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_RANGER_SANDKING_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims WeaponAttachedToLeftHand PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_RANGER_SANDKING_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_RANGER_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_RANGER_SANDKING_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_RANGER_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BODHI_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BODHI_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@van@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@van@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims WarpIntoSeatIfStoodOnIt</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BODHI_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BODHI_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@van@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@van@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>VAN_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims WeaponAttachedToLeftHand UseCloseDoorBlendAnims PreventShuffleJack WarpIntoSeatIfStoodOnIt</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BODHI_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BODHI_BODHI_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BODHI_REAR_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>BODHI_RDS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseStandardInVehicleAnims PreventShuffleJack RagdollWhenVehicleUpsideDown SimulateBumpiness WarpIntoSeatIfStoodOnIt RagdollAtExtremeVehicleOrientation</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BODHI_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BODHI_BODHI_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BODHI_REAR_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>BODHI_RPS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseStandardInVehicleAnims PreventShuffleJack RagdollWhenVehicleUpsideDown SimulateBumpiness WarpIntoSeatIfStoodOnIt RagdollAtExtremeVehicleOrientation</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BISON_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BISON_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_REAR_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@std@rds@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>STD_CAR_REAR_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BISON_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BISON_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_REAR_RIGHT" />
+      <PanicClipSet>clipset@veh@std@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@std@rps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>STD_CAR_REAR_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims HasPanicAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>MESA</ExitToAimInfoName>
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_STD_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_STD_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_SWAT_VAN_SIDE_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_SIDE_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_SWAT_VAN_SIDE_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_HANG_ON_SIDE_DRIVER_SIDE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll WeaponAttachedToLeftHand WeaponRemainsVisible AttachLeftFoot AttachRightHand AttachRightFoot CannotBeJacked UseBasicAnims NoIK IsLowerPrioritySeatInSP KeepCollisionOnWhenInVehicle RagdollAtExtremeVehicleOrientation NoShunts</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>RIOT</ExitToAimInfoName>
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_SWAT_VAN_SIDE_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_VAN_SIDE_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_SWAT_VAN_SIDE_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_HANG_ON_SIDE_PASSENGER_SIDE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll WeaponRemainsVisible AttachLeftHand AttachLeftFoot AttachRightFoot CannotBeJacked UseBasicAnims NoIK IsLowerPrioritySeatInSP KeepCollisionOnWhenInVehicle RagdollAtExtremeVehicleOrientation NoShunts</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>RIOT</ExitToAimInfoName>
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_SWAT_RANGER_SIDE_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_RANGER_SIDE_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_SWAT_RANGER_SIDE_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_GRANGER_SIDE_DS</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll WeaponAttachedToLeftHand WeaponRemainsVisible AttachLeftFoot AttachRightHand AttachRightFoot CannotBeJacked UseBasicAnims CanExitEarlyInCombat NoIK IsLowerPrioritySeatInSP KeepCollisionOnWhenInVehicle RagdollAtExtremeVehicleOrientation NoShunts</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>GRANGER</ExitToAimInfoName>
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_SWAT_RANGER_SIDE_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_RANGER_SIDE_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_SWAT_RANGER_SIDE_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_GRANGER_SIDE_PS</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll WeaponRemainsVisible AttachLeftHand AttachLeftFoot AttachRightFoot CannotBeJacked UseBasicAnims CanExitEarlyInCombat NoIK IsLowerPrioritySeatInSP KeepCollisionOnWhenInVehicle RagdollAtExtremeVehicleOrientation NoShunts</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName>GRANGER</ExitToAimInfoName>
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BARRACKS_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BARRACKS_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BARRACKS_REAR_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@passenger@common@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_REAR_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseStandardInVehicleAnims PreventShuffleJack RagdollWhenVehicleUpsideDown RagdollAtExtremeVehicleOrientation</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BARRACKS_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BARRACKS_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BARRACKS_REAR_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@passenger@common@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>VAN_REAR_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseStandardInVehicleAnims PreventShuffleJack RagdollWhenVehicleUpsideDown RagdollAtExtremeVehicleOrientation</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BUS_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_DRIVER" />
+      <PanicClipSet>clipset@veh@bus@bus@driver@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@bus@driver@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_DRIVER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BUS_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@std@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@passenger@common@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims PreventShuffleJack DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BUS_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_PASSENGER" />
+      <PanicClipSet>clipset@veh@bus@passenger@rds@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@passenger@common@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims HasPanicAnims DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BUS_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_PASSENGER" />
+      <PanicClipSet>clipset@veh@bus@passenger@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@passenger@common@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand CannotBeJacked UseStandardInVehicleAnims HasPanicAnims DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PRISON_BUS_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_PASSENGER" />
+      <PanicClipSet>clipset@veh@bus@passenger@rds@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@pbus@passenger@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims CanWarpToDriverSeatIfNoDriver DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PRISON_BUS_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_PASSENGER" />
+      <PanicClipSet>clipset@veh@bus@passenger@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@pbus@passenger@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand CannotBeJacked UseStandardInVehicleAnims CanWarpToDriverSeatIfNoDriver DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_COACH_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_COACH_DRIVER" />
+      <PanicClipSet>clipset@veh@bus@coach@driver@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@bus@driver@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_DRIVER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.050000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_COACH_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_PASSENGER" />
+      <PanicClipSet>clipset@veh@bus@passenger@rds@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@passenger@common@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims HasPanicAnims DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_COACH_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_PASSENGER" />
+      <PanicClipSet>clipset@veh@bus@passenger@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@passenger@common@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand CannotBeJacked UseStandardInVehicleAnims HasPanicAnims DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_TOURBUS_REAR_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_REAR_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_PASSENGER" />
+      <PanicClipSet>clipset@veh@bus@passenger@rds@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@passenger@common@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CannotBeJacked UseStandardInVehicleAnims HasPanicAnims DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_TOURBUS_REAR_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_BUS_REAR_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_BUS_PASSENGER" />
+      <PanicClipSet>clipset@veh@bus@passenger@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@passenger@common@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_PASSENGER</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TOURBUS</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand CannotBeJacked UseStandardInVehicleAnims HasPanicAnims PreventShuffleJack DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PRISON_BUS_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_STANDARD_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PRISON_BUS_DRIVER" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet>clipset@veh@bus@bus@driver@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>BUS_DRIVER</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims DisableAbnormalExits</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_TRAIN_FRONT_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_TRAIN_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TRAIN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_TRAIN_FRONT_RIGHT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@std@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TRAIN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_TRAIN_REAR_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_REAR_RIGHT" />
+      <PanicClipSet>clipset@veh@std@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TRAIN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_TRAIN_REAR_RIGHT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_STD_REAR_RIGHT" />
+      <PanicClipSet>clipset@veh@std@rps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_TRAIN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_TANK_FRONT_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_TANK" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>STD_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseBasicAnims NoShunts</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BLIMP_FRONT_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_VAN_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@van@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@van@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet />
+      <LowLODIdleAnim>VAN_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext>IN_VAN</SeatAmbientContext>
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims CanWarpToDriverSeatIfNoDriver</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_VAN_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_VAN_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_VELUM_FRONT_LEFT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_VELUM_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_PLANE_VELUM_FRONT_RIGHT</Name>
+      <DriveByInfo ref="NULL" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_PLANE_VELUM_FRONT_RIGHT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims UseCloseDoorBlendAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_LOW_RESTRICTED_NOAMBIENT_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_LOW_TIGHT_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_LOW_FRONT_LEFT" />
+      <PanicClipSet>clipset@veh@low@ds@idle_panic</PanicClipSet>
+      <AgitatedClipSet>clipset@veh@low@ds@idle_agitated</AgitatedClipSet>
+	  <DuckedClipSet>clipset@veh@low@ds@idle_duck</DuckedClipSet>
+      <LowLODIdleAnim>LOW_CAR_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims HasPanicAnims UseCloseDoorBlendAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_LOW_DS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_LOW_DS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_LOW_RESTRICTED_NOAMBIENT_FRONT_RIGHT</Name>
+      <DriveByInfo ref="DRIVEBY_LOW_TIGHT_FRONT_RIGHT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_LOW_FRONT_RIGHT" />
+      <PanicClipSet>clipset@veh@low@ps@idle_panic</PanicClipSet>
+      <AgitatedClipSet />
+      <DuckedClipSet>clipset@veh@low@ps@idle_duck</DuckedClipSet>
+	  <LowLODIdleAnim>LOW_CAR_FRONT_PS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>WeaponAttachedToLeftHand UseStandardInVehicleAnims UseCloseDoorBlendAnims HasPanicAnims PreventShuffleJack</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId>ANIM_GROUP_GESTURE_M_CAR_LOW_PS</MaleGestureClipSetId>
+      <FemaleGestureClipSetId>ANIM_GROUP_GESTURE_F_CAR_LOW_PS</FemaleGestureClipSetId>
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_HELI_FROGGER_FRONT_LEFT</Name>
+      <DriveByInfo ref="DRIVEBY_HELI_FRONT_LEFT" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_HELI_FROGGER_FRONT_LEFT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>HELI_FRONT_DS_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>UseStandardInVehicleAnims</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+    <Item type="CVehicleSeatAnimInfo">
+      <Name>SEAT_ANIM_BIKE_POLICE_FRONT</Name>
+      <DriveByInfo ref="DRIVEBY_BIKE_POLICE" />
+      <InsideClipSetMap ref="INSIDE_CLIPSET_MAP_FREEWAY_FRONT" />
+      <PanicClipSet />
+      <AgitatedClipSet />
+	  <DuckedClipSet />
+      <LowLODIdleAnim>FREEWAY_BIKE_FRONT_IDLE</LowLODIdleAnim>
+      <SeatAmbientContext />
+      <InVehicleMoveNetwork>VEHICLE_DEFAULT</InVehicleMoveNetwork>
+      <SeatAnimFlags>CanDetachViaRagdoll UseBikeInVehicleAnims SupportsInAirState UseRestrictedTorsoLeanIK FallsOutWhenDead</SeatAnimFlags>
+      <SteeringSmoothing value="0.100000" />
+      <ExitToAimInfoName />
+      <MaleGestureClipSetId />
+      <FemaleGestureClipSetId />
+    </Item>
+  </VehicleSeatAnimInfos>
+  <VehicleEntryPointInfos>
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_POINT_BIKE_FRONT_LEFT</Name>
+      <DoorBoneName />
+      <SecondDoorBoneName />
+      <DoorHandleBoneName />
+      <WindowId>INVALID</WindowId>
+      <VehicleSide>SIDE_LEFT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_BIKE_FRONT" />
+      </AccessableSeats>
+      <VehicleExtraPointsInfo ref="EXTRA_VEHICLE_POINTS_BIKE_LEFT" />
+      <Flags />
+      <BlockJackReactionSides />
+    </Item>
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_POINT_BIKE_FRONT_RIGHT</Name>
+      <DoorBoneName />
+      <SecondDoorBoneName />
+      <DoorHandleBoneName />
+      <WindowId>INVALID</WindowId>
+      <VehicleSide>SIDE_RIGHT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_BIKE_FRONT" />
+      </AccessableSeats>
+      <VehicleExtraPointsInfo ref="EXTRA_VEHICLE_POINTS_BIKE_RIGHT" />
+      <Flags />
+      <BlockJackReactionSides />
+    </Item>
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_POINT_BIKE_REAR_LEFT</Name>
+      <DoorBoneName />
+      <SecondDoorBoneName />
+      <DoorHandleBoneName />
+      <WindowId>INVALID</WindowId>
+      <VehicleSide>SIDE_LEFT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_BIKE_REAR" />
+      </AccessableSeats>
+      <VehicleExtraPointsInfo ref="NULL" />
+      <Flags>IsPassengerOnlyEntry</Flags>
+      <BlockJackReactionSides />
+    </Item>
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_POINT_BIKE_REAR_RIGHT</Name>
+      <DoorBoneName />
+      <SecondDoorBoneName />
+      <DoorHandleBoneName />
+      <WindowId>INVALID</WindowId>
+      <VehicleSide>SIDE_RIGHT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_BIKE_REAR" />
+      </AccessableSeats>
+      <VehicleExtraPointsInfo ref="NULL" />
+      <Flags>IsPassengerOnlyEntry</Flags>
+      <BlockJackReactionSides />
+    </Item>
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_POINT_BIKE_REAR_2_LEFT</Name>
+      <DoorBoneName />
+      <SecondDoorBoneName />
+      <DoorHandleBoneName />
+      <WindowId>INVALID</WindowId>
+      <VehicleSide>SIDE_LEFT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_BIKE_REAR_2" />
+      </AccessableSeats>
+      <VehicleExtraPointsInfo ref="NULL" />
+      <Flags>IsPassengerOnlyEntry</Flags>
+      <BlockJackReactionSides />
+    </Item>
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_POINT_BIKE_REAR_2_RIGHT</Name>
+      <DoorBoneName />
+      <SecondDoorBoneName />
+      <DoorHandleBoneName />
+      <WindowId>INVALID</WindowId>
+      <VehicleSide>SIDE_RIGHT</VehicleSide>
+      <AccessableSeats>
+        <Item ref="SEAT_BIKE_REAR_2" />
+      </AccessableSeats>
+      <VehicleExtraPointsInfo ref="NULL" />
+      <Flags>IsPassengerOnlyEntry</Flags>
+      <BlockJackReactionSides />
+    </Item>
+  </VehicleEntryPointInfos>
+  <VehicleEntryPointAnimInfos>
+    <Item type="CVehicleEntryPointAnimInfo">
+      <Name>ENTRY_POINT_ANIM_BIKE_SCOOTER_FRONT_LEFT</Name>
+      <CommonClipSetMap ref="COMMON_CLIPSET_MAP_BIKE_LOW_LEFT" />
+      <EntryClipSetMap ref="ENTRY_CLIPSET_MAP_SCOOTER_FRONT_LEFT" />
+      <ExitClipSetMap ref="EXIT_CLIPSET_MAP_SCOOTER_FRONT_LEFT" />
+      <AlternateTryLockedDoorClipId />
+      <AlternateForcedEntryClipId />
+      <AlternateJackFromOutSideClipId />
+      <AlternateBeJackedFromOutSideClipId />
+      <AlternateEntryPointClipSetId />
+      <EnterVehicleMoveNetwork>ENTER_VEHICLE_STD</EnterVehicleMoveNetwork>
+      <EntryTranslation x="-0.498100" y="0.144400" z="0.217600" />
+      <OpenDoorTranslation x="0.000000" y="0.000000" />
+      <OpenDoorHeadingChange value="0.000000" />
+      <EntryHeadingChange value="-1.570000" />
+      <ExtraZForWaterEntry value="0.000000" />
+      <EntryPointFlags>JackIncludesGetIn UsesNoDoorTransitionForEnter UsesNoDoorTransitionForExit FixUpMoverToEntryPointOnExit UseGetUpAfterJack JackVariationsIncludeGetIn DeadJackIncludesGetIn</EntryPointFlags>
+      <EntryAnimVariations ref="NULL" />
+    </Item>
+    <Item type="CVehicleEntryPointAnimInfo">
+      <Name>ENTRY_POINT_ANIM_BIKE_SCOOTER_FRONT_RIGHT</Name>
+      <CommonClipSetMap ref="COMMON_CLIPSET_MAP_BIKE_LOW_RIGHT" />
+      <EntryClipSetMap ref="ENTRY_CLIPSET_MAP_SCOOTER_FRONT_RIGHT" />
+      <ExitClipSetMap ref="EXIT_CLIPSET_MAP_SCOOTER_FRONT_RIGHT" />
+      <AlternateTryLockedDoorClipId />
+      <AlternateForcedEntryClipId />
+      <AlternateJackFromOutSideClipId />
+      <AlternateBeJackedFromOutSideClipId />
+      <AlternateEntryPointClipSetId />
+      <EnterVehicleMoveNetwork>ENTER_VEHICLE_STD</EnterVehicleMoveNetwork>
+      <EntryTranslation x="1.041000" y="0.200200" z="0.217500" />
+      <OpenDoorTranslation x="0.000000" y="0.000000" />
+      <OpenDoorHeadingChange value="0.000000" />
+      <EntryHeadingChange value="1.570000" />
+      <ExtraZForWaterEntry value="0.000000" />
+      <EntryPointFlags>JackIncludesGetIn UsesNoDoorTransitionForEnter UsesNoDoorTransitionForExit FixUpMoverToEntryPointOnExit UseGetUpAfterJack JackVariationsIncludeGetIn DeadJackIncludesGetIn</EntryPointFlags>
+      <EntryAnimVariations ref="NULL" />
+    </Item>
+    <Item type="CVehicleEntryPointAnimInfo">
+      <Name>ENTRY_POINT_ANIM_BIKE_SCOOTER_REAR_LEFT</Name>
+      <CommonClipSetMap ref="COMMON_CLIPSET_MAP_BIKE_LEFT" />
+      <EntryClipSetMap ref="ENTRY_CLIPSET_MAP_SCOOTER_REAR_LEFT" />
+      <ExitClipSetMap ref="EXIT_CLIPSET_MAP_SCOOTER_REAR_LEFT" />
+      <AlternateTryLockedDoorClipId />
+      <AlternateForcedEntryClipId />
+      <AlternateJackFromOutSideClipId />
+      <AlternateBeJackedFromOutSideClipId />
+      <AlternateEntryPointClipSetId />
+      <EnterVehicleMoveNetwork>ENTER_VEHICLE_STD</EnterVehicleMoveNetwork>
+      <EntryTranslation x="-0.476700" y="-0.332100" z="0.137400" />
+      <OpenDoorTranslation x="0.000000" y="0.000000" />
+      <OpenDoorHeadingChange value="0.000000" />
+      <EntryHeadingChange value="-1.535100" />
+      <ExtraZForWaterEntry value="0.000000" />
+      <EntryPointFlags>JackIncludesGetIn FixUpMoverToEntryPointOnExit UseGetUpAfterJack JackVariationsIncludeGetIn DeadJackIncludesGetIn</EntryPointFlags>
+      <EntryAnimVariations ref="NULL" />
+    </Item>
+    <Item type="CVehicleEntryPointAnimInfo">
+      <Name>ENTRY_POINT_ANIM_BIKE_SCOOTER_REAR_RIGHT</Name>
+      <CommonClipSetMap ref="COMMON_CLIPSET_MAP_BIKE_RIGHT" />
+      <EntryClipSetMap ref="ENTRY_CLIPSET_MAP_SCOOTER_REAR_RIGHT" />
+      <ExitClipSetMap ref="EXIT_CLIPSET_MAP_SCOOTER_REAR_RIGHT" />
+      <AlternateTryLockedDoorClipId />
+      <AlternateForcedEntryClipId />
+      <AlternateJackFromOutSideClipId />
+      <AlternateBeJackedFromOutSideClipId />
+      <AlternateEntryPointClipSetId />
+      <EnterVehicleMoveNetwork>ENTER_VEHICLE_STD</EnterVehicleMoveNetwork>
+      <EntryTranslation x="1.062400" y="-0.332100" z="0.137400" />
+      <OpenDoorTranslation x="0.000000" y="0.000000" />
+      <OpenDoorHeadingChange value="0.000000" />
+      <EntryHeadingChange value="1.535100" />
+      <ExtraZForWaterEntry value="0.000000" />
+      <EntryPointFlags>JackIncludesGetIn FixUpMoverToEntryPointOnExit UseGetUpAfterJack JackVariationsIncludeGetIn DeadJackIncludesGetIn</EntryPointFlags>
+      <EntryAnimVariations ref="NULL" />
+    </Item>
+  </VehicleEntryPointAnimInfos>
+  <VehicleLayoutInfos>
+    <Item type="CVehicleLayoutInfo">
+      <Name>LAYOUT_BIKE_SCOOTER_3</Name>
+      <Seats>
+        <Item>
+          <SeatInfo ref="SEAT_BIKE_FRONT" />
+          <SeatAnimInfo ref="SEAT_ANIM_BIKE_SCOOTER_FRONT" />
+        </Item>
+        <Item>
+          <SeatInfo ref="SEAT_BIKE_REAR" />
+          <SeatAnimInfo ref="SEAT_ANIM_BIKE_SCOOTER_REAR" />
+        </Item>
+        <Item>
+          <SeatInfo ref="SEAT_BIKE_REAR_2" />
+          <SeatAnimInfo ref="SEAT_ANIM_BIKE_SCOOTER_REAR" />
+        </Item>
+      </Seats>
+      <EntryPoints>
+        <Item>
+          <EntryPointInfo ref="ENTRY_POINT_BIKE_FRONT_LEFT" />
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_BIKE_SCOOTER_FRONT_LEFT" />
+        </Item>
+        <Item>
+          <EntryPointInfo ref="ENTRY_POINT_BIKE_FRONT_RIGHT" />
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_BIKE_SCOOTER_FRONT_RIGHT" />
+        </Item>
+        <Item>
+          <EntryPointInfo ref="ENTRY_POINT_BIKE_REAR_LEFT" />
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_BIKE_SCOOTER_REAR_LEFT" />
+        </Item>
+        <Item>
+          <EntryPointInfo ref="ENTRY_POINT_BIKE_REAR_RIGHT" />
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_BIKE_SCOOTER_REAR_RIGHT" />
+        </Item>
+        <Item>
+          <EntryPointInfo ref="ENTRY_POINT_BIKE_REAR_2_LEFT" />
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_BIKE_SCOOTER_REAR_LEFT" />
+        </Item>
+        <Item>
+          <EntryPointInfo ref="ENTRY_POINT_BIKE_REAR_2_RIGHT" />
+          <EntryPointAnimInfo ref="ENTRY_POINT_ANIM_BIKE_SCOOTER_REAR_RIGHT" />
+        </Item>
+      </EntryPoints>
+      <LayoutFlags>StreamAnims BikeLeansUnlessMoving UsePickUpPullUp UseStillToSitTransition UseFinerAlignTolerance DisableFastPoseWhenDrivebying</LayoutFlags>
+      <BicycleInfo ref="NULL" />
+      <HandsUpClipSetId>busted_vehicle_bike_scooter</HandsUpClipSetId>
+      <SteeringWheelOffset x="0.000000" y="0.350000" z="0.320000" />
+    </Item>
+  </VehicleLayoutInfos>
+  <SeatOverrideAnimInfos>
+    <Item type="CSeatOverrideAnimInfo">
+      <Name>SEAT_ANIM_OVERRIDE_ARMENIAN3_FRANKLIN_FRONT_LEFT</Name>
+      <SeatOverrideClipSet>clipset@missarmenian3@franklin_driving</SeatOverrideClipSet>
+      <SeatOverrideAnimFlags />
+    </Item>
+    <Item type="CSeatOverrideAnimInfo">
+      <Name>SEAT_ANIM_OVERRIDE_MISSFBI2_MICHAEL_REAR_LEFT</Name>
+      <SeatOverrideClipSet>clipset@missfbi2_driveby</SeatOverrideClipSet>
+      <SeatOverrideAnimFlags>WeaponVisibleAttachedToRightHand UseBasicAnims</SeatOverrideAnimFlags>
+    </Item>
+    <Item type="CSeatOverrideAnimInfo">
+      <Name>SEAT_ANIM_OVERRIDE_MISSFBI5_TREVOR_FRONT_LEFT</Name>
+      <SeatOverrideClipSet>clipset@missfbi5_trevor_driving</SeatOverrideClipSet>
+      <SeatOverrideAnimFlags />
+    </Item>
+    <Item type="CSeatOverrideAnimInfo">
+      <Name>SEAT_ANIM_OVERRIDE_FAMILY1_JIMMY_FRONT_RIGHT</Name>
+      <SeatOverrideClipSet>clipset@missfam1_jimmy_sit</SeatOverrideClipSet>
+      <SeatOverrideAnimFlags />
+    </Item>
+    <Item type="CSeatOverrideAnimInfo">
+      <Name>SEAT_ANIM_OVERRIDE_FAMILY1_JIMMY_REAR_LEFT</Name>
+      <SeatOverrideClipSet>clipset@missfam1_jimmy_sit_rear</SeatOverrideClipSet>
+      <SeatOverrideAnimFlags />
+    </Item>
+    <Item type="CSeatOverrideAnimInfo">
+      <Name>SEAT_ANIM_OVERRIDE_FAMILY2_JIMMY_BICYCLE_FRONT</Name>
+      <SeatOverrideClipSet>clipset@missfam2_jimmy_bicycle</SeatOverrideClipSet>
+      <SeatOverrideAnimFlags />
+    </Item>
+    <Item type="CSeatOverrideAnimInfo">
+      <Name>SEAT_ANIM_OVERRIDE_FEMALE_LOW_FRONT_RIGHT</Name>
+      <SeatOverrideClipSet>clipset@veh@low@ps@female@base</SeatOverrideClipSet>
+      <SeatOverrideAnimFlags />
+    </Item>
+  </SeatOverrideAnimInfos>
+  <InVehicleOverrideInfos>
+    <Item type="CInVehicleOverrideInfo">
+      <Name>MINI_PROSTITUTE_LOW_PASSENGER</Name>
+      <SeatOverrideInfos>
+        <Item type="CSeatOverrideInfo">
+          <SeatAnimInfo ref="SEAT_ANIM_LOW_FRONT_RIGHT" />
+          <SeatOverrideAnimInfo ref="SEAT_ANIM_OVERRIDE_FEMALE_LOW_FRONT_RIGHT" />
+        </Item>
+      </SeatOverrideInfos>
+    </Item>
+    <Item type="CInVehicleOverrideInfo">
+      <Name>MINI_PROSTITUTE_LOW_RESTRICTED_PASSENGER</Name>
+      <SeatOverrideInfos>
+        <Item type="CSeatOverrideInfo">
+          <SeatAnimInfo ref="SEAT_ANIM_LOW_RESTRICTED_FRONT_RIGHT" />
+          <SeatOverrideAnimInfo ref="SEAT_ANIM_OVERRIDE_FEMALE_LOW_FRONT_RIGHT" />
+        </Item>
+      </SeatOverrideInfos>
+    </Item>
+    <Item type="CInVehicleOverrideInfo">
+      <Name>MINI_PROSTITUTE_LOW_RESTRICTED_NOAMBIENT_PASSENGER</Name>
+      <SeatOverrideInfos>
+        <Item type="CSeatOverrideInfo">
+          <SeatAnimInfo ref="SEAT_ANIM_LOW_RESTRICTED_NOAMBIENT_FRONT_RIGHT" />
+          <SeatOverrideAnimInfo ref="SEAT_ANIM_OVERRIDE_FEMALE_LOW_FRONT_RIGHT" />
+        </Item>
+      </SeatOverrideInfos>
+    </Item>
+    <Item type="CInVehicleOverrideInfo">
+      <Name>MISS_ARMENIAN3_FRANKLIN_TENSE</Name>
+      <SeatOverrideInfos>
+        <Item type="CSeatOverrideInfo">
+          <SeatAnimInfo ref="SEAT_ANIM_STD_HIGHWINDOW_FRONT_LEFT" />
+          <SeatOverrideAnimInfo ref="SEAT_ANIM_OVERRIDE_ARMENIAN3_FRANKLIN_FRONT_LEFT" />
+        </Item>
+      </SeatOverrideInfos>
+    </Item>
+    <Item type="CInVehicleOverrideInfo">
+      <Name>MISSFBI2_MICHAEL_DRIVEBY</Name>
+      <SeatOverrideInfos>
+        <Item type="CSeatOverrideInfo">
+          <SeatAnimInfo ref="SEAT_ANIM_HELI_FROGGER_REAR_LEFT" />
+          <SeatOverrideAnimInfo ref="SEAT_ANIM_OVERRIDE_MISSFBI2_MICHAEL_REAR_LEFT" />
+        </Item>
+      </SeatOverrideInfos>
+    </Item>
+    <Item type="CInVehicleOverrideInfo">
+      <Name>MISSFBI5_TREVOR_DRIVING</Name>
+      <SeatOverrideInfos>
+        <Item type="CSeatOverrideInfo">
+          <SeatAnimInfo ref="SEAT_ANIM_BODHI_FRONT_LEFT" />
+          <SeatOverrideAnimInfo ref="SEAT_ANIM_OVERRIDE_MISSFBI5_TREVOR_FRONT_LEFT" />
+        </Item>
+      </SeatOverrideInfos>
+    </Item>
+    <Item type="CInVehicleOverrideInfo">
+      <Name>MISS_FAMILY1_JIMMY_SIT</Name>
+      <SeatOverrideInfos>
+        <Item type="CSeatOverrideInfo">
+          <SeatAnimInfo ref="SEAT_ANIM_LOW_FRONT_RIGHT" />
+          <SeatOverrideAnimInfo ref="SEAT_ANIM_OVERRIDE_FAMILY1_JIMMY_FRONT_RIGHT" />
+        </Item>
+      </SeatOverrideInfos>
+    </Item>
+    <Item type="CInVehicleOverrideInfo">
+      <Name>MISS_FAMILY1_JIMMY_SIT_REAR</Name>
+      <SeatOverrideInfos>
+        <Item type="CSeatOverrideInfo">
+          <SeatAnimInfo ref="SEAT_ANIM_STANDARD_REAR_LEFT" />
+          <SeatOverrideAnimInfo ref="SEAT_ANIM_OVERRIDE_FAMILY1_JIMMY_REAR_LEFT" />
+        </Item>
+      </SeatOverrideInfos>
+    </Item>
+    <Item type="CInVehicleOverrideInfo">
+      <Name>MISS_FAMILY2_JIMMY_BICYCLE</Name>
+      <SeatOverrideInfos>
+        <Item type="CSeatOverrideInfo">
+          <SeatAnimInfo ref="SEAT_ANIM_BICYCLE_MOUNTAIN_FRONT" />
+          <SeatOverrideAnimInfo ref="SEAT_ANIM_OVERRIDE_FAMILY2_JIMMY_BICYCLE_FRONT" />
+        </Item>
+      </SeatOverrideInfos>
+    </Item>
+  </InVehicleOverrideInfos>
+</CVehicleMetadataMgr>

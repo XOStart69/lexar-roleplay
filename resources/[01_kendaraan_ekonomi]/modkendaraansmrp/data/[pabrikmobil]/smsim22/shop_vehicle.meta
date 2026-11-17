@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ShopVehicleDataArray>
+	<Vehicles>
+		<Item>
+			<lockHash>CU_smsim22_VEH</lockHash>
+			<modelNameHash>smsim22</modelNameHash>
+			<cost value="100"/>
+			<textLabel>smsim22</textLabel>
+			<vehicleMods></vehicleMods>
+		</Item>
+	</Vehicles>
+</ShopVehicleDataArray>

@@ -1,0 +1,15 @@
+return {
+    weapon = 'WEAPON_RADARGUN',
+    label = 'RADARGUN',
+    metric = false,
+    enableALPR = true,
+    enableCrosshair = true,
+    range = { default = 200.0, min = 10.0, max = 500.0, step = 10.0 },
+    measureInterval = 100,
+    idleInterval = 1000,
+    pacifyInterval = 2000,
+    pacifyRadius = 30.0,
+    pacifyLimit = 20,
+    defaultSpeedLimit = 15,
+    scope = { fovMax = 70.0, fovMin = 5.0, zoomSpeed = 10.0, panSpeed = 8.0 },
+}

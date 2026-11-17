@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CVehicleModelInfoVariation>
+  <variationData>
+    <Item>
+      <modelName>smav12</modelName>
+      <colors>
+		    <Item>
+          <indices content="char_array">
+            36
+            2
+            42
+            1 
+	          36
+	          38
+          </indices>          
+        </Item>
+        <Item>
+          <indices content="char_array">
+            36
+            2
+            42
+            1 
+	          36
+	          38
+          </indices>          
+        </Item>
+		    <Item>
+          <indices content="char_array">
+            38
+            2
+            138
+            1 
+	          38
+	          38
+          </indices>         
+        </Item>
+		    <Item>
+          <indices content="char_array">
+            111
+            2
+            2
+            1
+	          111
+	          1
+          </indices>         
+        </Item>
+        <Item>
+          <indices content="char_array">
+            112
+            2
+            4
+            1
+	          112
+	          1
+          </indices>          
+        </Item>
+        <Item>
+          <indices content="char_array">
+            61
+            111
+            54
+            1
+	          1
+	          61
+          </indices>         
+        </Item>
+        <Item>
+          <indices content="char_array">
+            89
+            2
+            99
+            1
+	          2
+	          89
+          </indices>          
+        </Item>
+        <Item>
+          <indices content="char_array">
+            88
+            2
+            102
+            1
+	          2
+	          88
+          </indices>         
+        </Item>
+        <Item>
+          <indices content="char_array">
+            10
+            93
+            65
+            1
+	          10
+	          1
+          </indices>          
+        </Item>
+        <Item>
+          <indices content="char_array">
+            13
+            2
+            21
+            1
+	          27
+	          27
+          </indices>          
+        </Item>
+        <Item>
+          <indices content="char_array">
+            12
+            2
+            13
+            1
+	          27
+	          27
+          </indices>          
+        </Item>
+        <Item>
+          <indices content="char_array">
+            1
+            2
+            2
+            1
+	          27
+	          27
+          </indices>          
+        </Item>
+        <Item>
+          <indices content="char_array">
+            146
+            1
+            70
+            1
+	          1
+	          146
+          </indices>
+        </Item>
+      </colors>
+      <kits>
+        <Item>13549213_smav12_modkit</Item>
+      </kits>
+      <windowsWithExposedEdges/>
+      <plateProbabilities>
+        <Probabilities>
+          <Item>
+            <Name>Standard White</Name>
+            <Value value="70"/>
+          </Item>
+          <Item>
+            <Name>White Plate 2</Name>
+            <Value value="30"/>
+          </Item>
+        </Probabilities>
+      </plateProbabilities>
+      <lightSettings value="172"/>
+      <sirenSettings value="0"/>
+    </Item>
+  </variationData>
+</CVehicleModelInfoVariation>

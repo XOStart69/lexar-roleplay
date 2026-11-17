@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CVehicleModelInfoVariation>
+	<variationData>
+		<Item>
+			<modelName>smbeetle</modelName>
+			<colors>
+				<Item>
+					<indices content="char_array">
+						<!-- Black -->
+                        0
+                        0
+                        1
+                        111
+                        99
+                        5
+					</indices>
+				</Item>
+                <Item>
+					<indices content="char_array">
+						<!-- Silver Arrow Metallic -->
+                        2
+                        2
+                        2
+                        111
+                        99
+                        5
+					</indices>
+				</Item>
+                <Item>
+					<indices content="char_array">
+						<!-- Red Uni -->
+                        43
+                        43
+                        43
+                        111
+                        99
+                        5
+					</indices>
+				</Item>
+                <Item>
+					<indices content="char_array">
+						<!-- Reflex Silver Metallic -->
+                        3
+                        3
+                        3
+                        111
+                        2
+                        5
+					</indices>
+				</Item>
+                <Item>
+					<indices content="char_array">
+						<!-- Techno Blue Metallic -->
+                        62
+                        62
+                        62
+                        111
+                        4
+                        5
+					</indices>
+				</Item>
+                <Item>
+					<indices content="char_array">
+						<!-- Yellow -->
+                        160
+                        160
+                        120
+                        111
+                        2
+                        5
+					</indices>
+				</Item>
+                <Item>
+					<indices content="char_array">
+						<!-- Cool White -->
+                        122
+                        122
+                        1
+                        111
+                        6
+                        5
+					</indices>
+				</Item>
+                <Item>
+					<indices content="char_array">
+						<!-- Cyber Green Metallic -->
+                        125
+                        125
+                        120
+                        111
+                        99
+                        5
+					</indices>
+				</Item>
+			</colors>
+			<kits>
+				<Item>9232424_smbeetle_modkit</Item>
+			</kits>
+			<windowsWithExposedEdges />
+			<plateProbabilities>
+				<Probabilities>
+					<Item>
+						<Name>Standard White</Name>
+						<Value value="100" />
+					</Item>
+				</Probabilities>
+			</plateProbabilities>
+			<lightSettings value="999" />
+			<sirenSettings value="0" />
+		</Item>
+	</variationData>
+</CVehicleModelInfoVariation>

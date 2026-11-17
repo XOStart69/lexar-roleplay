@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+    <InitDatas>
+        <!-- Bottle -->
+        <Item>
+            <modelName>W_ME_JPX_DEMON_GYUTARO_SCYTHE</modelName>
+            <txdName>W_ME_JPX_DEMON_GYUTARO_SCYTHE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_GYUTARO_SCYTHE2</modelName>
+            <txdName>W_ME_JPX_DEMON_GYUTARO_SCYTHE2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_INOSUKE_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_INOSUKE_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_KANAO_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_KANAO_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_MITSURI_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_MITSURI_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_RENGOKU_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_RENGOKU_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_SHINOBU_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_SHINOBU_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_TANJIRO_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_TANJIRO_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_TENGEN_SWORD</modelName>
+            <txdName>W_ME_JPX_DEMON_TENGEN_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_ZENITSU_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_ZENITSU_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_GIYU_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_GIYU_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_MUICHIRO_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_MUICHIRO_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_OBANAI_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_OBANAI_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_DEMON_SANEMI_KATANA</modelName>
+            <txdName>W_ME_JPX_DEMON_SANEMI_KATANA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+  
+
+    </InitDatas>
+</CWeaponModelInfo__InitDataList>

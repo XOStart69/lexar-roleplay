@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PedDecorationCollection>
+  <bRequiredForSync value="true" />
+  <presets>
+	<Item>
+      <uvPos x="0.725000" y="0.640000" />
+      <scale x="0.180000" y="0.170000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STREET_001_M</nameHash>
+      <txdHash>yxu_Tat_Street_001</txdHash>
+      <txtHash>yxu_Tat_Street_001</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.526000" y="0.640000" />
+      <scale x="0.200000" y="0.320000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STREET_002_M</nameHash>
+      <txdHash>yxu_Tat_Street_002</txdHash>
+      <txtHash>yxu_Tat_Street_002</txtHash>
+      <zone>ZONE_LEFT_ARM</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.526000" y="0.640000" />
+      <scale x="0.200000" y="0.320000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STREET_003_M</nameHash>
+      <txdHash>yxu_Tat_Street_003</txdHash>
+      <txtHash>yxu_Tat_Street_003</txtHash>
+      <zone>ZONE_LEFT_ARM</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.520000" y="0.640000" />
+      <scale x="0.240000" y="0.320000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STREET_004_M</nameHash>
+      <txdHash>yxu_Tat_Street_004</txdHash>
+      <txtHash>yxu_Tat_Street_004</txtHash>
+      <zone>ZONE_RIGHT_ARM</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.526000" y="0.640000" />
+      <scale x="0.200000" y="0.320000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STREET_005_M</nameHash>
+      <txdHash>yxu_Tat_Street_005</txdHash>
+      <txtHash>yxu_Tat_Street_005</txtHash>
+      <zone>ZONE_LEFT_ARM</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.526000" y="0.640000" />
+      <scale x="0.200000" y="0.320000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STREET_006_M</nameHash>
+      <txdHash>yxu_Tat_Street_006</txdHash>
+      <txtHash>yxu_Tat_Street_006</txtHash>
+      <zone>ZONE_LEFT_ARM</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.526000" y="0.640000" />
+      <scale x="0.200000" y="0.320000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STREET_007_M</nameHash>
+      <txdHash>yxu_Tat_Street_007</txdHash>
+      <txtHash>yxu_Tat_Street_007</txtHash>
+      <zone>ZONE_LEFT_ARM</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.470000" y="0.250000" />
+      <scale x="0.085000" y="0.085000" />
+      <rotation value="-13.680000" />
+      <nameHash>YXU_TAT_STREET_008_M</nameHash>
+      <txdHash>yxu_Tat_Street_008</txdHash>
+      <txtHash>yxu_Tat_Street_008</txtHash>
+      <zone>ZONE_LEFT_ARM</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.730000" y="0.380000" />
+      <scale x="0.340000" y="0.330000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STR_001_M</nameHash>
+      <txdHash>yxu_Tat_Str_001</txdHash>
+      <txtHash>yxu_Tat_Str_001</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.225000" y="0.500000" />
+      <scale x="0.300000" y="0.320000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STR_002_M</nameHash>
+      <txdHash>yxu_Tat_Str_002</txdHash>
+      <txtHash>yxu_Tat_Str_002</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.745000" y="0.390000" />
+      <scale x="0.330000" y="0.330000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STRFM_001_F</nameHash>
+      <txdHash>yxu_Tat_Strfm_001</txdHash>
+      <txtHash>yxu_Tat_Strfm_001</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.480000" y="0.640000" />
+      <scale x="0.210000" y="0.340000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STRFM_002_F</nameHash>
+      <txdHash>yxu_Tat_Strfm_002</txdHash>
+      <txtHash>yxu_Tat_Strfm_002</txtHash>
+      <zone>ZONE_LEFT_ARM</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.740000" y="0.620000" />
+      <scale x="0.170000" y="0.150000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STRFM_003_F</nameHash>
+      <txdHash>yxu_Tat_Strfm_003</txdHash>
+      <txtHash>yxu_Tat_Strfm_003</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.740000" y="0.620000" />
+      <scale x="0.170000" y="0.150000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STRFM_004_F</nameHash>
+      <txdHash>yxu_Tat_Strfm_004</txdHash>
+      <txtHash>yxu_Tat_Strfm_004</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.740000" y="0.620000" />
+      <scale x="0.170000" y="0.150000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STRFM_005_F</nameHash>
+      <txdHash>yxu_Tat_Strfm_005</txdHash>
+      <txtHash>yxu_Tat_Strfm_005</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.725000" y="0.640000" />
+      <scale x="0.180000" y="0.170000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STR_003_M</nameHash>
+      <txdHash>yxu_Tat_Str_003</txdHash>
+      <txtHash>yxu_Tat_Str_003</txtHash>
+      <zone>ZONE_TORSO</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.400000" y="0.700000" />
+      <scale x="0.080000" y="0.080000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STR_004_M</nameHash>
+      <txdHash>yxu_Tat_Str_004</txdHash>
+      <txtHash>yxu_Tat_Str_004</txtHash>
+      <zone>ZONE_HEAD</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_MALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.400000" y="0.700000" />
+      <scale x="0.080000" y="0.080000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STR_004_F</nameHash>
+      <txdHash>yxu_Tat_Str_004</txdHash>
+      <txtHash>yxu_Tat_Str_004</txtHash>
+      <zone>ZONE_HEAD</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+    </Item>
+<Item>
+      <uvPos x="0.520000" y="0.700000" />
+      <scale x="0.200000" y="0.170000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STRFM_006_F</nameHash>
+      <txdHash>yxu_Tat_Strfm_006</txdHash>
+      <txtHash>yxu_Tat_Strfm_006</txtHash>
+      <zone>ZONE_RIGHT_LEG</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.727000" y="0.720000" />
+      <scale x="0.140000" y="0.160000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STRFM_007_F</nameHash>
+      <txdHash>yxu_Tat_Strfm_007</txdHash>
+      <txtHash>yxu_Tat_Strfm_007</txtHash>
+      <zone>ZONE_LEFT_LEG</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>
+    </Item>
+	<Item>
+      <uvPos x="0.490000" y="0.750000" />
+      <scale x="0.170000" y="0.140000" />
+      <rotation value="0.000000" />
+      <nameHash>YXU_TAT_STRFM_009_F</nameHash>
+      <txdHash>yxu_Tat_Strfm_009</txdHash>
+      <txtHash>yxu_Tat_Strfm_009</txtHash>
+      <zone>ZONE_RIGHT_ARM</zone>
+      <type>TYPE_TATTOO</type>
+      <faction>FM</faction>
+      <garment>All</garment>
+      <gender>GENDER_FEMALE</gender>    
+      </Item>
+  </presets>
+  <nameHash>customtattoo_yxuoneversion_overlays</nameHash>
+  <medalLocations content="vector2_array">
+    0.140000	0.070000	
+    0.370000	0.070000	
+    0.600000	0.070000	
+    0.835000	0.070000	
+    0.140000	0.150000	
+    0.370000	0.150000	
+    0.600000	0.150000	
+    0.835000	0.150000	
+    0.140000	0.230000	
+    0.370000	0.230000	
+    0.600000	0.230000	
+    0.835000	0.230000	
+    0.100000	0.700000	
+    0.300000	0.700000	
+    0.500000	0.700000	
+    0.700000	0.700000	
+  </medalLocations>
+  <medalScale x="0.240000" y="0.100000" />
+</PedDecorationCollection>

@@ -1,0 +1,176 @@
+return {
+    items = {
+        remote = 'tvremote',
+        reporter = 'tvremote_reporter',
+        vehicle = 'vehicletv',
+    },
+
+    reporter = {
+        job = 'reporter',
+        grades = { [0] = true, [1] = true, [2] = true, [3] = true, [4] = true, [5] = true, [6] = true, [7] = true, [8] = true },
+        maxDistance = 200.0,
+    },
+
+    scanInterval = 500,
+    duiKeepMargin = 10.0,
+    bucketInterval = 3000,
+    fadeStart = 0.5,
+    defaultVolume = 50,
+
+    links = {
+        youtube = true,
+        twitch = false,
+        kick = false,
+        streamable = false,
+        vimeo = false,
+        dailymotion = false,
+        soundcloud = false,
+        video = true,
+        audio = true,
+        image = false,
+    },
+
+    blockedHosts = {},
+
+    models = {
+        { model = 'prop_tv_flat_01', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'v_ilev_cin_screen', distance = 40.0, control = 20.0, target = 'cinscreen' },
+        { model = 'vw_prop_vw_cinema_tv_01', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_flat_michael', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_trev_tv_01', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_flat_03b', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_flat_03', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_flat_02b', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_flat_02', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'hei_heist_str_avunitl_03', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'mp_b_str_avunitl_03', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'mp_b_str_avunits_01', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'mp_b_str_avunitl_01', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'hei_heist_str_avunitl_01', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'hei_heist_str_avunits_01', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'apa_mp_h_str_avunitl_04', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'apa_mp_h_str_avunitl_01_b', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'apa_mp_h_str_avunits_01', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'apa_mp_h_str_avunits_04', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_01', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_02', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_03', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_04', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_05', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_06', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'prop_tv_07', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'ex_prop_ex_tv_flat_01', distance = 15.0, control = 15.0, target = 'ex_tvscreen' },
+        { model = 'sm_prop_smug_tv_flat_01', distance = 15.0, control = 15.0, target = 'tv_flat_01' },
+        { model = 'prop_tv_test', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'des_tvsmash_root', distance = 15.0, control = 15.0, target = 'tvscreen' },
+        { model = 'des_tvsmash_start', distance = 15.0, control = 15.0, target = 'tvscreen' },
+    },
+
+    screens = {
+        {
+            label = 'Armitage Games Club',
+            coords = vec3(2399.82, 3016.64, 34.8),
+            rotation = vec3(0.0, 0.0, 180.0),
+            scale = vec3(0.380, 0.158, 1.0),
+            distance = 100.0,
+            control = 50.0,
+        },
+        {
+            label = 'NTEAM Drive In',
+            coords = vec3(1135.885010, 3918.536621, 65.398376),
+            rotation = vec3(-0.5, -19.0, 0.0),
+            scale = vec3(1.675500, 0.738000, 1.0),
+            distance = 200.0,
+            control = 200.0,
+            driveIn = true,
+        },
+        {
+            label = 'Roels Beach House',
+            coords = vec3(2910.837158, 535.886658, 38.317848),
+            rotation = vec3(0.0, -10.0, 0.0),
+            scale = vec3(0.152500, 0.099500, 1.0),
+            distance = 200.0,
+            control = 200.0,
+        },
+        {
+            label = 'Layar SKSM',
+            coords = vec3(3564.543164, 4904.461152, 42.678790),
+            rotation = vec3(0.500000, 178.000000, 203.423706),
+            scale = vec3(0.153000, 0.091000, 1.0),
+            distance = 100.0,
+            control = 50.0,
+            item = 'remote_sksm',
+        },
+    },
+
+    props = {
+        { model = 'vw_prop_vw_cinema_tv_01', coords = vec3(4893.420410, -4906.711719, 5.666233), rotation = vec3(0.0, 0.0, -3.5) },
+    },
+    propDistance = 200.0,
+
+    restricted = {
+        { coords = vec3(320.1257, 248.6608, 86.56934), radius = 1.0, jobs = {}, ace = false },
+    },
+
+    vehicle = {
+        enabled = false,
+        requireInstall = false,
+        models = { 'bullet', 'infernus' },
+        panel = 'xm_prop_x17_sec_panel_01',
+        target = 'prop_x17_p_01',
+        default = {
+            { offset = vec3(0.0, 0.40, 0.41), rotation = vec3(0.0, 0.0, 0.0) },
+        },
+        offsets = {
+            bullet = {
+                { offset = vec3(0.0, 0.40, 0.41), rotation = vec3(0.0, 0.0, 0.0) },
+            },
+            tyrant = {
+                { offset = vec3(0.0, 0.82, 0.71), rotation = vec3(0.0, 0.0, 0.0) },
+            },
+            schafter6 = {
+                { offset = vec3(0.0, 0.40, 0.41), rotation = vec3(0.0, 0.0, 0.0) },
+                { offset = vec3(0.40, -0.53, 0.62), rotation = vec3(0.0, 0.0, 0.0) },
+                { offset = vec3(-0.40, -0.53, 0.62), rotation = vec3(0.0, 0.0, 0.0) },
+            },
+            baller2 = {
+                { offset = vec3(0.0, 0.63, 0.4), rotation = vec3(0.0, 0.0, 0.0) },
+                { offset = vec3(0.505, -0.525, 0.5), rotation = vec3(0.0, 0.0, 0.0) },
+                { offset = vec3(-0.505, -0.525, 0.5), rotation = vec3(0.0, 0.0, 0.0) },
+            },
+            luxor2 = {
+                { offset = vec3(0.0, 3.815, 1.04), rotation = vec3(31.0, 0.0, 0.0) },
+                { offset = vec3(0.0, 1.9, 1.04), rotation = vec3(31.0, 0.0, 180.75) },
+            },
+        },
+    },
+
+    screenTool = {
+        command = 'tvscreen',
+        group = 'group.admin',
+        moveStep = 0.01,
+        rotateStep = 0.5,
+        scaleStep = 0.0005,
+    },
+
+    text = {
+        title = 'Televisi',
+        vehicleLabel = 'TV Mobil',
+        noTv = 'Tidak ada televisi di dekatmu',
+        unsupported = 'Link ini tidak didukung',
+        blocked = 'Situs ini diblokir',
+        vvipOnly = 'Fitur ini hanya tersedia untuk member VVIP',
+        noPermission = 'Kamu tidak punya izin untuk TV ini',
+        busy = 'TV ini sedang dikontrol pemain lain',
+        reporterOnlyDriveIn = 'Remote Drive In cuma bisa dipakai di layar NTEAM Drive In',
+        reporterOnlyStaff = 'Remote Drive In khusus staff Satu Media',
+        driveInNeedsReporter = 'Layar NTEAM Drive In cuma bisa dikontrol pakai Remote Drive In',
+        lockedScreen = 'Layar ini cuma bisa dikontrol pakai remote khususnya',
+        notInVehicle = 'Kamu tidak sedang di dalam kendaraan',
+        vehicleNotAllowed = 'Kendaraan ini tidak bisa dipasangi TV',
+        vehicleNotOwned = 'Kendaraan ini tidak terdaftar',
+        vehicleInstalled = 'TV berhasil dipasang di kendaraan',
+        vehicleAlready = 'Kendaraan ini sudah punya TV',
+        tooFast = 'Pelan-pelan',
+    },
+}

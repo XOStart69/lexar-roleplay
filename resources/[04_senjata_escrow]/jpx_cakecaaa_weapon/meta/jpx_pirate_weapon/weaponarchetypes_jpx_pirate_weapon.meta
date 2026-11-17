@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+    <InitDatas>
+        <!-- Bottle -->
+        <Item>
+            <modelName>W_ME_JPX_ARLONG</modelName>
+            <txdName>W_ME_JPX_ARLONG</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_BIGMUM_SWORD</modelName>
+            <txdName>W_ME_JPX_BIGMUM_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_CROCODILE</modelName>
+            <txdName>W_ME_JPX_CROCODILE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_ENERU_TRIDENT</modelName>
+            <txdName>W_ME_JPX_ENERU_TRIDENT</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_LAWS_SWORD</modelName>
+            <txdName>W_ME_JPX_LAWS_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_LIGHT_SWORD</modelName>
+            <txdName>W_ME_JPX_LIGHT_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_SMOKER_SWORD</modelName>
+            <txdName>W_ME_JPX_SMOKER_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_WHITEBEARD_GLAIVE</modelName>
+            <txdName>W_ME_JPX_WHITEBEARD_GLAIVE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_YORU</modelName>
+            <txdName>W_ME_JPX_YORU</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_ZORO</modelName>
+            <txdName>W_ME_JPX_ZORO</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Poolcue -->
+        <Item>
+            <modelName>W_ME_JPX_KAIDO_CLUB</modelName>
+            <txdName>W_ME_JPX_KAIDO_CLUB</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_NAMI_CLIMA_TACT</modelName>
+            <txdName>W_ME_JPX_NAMI_CLIMA_TACT</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_SABO_PIPE</modelName>
+            <txdName>W_ME_JPX_SABO_PIPE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_USOPP_KABUTO</modelName>
+            <txdName>W_ME_JPX_USOPP_KABUTO</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Machete -->
+        <Item>
+            <modelName>W_ME_JPX_PERONA_UMBRELLA</modelName>
+            <txdName>W_ME_JPX_PERONA_UMBRELLA</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Knuckle -->
+        <Item>
+            <modelName>W_ME_JPX_FRANKY_GAUNTLET</modelName>
+            <txdName>W_ME_JPX_FRANKY_GAUNTLET</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_LUFFY_BOUNCEMAN</modelName>
+            <txdName>W_ME_JPX_LUFFY_BOUNCEMAN</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+    </InitDatas>
+</CWeaponModelInfo__InitDataList>

@@ -1,0 +1,20 @@
+return {
+    adminGroup = 'admin',
+    jobs = {
+        resto = 2,
+        kkpresto = 2,
+        burgenkcafe = 2,
+        pdcafe = 2,
+        gzcafe = 2,
+        mhcafe = 2,
+        mechanic = 2,
+        mechanic969 = 2,
+        stunberg = 2,
+        maxspeedgarage = 2,
+        kkpgarage = 2,
+        digitalden = 2,
+        digitaldenroxwood = 2,
+        wartelsm = 2,
+        puskesmas = 2,
+    },
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF - 8"?>
+
+<CWeaponComponentInfoBlob>
+	<Infos>
+		<Item type="CWeaponComponentVariantModelInfo">
+      <Name>COMPONENT_HKMP7SM_VARMOD_LUXE</Name>
+      <Model>w_sb_hkmp7sm_luxe</Model>
+      <LocName>WCT_INVALID</LocName>
+      <LocDesc>WCD_INVALID</LocDesc>
+      <AttachBone />
+      <AccuracyModifier type="NULL" />
+      <DamageModifier type="NULL" />
+      <bShownOnWheel value="false" />
+      <CreateObject value="false" />
+      <HudDamage value="0" />
+      <HudSpeed value="0" />
+      <HudCapacity value="0" />
+      <HudAccuracy value="0" />
+      <HudRange value="0" />
+      <TintIndexOverride value="0"/>
+      <ExtraComponents>
+		  <Item>
+		  <ComponentName>COMPONENT_HKMP7SM_CLIP_01</ComponentName>
+		  <ComponentModel>w_sb_hkmp7sm_LUXE_mag1</ComponentModel>
+		  </Item>
+	    </ExtraComponents>
+    </Item>	 
+	</Infos>
+	<InfoBlobName/>
+</CWeaponComponentInfoBlob>
+

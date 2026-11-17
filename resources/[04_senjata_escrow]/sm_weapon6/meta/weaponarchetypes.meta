@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+			<modelName>w_me_bgkattana_lr</modelName>
+			<txdName>w_me_bgkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_bbgbat</modelName>
+			<txdName>w_me_bbgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_blgbutterflyknife</modelName>
+			<txdName>w_me_blgbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_blghatchet</modelName>
+			<txdName>w_me_blghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_hatchet</modelName>
+			<txdName>w_me_hatchet</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_me_bgmachette_lr</modelName>
+			<txdName>w_me_bgmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_blackgkattana_lr</modelName>
+			<txdName>w_me_blackgkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_blgknife_01</modelName>
+			<txdName>w_me_blgknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_blgsledgehammer</modelName>
+			<txdName>w_me_blgsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_blsgbat</modelName>
+			<txdName>w_me_blsgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_blubgbat</modelName>
+			<txdName>w_me_blubgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_bgbutterflyknife</modelName>
+			<txdName>w_me_bgbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_bghatchet</modelName>
+			<txdName>w_me_bghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_blgmachette_lr</modelName>
+			<txdName>w_me_blgmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_bgknife_01</modelName>
+			<txdName>w_me_bgknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_bgsledgehammer</modelName>
+			<txdName>w_me_bgsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_bsgbat</modelName>
+			<txdName>w_me_bsgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_brobgbat</modelName>
+			<txdName>w_me_brobgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_brgbutterflyknife</modelName>
+			<txdName>w_me_brgbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_brghatchet</modelName>
+			<txdName>w_me_brghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_brgmachette_lr</modelName>
+			<txdName>w_me_brgmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_brgkattana_lr</modelName>
+			<txdName>w_me_brgkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_brgknife_01</modelName>
+			<txdName>w_me_brgknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_brgsledgehammer</modelName>
+			<txdName>w_me_brgsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_bownyspikeybat</modelName>
+			<txdName>w_me_bownyspikeybat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_gbgbat</modelName>
+			<txdName>w_me_gbgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ggbutterflyknife</modelName>
+			<txdName>w_me_ggbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_gghatchet</modelName>
+			<txdName>w_me_gghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ggmachette_lr</modelName>
+			<txdName>w_me_ggmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ggkattana_lr</modelName>
+			<txdName>w_me_ggkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ggknife_01</modelName>
+			<txdName>w_me_ggknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ggsledgehammer</modelName>
+			<txdName>w_me_ggsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_gsgbat</modelName>
+			<txdName>w_me_gsgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_greybgbat</modelName>
+			<txdName>w_me_greybgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_greygbutterflyknife</modelName>
+			<txdName>w_me_greygbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_grghatchet</modelName>
+			<txdName>w_me_grghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_greygmachette_lr</modelName>
+			<txdName>w_me_greygmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_greygkattana_lr</modelName>
+			<txdName>w_me_greygkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_greygknife_01</modelName>
+			<txdName>w_me_greygknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_greygsledgehammer</modelName>
+			<txdName>w_me_greygsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_greygbat</modelName>
+			<txdName>w_me_greygbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lgbtqbgbat</modelName>
+			<txdName>w_me_lgbtqbgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lgbtqgbutterflyknife</modelName>
+			<txdName>w_me_lgbtqgbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lgbtqghatchet</modelName>
+			<txdName>w_me_lgbtqghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lgbtqgkattana_lr</modelName>
+			<txdName>w_me_lgbtqgkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lgbtqgknife_01</modelName>
+			<txdName>w_me_lgbtqgknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lgbtqgmachette_lr</modelName>
+			<txdName>w_me_lgbtqgmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lgbtqgsledgehammer</modelName>
+			<txdName>w_me_lgbtqgsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lgbtqsgbat</modelName>
+			<txdName>w_me_lgbtqsgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lbbgbat</modelName>
+			<txdName>w_me_lbbgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lbgbutterflyknife</modelName>
+			<txdName>w_me_lbgbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lbghatchet</modelName>
+			<txdName>w_me_lbghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lbgmachette_lr</modelName>
+			<txdName>w_me_lbgmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lbgkattana_lr</modelName>
+			<txdName>w_me_lbgkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lbgknife_01</modelName>
+			<txdName>w_me_lbgknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lbgsledgehammer</modelName>
+			<txdName>w_me_lbgsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_lbsgbat</modelName>
+			<txdName>w_me_lbsgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_nogbutterflyknife</modelName>
+			<txdName>w_me_nogbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_noghatchet</modelName>
+			<txdName>w_me_noghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_nogkattana_lr</modelName>
+			<txdName>w_me_nogkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_nogknife_01</modelName>
+			<txdName>w_me_nogknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_nogmachette_lr</modelName>
+			<txdName>w_me_nogmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_nogsledgehammer</modelName>
+			<txdName>w_me_nogsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_nosgbat</modelName>
+			<txdName>w_me_nosgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_olivebgbat</modelName>
+			<txdName>w_me_olivebgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_olgbutterflyknife</modelName>
+			<txdName>w_me_olgbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_oliveghatchet</modelName>
+			<txdName>w_me_oliveghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_olgmachette_lr</modelName>
+			<txdName>w_me_olgmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_olivegkattana_lr</modelName>
+			<txdName>w_me_olivegkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_olivegknife_01</modelName>
+			<txdName>w_me_olivegknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_olgsledgehammer</modelName>
+			<txdName>w_me_olgsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_olivesgbat</modelName>
+			<txdName>w_me_olivesgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_orabgbat</modelName>
+			<txdName>w_me_orabgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ogbutterflyknife</modelName>
+			<txdName>w_me_ogbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_oghatchet</modelName>
+			<txdName>w_me_oghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_orgmachette_lr</modelName>
+			<txdName>w_me_orgmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ogkattana_lr</modelName>
+			<txdName>w_me_ogkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ogknife_01</modelName>
+			<txdName>w_me_ogknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ogsledgehammer</modelName>
+			<txdName>w_me_ogsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_osgbat</modelName>
+			<txdName>w_me_osgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pibgbat</modelName>
+			<txdName>w_me_pibgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pgbutterflyknife</modelName>
+			<txdName>w_me_pgbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pghatchet</modelName>
+			<txdName>w_me_pghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pigmachette_lr</modelName>
+			<txdName>w_me_pigmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pinkgkattana_lr</modelName>
+			<txdName>w_me_pinkgkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pinkgknife_01</modelName>
+			<txdName>w_me_pinkgknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pgsledgehammer</modelName>
+			<txdName>w_me_pgsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pinksgbat</modelName>
+			<txdName>w_me_pinksgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_planebat</modelName>
+			<txdName>w_me_planebat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pubbgbat</modelName>
+			<txdName>w_me_pubbgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pugbutterflyknife</modelName>
+			<txdName>w_me_pugbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pughatchet</modelName>
+			<txdName>w_me_pughatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pgmachette_lr</modelName>
+			<txdName>w_me_pgmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pgkattana_lr</modelName>
+			<txdName>w_me_pgkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pgknife_01</modelName>
+			<txdName>w_me_pgknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_pugsledgehammer</modelName>
+			<txdName>w_me_pugsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_psgbat</modelName>
+			<txdName>w_me_psgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_rbgbat</modelName>
+			<txdName>w_me_rbgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_rgbutterflyknife</modelName>
+			<txdName>w_me_rgbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_rghatchet</modelName>
+			<txdName>w_me_rghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_rgsledgehammer</modelName>
+			<txdName>w_me_rgsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_rgknife_01</modelName>
+			<txdName>w_me_rgknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_rgmachette_lr</modelName>
+			<txdName>w_me_rgmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_rsgbat</modelName>
+			<txdName>w_me_rsgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_rgkattana_lr</modelName>
+			<txdName>w_me_rgkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_whbgbat</modelName>
+			<txdName>w_me_whbgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_wgbutterflyknife</modelName>
+			<txdName>w_me_wgbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_wghatchet</modelName>
+			<txdName>w_me_wghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_wgmachette_lr</modelName>
+			<txdName>w_me_wgmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_wgkattana_lr</modelName>
+			<txdName>w_me_wgkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_wgknife_01</modelName>
+			<txdName>w_me_wgknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_wgsledgehammer</modelName>
+			<txdName>w_me_wgsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_wsgbat</modelName>
+			<txdName>w_me_wsgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_yebgbat</modelName>
+			<txdName>w_me_yebgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ygbutterflyknife</modelName>
+			<txdName>w_me_ygbutterflyknife</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_yghatchet</modelName>
+			<txdName>w_me_yghatchet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ygmachette_lr</modelName>
+			<txdName>w_me_ygmachette_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ygkattana_lr</modelName>
+			<txdName>w_me_ygkattana_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_yggknife_01</modelName>
+			<txdName>w_me_yggknife_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ygsledgehammer</modelName>
+			<txdName>w_me_ygsledgehammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_me_ysgbat</modelName>
+			<txdName>w_me_ysgbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+		<Item>
+			<modelName>w_ex_blmolotov</modelName>
+			<txdName>w_ex_blmolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_bmolotov</modelName>
+			<txdName>w_ex_bmolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_brmolotov</modelName>
+			<txdName>w_ex_brmolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_gmolotov</modelName>
+			<txdName>w_ex_gmolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_greymolotov</modelName>
+			<txdName>w_ex_greymolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_lgbtqmolotov</modelName>
+			<txdName>w_ex_lgbtqmolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_lbmolotov</modelName>
+			<txdName>w_ex_lbmolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_olmolotov</modelName>
+			<txdName>w_ex_olmolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_omolotov</modelName>
+			<txdName>w_ex_omolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_pmolotov</modelName>
+			<txdName>w_ex_pmolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_pumolotov</modelName>
+			<txdName>w_ex_pumolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_rmolotov</modelName>
+			<txdName>w_ex_rmolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_wmolotov</modelName>
+			<txdName>w_ex_wmolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+		<Item>
+			<modelName>w_ex_ymolotov</modelName>
+			<txdName>w_ex_ymolotov</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50" />
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

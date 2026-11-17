@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<!-- ### launcher ### -->
+		
+		<Item>
+			<modelName>w_lr_mk48</modelName>
+			<txdName>w_lr_mk48</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

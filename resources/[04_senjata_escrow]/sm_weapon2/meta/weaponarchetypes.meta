@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF - 8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+			<modelName>w_me_badmingtonbat</modelName>
+			<txdName>w_me_badmingtonbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_barbell</modelName>
+			<txdName>w_me_barbell</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_blackbeardsword_01</modelName>
+			<txdName>w_me_blackbeardsword_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_bluesaber_lr</modelName>
+			<txdName>w_me_bluesaber_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_boltcutters</modelName>
+			<txdName>w_me_boltcutters</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_boxcutter_01</modelName>
+			<txdName>w_me_boxcutter_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_broom</modelName>
+			<txdName>w_me_broom</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_chainknuckles</modelName>
+			<txdName>w_me_chainknuckles</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_chainsawsword_01</modelName>
+			<txdName>w_me_chainsawsword_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_cobbsbat</modelName>
+			<txdName>w_me_cobbsbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_cricketbat</modelName>
+			<txdName>w_me_cricketbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_devilsfork_01</modelName>
+			<txdName>w_me_devilsfork_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_diamondaxe_01</modelName>
+			<txdName>w_me_diamondaxe_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_diamondpickaxe_01</modelName>
+			<txdName>w_me_diamondpickaxe_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_diamondsword_01</modelName>
+			<txdName>w_me_diamondsword_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_drill</modelName>
+			<txdName>w_me_drill</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_dumbell</modelName>
+			<txdName>w_me_dumbell</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_elsword_01</modelName>
+			<txdName>w_me_elsword_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+            <modelName>w_mg_flamethrower</modelName>
+            <txdName>w_mg_flamethrower</txdName>
+            <ptfxAssetName>particle_effects</ptfxAssetName>
+            <lodDist value="500" />
+        </Item>
+        
+    <Item>
+			<modelName>w_me_glassshank_01</modelName>
+			<txdName>w_me_glassshank_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_greensaber_lr</modelName>
+			<txdName>w_me_greensaber_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_halberd</modelName>
+			<txdName>w_me_halberd</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_katar</modelName>
+			<txdName>w_me_katar</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_lightbluesaber_lr</modelName>
+			<txdName>w_me_lightbluesaber_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_longsword_01</modelName>
+			<txdName>w_me_longsword_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_maulsaber_01</modelName>
+			<txdName>w_me_maulsaber_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_pi_nailgun_mag2</modelName>
+			<txdName>w_pi_nailgun_mag2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300" />
+		</Item>
+		<Item>
+			<modelName>w_pi_nailgun_mag1</modelName>
+			<txdName>w_pi_nailgun_mag1</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="300" />
+		</Item>
+		<Item>
+			<modelName>w_pi_nailgun</modelName>
+			<txdName>w_pi_nailgun</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_pan</modelName>
+			<txdName>w_me_pan</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_pimpcane</modelName>
+			<txdName>w_me_pimpcane</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_pinksaber_lr</modelName>
+			<txdName>w_me_pinksaber_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_plunger</modelName>
+			<txdName>w_me_plunger</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_poolstick</modelName>
+			<txdName>w_me_poolstick</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_purplesaber_lr</modelName>
+			<txdName>w_me_purplesaber_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_razorblade_01</modelName>
+			<txdName>w_me_razorblade_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_redkatana_01</modelName>
+			<txdName>w_me_redkatana_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_redsaber_lr</modelName>
+			<txdName>w_me_redsaber_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_robotgauntlet</modelName>
+			<txdName>w_me_robotgauntlet</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_rubberchicken</modelName>
+			<txdName>w_me_rubberchicken</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_saw_01</modelName>
+			<txdName>w_me_saw_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_scalpel_01</modelName>
+			<txdName>w_me_scalpel_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_skateboard</modelName>
+			<txdName>w_me_skateboard</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_spanner</modelName>
+			<txdName>w_me_spanner</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_spikedcricketbat</modelName>
+			<txdName>w_me_spikedcricketbat</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_stool</modelName>
+			<txdName>w_me_stool</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_surgicalsaw_01</modelName>
+			<txdName>w_me_surgicalsaw_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_tennisracket</modelName>
+			<txdName>w_me_tennisracket</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_toothbushshank_01</modelName>
+			<txdName>w_me_toothbushshank_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_walkingstick</modelName>
+			<txdName>w_me_walkingstick</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_warhammer</modelName>
+			<txdName>w_me_warhammer</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_whitesaber_lr</modelName>
+			<txdName>w_me_whitesaber_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_pipewrench</modelName>
+			<txdName>w_me_pipewrench</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_yellowsaber_lr</modelName>
+			<txdName>w_me_yellowsaber_lr</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	<Item>
+			<modelName>w_me_zombieknifevtwo_01</modelName>
+			<txdName>w_me_zombieknifevtwo_01</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="500" />
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

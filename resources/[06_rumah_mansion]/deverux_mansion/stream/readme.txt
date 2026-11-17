@@ -1,0 +1,41 @@
+-- =========================================================
+-- LICENSE AGREEMENT
+-- COPYRIGHT © HRA_MLO
+-- DISCORD : https://discord.gg/7Vw6BV9GAX
+-- =========================================================
+--
+-- LICENSE COPYRIGHT BY HRA_MLO
+--
+-- AUTHORIZED ACCESS MAP :
+-- @notariell (DISCORD)
+--
+-- LICENSE TYPE :
+-- EXCLUSIVE LICENSE — ONLY ONE FOR @notariell
+--
+-- ---------------------------------------------------------
+-- ABOUT THIS MAP
+-- ---------------------------------------------------------
+--
+-- THIS MAP WAS MADE SPECIFICALLY AND EXCLUSIVELY FOR @notariell
+-- WITH A FULL CUSTOM MLO LUXURY MANSION.
+--
+-- ALL STRUCTURES, DESIGNS, AND ASSETS CONTAINED IN THIS MAP
+-- ARE THE RESULT OF A MUTUAL AGREEMENT BETWEEN BOTH PARTIES:
+-- MODDER (HRA_MLO) AND CLIENT (@notariell).
+--
+-- ---------------------------------------------------------
+-- RESTRICTIONS & PROHIBITIONS
+-- ---------------------------------------------------------
+--
+-- IT IS STRICTLY FORBIDDEN TO:
+-- - COPY OR DUPLICATE THIS MAP
+-- - LEAK OR DISTRIBUTE THIS MAP
+-- - DECRYPT, BYPASS, OR MODIFY FOR UNAUTHORIZED USE
+-- - RESELL OR PURCHASE THIS MAP WITHOUT WRITTEN PERMISSION
+--
+-- USE OF THIS MAP IS ONLY PERMITTED WITH THE EXPLICIT APPROVAL
+-- OF THE OWNER: @notariell.
+--
+-- ---------------------------------------------------------
+-- LEGAL ACTION
+-- ------------------------------------

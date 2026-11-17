@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CVehicleMetadataMgr>
+
+  <!-- ================================================= -->
+  <!-- MH6M FULL WARP - SINGLE ENTRY POINT VERSION       -->
+  <!-- Semua seat masuk dari 1 titik warp                -->
+  <!-- ================================================= -->
+
+  <VehicleSeatInfos>
+
+    <!-- FRONT -->
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_AH6M_PILOT</Name>
+      <SeatBoneName>seat_dside_f</SeatBoneName>
+    </Item>
+
+    <Item type="CVehicleSeatInfo">
+      <Name>SEAT_AH6M_COPILOT</Name>
+      <SeatBoneName>seat_pside_f</SeatBoneName>
+    </Item>
+
+    <!-- LEFT -->
+    <Item type="CVehicleSeatInfo"><Name>SEAT_DSIDE_R</Name><SeatBoneName>seat_dside_r</SeatBoneName></Item>
+    <Item type="CVehicleSeatInfo"><Name>SEAT_DSIDE_R1</Name><SeatBoneName>seat_dside_r1</SeatBoneName></Item>
+    <Item type="CVehicleSeatInfo"><Name>SEAT_DSIDE_R2</Name><SeatBoneName>seat_dside_r2</SeatBoneName></Item>
+    <Item type="CVehicleSeatInfo"><Name>SEAT_DSIDE_R3</Name><SeatBoneName>seat_dside_r3</SeatBoneName></Item>
+    <Item type="CVehicleSeatInfo"><Name>SEAT_DSIDE_R4</Name><SeatBoneName>seat_dside_r4</SeatBoneName></Item>
+
+    <!-- RIGHT -->
+    <Item type="CVehicleSeatInfo"><Name>SEAT_PSIDE_R</Name><SeatBoneName>seat_pside_r</SeatBoneName></Item>
+    <Item type="CVehicleSeatInfo"><Name>SEAT_PSIDE_R1</Name><SeatBoneName>seat_pside_r1</SeatBoneName></Item>
+    <Item type="CVehicleSeatInfo"><Name>SEAT_PSIDE_R2</Name><SeatBoneName>seat_pside_r2</SeatBoneName></Item>
+    <Item type="CVehicleSeatInfo"><Name>SEAT_PSIDE_R3</Name><SeatBoneName>seat_pside_r3</SeatBoneName></Item>
+    <Item type="CVehicleSeatInfo"><Name>SEAT_PSIDE_R4</Name><SeatBoneName>seat_pside_r4</SeatBoneName></Item>
+
+  </VehicleSeatInfos>
+
+
+  <!-- ================================================= -->
+  <!-- SINGLE ENTRY POINT                                -->
+  <!-- ================================================= -->
+
+  <VehicleEntryPointInfos>
+
+    <Item type="CVehicleEntryPointInfo">
+      <Name>ENTRY_MH6_ALL</Name>
+      <VehicleSide>SIDE_LEFT</VehicleSide>
+
+      <AccessableSeats>
+
+        <!-- FRONT -->
+        <Item ref="SEAT_AH6M_PILOT"/>
+        <Item ref="SEAT_AH6M_COPILOT"/>
+
+        <!-- LEFT -->
+        <Item ref="SEAT_DSIDE_R"/>
+        <Item ref="SEAT_DSIDE_R1"/>
+        <Item ref="SEAT_DSIDE_R2"/>
+        <Item ref="SEAT_DSIDE_R3"/>
+        <Item ref="SEAT_DSIDE_R4"/>
+
+        <!-- RIGHT -->
+        <Item ref="SEAT_PSIDE_R"/>
+        <Item ref="SEAT_PSIDE_R1"/>
+        <Item ref="SEAT_PSIDE_R2"/>
+        <Item ref="SEAT_PSIDE_R3"/>
+        <Item ref="SEAT_PSIDE_R4"/>
+
+      </AccessableSeats>
+    </Item>
+
+  </VehicleEntryPointInfos>
+
+
+  <!-- ================================================= -->
+  <!-- SINGLE WARP ANIM                                  -->
+  <!-- ================================================= -->
+
+  <VehicleEntryPointAnimInfos>
+
+    <Item type="CVehicleEntryPointAnimInfo">
+      <Name>ENTRY_WARP_ALL</Name>
+      <EnterVehicleMoveNetwork>ENTER_VEHICLE_STD</EnterVehicleMoveNetwork>
+      <EntryTranslation x="-0.4" y="0.1" z="0.2"/>
+      <EntryHeadingChange value="-1.57"/>
+      <EntryPointFlags>WarpEntryOnly</EntryPointFlags>
+    </Item>
+
+  </VehicleEntryPointAnimInfos>
+
+
+  <!-- ================================================= -->
+  <!-- LAYOUT                                            -->
+  <!-- ================================================= -->
+
+  <VehicleLayoutInfos>
+
+    <Item type="CVehicleLayoutInfo">
+      <Name>LAYOUT_HELI_MH6MM</Name>
+
+      <LayoutFlags>
+        StreamAnims
+        WarpIntoAndOut
+        UseFinerAlignTolerance
+        Use2DBodyBlend
+      </LayoutFlags>
+
+      <Seats>
+
+        <!-- FRONT -->
+        <Item><SeatInfo ref="SEAT_AH6M_PILOT"/><SeatAnimInfo ref="SEAT_ANIM_HELI_HAVOK_FRONT"/></Item>
+        <Item><SeatInfo ref="SEAT_AH6M_COPILOT"/><SeatAnimInfo ref="SEAT_ANIM_HELI_HAVOK_FRONT"/></Item>
+
+        <!-- LEFT -->
+        <Item><SeatInfo ref="SEAT_DSIDE_R"/><SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_LEFT"/></Item>
+        <Item><SeatInfo ref="SEAT_DSIDE_R1"/><SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_LEFT"/></Item>
+        <Item><SeatInfo ref="SEAT_DSIDE_R2"/><SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_LEFT"/></Item>
+        <Item><SeatInfo ref="SEAT_DSIDE_R3"/><SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_LEFT"/></Item>
+        <Item><SeatInfo ref="SEAT_DSIDE_R4"/><SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_LEFT"/></Item>
+
+        <!-- RIGHT -->
+        <Item><SeatInfo ref="SEAT_PSIDE_R"/><SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_RIGHT"/></Item>
+        <Item><SeatInfo ref="SEAT_PSIDE_R1"/><SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_RIGHT"/></Item>
+        <Item><SeatInfo ref="SEAT_PSIDE_R2"/><SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_RIGHT"/></Item>
+        <Item><SeatInfo ref="SEAT_PSIDE_R3"/><SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_RIGHT"/></Item>
+        <Item><SeatInfo ref="SEAT_PSIDE_R4"/><SeatAnimInfo ref="SEAT_ANIM_VAN_RUMPO3_SIDEDOOR_REAR_RIGHT"/></Item>
+
+      </Seats>
+
+      <EntryPoints>
+        <Item>
+          <EntryPointInfo ref="ENTRY_MH6_ALL"/>
+          <EntryPointAnimInfo ref="ENTRY_WARP_ALL"/>
+        </Item>
+      </EntryPoints>
+
+    </Item>
+
+  </VehicleLayoutInfos>
+
+</CVehicleMetadataMgr>

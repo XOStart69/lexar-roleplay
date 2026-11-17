@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+    <InitDatas>
+        <!-- Bottle -->
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_AXE</modelName>
+            <txdName>W_ME_JPX_SAKURA_AXE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_SAMURAI</modelName>
+            <txdName>W_ME_JPX_SAKURA_SAMURAI</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_SCYTHE</modelName>
+            <txdName>W_ME_JPX_SAKURA_SCYTHE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_SHURIKEN</modelName>
+            <txdName>W_ME_JPX_SAKURA_SHURIKEN</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_SWORD</modelName>
+            <txdName>W_ME_JPX_SAKURA_SWORD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Poolcue -->
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_GLAIVE</modelName>
+            <txdName>W_ME_JPX_SAKURA_GLAIVE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_GRIM</modelName>
+            <txdName>W_ME_JPX_SAKURA_GRIM</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_LANCE</modelName>
+            <txdName>W_ME_JPX_SAKURA_LANCE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_ROD</modelName>
+            <txdName>W_ME_JPX_SAKURA_ROD</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_SWORD2</modelName>
+            <txdName>W_ME_JPX_SAKURA_SWORD2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Machete -->
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_STAFF</modelName>
+            <txdName>W_ME_JPX_SAKURA_STAFF</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Knuckle -->
+        <Item>
+            <modelName>W_ME_JPX_SAKURA_GAUNTLET</modelName>
+            <txdName>W_ME_JPX_SAKURA_GAUNTLET</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Revolver Gun -->
+        <Item>
+            <modelName>W_PI_JPX_SAKURA_GUN</modelName>
+            <txdName>W_PI_JPX_SAKURA_GUN</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_SAKURA_GUN_mag1</modelName>
+            <txdName>W_PI_JPX_SAKURA_GUN_mag1</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_SAKURA_GUN_g</modelName>
+            <txdName>W_PI_JPX_SAKURA_GUN_g</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_SAKURA_GUN_b</modelName>
+            <txdName>W_PI_JPX_SAKURA_GUN_b</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+    </InitDatas>
+</CWeaponModelInfo__InitDataList>

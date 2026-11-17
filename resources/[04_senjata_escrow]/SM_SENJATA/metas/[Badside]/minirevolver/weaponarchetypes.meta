@@ -1,0 +1,17 @@
+<?xml version="1" encoding="UTF-8"?>
+<CWeaponModelInfo__InitDataList>
+  <InitDatas>
+    <Item>
+      <lodDist value="500"></lodDist>
+      <modelName>w_pi_minirevolversm</modelName>
+      <txdName>w_pi_minirevolversm</txdName>
+      <ptfxAssetName>NULL</ptfxAssetName>
+    </Item>
+    <Item>
+      <modelName>w_pi_minirevolversm_mag1</modelName>
+      <txdName>w_pi_minirevolversm_mag1</txdName>
+      <ptfxAssetName>NULL</ptfxAssetName>
+      <lodDist value="100.0"></lodDist>
+    </Item>
+  </InitDatas>
+</CWeaponModelInfo__InitDataList>

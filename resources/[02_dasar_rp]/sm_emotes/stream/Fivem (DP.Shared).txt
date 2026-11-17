@@ -1,0 +1,12 @@
+["0000oudno_ideafms"] = {"oudoud@no_idea_share", "oudoud_no_idea_female", "OudOud No Idea ~g~ Female", "0000oudno_ideams", AnimationOptions =
+    {
+        EmoteLoop = true,
+        SyncOffsetFront = 0.6,
+    }},
+
+    ["0000oudno_ideams"] = {"oudoud@no_idea_share", "oudoud_no_idea_male", "OudOud No Idea ~g~ Male", "0000oudno_ideafms", AnimationOptions =
+    {
+        EmoteLoop = true,
+        SyncOffsetFront = 0.6,
+    }},
+   

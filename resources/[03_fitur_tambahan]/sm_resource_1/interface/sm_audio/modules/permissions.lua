@@ -1,0 +1,16 @@
+return {
+    QUEUE = 'useQueue',
+    CARRY = 'carry',
+    STORE = 'store',
+    PUBLIC = 'public',
+    RENAME = 'rename',
+    FILTERS = 'useFilters',
+    SETTINGS = 'settings',
+    PERMANENT = 'permanent',
+    ADD_GROUP = 'addGroup',
+    PLAY_MUSIC = 'playMusic',
+    PAUSE_RESUME = 'pauseResume',
+    VOLUME_RANGE = 'volumeRange',
+    VEHICLE_ATTACH = 'attachVehicle',
+    GIZMO = 'gizmo',
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+    <InitDatas>
+        <!-- Bottle -->
+        <Item>
+            <modelName>W_ME_JPX_LIONDANCE_BOTTLE</modelName>
+            <txdName>W_ME_JPX_LIONDANCE_BOTTLE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Poolcue -->
+        <Item>
+            <modelName>W_ME_JPX_LIONDANCE_POOLCUE</modelName>
+            <txdName>W_ME_JPX_LIONDANCE_POOLCUE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Knuckle -->
+        <Item>
+            <modelName>W_ME_JPX_LIONDANCE_KNUCKLE</modelName>
+            <txdName>W_ME_JPX_LIONDANCE_KNUCKLE</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <!-- Revolver Gun -->
+        <Item>
+            <modelName>W_PI_JPX_LIONDANCE_REVOLVER_GUN</modelName>
+            <txdName>W_PI_JPX_LIONDANCE_REVOLVER_GUN</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_LIONDANCE_REVOLVER_GUN_mag1</modelName>
+            <txdName>W_PI_JPX_LIONDANCE_REVOLVER_GUN_mag1</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_LIONDANCE_REVOLVER_GUN_g</modelName>
+            <txdName>W_PI_JPX_LIONDANCE_REVOLVER_GUN_g</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+        <Item>
+            <modelName>W_PI_JPX_LIONDANCE_REVOLVER_GUN_b</modelName>
+            <txdName>W_PI_JPX_LIONDANCE_REVOLVER_GUN_b</txdName>
+            <ptfxAssetName>weap_revolver</ptfxAssetName>
+            <lodDist value="50" />
+        </Item>
+    </InitDatas>
+</CWeaponModelInfo__InitDataList>

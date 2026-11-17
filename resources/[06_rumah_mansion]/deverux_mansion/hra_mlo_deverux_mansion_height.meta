@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CDataFileMgr__ContentsOfDataFileXml>
+    <disabledFiles/>
+    <includedXmlFiles/>
+    <includedDataFiles/>
+    <dataFiles>
+        <Item>
+            <filename>resources:/hra_mlo_deverux_mansion/heightmap.dat</filename>
+            <fileType>WORLD_HEIGHTMAP_FILE</fileType>
+        </Item>
+    </dataFiles>
+</CDataFileMgr__ContentsOfDataFileXml>
+
+

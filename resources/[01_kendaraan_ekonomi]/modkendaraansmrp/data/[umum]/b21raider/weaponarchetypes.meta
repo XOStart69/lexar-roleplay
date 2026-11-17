@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<!-- ### launcher ### -->
+		
+		<Item>
+			<modelName>b21_jdam</modelName>
+			<txdName>b21_jdam</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>
+
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

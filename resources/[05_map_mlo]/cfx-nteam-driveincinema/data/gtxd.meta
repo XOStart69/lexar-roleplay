@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CMapParentTxds>
+ <txdRelationships>
+<Item>
+  <parent>nteamdriveintxd1</parent>
+  <child>nteamdriveintxd</child>
+</Item>
+ </txdRelationships>
+</CMapParentTxds>

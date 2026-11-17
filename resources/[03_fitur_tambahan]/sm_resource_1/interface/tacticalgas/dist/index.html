@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tactical Gas Audio</title>
+    <style>
+        html, body { margin: 0; width: 0; height: 0; overflow: hidden; }
+    </style>
+</head>
+<body>
+    <script>
+        const FILES = ['bomb', 'cough', 'stun'];
+        const pool = {};
+
+        for (const name of FILES) {
+            const audio = new Audio(`./sounds/${name}.ogg`);
+            audio.preload = 'auto';
+            pool[name] = audio;
+        }
+
+        window.addEventListener('message', (event) => {
+            const data = event.data;
+            if (!data || data.action !== 'play') return;
+
+            const source = pool[data.file];
+            if (!source) return;
+
+            // Clone so overlapping throws do not cut each other off.
+            const audio = source.cloneNode();
+            audio.volume = Math.min(Math.max(data.volume ?? 0.3, 0), 1);
+            audio.play().catch(() => {});
+        });
+    </script>
+</body>
+</html>
