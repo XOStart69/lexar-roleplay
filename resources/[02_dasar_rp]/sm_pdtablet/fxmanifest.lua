@@ -33,4 +33,3 @@ files {
     'web/build/*.png',
 }
 
-dependency 'se_v2'

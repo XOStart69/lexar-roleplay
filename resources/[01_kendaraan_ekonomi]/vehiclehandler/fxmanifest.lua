@@ -24,5 +24,3 @@ server_script 'server.lua'
 dependencies {
     'ox_lib'
 }
-
-dependency 'se_v2'

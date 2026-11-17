@@ -79,7 +79,6 @@ dependencies {
 	'rhd_interact'
 }
 
-dependency 'se_v2'
 
 safe_event_obfus_ignore {
 	'ox_inventory:disarm',

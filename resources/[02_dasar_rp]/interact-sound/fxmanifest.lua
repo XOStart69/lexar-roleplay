@@ -24,5 +24,3 @@ files {
 lua54 'yes'
 
 shared_script '@se_v2/trigger.lua'
-
-dependency 'se_v2'

@@ -26,3 +26,9 @@ end
 AddEventHandler('QBCore:DebugSomething', function(resource, obj)
     QBCore.Debug(resource, obj)
 end)
+
+local function GetQBPlayers()
+    return QBCore.Players
+end
+
+exports('GetQBPlayers', GetQBPlayers)

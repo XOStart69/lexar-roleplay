@@ -56,5 +56,3 @@ files {
 }
 
 lua54 'yes'
-
-dependency 'se_v2'

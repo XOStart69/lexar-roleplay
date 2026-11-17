@@ -43,4 +43,3 @@ dependencies {
     'sm_appearance'
 }
 
-dependency 'se_v2'

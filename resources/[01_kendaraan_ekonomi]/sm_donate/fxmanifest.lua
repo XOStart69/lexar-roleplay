@@ -47,4 +47,3 @@ files {
     'web/build/**/*',
 }
 
-dependency 'se_v2'

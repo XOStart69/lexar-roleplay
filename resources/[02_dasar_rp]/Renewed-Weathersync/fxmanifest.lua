@@ -25,5 +25,3 @@ server_scripts {
 
 provide 'qb-weathersync'
 provide 'cd_easytime'
-
-dependency 'se_v2'

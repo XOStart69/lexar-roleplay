@@ -44,5 +44,3 @@ dependencys {
 	'ox_lib',
 	'oxmysql'
 }
-
-dependency 'se_v2'
