@@ -98,7 +98,9 @@ if L10_1 then
   L12_1 = exports
   L11_1 = L12_1[L1_1]
 else
-  L11_1 = GetResourceState("se_v2") == "started"
+  if GetResourceState("se_v2") == "started" then
+    L11_1 = exports["se_v2"]
+  end
 end
 L12_1 = {}
 L13_1 = {}
