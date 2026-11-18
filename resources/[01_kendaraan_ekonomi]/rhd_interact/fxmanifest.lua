@@ -1,3 +1,4 @@
+-- decrypted + fixed
 fx_version 'cerulean'
 game 'gta5'
 
@@ -32,18 +33,7 @@ files {
     'framework/init.lua',
     'framework/**/*.lua',
     'config/*.lua',
-
-    'data/*.json',
 }
 
-escrow_ignore {
-    'framework/**',
-    'config/*.lua',
-    'types.lua'
-}
 
-dependencys {
-    'ox_lib',
-}
-
-dependency '/assetpacks'
+dependency 'ox_lib'

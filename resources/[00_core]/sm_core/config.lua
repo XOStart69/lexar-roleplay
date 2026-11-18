@@ -21,7 +21,7 @@ QBConfig.Player.Bloodtypes = {
     'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-',
 }
 
-QBConfig.LicenseType = 'steam'
+QBConfig.LicenseType = 'license'
 
 QBConfig.Player.PlayerDefaults = {
     citizenid = function() return QBCore.Player.CreateCitizenId() end,

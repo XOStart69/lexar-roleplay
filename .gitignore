@@ -38,3 +38,5 @@ components.json
 .replxx_history
 crashes/
 logs/
+*.bak*
+_ypt_backup/

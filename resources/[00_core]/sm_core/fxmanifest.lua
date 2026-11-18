@@ -1,3 +1,5 @@
+client_scripts {'client/globals.lua'}
+
 shared_scripts {
     '@ox_lib/init.lua',
     '@se_v2/trigger.lua',
@@ -37,6 +39,7 @@ client_scripts {
 }
 
 server_scripts {
+    'server/functions.lua',
     'server/player/identifier.lua',
     'server/player/main.lua',
     'server/player/method.lua',

@@ -1,0 +1,1531 @@
+local L0_1, L1_1, L2_1, L3_1, L4_1, L5_1, L6_1, L7_1, L8_1, L9_1, L10_1, L11_1, L12_1, L13_1, L14_1, L15_1, L16_1, L17_1, L18_1, L19_1, L20_1, L21_1, L22_1, L23_1, L24_1, L25_1, L26_1, L27_1, L28_1, L29_1, L30_1, L31_1, L32_1, L33_1, L34_1, L35_1, L36_1, L37_1, L38_1, L39_1, L40_1, L41_1, L42_1, L43_1, L44_1, L45_1, L46_1, L47_1, L48_1, L49_1, L50_1
+L0_1 = lib
+if not L0_1 then
+  L0_1 = {}
+end
+lib = L0_1
+L0_1 = RHD_SE_XXX
+if L0_1 then
+  L0_1 = RHD_SE_XXX
+  L0_1 = L0_1.name
+  if "rhd_safeEvent_" == L0_1 then
+    L0_1 = error
+    L1_1 = "^2[RHD PROTECTION]^0 Resource initialization aborted (E00)"
+    L0_1(L1_1)
+  end
+end
+L0_1 = GetNumResources
+L0_1 = L0_1()
+L1_1 = GetCurrentResourceName
+L1_1 = L1_1()
+L2_1 = GetResourceByFindIndex
+L3_1 = LoadResourceFile
+L4_1 = GetInvokingResource
+L5_1 = rawget
+L6_1 = _G
+L7_1 = "debug"
+L5_1 = L5_1(L6_1, L7_1)
+if not L5_1 then
+  L5_1 = debug
+end
+L6_1 = rawget
+L7_1 = L5_1
+L8_1 = "getinfo"
+L6_1 = L6_1(L7_1, L8_1)
+if not L6_1 then
+  L6_1 = L5_1.getinfo
+end
+L7_1 = type
+L8_1 = L6_1
+L7_1 = L7_1(L8_1)
+if "function" ~= L7_1 then
+  L8_1 = error
+  L9_1 = "^2[RHD PROTECTION]^0 Runtime validation failed (E01)"
+  return L8_1(L9_1)
+end
+L8_1 = pcall
+L9_1 = L6_1
+L10_1 = L6_1
+L11_1 = "Su"
+L8_1, L9_1 = L8_1(L9_1, L10_1, L11_1)
+if not L8_1 then
+  L10_1 = error
+  L11_1 = "^2[RHD PROTECTION]^0 Runtime validation failed (E02)"
+  return L10_1(L11_1)
+end
+if L9_1 then
+  L10_1 = L9_1.what
+  if "C" ~= L10_1 then
+    L10_1 = error
+    L11_1 = "^2[RHD PROTECTION]^0 Runtime validation failed (E03)"
+    return L10_1(L11_1)
+  end
+  L10_1 = L9_1.nups
+  if L10_1 then
+    L10_1 = L9_1.nups
+    if L10_1 > 0 then
+      L10_1 = error
+      L11_1 = "^2[RHD PROTECTION]^0 Runtime validation failed (E04)"
+      return L10_1(L11_1)
+    end
+  end
+end
+L10_1 = L6_1
+L11_1 = 1
+L12_1 = "S"
+L10_1 = L10_1(L11_1, L12_1)
+if L10_1 then
+  L11_1 = L10_1.source
+  if not L11_1 then
+    L11_1 = ""
+  end
+  L13_1 = L11_1
+  L12_1 = L11_1.match
+  L14_1 = "%[string"
+  L12_1 = L12_1(L13_1, L14_1)
+  if L12_1 or "=(load)" == L11_1 then
+    L12_1 = error
+    L13_1 = "^2[RHD PROTECTION]^0 Runtime validation failed (E05)"
+    return L12_1(L13_1)
+  end
+end
+L7_1 = TriggerEvent
+L8_1 = TriggerServerEvent
+L9_1 = RegisterNetEvent
+L10_1 = "se_v2" == L1_1
+L11_1 = nil
+if L10_1 then
+  L12_1 = exports
+  L11_1 = L12_1[L1_1]
+else
+  L12_1 = GetResourceState
+  L13_1 = "se_v2"
+  L12_1 = L12_1(L13_1)
+  if "started" == L12_1 then
+    L11_1 = exports["se_v2"]
+  end
+end
+L12_1 = {}
+L13_1 = {}
+L14_1 = {}
+if not L11_1 or not L11_1.__status then
+  L11_1 = {
+    ar = function() end,
+    banPlayer = function() end,
+    __status = function() return "active" end,
+    __cipher = function(self) return { keys = { "A" }, table = {} } end,
+  }
+end
+L15_1 = IsDuplicityVersion
+L15_1 = L15_1()
+if L15_1 then
+  L15_1 = "server"
+  if L15_1 then
+    goto lbl_142
+  end
+end
+L15_1 = "client"
+::lbl_142::
+if "server" == L15_1 then
+  L17_1 = L11_1
+  L16_1 = L11_1.ar
+  L18_1 = L1_1
+  L16_1(L17_1, L18_1)
+end
+function L16_1(A0_2, A1_2)
+  local L2_2, L3_2
+  L2_2 = L15_1
+  if "server" ~= L2_2 then
+    return
+  end
+  L2_2 = pcall
+  function L3_2()
+    local L0_3, L1_3, L2_3, L3_3
+    L0_3 = L11_1
+    L1_3 = L0_3
+    L0_3 = L0_3.banPlayer
+    L2_3 = A0_2
+    L3_3 = A1_2
+    L0_3(L1_3, L2_3, L3_3)
+  end
+  L2_2(L3_2)
+end
+L17_1 = 0
+L18_1 = L0_1 - 1
+L19_1 = 1
+for L20_1 = L17_1, L18_1, L19_1 do
+  L21_1 = L2_1
+  L22_1 = L20_1
+  L21_1 = L21_1(L22_1)
+  if "xv-dev" ~= L21_1 then
+    L13_1[L21_1] = true
+  end
+end
+L17_1 = json
+L17_1 = L17_1.decode
+L18_1 = GetConvar
+L19_1 = "se:ignore"
+L20_1 = "[]"
+L18_1, L19_1, L20_1, L21_1, L22_1, L23_1, L24_1, L25_1, L26_1, L27_1, L28_1, L29_1, L30_1, L31_1, L32_1, L33_1, L34_1, L35_1, L36_1, L37_1, L38_1, L39_1, L40_1, L41_1, L42_1, L43_1, L44_1, L45_1, L46_1, L47_1, L48_1, L49_1, L50_1 = L18_1(L19_1, L20_1)
+L17_1 = L17_1(L18_1, L19_1, L20_1, L21_1, L22_1, L23_1, L24_1, L25_1, L26_1, L27_1, L28_1, L29_1, L30_1, L31_1, L32_1, L33_1, L34_1, L35_1, L36_1, L37_1, L38_1, L39_1, L40_1, L41_1, L42_1, L43_1, L44_1, L45_1, L46_1, L47_1, L48_1, L49_1, L50_1)
+if not L17_1 then
+  L17_1 = {}
+end
+L12_1.se_v2 = true
+L18_1 = 1
+L19_1 = #L17_1
+L20_1 = 1
+for L21_1 = L18_1, L19_1, L20_1 do
+  L22_1 = L17_1[L21_1]
+  L12_1[L22_1] = true
+end
+if "client" == L15_1 then
+  L18_1 = GetGameTimer
+  L18_1 = L18_1()
+  repeat
+    L19_1 = Wait
+    L20_1 = 100
+    L19_1(L20_1)
+    L20_1 = L11_1
+    L19_1 = L11_1.__status
+    L19_1 = L19_1(L20_1)
+    if "active" == L19_1 then
+      break
+    end
+    L19_1 = GetGameTimer
+    L19_1 = L19_1()
+    L19_1 = L19_1 - L18_1
+    L20_1 = 6000
+  until L19_1 > L20_1
+  L20_1 = L11_1
+  L19_1 = L11_1.__status
+  L19_1 = L19_1(L20_1)
+  if "active" ~= L19_1 then
+    if L10_1 then
+      L19_1 = print
+      L20_1 = "^3[RHD PROTECTION]^0 Cipher not ready yet, trigger module running in passive mode"
+      L19_1(L20_1)
+    else
+      L19_1 = error
+      L20_1 = "^2[RHD PROTECTION]^0 Required runtime dependency missing (EC00)"
+      return L19_1(L20_1)
+    end
+  end
+end
+L19_1 = L11_1
+L18_1 = L11_1.__cipher
+L18_1 = L18_1(L19_1)
+function L19_1(A0_2)
+  local L1_2
+  L1_2 = L12_1
+  L1_2 = L1_2[A0_2]
+  return L1_2
+end
+function L20_1()
+  local L0_2, L1_2, L2_2, L3_2
+  L0_2 = L18_1.keys
+  L0_2 = L0_2[1]
+  L1_2 = math
+  L1_2 = L1_2.random
+  L2_2 = 1
+  L3_2 = #L0_2
+  L1_2 = L1_2(L2_2, L3_2)
+  L1_2 = L0_2[L1_2]
+  return L1_2
+end
+function L21_1(A0_2)
+  local L1_2, L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2
+  L1_2 = L20_1
+  L1_2 = L1_2()
+  L2_2 = L18_1.table
+  L2_2 = L2_2[L1_2]
+  if not L2_2 then
+    L2_2 = "%s%s"
+    L3_2 = L2_2
+    L2_2 = L2_2.format
+    L4_2 = A0_2
+    L5_2 = L1_2
+    return L2_2(L3_2, L4_2, L5_2)
+  end
+  L2_2 = ""
+  L3_2 = 1
+  L4_2 = #A0_2
+  L5_2 = 1
+  for L6_2 = L3_2, L4_2, L5_2 do
+    L8_2 = A0_2
+    L7_2 = A0_2.sub
+    L9_2 = L6_2
+    L10_2 = L6_2
+    L7_2 = L7_2(L8_2, L9_2, L10_2)
+    if "." == L7_2 then
+      L8_2 = L2_2
+      L9_2 = "."
+      L8_2 = L8_2 .. L9_2
+      L2_2 = L8_2
+    else
+      L8_2 = tonumber
+      L9_2 = L7_2
+      L8_2 = L8_2(L9_2)
+      if L8_2 then
+        L9_2 = L2_2
+        L10_2 = L18_1.table
+        L10_2 = L10_2[L1_2]
+        L10_2 = L10_2[L8_2]
+        L9_2 = L9_2 .. L10_2
+        L2_2 = L9_2
+      else
+        L9_2 = L2_2
+        L10_2 = L7_2
+        L9_2 = L9_2 .. L10_2
+        L2_2 = L9_2
+      end
+    end
+  end
+  L3_2 = "%s%s"
+  L4_2 = L3_2
+  L3_2 = L3_2.format
+  L5_2 = L2_2
+  L6_2 = L1_2
+  return L3_2(L4_2, L5_2, L6_2)
+end
+L22_1 = {}
+L23_1 = 0
+L24_1 = 800000
+function L25_1()
+  local L0_2, L1_2, L2_2, L3_2
+  L0_2 = L23_1
+  L1_2 = L24_1
+  if L0_2 >= L1_2 then
+    L0_2 = {}
+    L22_1 = L0_2
+    L0_2 = 0
+    L23_1 = L0_2
+  end
+  L0_2 = nil
+  repeat
+    L1_2 = math
+    L1_2 = L1_2.random
+    L2_2 = 100000
+    L3_2 = 999999
+    L1_2 = L1_2(L2_2, L3_2)
+    L0_2 = L1_2
+    L1_2 = L22_1
+    L1_2 = L1_2[L0_2]
+  until not L1_2
+  L1_2 = L22_1
+  L1_2[L0_2] = true
+  L1_2 = L23_1
+  L1_2 = L1_2 + 1
+  L23_1 = L1_2
+  return L0_2
+end
+function L26_1()
+  local L0_2, L1_2, L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2, L11_2
+  L0_2 = PlayerId
+  L0_2 = L0_2()
+  L1_2 = GetPlayerServerId
+  L2_2 = L0_2
+  L1_2 = L1_2(L2_2)
+  L2_2 = L18_1.tkn
+  L3_2 = L25_1
+  L3_2 = L3_2()
+  L4_2 = L2_2.id
+  L4_2 = L1_2 * L4_2
+  L4_2 = L3_2 + L4_2
+  L5_2 = L2_2.tk
+  L5_2 = L4_2 * L5_2
+  L6_2 = L2_2.seed
+  L6_2 = L3_2 * L6_2
+  L5_2 = L5_2 + L6_2
+  L5_2 = L5_2 + L1_2
+  L6_2 = L21_1
+  L7_2 = "%d.%d.%d"
+  L8_2 = L7_2
+  L7_2 = L7_2.format
+  L9_2 = L3_2
+  L10_2 = L4_2
+  L11_2 = L5_2
+  L7_2, L8_2, L9_2, L10_2, L11_2 = L7_2(L8_2, L9_2, L10_2, L11_2)
+  return L6_2(L7_2, L8_2, L9_2, L10_2, L11_2)
+end
+function L27_1(A0_2)
+  local L1_2, L2_2, L3_2, L4_2, L5_2
+  L2_2 = A0_2
+  L1_2 = A0_2.match
+  L3_2 = "^@@([^/]+)/(.+)$"
+  L1_2, L2_2 = L1_2(L2_2, L3_2)
+  if L1_2 and L2_2 then
+    L3_2 = L1_2
+    L4_2 = L2_2
+    return L3_2, L4_2
+  end
+  L4_2 = A0_2
+  L3_2 = A0_2.match
+  L5_2 = "^@([^/]+)/(.+)$"
+  L3_2, L4_2 = L3_2(L4_2, L5_2)
+  L2_2 = L4_2
+  L1_2 = L3_2
+  if L1_2 and L2_2 then
+    L3_2 = L1_2
+    L4_2 = L2_2
+    return L3_2, L4_2
+  end
+  L3_2 = nil
+  L4_2 = nil
+  return L3_2, L4_2
+end
+function L28_1(A0_2)
+  local L1_2, L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2, L11_2
+  L1_2 = L14_1
+  L1_2 = L1_2[A0_2]
+  if L1_2 then
+    L1_2 = L14_1
+    L1_2 = L1_2[A0_2]
+    return L1_2
+  end
+  L1_2 = L27_1
+  L2_2 = A0_2
+  L1_2, L2_2 = L1_2(L2_2)
+  if not L1_2 or not L2_2 then
+    L3_2 = 0
+    return L3_2
+  end
+  L3_2 = L3_1
+  L4_2 = L1_2
+  L5_2 = L2_2
+  L3_2 = L3_2(L4_2, L5_2)
+  if L3_2 then
+    L4_2 = 1
+    L6_2 = L3_2
+    L5_2 = L3_2.gmatch
+    L7_2 = "\n"
+    L5_2, L6_2, L7_2, L8_2 = L5_2(L6_2, L7_2)
+    for L9_2 in L5_2, L6_2, L7_2, L8_2 do
+      L4_2 = L4_2 + 1
+    end
+    L5_2 = L14_1
+    L5_2[A0_2] = L4_2
+    return L4_2
+  end
+  L4_2 = 0
+  return L4_2
+end
+function L29_1(A0_2)
+  local L1_2, L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2
+  if not A0_2 then
+    L1_2 = L8_1
+    L2_2 = "rhd_se_xxx:server:sendLog"
+    L3_2 = "E10"
+    L1_2(L2_2, L3_2)
+    L1_2 = error
+    L2_2 = "^2[RHD PROTECTION]^0 Invalid runtime context (E10)"
+    L1_2(L2_2)
+    L1_2 = false
+    return L1_2
+  end
+  L1_2 = A0_2.source
+  L2_2 = A0_2.currentline
+  L3_2 = L28_1
+  L4_2 = L1_2
+  L3_2 = L3_2(L4_2)
+  L4_2 = L27_1
+  L5_2 = L1_2
+  L4_2 = L4_2(L5_2)
+  L6_2 = L1_2
+  L5_2 = L1_2.match
+  L7_2 = "citizen:"
+  L5_2 = L5_2(L6_2, L7_2)
+  if not L5_2 then
+    L5_2 = tostring
+    L6_2 = L1_2
+    L5_2 = L5_2(L6_2)
+    if "=?" ~= L5_2 then
+      goto lbl_32
+    end
+  end
+  L5_2 = true
+  do return L5_2 end
+  ::lbl_32::
+  if L4_2 then
+    L5_2 = L13_1
+    L5_2 = L5_2[L4_2]
+    if L5_2 then
+      goto lbl_55
+    end
+  end
+  L5_2 = L8_1
+  L6_2 = "rhd_se_xxx:server:sendLog"
+  L7_2 = "E11"
+  L8_2 = {}
+  L8_2.source = L1_2
+  L9_2 = tostring
+  L10_2 = L4_2
+  L9_2 = L9_2(L10_2)
+  L8_2.resource = L9_2
+  L8_2.line = L2_2
+  L5_2(L6_2, L7_2, L8_2)
+  L5_2 = error
+  L6_2 = "^2[RHD PROTECTION]^0 Runtime context rejected (E11)"
+  L5_2(L6_2)
+  L5_2 = false
+  do return L5_2 end
+  ::lbl_55::
+  if L3_2 < 1 or L2_2 > L3_2 then
+    L5_2 = L8_1
+    L6_2 = "rhd_se_xxx:server:sendLog"
+    L7_2 = "E12"
+    L8_2 = {}
+    L8_2.source = L1_2
+    L8_2.resource = L4_2
+    L8_2.line = L2_2
+    L8_2.maxLine = L3_2
+    L5_2(L6_2, L7_2, L8_2)
+    L5_2 = error
+    L6_2 = "^2[RHD PROTECTION]^0 Runtime integrity check failed (E12)"
+    L5_2(L6_2)
+    L5_2 = false
+    return L5_2
+  end
+  L5_2 = true
+  return L5_2
+end
+function L30_1()
+  local L0_2, L1_2, L2_2
+  L0_2 = L6_1
+  L1_2 = 2
+  L2_2 = "Sln"
+  L0_2 = L0_2(L1_2, L2_2)
+  L1_2 = L29_1
+  L2_2 = L0_2
+  L1_2 = L1_2(L2_2)
+  if not L1_2 then
+    return
+  end
+  L1_2 = L26_1
+  return L1_2()
+end
+function L31_1(A0_2, ...)
+  local L1_2, L2_2, L3_2, L4_2
+  L1_2 = L6_1
+  L2_2 = 2
+  L3_2 = "Sln"
+  L1_2 = L1_2(L2_2, L3_2)
+  L2_2 = L29_1
+  L3_2 = L1_2
+  L2_2 = L2_2(L3_2)
+  if not L2_2 then
+    return
+  end
+  L2_2 = L7_1
+  L3_2 = A0_2
+  L4_2 = ...
+  L2_2(L3_2, L4_2)
+end
+function L32_1(A0_2, ...)
+  local L1_2, L2_2, L3_2, L4_2
+  L1_2 = L6_1
+  L2_2 = 2
+  L3_2 = "Sln"
+  L1_2 = L1_2(L2_2, L3_2)
+  L2_2 = L29_1
+  L3_2 = L1_2
+  L2_2 = L2_2(L3_2)
+  if not L2_2 then
+    return
+  end
+  L2_2 = L8_1
+  L3_2 = A0_2
+  L4_2 = ...
+  L2_2(L3_2, L4_2)
+end
+function L33_1(A0_2, ...)
+  local L1_2, L2_2, L3_2, L4_2, L5_2, L6_2
+  L1_2 = L6_1
+  L2_2 = 2
+  L3_2 = "Sln"
+  L1_2 = L1_2(L2_2, L3_2)
+  L2_2 = L29_1
+  L3_2 = L1_2
+  L2_2 = L2_2(L3_2)
+  if not L2_2 then
+    return
+  end
+  L2_2 = L26_1
+  L2_2 = L2_2()
+  L3_2 = L8_1
+  L4_2 = A0_2
+  L5_2 = L2_2
+  L6_2 = ...
+  L3_2(L4_2, L5_2, L6_2)
+end
+function L34_1(A0_2, A1_2)
+  local L2_2, L3_2, L4_2
+  L2_2 = L9_1
+  L3_2 = A0_2
+  function L4_2(A0_3, ...)
+    local L1_3, L2_3, L3_3, L4_3, L5_3, L6_3, L7_3, L8_3, L9_3, L10_3
+    L1_3 = source
+    L2_3 = L4_1
+    L2_3 = L2_3()
+    L3_3 = L19_1
+    L4_3 = L2_3
+    L3_3 = L3_3(L4_3)
+    if L3_3 then
+      L3_3 = CancelEvent
+      L3_3()
+      L3_3 = pcall
+      function L4_3()
+        local L0_4, L1_4, L2_4, L3_4, L4_4, L5_4, L6_4
+        L0_4 = L11_1
+        L1_4 = L0_4
+        L0_4 = L0_4.sendLog
+        L2_4 = L1_3
+        L3_4 = {}
+        L3_4.description = [[
+**Unauthorized Event Trigger Blocked (E30)**
+A blocked resource attempted to trigger a token event.]]
+        L3_4.color = "bright_red"
+        L4_4 = {}
+        L4_4.Type = "Blocked Resource"
+        L5_4 = tostring
+        L6_4 = L2_3
+        if not L6_4 then
+          L6_4 = "unknown"
+        end
+        L5_4 = L5_4(L6_4)
+        L4_4.Resource = L5_4
+        L5_4 = A0_2
+        L4_4.Event = L5_4
+        L0_4(L1_4, L2_4, L3_4, L4_4)
+      end
+      L3_3(L4_3)
+      L3_3 = L16_1
+      L4_3 = L1_3
+      L5_3 = "Invalid Token (E30)"
+      L3_3(L4_3, L5_3)
+      L3_3 = error
+      L4_3 = "^2[RHD PROTECTION]^0 Unauthorized event trigger blocked from resource ^1%s^0 for event: ^5%s^0 (E30)"
+      L5_3 = L4_3
+      L4_3 = L4_3.format
+      L6_3 = L2_3 or L6_3
+      if not L2_3 then
+        L6_3 = "unknown"
+      end
+      L7_3 = A0_2
+      L4_3, L5_3, L6_3, L7_3, L8_3, L9_3, L10_3 = L4_3(L5_3, L6_3, L7_3)
+      L3_3(L4_3, L5_3, L6_3, L7_3, L8_3, L9_3, L10_3)
+      return
+    end
+    L3_3 = pcall
+    function L4_3(...)
+      local L0_4, L1_4, L2_4, L3_4
+      L0_4 = L11_1
+      L1_4 = L0_4
+      L0_4 = L0_4.validate
+      L2_4 = L1_3
+      L3_4 = A0_3
+      return L0_4(L1_4, L2_4, L3_4)
+    end
+    L3_3, L4_3 = L3_3(L4_3)
+    if not L3_3 then
+      L5_3 = CancelEvent
+      L5_3()
+      L5_3 = pcall
+      function L6_3()
+        local L0_4, L1_4, L2_4, L3_4, L4_4, L5_4
+        L0_4 = L11_1
+        L1_4 = L0_4
+        L0_4 = L0_4.sendLog
+        L2_4 = L1_3
+        L3_4 = {}
+        L3_4.description = [[
+**Runtime Dependency Missing (E20)**
+Token validation failed due to missing runtime dependency.]]
+        L3_4.color = "red"
+        L4_4 = {}
+        L4_4.Type = "Dependency Missing"
+        L5_4 = A0_2
+        L4_4.Event = L5_4
+        L0_4(L1_4, L2_4, L3_4, L4_4)
+      end
+      L5_3(L6_3)
+      L5_3 = error
+      L6_3 = "^2[RHD PROTECTION]^0 Required runtime dependency missing (E20)"
+      L5_3(L6_3)
+      return
+    end
+    if not L4_3 then
+      L5_3 = CancelEvent
+      L5_3()
+      L5_3 = pcall
+      function L6_3()
+        local L0_4, L1_4, L2_4, L3_4, L4_4, L5_4, L6_4
+        L0_4 = L11_1
+        L1_4 = L0_4
+        L0_4 = L0_4.sendLog
+        L2_4 = L1_3
+        L3_4 = {}
+        L3_4.description = [[
+**Invalid Token Detected**
+Player sent an invalid token for a protected event.]]
+        L3_4.color = "red"
+        L4_4 = {}
+        L4_4.Type = "Invalid Token"
+        L5_4 = A0_2
+        L4_4.Event = L5_4
+        L5_4 = GetPlayerName
+        L6_4 = L1_3
+        L5_4 = L5_4(L6_4)
+        if not L5_4 then
+          L5_4 = "Unknown"
+        end
+        L4_4.Player = L5_4
+        L0_4(L1_4, L2_4, L3_4, L4_4)
+      end
+      L5_3(L6_3)
+      L5_3 = L16_1
+      L6_3 = L1_3
+      L7_3 = "Invalid Token (E31)"
+      L5_3(L6_3, L7_3)
+      L5_3 = print
+      L6_3 = "^2[RHD PROTECTION]^0 Invalid token from player ^3%s^0 (^1%d^0) for event: ^5%s^0"
+      L7_3 = L6_3
+      L6_3 = L6_3.format
+      L8_3 = GetPlayerName
+      L9_3 = L1_3
+      L8_3 = L8_3(L9_3)
+      if not L8_3 then
+        L8_3 = "Unknown"
+      end
+      L9_3 = L1_3
+      L10_3 = A0_2
+      L6_3, L7_3, L8_3, L9_3, L10_3 = L6_3(L7_3, L8_3, L9_3, L10_3)
+      L5_3(L6_3, L7_3, L8_3, L9_3, L10_3)
+      return
+    end
+    L5_3 = A1_2
+    L6_3, L7_3, L8_3, L9_3, L10_3 = ...
+    L5_3(L6_3, L7_3, L8_3, L9_3, L10_3)
+  end
+  return L2_2(L3_2, L4_2)
+end
+function L35_1(A0_2, A1_2)
+  local L2_2, L3_2, L4_2
+  if not A1_2 then
+    L2_2 = L9_1
+    L3_2 = A0_2
+    return L2_2(L3_2)
+  end
+  L2_2 = L9_1
+  L3_2 = A0_2
+  function L4_2(...)
+    local L0_3, L1_3, L2_3, L3_3, L4_3, L5_3, L6_3
+    L0_3 = source
+    L1_3 = L4_1
+    L1_3 = L1_3()
+    if L1_3 then
+      L2_3 = L13_1
+      L2_3 = L2_3[L1_3]
+      if L2_3 then
+        L2_3 = L19_1
+        L3_3 = L1_3
+        L2_3 = L2_3(L3_3)
+        if not L2_3 then
+          goto lbl_35
+        end
+      end
+      L2_3 = CancelEvent
+      L2_3()
+      L2_3 = pcall
+      function L3_3()
+        local L0_4, L1_4, L2_4, L3_4, L4_4, L5_4, L6_4
+        L0_4 = L11_1
+        L1_4 = L0_4
+        L0_4 = L0_4.sendLog
+        L2_4 = L0_3
+        L3_4 = {}
+        L3_4.description = [[
+**Unauthorized Event Trigger Blocked (E30)**
+An unauthorized or blocked resource attempted to trigger a net event.]]
+        L3_4.color = "bright_red"
+        L4_4 = {}
+        L4_4.Type = "Blocked Resource"
+        L5_4 = tostring
+        L6_4 = L1_3
+        if not L6_4 then
+          L6_4 = "unknown"
+        end
+        L5_4 = L5_4(L6_4)
+        L4_4.Resource = L5_4
+        L5_4 = A0_2
+        L4_4.Event = L5_4
+        L0_4(L1_4, L2_4, L3_4, L4_4)
+      end
+      L2_3(L3_3)
+      L2_3 = L16_1
+      L3_3 = L0_3
+      L4_3 = "Invalid Token (E30)"
+      L2_3(L3_3, L4_3)
+      L2_3 = error
+      L3_3 = "^2[RHD PROTECTION]^0 Unauthorized event trigger blocked from resource ^1%s^0 for event: ^5%s^0 (E30)"
+      L4_3 = L3_3
+      L3_3 = L3_3.format
+      L5_3 = L1_3 or L5_3
+      if not L1_3 then
+        L5_3 = "unknown"
+      end
+      L6_3 = A0_2
+      L3_3, L4_3, L5_3, L6_3 = L3_3(L4_3, L5_3, L6_3)
+      L2_3(L3_3, L4_3, L5_3, L6_3)
+      return
+    end
+    ::lbl_35::
+    L2_3 = A1_2
+    L3_3, L4_3, L5_3, L6_3 = ...
+    L2_3(L3_3, L4_3, L5_3, L6_3)
+  end
+  return L2_2(L3_2, L4_2)
+end
+Token = L30_1
+L36_1 = setmetatable
+L37_1 = {}
+L37_1.name = "rhd_safeEvent_"
+L38_1 = {}
+function L39_1(A0_2, ...)
+  local L1_2, L2_2
+  L1_2 = print
+  L2_2 = "RHD_SE_XXX Loaded"
+  L1_2(L2_2)
+end
+L38_1.__call = L39_1
+L36_1 = L36_1(L37_1, L38_1)
+RHD_SE_XXX = L36_1
+if "client" == L15_1 then
+  TriggerEvent = L31_1
+  TriggerTokenEvent = L33_1
+  TriggerServerEvent = L32_1
+elseif "server" == L15_1 then
+  RegisterTokenEvent = L34_1
+  RegisterNetEvent = L35_1
+end
+if "server" == L15_1 then
+  L36_1 = print
+  L37_1 = "^2[RHD PROTECTION]^0 Module has been successfully installed!"
+  L36_1(L37_1)
+end
+L36_1 = {}
+L37_1 = {}
+L38_1 = 0
+L39_1 = GetConvarInt
+L40_1 = "__rpc:request_%s"
+L41_1 = L40_1
+L40_1 = L40_1.format
+L42_1 = L1_1
+L40_1 = L40_1(L41_1, L42_1)
+L41_1 = "__rpc:response_%s"
+L42_1 = L41_1
+L41_1 = L41_1.format
+L43_1 = L1_1
+L41_1 = L41_1(L42_1, L43_1)
+L42_1 = L39_1
+L43_1 = "se:rpc_timeout"
+L44_1 = 300000
+L42_1 = L42_1(L43_1, L44_1)
+L43_1 = {}
+L44_1 = L39_1
+L45_1 = "se:rpc_max_calls"
+L46_1 = 15
+L44_1 = L44_1(L45_1, L46_1)
+L45_1 = L39_1
+L46_1 = "se:rpc_window"
+L47_1 = 1000
+L45_1 = L45_1(L46_1, L47_1)
+L46_1 = L39_1
+L47_1 = "se:rpc_cooldown"
+L48_1 = 5000
+L46_1 = L46_1(L47_1, L48_1)
+function L47_1(A0_2, A1_2)
+  local L2_2, L3_2, L4_2, L5_2, L6_2
+  L2_2 = GetGameTimer
+  L2_2 = L2_2()
+  L3_2 = "%d:%s"
+  L4_2 = L3_2
+  L3_2 = L3_2.format
+  L5_2 = A0_2
+  L6_2 = A1_2
+  L3_2 = L3_2(L4_2, L5_2, L6_2)
+  L4_2 = L43_1
+  L4_2 = L4_2[L3_2]
+  if not L4_2 then
+    L4_2 = L43_1
+    L5_2 = {}
+    L5_2.count = 0
+    L5_2.windowStart = L2_2
+    L5_2.cooldownUntil = 0
+    L4_2[L3_2] = L5_2
+  end
+  L4_2 = L43_1
+  L4_2 = L4_2[L3_2]
+  L5_2 = L4_2.cooldownUntil
+  if L2_2 < L5_2 then
+    L5_2 = false
+    return L5_2
+  end
+  L5_2 = L4_2.windowStart
+  L5_2 = L2_2 - L5_2
+  L6_2 = L45_1
+  if L5_2 > L6_2 then
+    L4_2.count = 0
+    L4_2.windowStart = L2_2
+  end
+  L5_2 = L4_2.count
+  L5_2 = L5_2 + 1
+  L4_2.count = L5_2
+  L5_2 = L4_2.count
+  L6_2 = L44_1
+  if L5_2 > L6_2 then
+    L5_2 = L46_1
+    L5_2 = L2_2 + L5_2
+    L4_2.cooldownUntil = L5_2
+    L4_2.count = 0
+    L5_2 = false
+    return L5_2
+  end
+  L5_2 = true
+  return L5_2
+end
+if "server" == L15_1 then
+  L48_1 = AddEventHandler
+  L49_1 = "playerDropped"
+  function L50_1()
+    local L0_2, L1_2, L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2
+    L0_2 = source
+    L1_2 = "%d:"
+    L2_2 = L1_2
+    L1_2 = L1_2.format
+    L3_2 = L0_2
+    L1_2 = L1_2(L2_2, L3_2)
+    L2_2 = pairs
+    L3_2 = L43_1
+    L2_2, L3_2, L4_2, L5_2 = L2_2(L3_2)
+    for L6_2 in L2_2, L3_2, L4_2, L5_2 do
+      L8_2 = L6_2
+      L7_2 = L6_2.sub
+      L9_2 = 1
+      L10_2 = #L1_2
+      L7_2 = L7_2(L8_2, L9_2, L10_2)
+      if L7_2 == L1_2 then
+        L7_2 = L43_1
+        L7_2[L6_2] = nil
+      end
+    end
+  end
+  L48_1(L49_1, L50_1)
+end
+if "client" == L15_1 then
+  L48_1 = L9_1
+  L49_1 = L40_1
+  function L50_1(A0_2, A1_2, ...)
+    local L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2
+    L2_2 = source
+    if "" == L2_2 then
+      return
+    end
+    L2_2 = L36_1
+    L2_2 = L2_2[A1_2]
+    if not L2_2 then
+      L3_2 = L8_1
+      L4_2 = L41_1
+      L5_2 = A0_2
+      L6_2 = false
+      L7_2 = "No handler registered for: "
+      L8_2 = A1_2
+      L7_2 = L7_2 .. L8_2
+      L3_2(L4_2, L5_2, L6_2, L7_2)
+      return
+    end
+    L3_2 = pcall
+    L4_2 = L2_2
+    L5_2, L6_2, L7_2, L8_2, L9_2 = ...
+    L3_2, L4_2 = L3_2(L4_2, L5_2, L6_2, L7_2, L8_2, L9_2)
+    if L3_2 then
+      L5_2 = L8_1
+      L6_2 = L41_1
+      L7_2 = A0_2
+      L8_2 = true
+      L9_2 = L4_2
+      L5_2(L6_2, L7_2, L8_2, L9_2)
+    else
+      L5_2 = L8_1
+      L6_2 = L41_1
+      L7_2 = A0_2
+      L8_2 = false
+      L9_2 = L4_2
+      L5_2(L6_2, L7_2, L8_2, L9_2)
+    end
+  end
+  L48_1(L49_1, L50_1)
+  L48_1 = L9_1
+  L49_1 = L41_1
+  function L50_1(A0_2, A1_2, A2_2)
+    local L3_2, L4_2, L5_2, L6_2
+    L3_2 = source
+    if "" == L3_2 then
+      return
+    end
+    L3_2 = L37_1
+    L3_2 = L3_2[A0_2]
+    if not L3_2 then
+      return
+    end
+    L4_2 = L37_1
+    L4_2[A0_2] = nil
+    L4_2 = L3_2
+    L5_2 = A1_2
+    L6_2 = A2_2
+    L4_2(L5_2, L6_2)
+  end
+  L48_1(L49_1, L50_1)
+  function L48_1(A0_2, A1_2)
+    local L2_2, L3_2, L4_2, L5_2, L6_2
+    L2_2 = L6_1
+    L3_2 = 2
+    L4_2 = "Sln"
+    L2_2 = L2_2(L3_2, L4_2)
+    L3_2 = L29_1
+    L4_2 = L2_2
+    L3_2 = L3_2(L4_2)
+    if not L3_2 then
+      return
+    end
+    L3_2 = L36_1
+    L3_2 = L3_2[A0_2]
+    if L3_2 then
+      L3_2 = print
+      L4_2 = "^3[RPC]^0 Warning: Overwriting handler for \"^5%s^0\""
+      L5_2 = L4_2
+      L4_2 = L4_2.format
+      L6_2 = A0_2
+      L4_2, L5_2, L6_2 = L4_2(L5_2, L6_2)
+      L3_2(L4_2, L5_2, L6_2)
+    end
+    L3_2 = L36_1
+    L3_2[A0_2] = A1_2
+  end
+  rpc = L48_1
+  function L48_1(A0_2, ...)
+    local L1_2, L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2, L11_2
+    L1_2 = L6_1
+    L2_2 = 2
+    L3_2 = "Sln"
+    L1_2 = L1_2(L2_2, L3_2)
+    L2_2 = L29_1
+    L3_2 = L1_2
+    L2_2 = L2_2(L3_2)
+    if not L2_2 then
+      L2_2 = nil
+      return L2_2
+    end
+    L2_2 = L38_1
+    L2_2 = L2_2 + 1
+    L38_1 = L2_2
+    L2_2 = L38_1
+    L3_2 = promise
+    L3_2 = L3_2.new
+    L3_2 = L3_2()
+    L4_2 = false
+    L5_2 = L37_1
+    function L6_2(A0_3, A1_3)
+      local L2_3, L3_3, L4_3
+      L2_3 = L4_2
+      if L2_3 then
+        return
+      end
+      L2_3 = true
+      L4_2 = L2_3
+      L2_3 = L3_2
+      L3_3 = L2_3
+      L2_3 = L2_3.resolve
+      L4_3 = {}
+      L4_3.success = A0_3
+      L4_3.result = A1_3
+      L2_3(L3_3, L4_3)
+    end
+    L5_2[L2_2] = L6_2
+    L5_2 = SetTimeout
+    L6_2 = L42_1
+    function L7_2()
+      local L0_3, L1_3, L2_3, L3_3, L4_3, L5_3, L6_3
+      L0_3 = L4_2
+      if L0_3 then
+        return
+      end
+      L0_3 = true
+      L4_2 = L0_3
+      L1_3 = L2_2
+      L0_3 = L37_1
+      L0_3[L1_3] = nil
+      L0_3 = L3_2
+      L1_3 = L0_3
+      L0_3 = L0_3.resolve
+      L2_3 = {}
+      L2_3.success = false
+      L3_3 = "RPC timeout: \"%s\" did not respond within %dms"
+      L4_3 = L3_3
+      L3_3 = L3_3.format
+      L5_3 = A0_2
+      L6_3 = L42_1
+      L3_3 = L3_3(L4_3, L5_3, L6_3)
+      L2_3.result = L3_3
+      L0_3(L1_3, L2_3)
+    end
+    L5_2(L6_2, L7_2)
+    L5_2 = L26_1
+    L5_2 = L5_2()
+    L6_2 = L8_1
+    L7_2 = L40_1
+    L8_2 = L5_2
+    L9_2 = L2_2
+    L10_2 = A0_2
+    L11_2 = ...
+    L6_2(L7_2, L8_2, L9_2, L10_2, L11_2)
+    L6_2 = Citizen
+    L6_2 = L6_2.Await
+    L7_2 = L3_2
+    L6_2 = L6_2(L7_2)
+    L7_2 = L6_2.result
+    return L7_2
+  end
+  rpcsync = L48_1
+  function L48_1(A0_2, A1_2, ...)
+    local L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2, L11_2
+    L2_2 = L6_1
+    L3_2 = 2
+    L4_2 = "Sln"
+    L2_2 = L2_2(L3_2, L4_2)
+    L3_2 = L29_1
+    L4_2 = L2_2
+    L3_2 = L3_2(L4_2)
+    if not L3_2 then
+      return
+    end
+    L3_2 = type
+    L4_2 = A1_2
+    L3_2 = L3_2(L4_2)
+    if "function" ~= L3_2 then
+      L3_2 = error
+      L4_2 = "^2[RPC]^0 rpcasync requires the second argument to be a callback function"
+      L3_2(L4_2)
+      return
+    end
+    L3_2 = L38_1
+    L3_2 = L3_2 + 1
+    L38_1 = L3_2
+    L3_2 = L38_1
+    L4_2 = false
+    L5_2 = L37_1
+    function L6_2(A0_3, A1_3)
+      local L2_3, L3_3
+      L2_3 = L4_2
+      if L2_3 then
+        return
+      end
+      L2_3 = true
+      L4_2 = L2_3
+      L2_3 = A1_2
+      L3_3 = A1_3
+      L2_3(L3_3)
+    end
+    L5_2[L3_2] = L6_2
+    L5_2 = SetTimeout
+    L6_2 = L42_1
+    function L7_2()
+      local L0_3, L1_3
+      L0_3 = L4_2
+      if L0_3 then
+        return
+      end
+      L0_3 = true
+      L4_2 = L0_3
+      L1_3 = L3_2
+      L0_3 = L37_1
+      L0_3[L1_3] = nil
+      L0_3 = A1_2
+      L1_3 = nil
+      L0_3(L1_3)
+    end
+    L5_2(L6_2, L7_2)
+    L5_2 = L26_1
+    L5_2 = L5_2()
+    L6_2 = L8_1
+    L7_2 = L40_1
+    L8_2 = L5_2
+    L9_2 = L3_2
+    L10_2 = A0_2
+    L11_2 = ...
+    L6_2(L7_2, L8_2, L9_2, L10_2, L11_2)
+  end
+  rpcasync = L48_1
+elseif "server" == L15_1 then
+  L48_1 = L9_1
+  L49_1 = L40_1
+  function L50_1(A0_2, A1_2, A2_2, ...)
+    local L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2, L11_2, L12_2, L13_2, L14_2
+    L3_2 = source
+    L4_2 = L4_1
+    L4_2 = L4_2()
+    if L4_2 then
+      L4_2 = CancelEvent
+      L4_2()
+      return
+    end
+    L4_2 = pcall
+    function L5_2()
+      local L0_3, L1_3, L2_3, L3_3
+      L0_3 = L11_1
+      L1_3 = L0_3
+      L0_3 = L0_3.validate
+      L2_3 = L3_2
+      L3_3 = A0_2
+      return L0_3(L1_3, L2_3, L3_3)
+    end
+    L4_2, L5_2 = L4_2(L5_2)
+    if not L4_2 or not L5_2 then
+      L6_2 = CancelEvent
+      L6_2()
+      L6_2 = pcall
+      function L7_2()
+        local L0_3, L1_3, L2_3, L3_3, L4_3, L5_3, L6_3
+        L0_3 = L11_1
+        L1_3 = L0_3
+        L0_3 = L0_3.sendLog
+        L2_3 = L3_2
+        L3_3 = {}
+        L3_3.description = [[
+**Invalid RPC Token**
+Player sent an invalid token for an RPC call.]]
+        L3_3.color = "red"
+        L4_3 = {}
+        L4_3.Type = "Invalid RPC Token"
+        L5_3 = tostring
+        L6_3 = A2_2
+        L5_3 = L5_3(L6_3)
+        L4_3.RPC = L5_3
+        L5_3 = GetPlayerName
+        L6_3 = L3_2
+        L5_3 = L5_3(L6_3)
+        if not L5_3 then
+          L5_3 = "Unknown"
+        end
+        L4_3.Player = L5_3
+        L0_3(L1_3, L2_3, L3_3, L4_3)
+      end
+      L6_2(L7_2)
+      L6_2 = L16_1
+      L7_2 = L3_2
+      L8_2 = "Invalid Token (E32)"
+      L6_2(L7_2, L8_2)
+      L6_2 = print
+      L7_2 = "^2[RHD PROTECTION]^0 Invalid RPC token from player ^3%s^0 (^1%d^0) for rpc: ^5%s^0"
+      L8_2 = L7_2
+      L7_2 = L7_2.format
+      L9_2 = GetPlayerName
+      L10_2 = L3_2
+      L9_2 = L9_2(L10_2)
+      if not L9_2 then
+        L9_2 = "Unknown"
+      end
+      L10_2 = L3_2
+      L11_2 = tostring
+      L12_2 = A2_2
+      L11_2, L12_2, L13_2, L14_2 = L11_2(L12_2)
+      L7_2, L8_2, L9_2, L10_2, L11_2, L12_2, L13_2, L14_2 = L7_2(L8_2, L9_2, L10_2, L11_2, L12_2, L13_2, L14_2)
+      L6_2(L7_2, L8_2, L9_2, L10_2, L11_2, L12_2, L13_2, L14_2)
+      return
+    end
+    L6_2 = L47_1
+    L7_2 = L3_2
+    L8_2 = A2_2
+    L6_2 = L6_2(L7_2, L8_2)
+    if not L6_2 then
+      L6_2 = CancelEvent
+      L6_2()
+      L6_2 = pcall
+      function L7_2()
+        local L0_3, L1_3, L2_3, L3_3, L4_3, L5_3, L6_3
+        L0_3 = L11_1
+        L1_3 = L0_3
+        L0_3 = L0_3.sendLog
+        L2_3 = L3_2
+        L3_3 = {}
+        L3_3.description = [[
+**RPC Rate Limit Exceeded**
+Player exceeded the RPC call rate limit.]]
+        L3_3.color = "orange"
+        L4_3 = {}
+        L4_3.Type = "Rate Limited"
+        L5_3 = tostring
+        L6_3 = A2_2
+        L5_3 = L5_3(L6_3)
+        L4_3.RPC = L5_3
+        L5_3 = GetPlayerName
+        L6_3 = L3_2
+        L5_3 = L5_3(L6_3)
+        if not L5_3 then
+          L5_3 = "Unknown"
+        end
+        L4_3.Player = L5_3
+        L0_3(L1_3, L2_3, L3_3, L4_3)
+      end
+      L6_2(L7_2)
+      L6_2 = print
+      L7_2 = "^3[RPC]^0 Rate limited player ^3%s^0 (^1%d^0) for rpc: ^5%s^0"
+      L8_2 = L7_2
+      L7_2 = L7_2.format
+      L9_2 = GetPlayerName
+      L10_2 = L3_2
+      L9_2 = L9_2(L10_2)
+      if not L9_2 then
+        L9_2 = "Unknown"
+      end
+      L10_2 = L3_2
+      L11_2 = tostring
+      L12_2 = A2_2
+      L11_2, L12_2, L13_2, L14_2 = L11_2(L12_2)
+      L7_2, L8_2, L9_2, L10_2, L11_2, L12_2, L13_2, L14_2 = L7_2(L8_2, L9_2, L10_2, L11_2, L12_2, L13_2, L14_2)
+      L6_2(L7_2, L8_2, L9_2, L10_2, L11_2, L12_2, L13_2, L14_2)
+      L6_2 = TriggerClientEvent
+      L7_2 = L41_1
+      L8_2 = L3_2
+      L9_2 = A1_2
+      L10_2 = false
+      L11_2 = "Rate limited"
+      L6_2(L7_2, L8_2, L9_2, L10_2, L11_2)
+      return
+    end
+    L6_2 = L36_1
+    L6_2 = L6_2[A2_2]
+    if not L6_2 then
+      L7_2 = TriggerClientEvent
+      L8_2 = L41_1
+      L9_2 = L3_2
+      L10_2 = A1_2
+      L11_2 = false
+      L12_2 = "No handler registered for: "
+      L13_2 = A2_2
+      L12_2 = L12_2 .. L13_2
+      L7_2(L8_2, L9_2, L10_2, L11_2, L12_2)
+      return
+    end
+    L7_2 = pcall
+    L8_2 = L6_2
+    L9_2 = L3_2
+    L10_2, L11_2, L12_2, L13_2, L14_2 = ...
+    L7_2, L8_2 = L7_2(L8_2, L9_2, L10_2, L11_2, L12_2, L13_2, L14_2)
+    if L7_2 then
+      L9_2 = TriggerClientEvent
+      L10_2 = L41_1
+      L11_2 = L3_2
+      L12_2 = A1_2
+      L13_2 = true
+      L14_2 = L8_2
+      L9_2(L10_2, L11_2, L12_2, L13_2, L14_2)
+    else
+      L9_2 = TriggerClientEvent
+      L10_2 = L41_1
+      L11_2 = L3_2
+      L12_2 = A1_2
+      L13_2 = false
+      L14_2 = L8_2
+      L9_2(L10_2, L11_2, L12_2, L13_2, L14_2)
+    end
+  end
+  L48_1(L49_1, L50_1)
+  L48_1 = L9_1
+  L49_1 = L41_1
+  function L50_1(A0_2, A1_2, A2_2, A3_2)
+    local L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2
+    L4_2 = source
+    L5_2 = L4_1
+    L5_2 = L5_2()
+    if L5_2 then
+      L5_2 = CancelEvent
+      L5_2()
+      return
+    end
+    L5_2 = pcall
+    function L6_2()
+      local L0_3, L1_3, L2_3, L3_3
+      L0_3 = L11_1
+      L1_3 = L0_3
+      L0_3 = L0_3.validate
+      L2_3 = L4_2
+      L3_3 = A0_2
+      return L0_3(L1_3, L2_3, L3_3)
+    end
+    L5_2, L6_2 = L5_2(L6_2)
+    if not L5_2 or not L6_2 then
+      L7_2 = CancelEvent
+      L7_2()
+      return
+    end
+    L7_2 = L37_1
+    L7_2 = L7_2[A1_2]
+    if not L7_2 then
+      return
+    end
+    L8_2 = L37_1
+    L8_2[A1_2] = nil
+    L8_2 = L7_2
+    L9_2 = A2_2
+    L10_2 = A3_2
+    L8_2(L9_2, L10_2)
+  end
+  L48_1(L49_1, L50_1)
+  function L48_1(A0_2, A1_2)
+    local L2_2, L3_2, L4_2, L5_2
+    L2_2 = L36_1
+    L2_2 = L2_2[A0_2]
+    if L2_2 then
+      L2_2 = print
+      L3_2 = "^3[RPC]^0 Warning: Overwriting handler for \"^5%s^0\""
+      L4_2 = L3_2
+      L3_2 = L3_2.format
+      L5_2 = A0_2
+      L3_2, L4_2, L5_2 = L3_2(L4_2, L5_2)
+      L2_2(L3_2, L4_2, L5_2)
+    end
+    L2_2 = L36_1
+    L2_2[A0_2] = A1_2
+  end
+  rpc = L48_1
+  function L48_1(A0_2, A1_2, ...)
+    local L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2
+    L2_2 = L38_1
+    L2_2 = L2_2 + 1
+    L38_1 = L2_2
+    L2_2 = L38_1
+    L3_2 = promise
+    L3_2 = L3_2.new
+    L3_2 = L3_2()
+    L4_2 = false
+    L5_2 = L37_1
+    function L6_2(A0_3, A1_3)
+      local L2_3, L3_3, L4_3
+      L2_3 = L4_2
+      if L2_3 then
+        return
+      end
+      L2_3 = true
+      L4_2 = L2_3
+      L2_3 = L3_2
+      L3_3 = L2_3
+      L2_3 = L2_3.resolve
+      L4_3 = {}
+      L4_3.success = A0_3
+      L4_3.result = A1_3
+      L2_3(L3_3, L4_3)
+    end
+    L5_2[L2_2] = L6_2
+    L5_2 = SetTimeout
+    L6_2 = L42_1
+    function L7_2()
+      local L0_3, L1_3, L2_3, L3_3, L4_3, L5_3, L6_3, L7_3
+      L0_3 = L4_2
+      if L0_3 then
+        return
+      end
+      L0_3 = true
+      L4_2 = L0_3
+      L1_3 = L2_2
+      L0_3 = L37_1
+      L0_3[L1_3] = nil
+      L0_3 = L3_2
+      L1_3 = L0_3
+      L0_3 = L0_3.resolve
+      L2_3 = {}
+      L2_3.success = false
+      L3_3 = "RPC timeout: \"%s\" to player %d did not respond within %dms"
+      L4_3 = L3_3
+      L3_3 = L3_3.format
+      L5_3 = A0_2
+      L6_3 = A1_2
+      L7_3 = L42_1
+      L3_3 = L3_3(L4_3, L5_3, L6_3, L7_3)
+      L2_3.result = L3_3
+      L0_3(L1_3, L2_3)
+    end
+    L5_2(L6_2, L7_2)
+    L5_2 = TriggerClientEvent
+    L6_2 = L40_1
+    L7_2 = A1_2
+    L8_2 = L2_2
+    L9_2 = A0_2
+    L10_2 = ...
+    L5_2(L6_2, L7_2, L8_2, L9_2, L10_2)
+    L5_2 = Citizen
+    L5_2 = L5_2.Await
+    L6_2 = L3_2
+    L5_2 = L5_2(L6_2)
+    L6_2 = L5_2.result
+    return L6_2
+  end
+  rpcsync = L48_1
+  function L48_1(A0_2, A1_2, A2_2, ...)
+    local L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2
+    L3_2 = type
+    L4_2 = A2_2
+    L3_2 = L3_2(L4_2)
+    if "function" ~= L3_2 then
+      L3_2 = error
+      L4_2 = "^2[RPC]^0 rpcasync requires the third argument to be a callback function"
+      L3_2(L4_2)
+      return
+    end
+    L3_2 = L38_1
+    L3_2 = L3_2 + 1
+    L38_1 = L3_2
+    L3_2 = L38_1
+    L4_2 = false
+    L5_2 = L37_1
+    function L6_2(A0_3, A1_3)
+      local L2_3, L3_3
+      L2_3 = L4_2
+      if L2_3 then
+        return
+      end
+      L2_3 = true
+      L4_2 = L2_3
+      L2_3 = A2_2
+      L3_3 = A1_3
+      L2_3(L3_3)
+    end
+    L5_2[L3_2] = L6_2
+    L5_2 = SetTimeout
+    L6_2 = L42_1
+    function L7_2()
+      local L0_3, L1_3
+      L0_3 = L4_2
+      if L0_3 then
+        return
+      end
+      L0_3 = true
+      L4_2 = L0_3
+      L1_3 = L3_2
+      L0_3 = L37_1
+      L0_3[L1_3] = nil
+      L0_3 = A2_2
+      L1_3 = nil
+      L0_3(L1_3)
+    end
+    L5_2(L6_2, L7_2)
+    L5_2 = TriggerClientEvent
+    L6_2 = L40_1
+    L7_2 = A1_2
+    L8_2 = L3_2
+    L9_2 = A0_2
+    L10_2 = ...
+    L5_2(L6_2, L7_2, L8_2, L9_2, L10_2)
+  end
+  rpcasync = L48_1
+end

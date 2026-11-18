@@ -1,0 +1,8 @@
+local src = LoadResourceFile("zz_dump", "core_fn.lua")
+assert(src, "core_fn.lua tidak terbaca")
+local chunk = assert(load(src, "=core_fn"))
+local fn = chunk()
+assert(type(fn) == "function", "hasil bukan function: " .. type(fn))
+local bc = string.dump(fn)
+SaveResourceFile("zz_dump", "core_dump.luac", bc, -1)
+print("DUMP OK " .. tostring(#bc))

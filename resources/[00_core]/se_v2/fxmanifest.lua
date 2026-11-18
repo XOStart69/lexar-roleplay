@@ -15,7 +15,7 @@ shared_scripts {
 	-- 'shared/palepale.lua',
 }
 
--- server_script 'server/ban.lua'
+server_script 'server/ban.lua'
 
 --- Load configuration convars
 --- Add "exec @rhd_se_xxx/se.cfg" to your server.cfg

@@ -42,6 +42,7 @@ client_scripts {
 
 server_scripts {
     'imports/callback/server.lua',
+    'imports/latent/server.lua',
     'imports/hook/shared.lua',
     'imports/registerHook/shared.lua',
     'imports/getFilesInDirectory/server.lua',

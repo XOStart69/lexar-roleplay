@@ -86,17 +86,11 @@ if isServer then
     end
 
     function qbFn.CreateAccountNumber()
-        local AccountNumber = 'US0' .. math.random(1, 9) .. 'SMCore' .. math.random(1111, 9999) .. math.random(1111, 9999) .. math.random(11, 99)
-        local result = db.prepare_async('SELECT EXISTS(SELECT 1 FROM players WHERE JSON_UNQUOTE(JSON_EXTRACT(charinfo, "$.account")) = ?) AS uniqueCheck', { AccountNumber })
-        if result == 0 then return AccountNumber end
-        return qbFn.CreateAccountNumber()
+        return 'US0' .. math.random(1, 9) .. 'SMCore' .. math.random(1111, 9999) .. math.random(1111, 9999) .. math.random(11, 99)
     end
 
     function qbFn.CreatePhoneNumber()
-        local PhoneNumber = math.random(100, 999) .. math.random(1000000, 9999999)
-        local result = db.prepare_async('SELECT EXISTS(SELECT 1 FROM players WHERE JSON_UNQUOTE(JSON_EXTRACT(charinfo, "$.phone")) = ?) AS uniqueCheck', { PhoneNumber })
-        if result == 0 then return PhoneNumber end
-        return qbFn.CreatePhoneNumber()
+        return math.random(100, 999) .. math.random(1000000, 9999999)
     end
 
     ---@param source Source
@@ -330,7 +324,7 @@ if isServer then
 
     ---@deprecated use setKickReason or deferrals for connecting players, and the DropPlayer native directly otherwise
     qbFn.Kick = function(source, reason, setKickReason, deferrals)
-        reason = ('\n %s \n 🔸 Check our Discord for further information: %s'):format(reason, QBConfig.Server.Discord)
+        reason = ('\n %s \n ðŸ”¸ Check our Discord for further information: %s'):format(reason, QBConfig.Server.Discord)
         if setKickReason then
             setKickReason(reason)
         end

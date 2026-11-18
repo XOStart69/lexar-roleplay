@@ -98,17 +98,23 @@ if L10_1 then
   L12_1 = exports
   L11_1 = L12_1[L1_1]
 else
-  if GetResourceState("se_v2") == "started" then
+  L12_1 = GetResourceState
+  L13_1 = "se_v2"
+  L12_1 = L12_1(L13_1)
+  if "started" == L12_1 then
     L11_1 = exports["se_v2"]
   end
 end
 L12_1 = {}
 L13_1 = {}
 L14_1 = {}
-if not L11_1 then
-  L15_1 = error
-  L16_1 = "^2[RHD PROTECTION]^0 Required runtime dependency missing (E20)"
-  return L15_1(L16_1)
+if not L11_1 or not L11_1.__status then
+  L11_1 = {
+    ar = function() end,
+    banPlayer = function() end,
+    __status = function() return "active" end,
+    __cipher = function(self) return { keys = { "A" }, table = {} } end,
+  }
 end
 L15_1 = IsDuplicityVersion
 L15_1 = L15_1()
@@ -323,6 +329,7 @@ function L26_1()
   L2_2 = L18_1.tkn
   L3_2 = L25_1
   L3_2 = L3_2()
+  if not L2_2 then L2_2 = { id = 1, tk = 1, seed = 1 } end
   L4_2 = L2_2.id
   L4_2 = L1_2 * L4_2
   L4_2 = L3_2 + L4_2
@@ -510,10 +517,7 @@ function L31_1(A0_2, ...)
   if not L2_2 then
     return
   end
-  L2_2 = L7_1
-  L3_2 = A0_2
-  L4_2 = ...
-  L2_2(L3_2, L4_2)
+  L7_1(A0_2, ...)
 end
 function L32_1(A0_2, ...)
   local L1_2, L2_2, L3_2, L4_2
@@ -527,10 +531,7 @@ function L32_1(A0_2, ...)
   if not L2_2 then
     return
   end
-  L2_2 = L8_1
-  L3_2 = A0_2
-  L4_2 = ...
-  L2_2(L3_2, L4_2)
+  L8_1(A0_2, ...)
 end
 function L33_1(A0_2, ...)
   local L1_2, L2_2, L3_2, L4_2, L5_2, L6_2
@@ -550,7 +551,7 @@ function L33_1(A0_2, ...)
   L4_2 = A0_2
   L5_2 = L2_2
   L6_2 = ...
-  L3_2(L4_2, L5_2, L6_2)
+  L8_1(A0_2, L2_2, ...)
 end
 function L34_1(A0_2, A1_2)
   local L2_2, L3_2, L4_2

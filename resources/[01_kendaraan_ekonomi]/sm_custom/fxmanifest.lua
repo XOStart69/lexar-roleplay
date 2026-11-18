@@ -63,7 +63,7 @@ files {
 
 data_file 'CARCOLS_GEN9_FILE' 'meta/carcols_gen9.meta'
 data_file 'CARMODCOLS_GEN9_FILE' 'meta/carmodcols_gen9.meta'
-data_file 'FIVEM_LOVES_YOU_447B37BE29496FA0' 'stream/rhd_nitrous_flame.ypt'
+-- data_file 'FIVEM_LOVES_YOU_447B37BE29496FA0' 'stream/rhd_nitrous_flame.ypt'
 data_file 'DLC_ITYP_REQUEST' 'stream/paint_screen/rhd_paint_screen.ytyp'
 
 dependencies {

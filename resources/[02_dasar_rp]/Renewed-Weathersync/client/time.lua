@@ -37,6 +37,7 @@ NetworkOverrideClockMillisecondsPerGameMinute(timeFrozen and 99999999 or timeSca
 
 AddStateBagChangeHandler('syncWeather', ('player:%s'):format(cache.serverId), function(_, _, value)
     if value then
+        if not currentTime then currentTime = { hour = 12, minute = 0 } end
         NetworkOverrideClockTime(currentTime.hour, currentTime.minute, 0)
         if not timeFrozen then
             NetworkOverrideClockMillisecondsPerGameMinute(timeScale)
