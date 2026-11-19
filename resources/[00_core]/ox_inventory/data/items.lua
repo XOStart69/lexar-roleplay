@@ -4385,7 +4385,7 @@ return {
 		label = 'Notepad',
 		weight = 200,
 		close = true,
-		stack = true,
+		stack = false,
 		client = {
 			export = 'sm_notepad.openNotepad'
 		}
