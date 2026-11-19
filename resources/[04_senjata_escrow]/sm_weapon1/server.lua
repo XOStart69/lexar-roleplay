@@ -1,1 +1,1 @@
--- file hilang dari dump, dibuat ulang
+-- nama senjata hanya dipakai sisi client, server tidak menyimpan state
