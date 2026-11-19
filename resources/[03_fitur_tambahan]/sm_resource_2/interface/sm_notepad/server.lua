@@ -168,16 +168,17 @@ lib.callback.register('sm_notepad:give', function(src, slot, target, text, font)
     if not player or not getPlayer(target) then return false, 'gone' end
     if not within(src, target, config.giveDistance) then return false, 'distance' end
 
-    local canCarry = pcall(function() return exports.ox_inventory:CanCarryItem(target, ITEM, 1) end)
-    if not canCarry then return false, 'target_full' end
-
-    local removed = pcall(function() return exports.ox_inventory:RemoveItem(src, ITEM, 1, nil, slot) end)
-    if not removed then return false, 'gone' end
+    local okCarry, canCarry = pcall(function() return exports.ox_inventory:CanCarryItem(target, ITEM, 1) end)
+    if not okCarry or not canCarry then return false, 'target_full' end
 
     local meta = { text = text, font = sanitizeFont(font), label = config.writtenLabel }
-    local added = pcall(function() return exports.ox_inventory:AddItem(target, ITEM, 1, meta) end)
 
-    if not added then
+    local okRemove, removed = pcall(function() return exports.ox_inventory:RemoveItem(src, ITEM, 1, nil, slot) end)
+    if not okRemove or not removed then return false, 'gone' end
+
+    local okAdd, added = pcall(function() return exports.ox_inventory:AddItem(target, ITEM, 1, meta) end)
+
+    if not okAdd or not added then
         pcall(function() exports.ox_inventory:AddItem(src, ITEM, 1, meta) end)
         return false, 'target_full'
     end
@@ -198,12 +199,13 @@ lib.callback.register('sm_notepad:pickup', function(src, id)
     if ped == 0 then return false, 'gone' end
     if #(GetEntityCoords(ped) - vector3(note.x, note.y, note.z)) > config.readDistance then return false, 'distance' end
 
-    local canCarry = pcall(function() return exports.ox_inventory:CanCarryItem(src, ITEM, 1) end)
-    if not canCarry then return false, 'full' end
+    local okCarry, canCarry = pcall(function() return exports.ox_inventory:CanCarryItem(src, ITEM, 1) end)
+    if not okCarry or not canCarry then return false, 'full' end
 
     local meta = { text = note.text, font = note.font, label = config.writtenLabel }
-    local added = pcall(function() return exports.ox_inventory:AddItem(src, ITEM, 1, meta) end)
-    if not added then return false, 'full' end
+
+    local okAdd, added = pcall(function() return exports.ox_inventory:AddItem(src, ITEM, 1, meta) end)
+    if not okAdd or not added then return false, 'full' end
 
     MySQL.update.await(('DELETE FROM %s WHERE id = ?'):format(TABLE), { id })
     unpublish(id)
