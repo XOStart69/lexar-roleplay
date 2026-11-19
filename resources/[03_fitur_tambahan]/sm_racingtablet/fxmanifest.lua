@@ -51,9 +51,9 @@ server_scripts {
     'server/crypto.lua',
     'server/crews.lua',
     'server/racers.lua',
+    'server/head2head.lua',
     'server/admin.lua',
     'server/elo.lua',
-    'server/head2head.lua',
     'server/drift.lua',
     'server/racebucket.lua'
 }
