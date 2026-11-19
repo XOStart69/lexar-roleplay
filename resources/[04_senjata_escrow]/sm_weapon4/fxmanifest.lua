@@ -35,4 +35,4 @@ data_file 'WEAPONINFO_FILE' '**/weapons.meta'
 --     "config.lua",
 --     "cl_weaponNames",
 -- }
-dependency '/assetpacks'
+-- dependency '/assetpacks'
