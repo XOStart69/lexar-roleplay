@@ -161,8 +161,6 @@ cwCallback.register('sm_racingtablet:server:setupRace', function(src, trackId, l
         trackId = track.id,
         laps = math.max(tonumber(laps) or 1, 1),
         elimination = elimination == true,
-        ranked = false,
-        ranked = false,
         host = citizenid,
         started = false,
         finished = false,
@@ -171,6 +169,11 @@ cwCallback.register('sm_racingtablet:server:setupRace', function(src, trackId, l
     }
 
     race.racers[citizenid] = { Racername = getPlayerName(src) }
+
+    local tier = MySQL.scalar.await('SELECT auth FROM racing_access WHERE citizenid = ?', { citizenid }) or Config.BasePermission
+    local perms = Config.Permissions[tier] or {}
+
+    race.ranked = perms.startRanked == true
 
     races[race.id] = race
     ofSource[src] = race.id
