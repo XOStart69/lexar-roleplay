@@ -7,13 +7,17 @@ lua54 'yes'
 this_is_a_map 'yes'
 
 dependencies {
-    '/server:4960',     -- ⚠️PLEASE READ⚠️; Requires at least SERVER build 4960.
-    '/gameBuild:2545',  -- ⚠️PLEASE READ⚠️; Requires at least GAME build 2545.
+    '/server:4960',     -- âš ï¸PLEASE READâš ï¸; Requires at least SERVER build 4960.
+    '/gameBuild:2545',  -- âš ï¸PLEASE READâš ï¸; Requires at least GAME build 2545.
 }
 
 escrow_ignore {
     'stream/**/*.ytd',
     'catcafe.lua',
+}
+
+client_scripts {
+    'catcafe.lua'
 }
 
 data_file 'TIMECYCLEMOD_FILE' 'gabz_catcafe.xml'

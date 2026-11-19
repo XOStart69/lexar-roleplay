@@ -659,6 +659,7 @@ CreateThread(function()
 
         function zones:onExit()
             playerState.fuel_station_id = nil
+            self.busy = false
 
             if self.infoUI then
                 self.infoUI = false

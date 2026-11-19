@@ -27,3 +27,7 @@ function RingBell(entity, homeId)
     Wait(1000)
     TriggerServerEvent('Housing:server:Bell', homeId)
 end
+
+RegisterNetEvent('Housing:client:BellPlay', function()
+    PlaySoundFrontend(-1, 'Hit', 'DLC_HEIST_HACKING_SNAKE_SOUNDS', true)
+end)

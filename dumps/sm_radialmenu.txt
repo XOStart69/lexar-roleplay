@@ -1,0 +1,3839 @@
+########## MANIFEST: A:\Lexar Roleplay\resources\[00_core]\sm_radialmenu
+fx_version 'cerulean'
+game 'gta5'
+lua54 'yes'
+use_experimental_fxv2_oal 'yes'
+
+name 'sm_radialmenu'
+description 'ox_lib RadialMenu'
+version '1.0.0'
+
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+    '@sm_core/shared/locale.lua',
+    'locales/*.lua',
+    'config.lua',
+}
+
+client_scripts {
+    'client/*.lua',
+}
+
+server_scripts {
+    'server/*.lua',
+}
+
+files {
+    'stream/*',
+}
+
+provide 'qb-radialmenu'
+dependency 'se_v2'
+
+
+########## FILE: \config.lua
+Config = {}
+
+Config.EnableExtraMenu = true
+Config.Fliptime = 15000
+
+Config.MenuItems = {
+	[1] = {
+		id = "citizen",
+		title = "Player Menu",
+		icon = "hand",
+		items = {
+			{
+				id = "playerinvehicle",
+				title = "Put In Vehicle",
+				icon = "car-side",
+				type = "client",
+				event = "police:client:PutPlayerInVehicle",
+				shouldClose = true
+			},
+			{
+				id = "playeroutvehicle",
+				title = "Put Out Vehicle",
+				icon = "car-side",
+				type = "client",
+				event = "police:client:SetPlayerOutVehicle",
+				shouldClose = true
+			},
+			{
+				id = "stealplayer",
+				title = "Rob",
+				icon = "mask",
+				type = "client",
+				event = "police:client:RobPlayer",
+				shouldClose = true
+			},
+			
+			{
+				id = "escort",
+				title = "Escort",
+				icon = "user-group",
+				type = "client",
+				event = "police:client:EscortPlayer",
+				shouldClose = true
+			},
+			{
+				id = "getintrunk",
+				title = "Get In Trunk",
+				icon = "car",
+				type = "client",
+				event = "qb-trunk:client:GetIn",
+				shouldClose = true
+			},
+		}
+	},
+	[2] = {
+		id = 'OpenPhone',
+		title = 'Phone',
+		icon = 'mobile',
+		type = 'client',
+		event = 'axon:openPhone',
+		shouldClose = true
+	},
+	[3] = {
+        id = 'OpenInventory',
+        title = 'Inventory',
+        icon = 'bag-shopping',
+        type = 'client',
+        event = 'ox_inventory:openInventory',
+        shouldClose = true
+    },
+	[6] = {
+        id = 'dokumenpenting',
+        title = 'Dokumen',
+        icon = 'folder-open',
+        type = 'command',
+        event = 'doc',
+        shouldClose = true
+    },
+	[4] = {
+		id = 'emotemenu',
+		title = 'Emote Menu',
+		icon = 'person',
+		items = {
+			{
+				id="foldarms",
+				title="Foldarms",
+				icon="person",
+				type = "command",
+				event = "e foldarms2",
+				shouldClose = true
+			},
+			{
+				id="salute",
+				title="Salute",
+				icon="person",
+				type = "command",
+				event = "e salute",
+				shouldClose = true
+			},
+			{
+				id="facepalm",
+				title="Face Palm",
+				icon="person",
+				type = "command",
+				event = "e facepalm",
+				shouldClose = true
+			},
+			{
+				id="think2",
+				title="Think2",
+				icon="person",
+				type = "command",
+				event = "e think2",
+				shouldClose = true
+			},
+			{
+				id="clap",
+				title="Clap",
+				icon="person",
+				type = "command",
+				event = "e clap",
+				shouldClose = true
+			},
+			{
+				id="valet3",
+				title="Valet3",
+				icon="person",
+				type = "command",
+				event = "e valet3",
+				shouldClose = true
+			},
+			{
+				id="noway",
+				title="No",
+				icon="person",
+				type = "command",
+				event = "e no",
+				shouldClose = true
+			},
+			{
+				id="peace",
+				title="Peace",
+				icon="person",
+				type = "command",
+				event = "e peace",
+				shouldClose = true
+			},
+			{
+				id="wave7",
+				title="Wave7",
+				icon="person",
+				type = "command",
+				event = "e wave7",
+				shouldClose = true
+			},
+			{
+				id="argue",
+				title="Argue",
+				icon="person",
+				type = "command",
+				event = "e argue",
+				shouldClose = true
+			},
+		}
+	},
+	[5] = {
+        id = 'billing',
+        title = 'Invoice',
+        icon = 'file-invoice',
+        type = 'command',
+        event = 'billing',
+        shouldClose = true
+    },
+	[8] = {
+		id = 'fixmenu',
+		title = 'Fix Menu',
+		icon = 'wrench',
+		items = {
+			{
+				id = 'reloadskin',
+				title = 'reloadskin',
+				icon = 'person',
+				type = 'command',
+				event = 'reloadskin',
+				shouldClose = true
+			},
+			{
+				id = 'fixui',
+				title = 'fixui',
+				icon = 'window-restore',
+				type = 'command',
+				event = 'fixui',
+				shouldClose = true
+			},
+			{
+				id = 'tenggelam',
+				title = 'tenggelam',
+				icon = 'arrow-up-from-ground-water',
+				type = 'command',
+				event = 'tenggelam',
+				shouldClose = true
+			},
+			{
+				id = 'kedip',
+				title = 'kedip',
+				icon = 'arrows-rotate',
+				type = 'command',
+				event = 'kedip',
+				shouldClose = true
+			},
+			{
+				id = 'mikir',
+				title = 'mikir',
+				icon = 'brain',
+				action = function()
+					lib.registerContext({
+						id = 'sm_cache_menu',
+						title = 'Download Cache',
+						options = {
+							{
+								title = 'Mulai Download',
+								description = 'Download cache aset server tanpa keliling (ESC sembunyikan kursor)',
+								icon = 'download',
+								onSelect = function() ExecuteCommand('mikir') end,
+							},
+							{
+								title = 'Panel Cache',
+								description = 'Scan & pilih resource yang mau di-download',
+								icon = 'list-check',
+								onSelect = function() ExecuteCommand('aturpikiran') end,
+							},
+							{
+								title = 'Berhenti',
+								description = 'Batalkan download, progress disimpan',
+								icon = 'circle-stop',
+								onSelect = function() ExecuteCommand('berhentimikir') end,
+							},
+						},
+					})
+					lib.showContext('sm_cache_menu')
+				end,
+				shouldClose = true
+			},
+		}
+	},
+	[7] = {
+		id = "clothesmenu",
+		title = "Clothing",
+		icon = "shirt",
+		action = function()
+			exports.sm_appearance:openClothingRail()
+		end,
+		shouldClose = true
+	},
+
+	[9] = {
+		id = 'petmenu',
+		title = 'Pet',
+		icon = 'paw',
+		type = 'command',
+		event = 'pet',
+		shouldClose = true
+	},
+}
+
+Config.VehicleDoors = {
+	id = "vehicledoors",
+	title = "Vehicle Doors",
+	icon = "car-side",
+	items = {
+		{
+			id = "door0",
+			title = "Drivers door",
+			icon = "car-side",
+			type = "client",
+			event = "qb-radialmenu:client:openDoor",
+			arg = 0,
+			shouldClose = false
+		},
+		{
+			id = "door4",
+			title = "Hood",
+			icon = "car",
+			type = "client",
+			event = "qb-radialmenu:client:openDoor",
+			arg = 4,
+			shouldClose = false
+		},
+		{
+			id = "door1",
+			title = "Passengers door",
+			icon = "car-side",
+			type = "client",
+			event = "qb-radialmenu:client:openDoor",
+			arg = 1,
+			shouldClose = false
+		},
+		{
+			id = "door3",
+			title = "Right rear",
+			icon = "car-side",
+			type = "client",
+			event = "qb-radialmenu:client:openDoor",
+			arg = 3,
+			shouldClose = false
+		},
+		{
+			id = "door5",
+			title = "Trunk",
+			icon = "car",
+			type = "client",
+			event = "qb-radialmenu:client:openDoor",
+			arg = 5,
+			shouldClose = false
+		},
+		{
+			id = "door2",
+			title = "Left rear",
+			icon = "car-side",
+			type = "client",
+			event = "qb-radialmenu:client:openDoor",
+			arg = 2,
+			shouldClose = false
+		}
+	}
+}
+
+Config.VehicleExtras = {
+	id = "vehicleextras",
+	title = "Vehicle Extras",
+	icon = "plus",
+	items = {
+		{
+			id = "extra1",
+			title = "Extra 1",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 1,
+			shouldClose = false
+		},
+		{
+			id = "extra2",
+			title = "Extra 2",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 2,
+			shouldClose = false
+		},
+		{
+			id = "extra3",
+			title = "Extra 3",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 3,
+			shouldClose = false
+		},
+		{
+			id = "extra4",
+			title = "Extra 4",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 4,
+			shouldClose = false
+		},
+		{
+			id = "extra5",
+			title = "Extra 5",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 5,
+			shouldClose = false
+		},
+		{
+			id = "extra6",
+			title = "Extra 6",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 6,
+			shouldClose = false
+		},
+		{
+			id = "extra7",
+			title = "Extra 7",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 7,
+			shouldClose = false
+		},
+		{
+			id = "extra8",
+			title = "Extra 8",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 8,
+			shouldClose = false
+		},
+		{
+			id = "extra9",
+			title = "Extra 9",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 9,
+			shouldClose = false
+		},
+		{
+			id = "extra10",
+			title = "Extra 10",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 10,
+			shouldClose = false
+		},
+		{
+			id = "extra11",
+			title = "Extra 11",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 11,
+			shouldClose = false
+		},
+		{
+			id = "extra12",
+			title = "Extra 12",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 12,
+			shouldClose = false
+		},
+		{
+			id = "extra13",
+			title = "Extra 13",
+			icon = "box-open",
+			type = "client",
+			event = "radialmenu:client:setExtra",
+			arg = 13,
+			shouldClose = false
+		}
+	}
+}
+
+Config.VehicleSeats = {
+	id = "vehicleseats",
+	label = "Vehicle Seats",
+	icon = "chair",
+	menu = "vehicleseatsmenu"
+}
+
+Config.JobInteractions = {
+	["ambulance"] = {
+		-- {
+		-- 	id = "deathcheck",
+		-- 	title = "Check Death Cause",
+		-- 	icon = "heart-pulse",
+		-- 	type = "client",
+		-- 	event = "deathcheck:client:checkNearestPlayer",
+		-- 	shouldClose = true
+		-- },
+		{
+			id = "revivep",
+			title = "Revive",
+			icon = "user-doctor",
+			type = "client",
+			event = "hospital:client:RevivePlayer",
+			shouldClose = true
+		},
+		{
+			id = "treatwounds",
+			title = "Heal wounds",
+			icon = "bandage",
+			type = "client",
+			event = "hospital:client:TreatWounds",
+			shouldClose = true
+		},
+		{
+			id = "stretcher",
+			title = "Stretcher",
+			icon = "bed",
+			items = {
+				{
+					id = "spawnstretcher",
+					title = "Spawn Stretcher",
+					icon = "plus",
+					type = "client",
+					event = "qb-radialmenu:client:TakeStretcher",
+					shouldClose = true
+				},
+				{
+					id = "despawnstretcher",
+					title = "Despawn Stretcher",
+					icon = "minus",
+					type = "client",
+					event = "qb-radialmenu:client:RemoveStretcher",
+					shouldClose = true
+				}
+			}
+		},
+		{
+			id = "searchplayer",
+			title = "Search",
+			icon = "magnifying-glass",
+			type = "client",
+			event = "police:client:SearchPlayer",
+			shouldClose = true
+		}
+	},
+	["sksm"] = {
+		{
+			id = "searchplayer",
+			title = "Search",
+			icon = "magnifying-glass",
+			type = "client",
+			event = "police:client:SearchPlayer",
+			shouldClose = true
+		}
+	},
+	["rsroxwood"] = {
+		{
+			id = "treatwounds",
+			title = "Heal wounds",
+			icon = "bandage",
+			type = "client",
+			event = "hospital:client:TreatWounds",
+			shouldClose = true
+		},
+		{
+			id = "revivep",
+			title = "Revive",
+			icon = "user-doctor",
+			type = "client",
+			event = "hospital:client:RevivePlayer",
+			shouldClose = true
+		},
+	},
+	["puskesmas"] = {
+		{
+			id = "treatwounds",
+			title = "Heal wounds",
+			icon = "bandage",
+			type = "client",
+			event = "hospital:client:TreatWounds",
+			shouldClose = true
+		},
+		{
+			id = "revivep",
+			title = "Revive",
+			icon = "user-doctor",
+			type = "client",
+			event = "hospital:client:RevivePlayer",
+			shouldClose = true
+		},
+	},
+	["banmeskota"] = {
+		{
+			id = "revivep",
+			title = "Revive",
+			icon = "user-doctor",
+			type = "client",
+			event = "hospital:client:RevivePlayer",
+			shouldClose = true
+		},
+	},
+	["taxism"] = {
+		{
+			id = "togglemeter",
+			title = "Taxi Ride with Customer",
+			icon = "taxi",
+			type = "client",
+			event = "qb-taxi:startTaxiRide",
+			shouldClose = false
+		},
+		{
+			id = "togglemouse",
+			title = "Start Argometer",
+			icon = "taxi",
+			type = "client",
+			event = "qb-taxi:startmeter",
+			shouldClose = true
+		},
+		{
+			id = "pause_meter",
+			title = "Pause Argometer",
+			icon = "taxi",
+			type = "client",
+			event = "qb-taxi:pausemeter",
+			shouldClose = true
+		},
+		{
+			id = "reset_meter",
+			title = "Reset Argometer",
+			icon = "taxi",
+			type = "client",
+			event = "qb-taxi:resetmeter",
+			shouldClose = true
+		},
+	},
+	["tow"] = {
+		{
+			id = "togglenpc",
+			title = "Toggle NPC",
+			icon = "toggle-on",
+			type = "client",
+			event = "jobs:client:ToggleNpc",
+			shouldClose = true
+		},
+		{
+			id = "towvehicle",
+			title = "Tow vehicle",
+			icon = "truck-pickup",
+			type = "client",
+			event = "qb-tow:client:TowVehicle",
+			shouldClose = true
+		}
+	},
+	["mechanic"] = {
+		{
+			id = "unlockvehicle",
+			title = "Buka Paksa Kendaraan",
+			icon = "key",
+			type = "client",
+			event = "radialmenu:client:forceUnlockVehicle",
+			shouldClose = true
+		},
+	},
+	["maxspeedgarage"] = {
+		{
+			id = "unlockvehicle",
+			title = "Buka Paksa Kendaraan",
+			icon = "key",
+			type = "client",
+			event = "radialmenu:client:forceUnlockVehicle",
+			shouldClose = true
+		},
+	},
+	["mechanic969"] = {
+		{
+			id = "unlockvehicle",
+			title = "Buka Paksa Kendaraan",
+			icon = "key",
+			type = "client",
+			event = "radialmenu:client:forceUnlockVehicle",
+			shouldClose = true
+		},
+	},
+	["usmarshal"] = {
+		{
+			id = "usmsradio",
+			title = "USMS Radio",
+			icon = "walkie-talkie",
+			items = {
+				{
+					id = "central_usms",
+					title = "Central USMS",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 8,
+					shouldClose = true
+				},
+				{
+					id = "tac1",
+					title = "TAC 1",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 8.1,
+					shouldClose = true
+				},
+				{
+					id = "tac2",
+					title = "TAC 2",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 8.2,
+					shouldClose = true
+				},
+				{
+					id = "tac3",
+					title = "TAC 3",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 8.3,
+					shouldClose = true
+				},
+				{
+					id = "tac4",
+					title = "TAC 4",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 8.4,
+					shouldClose = true
+				},
+				{
+					id = "tac5",
+					title = "TAC 5",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 8.5,
+					shouldClose = true
+				}
+			}
+		},
+		{
+			id = "unlockvehicle",
+			title = "Buka Paksa Kendaraan",
+			icon = "key",
+			type = "client",
+			event = "radialmenu:client:forceUnlockVehicle",
+			shouldClose = true
+		},
+		{
+			id = "fingerprint",
+			title = "Check Fingerprint",
+			icon = "list-check",
+			type = "command",
+			event = "fingerprint",
+			shouldClose = true
+		},
+		{
+			id = "jailplayer",
+			title = "Jail",
+			icon = "user-lock",
+			type = "command",
+			event = "jail",
+			shouldClose = true
+		},
+		{
+			id = "statuscheck",
+			title = "GSR",
+			icon = "list-check",
+			type = "command",
+			event = "gsrcheck",
+			shouldClose = true
+		},
+	},
+	["government"] = {
+		{
+			id = "govtradio",
+			title = "Gov-Police Radio",
+			icon = "walkie-talkie",
+			items = {
+				{
+					id = "central_smsp",
+					title = "Central SMSP",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1,
+					shouldClose = true
+				},
+				{
+					id = "central_lspd",
+					title = "Central LSPD",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.1,
+					shouldClose = true
+				},
+				{
+					id = "central_bcso",
+					title = "Central BCSO",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.2,
+					shouldClose = true
+				},
+				{
+					id = "tac1",
+					title = "TAC 1",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 3.1,
+					shouldClose = true
+				},
+				{
+					id = "tac2",
+					title = "TAC 2",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 3.2,
+					shouldClose = true
+				},
+				{
+					id = "tac3",
+					title = "TAC 3",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 3.3,
+					shouldClose = true
+				},
+				{
+					id = "tac4",
+					title = "TAC 4",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 3.4,
+					shouldClose = true
+				},
+				{
+					id = "tac5",
+					title = "TAC 5",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 3.5,
+					shouldClose = true
+				}
+			}
+		},
+	},
+	["police"] = {
+		{
+			id = "mdtopen",
+			title = "MDT",
+			icon = "tablet",
+			type = "client",
+			event = "radialmenu:client:openmdt",
+			shouldClose = true
+		},
+		{
+			id = "policeradio",
+			title = "Police Radio",
+			icon = "walkie-talkie",
+			items = {
+				{
+					id = "central_smsp",
+					title = "Central SMSP",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1,
+					shouldClose = true
+				},
+				{
+					id = "central_lspd",
+					title = "Central LSPD",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.1,
+					shouldClose = true
+				},
+				{
+					id = "central_bcso",
+					title = "Central BCSO",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.2,
+					shouldClose = true
+				},
+				{
+					id = "central_usms",
+					title = "Central USMS",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 8,
+					shouldClose = true
+				},
+				{
+					id = "central_ems",
+					title = "Central EMS",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 2,
+					shouldClose = true
+				},
+				{
+					id = "tac1",
+					title = "TAC 1",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.3,
+					shouldClose = true
+				},
+				{
+					id = "tac2",
+					title = "TAC 2",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.4,
+					shouldClose = true
+				},
+				{
+					id = "tac3",
+					title = "TAC 3",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.5,
+					shouldClose = true
+				},
+				{
+					id = "tac4",
+					title = "TAC 4",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.6,
+					shouldClose = true
+				},
+				{
+					id = "tac5",
+					title = "TAC 5",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.7,
+					shouldClose = true
+				},
+				{
+					id = "tac6",
+					title = "TAC 6",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.8,
+					shouldClose = true
+				},
+				{
+					id = "tac7",
+					title = "TAC 7",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.9,
+					shouldClose = true
+				},
+				{
+					id = "tac8",
+					title = "TAC 8",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.11,
+					shouldClose = true
+				},
+				{
+					id = "tac9",
+					title = "TAC 9",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.12,
+					shouldClose = true
+				},
+				{
+					id = "tac10",
+					title = "TAC 10",
+					icon = "tower-broadcast",
+					type = "client",
+					event = "radialmenu:client:JoinRadio",
+					arg = 1.13,
+					shouldClose = true
+				}
+			}
+		},
+		{
+			id = "policeinteraction",
+			title = "Police Actions",
+			icon = "list-check",
+			items = {
+				{
+					id = "unlockvehicle",
+					title = "Buka Paksa Kendaraan",
+					icon = "key",
+					type = "client",
+					event = "radialmenu:client:forceUnlockVehicle",
+					shouldClose = true
+				},
+				{
+					id = "statuscheck",
+					title = "GSR",
+					icon = "list-check",
+					type = "command",
+					event = "gsrcheck",
+					shouldClose = true
+				},
+				{
+					id = "policetools",
+					title = "Tools",
+					icon = "box-open",
+					type = "command",
+					event = "policetools",
+					shouldClose = true
+				},
+				{
+					id = "fingerprint",
+					title = "Check Fingerprint",
+					icon = "list-check",
+					type = "command",
+					event = "fingerprint",
+					shouldClose = true
+				},
+				{
+					id = "communityservice",
+					title = "Hukuman Sosial",
+					icon = "user-lock",
+					type = "command",
+					event = "cs",
+					shouldClose = true
+				},
+				-- {
+				-- 	id = "anklet",
+				-- 	title = "Anklet",
+				-- 	icon = "user-lock",
+				-- 	type = "command",
+				-- 	event = "anklet",
+				-- 	shouldClose = true
+				-- },
+				{
+					id = "escort",
+					title = "Escort",
+					icon = "user-group",
+					type = "client",
+					event = "police:client:EscortPlayer",
+					shouldClose = true
+				},
+				{
+					id = "searchplayer",
+					title = "Search",
+					icon = "magnifying-glass",
+					type = "client",
+					event = "police:client:SearchPlayer",
+					shouldClose = true
+				},
+				{
+					id = "jailplayer",
+					title = "Jail",
+					icon = "user-lock",
+					type = "command",
+					event = "jail",
+					shouldClose = true
+				},
+			}
+		},
+	},
+	["hotdog"] = {
+		{
+			id = "togglesell",
+			title = "Toggle sell",
+			icon = "hotdog",
+			type = "client",
+			event = "qb-hotdogjob:client:ToggleSell",
+			shouldClose = true
+		}
+	}
+}
+
+Config.GangInteractions = {
+	["lostmc"] = {
+		{
+			id = "playerinvehicle",
+			title = "Put In Vehicle",
+			icon = "car-side",
+			type = "client",
+			event = "police:client:PutPlayerInVehicle",
+			shouldClose = true
+		},
+		{
+			id = "playeroutvehicle",
+			title = "Put Out Vehicle",
+			icon = "car-side",
+			type = "client",
+			event = "police:client:SetPlayerOutVehicle",
+			shouldClose = true
+		},
+		{
+			id = "stealplayer",
+			title = "Steal",
+			icon = "mask",
+			type = "client",
+			event = "police:client:SearchPlayer",
+			shouldClose = true
+		},
+		{
+			id = "escort2",
+			title = "Escort",
+			icon = "user-group",
+			type = "client",
+			event = "police:client:EscortPlayer",
+			shouldClose = true
+		}
+	}
+}
+
+Config.TrunkClasses = {
+	[0] = {allowed = true, x = 0.0, y = -1.5, z = 0.0}, -- Coupes
+	[1] = {allowed = true, x = 0.0, y = -2.0, z = 0.0}, -- Sedans
+	[2] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- SUVs
+	[3] = {allowed = true, x = 0.0, y = -1.5, z = 0.0}, -- Coupes
+	[4] = {allowed = true, x = 0.0, y = -2.0, z = 0.0}, -- Muscle
+	[5] = {allowed = true, x = 0.0, y = -2.0, z = 0.0}, -- Sports Classics
+	[6] = {allowed = true, x = 0.0, y = -2.0, z = 0.0}, -- Sports
+	[7] = {allowed = true, x = 0.0, y = -2.0, z = 0.0}, -- Super
+	[8] = {allowed = false, x = 0.0, y = -1.0, z = 0.25}, -- Motorcycles
+	[9] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Off-road
+	[10] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Industrial
+	[11] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Utility
+	[12] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Vans
+	[13] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Cycles
+	[14] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Boats
+	[15] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Helicopters
+	[16] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Planes
+	[17] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Service
+	[18] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Emergency
+	[19] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Military
+	[20] = {allowed = true, x = 0.0, y = -1.0, z = 0.25}, -- Commercial
+	[21] = {allowed = true, x = 0.0, y = -1.0, z = 0.25} -- Trains
+}
+
+Config.Commands = {
+	["top"] = {
+		Func = function()
+			ToggleClothing({"Top"})
+		end,
+		Sprite = "top",
+		Desc = "Take your shirt off/on",
+		Button = 1,
+		Name = "Torso"
+	},
+	["gloves"] = {
+		Func = function()
+			ToggleClothing({"Gloves"})
+		end,
+		Sprite = "gloves",
+		Desc = "Take your gloves off/on",
+		Button = 2,
+		Name = "Gloves"
+	},
+	["visor"] = {
+		Func = function()
+			ToggleProps({"Visor"})
+		end,
+		Sprite = "visor",
+		Desc = "Toggle hat variation",
+		Button = 3,
+		Name = "Visor"
+	},
+	["bag"] = {
+		Func = function()
+			ToggleClothing({"Bag"})
+		end,
+		Sprite = "bag",
+		Desc = "Opens or closes your bag",
+		Button = 8,
+		Name = "Bag"
+	},
+	["shoes"] = {
+		Func = function()
+			ToggleClothing({"Shoes"})
+		end,
+		Sprite = "shoes",
+		Desc = "Take your shoes off/on",
+		Button = 5,
+		Name = "Shoes"
+	},
+	["vest"] = {
+		Func = function()
+			ToggleClothing({"Vest"})
+		end,
+		Sprite = "vest",
+		Desc = "Take your vest off/on",
+		Button = 14,
+		Name = "Vest"
+	},
+	["hair"] = {
+		Func = function()
+			ToggleClothing({"Hair"})
+		end,
+		Sprite = "hair",
+		Desc = "Put your hair up/down/in a bun/ponytail.",
+		Button = 7,
+		Name = "Hair"
+	},
+	["hat"] = {
+		Func = function()
+			ToggleProps({"Hat"})
+		end,
+		Sprite = "hat",
+		Desc = "Take your hat off/on",
+		Button = 4,
+		Name = "Hat"
+	},
+	["glasses"] = {
+		Func = function()
+			ToggleProps({"Glasses"})
+		end,
+		Sprite = "glasses",
+		Desc = "Take your glasses off/on",
+		Button = 9,
+		Name = "Glasses"
+	},
+	["ear"] = {
+		Func = function()
+			ToggleProps({"Ear"})
+		end,
+		Sprite = "ear",
+		Desc = "Take your ear accessory off/on",
+		Button = 10,
+		Name = "Ear"
+	},
+	["neck"] = {
+		Func = function()
+			ToggleClothing({"Neck"})
+		end,
+		Sprite = "neck",
+		Desc = "Take your neck accessory off/on",
+		Button = 11,
+		Name = "Neck"
+	},
+	["watch"] = {
+		Func = function()
+			ToggleProps({"Watch"})
+		end,
+		Sprite = "watch",
+		Desc = "Take your watch off/on",
+		Button = 12,
+		Name = "Watch",
+		Rotation = 5.0
+	},
+	["bracelet"] = {
+		Func = function()
+			ToggleProps({"Bracelet"})
+		end,
+		Sprite = "bracelet",
+		Desc = "Take your bracelet off/on",
+		Button = 13,
+		Name = "Bracelet"
+	},
+	["mask"] = {
+		Func = function()
+			ToggleClothing({"Mask"})
+		end,
+		Sprite = "mask",
+		Desc = "Take your mask off/on",
+		Button = 6,
+		Name = "Mask"
+	}
+}
+
+local bags = {[40] = true, [41] = true, [44] = true, [45] = true}
+
+Config.ExtraCommands = {
+	["pants"] = {
+		Func = function()
+			ToggleClothing({"Pants", true})
+		end,
+		Sprite = "pants",
+		Desc = "Take your pants off/on",
+		Name = "Pants",
+		OffsetX = -0.04,
+		OffsetY = 0.0
+	},
+	["shirt"] = {
+		Func = function()
+			ToggleClothing({"Shirt", true})
+		end,
+		Sprite = "shirt",
+		Desc = "Take your shirt off/on",
+		Name = "shirt",
+		OffsetX = 0.04,
+		OffsetY = 0.0
+	},
+	["reset"] = {
+		Func = function()
+			if not ResetClothing(true) then
+				Notify("Nothing To Reset", "error")
+			end
+		end,
+		Sprite = "reset",
+		Desc = "Revert everything back to normal",
+		Name = "reset",
+		OffsetX = 0.12,
+		OffsetY = 0.2,
+		Rotate = true
+	},
+	["bagoff"] = {
+		Func = function()
+			ToggleClothing({"Bagoff", true})
+		end,
+		Sprite = "bagoff",
+		SpriteFunc = function()
+			local Bag = GetPedDrawableVariation(cache.ped, 5)
+			local BagOff = LastEquipped["Bagoff"]
+			if LastEquipped["Bagoff"] then
+				if bags[BagOff.Drawable] then
+					return "bagoff"
+				else
+					return "paraoff"
+				end
+			end
+			if Bag ~= 0 then
+				if bags[Bag] then
+					return "bagoff"
+				else
+					return "paraoff"
+				end
+			else
+				return false
+			end
+		end,
+		Desc = "Take your bag off/on",
+		Name = "bagoff",
+		OffsetX = -0.12,
+		OffsetY = 0.2
+	}
+}
+
+########## FILE: \fxmanifest.lua
+fx_version 'cerulean'
+game 'gta5'
+lua54 'yes'
+use_experimental_fxv2_oal 'yes'
+
+name 'sm_radialmenu'
+description 'ox_lib RadialMenu'
+version '1.0.0'
+
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+    '@sm_core/shared/locale.lua',
+    'locales/*.lua',
+    'config.lua',
+}
+
+client_scripts {
+    'client/*.lua',
+}
+
+server_scripts {
+    'server/*.lua',
+}
+
+files {
+    'stream/*',
+}
+
+provide 'qb-radialmenu'
+dependency 'se_v2'
+
+
+########## FILE: \client\clothing.lua
+local variations = {
+	jackets = {male = {}, female = {}},
+	hair = {male = {}, female = {}},
+	bags = {male = {}, female = {}},
+	visor = {male = {}, female = {}},
+	gloves = {
+		male = {
+			[16] = 4,
+			[17] = 4,
+			[18] = 4,
+			[19] = 0,
+			[20] = 1,
+			[21] = 2,
+			[22] = 4,
+			[23] = 5,
+			[24] = 6,
+			[25] = 8,
+			[26] = 11,
+			[27] = 12,
+			[28] = 14,
+			[29] = 15,
+			[30] = 0,
+			[31] = 1,
+			[32] = 2,
+			[33] = 4,
+			[34] = 5,
+			[35] = 6,
+			[36] = 8,
+			[37] = 11,
+			[38] = 12,
+			[39] = 14,
+			[40] = 15,
+			[41] = 0,
+			[42] = 1,
+			[43] = 2,
+			[44] = 4,
+			[45] = 5,
+			[46] = 6,
+			[47] = 8,
+			[48] = 11,
+			[49] = 12,
+			[50] = 14,
+			[51] = 15,
+			[52] = 0,
+			[53] = 1,
+			[54] = 2,
+			[55] = 4,
+			[56] = 5,
+			[57] = 6,
+			[58] = 8,
+			[59] = 11,
+			[60] = 12,
+			[61] = 14,
+			[62] = 15,
+			[63] = 0,
+			[64] = 1,
+			[65] = 2,
+			[66] = 4,
+			[67] = 5,
+			[68] = 6,
+			[69] = 8,
+			[70] = 11,
+			[71] = 12,
+			[72] = 14,
+			[73] = 15,
+			[74] = 0,
+			[75] = 1,
+			[76] = 2,
+			[77] = 4,
+			[78] = 5,
+			[79] = 6,
+			[80] = 8,
+			[81] = 11,
+			[82] = 12,
+			[83] = 14,
+			[84] = 15,
+			[85] = 0,
+			[86] = 1,
+			[87] = 2,
+			[88] = 4,
+			[89] = 5,
+			[90] = 6,
+			[91] = 8,
+			[92] = 11,
+			[93] = 12,
+			[94] = 14,
+			[95] = 15,
+			[96] = 4,
+			[97] = 4,
+			[98] = 4,
+			[99] = 0,
+			[100] = 1,
+			[101] = 2,
+			[102] = 4,
+			[103] = 5,
+			[104] = 6,
+			[105] = 8,
+			[106] = 11,
+			[107] = 12,
+			[108] = 14,
+			[109] = 15,
+			[110] = 4,
+			[111] = 4,
+			[115] = 112,
+			[116] = 112,
+			[117] = 112,
+			[118] = 112,
+			[119] = 112,
+			[120] = 112,
+			[121] = 112,
+			[122] = 113,
+			[123] = 113,
+			[124] = 113,
+			[125] = 113,
+			[126] = 113,
+			[127] = 113,
+			[128] = 113,
+			[129] = 114,
+			[130] = 114,
+			[131] = 114,
+			[132] = 114,
+			[133] = 114,
+			[134] = 114,
+			[135] = 114,
+			[136] = 15,
+			[137] = 15,
+			[138] = 0,
+			[139] = 1,
+			[140] = 2,
+			[141] = 4,
+			[142] = 5,
+			[143] = 6,
+			[144] = 8,
+			[145] = 11,
+			[146] = 12,
+			[147] = 14,
+			[148] = 112,
+			[149] = 113,
+			[150] = 114,
+			[151] = 0,
+			[152] = 1,
+			[153] = 2,
+			[154] = 4,
+			[155] = 5,
+			[156] = 6,
+			[157] = 8,
+			[158] = 11,
+			[159] = 12,
+			[160] = 14,
+			[161] = 112,
+			[162] = 113,
+			[163] = 114,
+			[165] = 4,
+			[166] = 4,
+			[167] = 4,
+			[168] = 4,
+			[170] = 15,
+			[171] = 0,
+			[172] = 1,
+			[173] = 2,
+			[174] = 4,
+			[175] = 5,
+			[176] = 6,
+			[177] = 8,
+			[178] = 11,
+			[179] = 12,
+			[180] = 14,
+			[181] = 112,
+			[182] = 113,
+			[183] = 114,
+			[185] = 184,
+			[186] = 184,
+			[187] = 184,
+			[188] = 184,
+			[189] = 185,
+			[190] = 184,
+			[191] = 184,
+			[192] = 184,
+			[193] = 184,
+			[194] = 184,
+		},
+		female = {
+			[16] = 11,
+			[17] = 3,
+			[18] = 3,
+			[19] = 3,
+			[20] = 0,
+			[21] = 1,
+			[22] = 2,
+			[23] = 3,
+			[24] = 4,
+			[25] = 5,
+			[26] = 6,
+			[27] = 7,
+			[28] = 9,
+			[29] = 11,
+			[30] = 12,
+			[31] = 14,
+			[32] = 15,
+			[33] = 0,
+			[34] = 1,
+			[35] = 2,
+			[36] = 3,
+			[37] = 4,
+			[38] = 5,
+			[39] = 6,
+			[40] = 7,
+			[41] = 9,
+			[42] = 11,
+			[43] = 12,
+			[44] = 14,
+			[45] = 15,
+			[46] = 0,
+			[47] = 1,
+			[48] = 2,
+			[49] = 3,
+			[50] = 4,
+			[51] = 5,
+			[52] = 6,
+			[53] = 7,
+			[54] = 9,
+			[55] = 11,
+			[56] = 12,
+			[57] = 14,
+			[58] = 15,
+			[59] = 0,
+			[60] = 1,
+			[61] = 2,
+			[62] = 3,
+			[63] = 4,
+			[64] = 5,
+			[65] = 6,
+			[66] = 7,
+			[67] = 9,
+			[68] = 11,
+			[69] = 12,
+			[70] = 14,
+			[71] = 15,
+			[72] = 0,
+			[73] = 1,
+			[74] = 2,
+			[75] = 3,
+			[76] = 4,
+			[77] = 5,
+			[78] = 6,
+			[79] = 7,
+			[80] = 9,
+			[81] = 11,
+			[82] = 12,
+			[83] = 14,
+			[84] = 15,
+			[85] = 0,
+			[86] = 1,
+			[87] = 2,
+			[88] = 3,
+			[89] = 4,
+			[90] = 5,
+			[91] = 6,
+			[92] = 7,
+			[93] = 9,
+			[94] = 11,
+			[95] = 12,
+			[96] = 14,
+			[97] = 15,
+			[98] = 0,
+			[99] = 1,
+			[100] = 2,
+			[101] = 3,
+			[102] = 4,
+			[103] = 5,
+			[104] = 6,
+			[105] = 7,
+			[106] = 9,
+			[107] = 11,
+			[108] = 12,
+			[109] = 14,
+			[110] = 15,
+			[111] = 3,
+			[112] = 3,
+			[113] = 3,
+			[114] = 0,
+			[115] = 1,
+			[116] = 2,
+			[117] = 3,
+			[118] = 4,
+			[119] = 5,
+			[120] = 6,
+			[121] = 7,
+			[122] = 9,
+			[123] = 11,
+			[124] = 12,
+			[125] = 14,
+			[126] = 15,
+			[127] = 3,
+			[128] = 3,
+			[132] = 129,
+			[133] = 129,
+			[134] = 129,
+			[135] = 129,
+			[136] = 129,
+			[137] = 129,
+			[138] = 129,
+			[139] = 130,
+			[140] = 130,
+			[141] = 130,
+			[142] = 130,
+			[143] = 130,
+			[144] = 130,
+			[145] = 130,
+			[146] = 131,
+			[147] = 131,
+			[148] = 131,
+			[149] = 131,
+			[150] = 131,
+			[151] = 131,
+			[152] = 131,
+			[154] = 153,
+			[155] = 153,
+			[156] = 153,
+			[157] = 153,
+			[158] = 153,
+			[159] = 153,
+			[160] = 153,
+			[162] = 161,
+			[163] = 161,
+			[164] = 161,
+			[165] = 161,
+			[166] = 161,
+			[167] = 161,
+			[168] = 161,
+			[169] = 15,
+			[170] = 15,
+			[171] = 0,
+			[172] = 1,
+			[173] = 2,
+			[174] = 3,
+			[175] = 4,
+			[176] = 5,
+			[177] = 6,
+			[178] = 7,
+			[179] = 9,
+			[180] = 11,
+			[181] = 12,
+			[182] = 14,
+			[183] = 129,
+			[184] = 130,
+			[185] = 131,
+			[186] = 153,
+			[187] = 0,
+			[188] = 1,
+			[189] = 2,
+			[190] = 3,
+			[191] = 4,
+			[192] = 5,
+			[193] = 6,
+			[194] = 7,
+			[195] = 9,
+			[196] = 11,
+			[197] = 12,
+			[198] = 14,
+			[199] = 129,
+			[200] = 130,
+			[201] = 131,
+			[202] = 153,
+			[203] = 161,
+			[204] = 161,
+			[206] = 3,
+			[207] = 3,
+			[208] = 3,
+			[209] = 3,
+			[211] = 15,
+			[212] = 0,
+			[213] = 1,
+			[214] = 2,
+			[215] = 3,
+			[216] = 4,
+			[217] = 5,
+			[218] = 6,
+			[219] = 7,
+			[220] = 9,
+			[221] = 11,
+			[222] = 12,
+			[223] = 14,
+			[224] = 129,
+			[225] = 130,
+			[226] = 131,
+			[227] = 153,
+			[228] = 161,
+			[230] = 229,
+			[231] = 229,
+			[232] = 229,
+			[233] = 229,
+			[234] = 229,
+			[235] = 229,
+			[236] = 229,
+			[237] = 229,
+			[238] = 229,
+			[239] = 229,
+		}
+	}
+}
+
+local function addNewVariation(which, gender, one, two, single)
+	local where = variations[which][gender]
+	if not single then
+		where[one] = two
+		where[two] = one
+	else
+		where[one] = two
+	end
+end
+
+CreateThread(function()
+	-- male visor/Hat variations
+	addNewVariation("visor", "male", 9, 10)
+	addNewVariation("visor", "male", 18, 67)
+	addNewVariation("visor", "male", 82, 67)
+	addNewVariation("visor", "male", 44, 45)
+	addNewVariation("visor", "male", 50, 68)
+	addNewVariation("visor", "male", 51, 69)
+	addNewVariation("visor", "male", 52, 70)
+	addNewVariation("visor", "male", 53, 71)
+	addNewVariation("visor", "male", 62, 72)
+	addNewVariation("visor", "male", 65, 66)
+	addNewVariation("visor", "male", 73, 74)
+	addNewVariation("visor", "male", 76, 77)
+	addNewVariation("visor", "male", 79, 78)
+	addNewVariation("visor", "male", 80, 81)
+	addNewVariation("visor", "male", 91, 92)
+	addNewVariation("visor", "male", 104, 105)
+	addNewVariation("visor", "male", 109, 110)
+	addNewVariation("visor", "male", 116, 117)
+	addNewVariation("visor", "male", 118, 119)
+	addNewVariation("visor", "male", 123, 124)
+	addNewVariation("visor", "male", 125, 126)
+	addNewVariation("visor", "male", 127, 128)
+	addNewVariation("visor", "male", 130, 131)
+	addNewVariation("visor", "male", 135, 136)
+	addNewVariation("visor", "male", 137, 138)
+	addNewVariation("visor", "male", 139, 140)
+	addNewVariation("visor", "male", 142, 143)
+	addNewVariation("visor", "male", 147, 148)
+	addNewVariation("visor", "male", 151, 152)
+	addNewVariation("visor", "male", 127, 128)
+	addNewVariation("visor", "male", 130, 131)
+	-- female visor/Hat variations
+	addNewVariation("visor", "female", 43, 44)
+	addNewVariation("visor", "female", 49, 67)
+	addNewVariation("visor", "female", 64, 65)
+	addNewVariation("visor", "female", 65, 64)
+	addNewVariation("visor", "female", 51, 69)
+	addNewVariation("visor", "female", 50, 68)
+	addNewVariation("visor", "female", 52, 70)
+	addNewVariation("visor", "female", 62, 71)
+	addNewVariation("visor", "female", 72, 73)
+	addNewVariation("visor", "female", 75, 76)
+	addNewVariation("visor", "female", 78, 77)
+	addNewVariation("visor", "female", 79, 80)
+	addNewVariation("visor", "female", 18, 66)
+	addNewVariation("visor", "female", 66, 81)
+	addNewVariation("visor", "female", 81, 66)
+	addNewVariation("visor", "female", 86, 84)
+	addNewVariation("visor", "female", 90, 91)
+	addNewVariation("visor", "female", 103, 104)
+	addNewVariation("visor", "female", 108, 109)
+	addNewVariation("visor", "female", 115, 116)
+	addNewVariation("visor", "female", 117, 118)
+	addNewVariation("visor", "female", 122, 123)
+	addNewVariation("visor", "female", 124, 125)
+	addNewVariation("visor", "female", 126, 127)
+	addNewVariation("visor", "female", 129, 130)
+	addNewVariation("visor", "female", 134, 135)
+	addNewVariation("visor", "female", 136, 137)
+	addNewVariation("visor", "female", 138, 139)
+	addNewVariation("visor", "female", 141, 142)
+	addNewVariation("visor", "female", 146, 147)
+	addNewVariation("visor", "female", 150, 151)
+	-- male bags
+	addNewVariation("bags", "male", 45, 44)
+	addNewVariation("bags", "male", 41, 40)
+	addNewVariation("bags", "male", 82, 81)
+	addNewVariation("bags", "male", 86, 85)
+	-- female bags
+	addNewVariation("bags", "female", 45, 44)
+	addNewVariation("bags", "female", 41, 40)
+	addNewVariation("bags", "female", 82, 81)
+	addNewVariation("bags", "female", 86, 85)
+	-- male hair
+	addNewVariation("hair", "male", 7, 15, true)
+	addNewVariation("hair", "male", 43, 15, true)
+	addNewVariation("hair", "male", 9, 43, true)
+	addNewVariation("hair", "male", 11, 43, true)
+	addNewVariation("hair", "male", 15, 43, true)
+	addNewVariation("hair", "male", 16, 43, true)
+	addNewVariation("hair", "male", 17, 43, true)
+	addNewVariation("hair", "male", 20, 43, true)
+	addNewVariation("hair", "male", 22, 43, true)
+	addNewVariation("hair", "male", 45, 43, true)
+	addNewVariation("hair", "male", 47, 43, true)
+	addNewVariation("hair", "male", 49, 43, true)
+	addNewVariation("hair", "male", 51, 43, true)
+	addNewVariation("hair", "male", 52, 43, true)
+	addNewVariation("hair", "male", 53, 43, true)
+	addNewVariation("hair", "male", 56, 43, true)
+	addNewVariation("hair", "male", 58, 43, true)
+	-- female hair
+	addNewVariation("hair", "female", 1, 49, true)
+	addNewVariation("hair", "female", 2, 49, true)
+	addNewVariation("hair", "female", 7, 49, true)
+	addNewVariation("hair", "female", 9, 49, true)
+	addNewVariation("hair", "female", 10, 49, true)
+	addNewVariation("hair", "female", 11, 48, true)
+	addNewVariation("hair", "female", 14, 53, true)
+	addNewVariation("hair", "female", 15, 42, true)
+	addNewVariation("hair", "female", 21, 42, true)
+	addNewVariation("hair", "female", 23, 42, true)
+	addNewVariation("hair", "female", 31, 53, true)
+	addNewVariation("hair", "female", 39, 49, true)
+	addNewVariation("hair", "female", 40, 49, true)
+	addNewVariation("hair", "female", 42, 53, true)
+	addNewVariation("hair", "female", 45, 49, true)
+	addNewVariation("hair", "female", 48, 49, true)
+	addNewVariation("hair", "female", 49, 48, true)
+	addNewVariation("hair", "female", 52, 53, true)
+	addNewVariation("hair", "female", 53, 42, true)
+	addNewVariation("hair", "female", 54, 55, true)
+	addNewVariation("hair", "female", 59, 42, true)
+	addNewVariation("hair", "female", 59, 54, true)
+	addNewVariation("hair", "female", 68, 53, true)
+	addNewVariation("hair", "female", 76, 48, true)
+	-- male Top/Jacket variations
+	addNewVariation("jackets", "male", 29, 30)
+	addNewVariation("jackets", "male", 31, 32)
+	addNewVariation("jackets", "male", 42, 43)
+	addNewVariation("jackets", "male", 59, 60)
+	addNewVariation("jackets", "male", 68, 69)
+	addNewVariation("jackets", "male", 74, 75)
+	addNewVariation("jackets", "male", 87, 88)
+	addNewVariation("jackets", "male", 93, 94)
+	addNewVariation("jackets", "male", 99, 100)
+	addNewVariation("jackets", "male", 101, 102)
+	addNewVariation("jackets", "male", 103, 104)
+	addNewVariation("jackets", "male", 126, 127)
+	addNewVariation("jackets", "male", 129, 130)
+	addNewVariation("jackets", "male", 131, 132)
+	addNewVariation("jackets", "male", 184, 185)
+	addNewVariation("jackets", "male", 188, 189)
+	addNewVariation("jackets", "male", 194, 195)
+	addNewVariation("jackets", "male", 196, 197)
+	addNewVariation("jackets", "male", 198, 199)
+	addNewVariation("jackets", "male", 200, 203)
+	addNewVariation("jackets", "male", 202, 205)
+	addNewVariation("jackets", "male", 206, 207)
+	addNewVariation("jackets", "male", 209, 212)
+	addNewVariation("jackets", "male", 210, 211)
+	addNewVariation("jackets", "male", 217, 218)
+	addNewVariation("jackets", "male", 229, 230)
+	addNewVariation("jackets", "male", 232, 233)
+	addNewVariation("jackets", "male", 235, 236)
+	addNewVariation("jackets", "male", 241, 242)
+	addNewVariation("jackets", "male", 251, 253)
+	addNewVariation("jackets", "male", 256, 261)
+	addNewVariation("jackets", "male", 262, 263)
+	addNewVariation("jackets", "male", 265, 266)
+	addNewVariation("jackets", "male", 267, 268)
+	addNewVariation("jackets", "male", 279, 280)
+	addNewVariation("jackets", "male", 292, 293)
+	addNewVariation("jackets", "male", 294, 295)
+	addNewVariation("jackets", "male", 296, 297)
+	addNewVariation("jackets", "male", 300, 303)
+	addNewVariation("jackets", "male", 301, 302)
+	addNewVariation("jackets", "male", 305, 306)
+	addNewVariation("jackets", "male", 311, 312)
+	addNewVariation("jackets", "male", 300, 303)
+	addNewVariation("jackets", "male", 301, 302)
+	addNewVariation("jackets", "male", 305, 306)
+	addNewVariation("jackets", "male", 311, 312)
+	addNewVariation("jackets", "male", 314, 315)
+	addNewVariation("jackets", "male", 316, 317)
+	addNewVariation("jackets", "male", 318, 319)
+	addNewVariation("jackets", "male", 321, 322)
+	addNewVariation("jackets", "male", 330, 331)
+	addNewVariation("jackets", "male", 336, 337)
+	addNewVariation("jackets", "male", 339, 126)
+	addNewVariation("jackets", "male", 340, 341)
+	addNewVariation("jackets", "male", 343, 344)
+	addNewVariation("jackets", "male", 346, 234)
+	addNewVariation("jackets", "male", 347, 260)
+	addNewVariation("jackets", "male", 348, 349)
+	addNewVariation("jackets", "male", 352, 353)
+	addNewVariation("jackets", "male", 354, 355)
+	addNewVariation("jackets", "male", 359, 360)
+	-- female Top/Jacket variations
+	addNewVariation("jackets", "female", 53, 52)
+	addNewVariation("jackets", "female", 57, 58)
+	addNewVariation("jackets", "female", 62, 63)
+	addNewVariation("jackets", "female", 84, 85)
+	addNewVariation("jackets", "female", 90, 91)
+	addNewVariation("jackets", "female", 92, 93)
+	addNewVariation("jackets", "female", 94, 95)
+	addNewVariation("jackets", "female", 117, 118)
+	addNewVariation("jackets", "female", 120, 121)
+	addNewVariation("jackets", "female", 128, 129)
+	addNewVariation("jackets", "female", 187, 186)
+	addNewVariation("jackets", "female", 190, 191)
+	addNewVariation("jackets", "female", 196, 197)
+	addNewVariation("jackets", "female", 198, 199)
+	addNewVariation("jackets", "female", 200, 201)
+	addNewVariation("jackets", "female", 202, 205)
+	addNewVariation("jackets", "female", 204, 207)
+	addNewVariation("jackets", "female", 210, 211)
+	addNewVariation("jackets", "female", 213, 216)
+	addNewVariation("jackets", "female", 214, 215)
+	addNewVariation("jackets", "female", 225, 226)
+	addNewVariation("jackets", "female", 227, 228)
+	addNewVariation("jackets", "female", 239, 240)
+	addNewVariation("jackets", "female", 242, 243)
+	addNewVariation("jackets", "female", 244, 364)
+	addNewVariation("jackets", "female", 245, 246)
+	addNewVariation("jackets", "female", 249, 250)
+	addNewVariation("jackets", "female", 259, 261)
+	addNewVariation("jackets", "female", 265, 270)
+	addNewVariation("jackets", "female", 271, 272)
+	addNewVariation("jackets", "female", 274, 275)
+	addNewVariation("jackets", "female", 276, 277)
+	addNewVariation("jackets", "female", 280, 281)
+	addNewVariation("jackets", "female", 292, 293)
+	addNewVariation("jackets", "female", 305, 306)
+	addNewVariation("jackets", "female", 307, 308)
+	addNewVariation("jackets", "female", 311, 314)
+	addNewVariation("jackets", "female", 312, 313)
+	addNewVariation("jackets", "female", 316, 317)
+	addNewVariation("jackets", "female", 325, 326)
+	addNewVariation("jackets", "female", 327, 328)
+	addNewVariation("jackets", "female", 329, 330)
+	addNewVariation("jackets", "female", 332, 333)
+	addNewVariation("jackets", "female", 339, 340)
+	addNewVariation("jackets", "female", 345, 346)
+	addNewVariation("jackets", "female", 351, 352)
+	addNewVariation("jackets", "female", 354, 121)
+	addNewVariation("jackets", "female", 355, 356)
+	addNewVariation("jackets", "female", 357, 359)
+	addNewVariation("jackets", "female", 358, 360)
+	addNewVariation("jackets", "female", 362, 363)
+	addNewVariation("jackets", "female", 366, 367)
+	addNewVariation("jackets", "female", 365, 269)
+	addNewVariation("jackets", "female", 370, 371)
+	addNewVariation("jackets", "female", 372, 373)
+	addNewVariation("jackets", "female", 378, 379)
+end)
+
+local drawables = {
+	["Top"] = {
+		Drawable = 11,
+		Table = variations.jackets,
+		Emote = {Dict = "missmic4", Anim = "michael_tux_fidget", Move = 51, Dur = 1500}
+	},
+	["Gloves"] = {
+		Drawable = 3,
+		Table = variations.gloves,
+		Remember = true,
+		Emote = {Dict = "nmt_3_rcm-10", Anim = "cs_nigel_dual-10", Move = 51, Dur = 1200}
+	},
+	["Shoes"] = {
+		Drawable = 6,
+		Table = {Standalone = true, male = 34, female = 28},
+		Emote = {Dict = "random@domestic", Anim = "pickup_low", Move = 0, Dur = 1200}
+	},
+	["Neck"] = {
+		Drawable = 7,
+		Table = {Standalone = true, male = 0, female = 0},
+		Emote = {Dict = "clothingtie", Anim = "try_tie_positive_a", Move = 51, Dur = 2100}
+	},
+	["Vest"] = {
+		Drawable = 9,
+		Table = {Standalone = true, male = 0, female = 0},
+		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
+	},
+	["Bag"] = {
+		Drawable = 5,
+		Table = variations.bags,
+		Emote = {Dict = "anim@heists@ornate_bank@grab_cash", Anim = "intro", Move = 51, Dur = 1600}
+	},
+	["Mask"] = {
+		Drawable = 1,
+		Table = {Standalone = true, male = 0, female = 0},
+		Emote = {Dict = "mp_masks@standard_car@ds@", Anim = "put_on_mask", Move = 51, Dur = 800}
+	},
+	["Hair"] = {
+		Drawable = 2,
+		Table = variations.hair,
+		Remember = true,
+		Emote = {Dict = "clothingtie", Anim = "check_out_a", Move = 51, Dur = 2000}
+	},
+}
+
+local Extras = {
+	["Shirt"] = {
+		Drawable = 11,
+		Table = {
+			Standalone = true, male = 252, female = 440,
+			Extra = {
+				{Drawable = 8, Id = 15, Tex = 0, Name = "Extra Undershirt"},
+				{Drawable = 3, Id = 15, Tex = 0, Name = "Extra Gloves"},
+				-- {Drawable = 10, Id = 0, Tex = 0, Name = "Extra Decals"},
+				}
+			},
+		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
+	},
+	["Pants"] = {
+		Drawable = 4,
+		Table = {Standalone = true, male = 61, female = 14},
+		Emote = {Dict = "re@construction", Anim = "out_of_breath", Move = 51, Dur = 1300}
+	},
+	["Bagoff"] = {
+		Drawable = 5,
+		Table = {Standalone = true, male = 0, female = 0},
+		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
+	},
+}
+
+local Props = {
+	["Visor"] = {
+		Prop = 0,
+		Variants = variations.visor,
+		Emote = {
+			On = {Dict = "mp_masks@standard_car@ds@", Anim = "put_on_mask", Move = 51, Dur = 600},
+			Off = {Dict = "missheist_agency2ahelmet", Anim = "take_off_helmet_stand", Move = 51, Dur = 1200}
+		}
+	},
+	["Hat"] = {
+		Prop = 0,
+		Emote = {
+			On = {Dict = "mp_masks@standard_car@ds@", Anim = "put_on_mask", Move = 51, Dur = 600},
+			Off = {Dict = "missheist_agency2ahelmet", Anim = "take_off_helmet_stand", Move = 51, Dur = 1200}
+		}
+	},
+	["Glasses"] = {
+		Prop = 1,
+		Emote = {
+			On = {Dict = "clothingspecs", Anim = "take_off", Move = 51, Dur = 1400},
+			Off = {Dict = "clothingspecs", Anim = "take_off", Move = 51, Dur = 1400}
+		}
+	},
+	["Ear"] = {
+		Prop = 2,
+		Emote = {
+			On = {Dict = "mp_cp_stolen_tut", Anim = "b_think", Move = 51, Dur = 900},
+			Off = {Dict = "mp_cp_stolen_tut", Anim = "b_think", Move = 51, Dur = 900}
+		}
+	},
+	["Watch"] = {
+		Prop = 6,
+		Emote = {
+			On = {Dict = "nmt_3_rcm-10", Anim = "cs_nigel_dual-10", Move = 51, Dur = 1200},
+			Off = {Dict = "nmt_3_rcm-10", Anim = "cs_nigel_dual-10", Move = 51, Dur = 1200}
+		}
+	},
+	["Bracelet"] = {
+		Prop = 7,
+		Emote = {
+			On = {Dict = "nmt_3_rcm-10", Anim = "cs_nigel_dual-10", Move = 51, Dur = 1200},
+			Off = {Dict = "nmt_3_rcm-10", Anim = "cs_nigel_dual-10", Move = 51, Dur = 1200}
+		}
+	},
+}
+
+LastEquipped = {}
+Cooldown = false
+
+local function PlayToggleEmote(e, cb)
+	lib.requestAnimDict(e.Dict)
+	if cache.vehicle then e.Move = 51 end
+	TaskPlayAnim(cache.ped, e.Dict, e.Anim, 3.0, 3.0, e.Dur, e.Move, 0, false, false, false)
+	local Pause = e.Dur - 500
+	Pause = Pause < 500 and 500 or Pause
+	IncurCooldown(Pause)
+	Wait(Pause) -- Lets wait for the emote to play for a bit then do the callback.
+	cb()
+end
+
+function ResetClothing(anim)
+	if type(anim) == "table" then
+		anim = true
+	end
+	local e = drawables.Top.Emote
+	if anim then TaskPlayAnim(cache.ped, e.Dict, e.Anim, 3.0, 3.0, 3000, e.Move, 0, false, false, false) end
+	for _, v in pairs(LastEquipped) do
+		if v then
+			if v.Drawable then SetPedComponentVariation(cache.ped, v.Id, v.Drawable, v.Texture, 0)
+			elseif v.Prop then ClearPedProp(cache.ped, v.Id) SetPedPropIndex(cache.ped, v.Id, v.Prop, v.Texture, true) end
+		end
+	end
+	LastEquipped = {}
+end
+
+RegisterNetEvent('qb-radialmenu:ResetClothing', ResetClothing)
+
+
+function IsCustomPed(ped)
+	local male = `mp_m_freemode_01` 
+	local female = `mp_f_freemode_01`
+	local CurrentModel = GetEntityModel(ped)
+	return CurrentModel ~= male and CurrentModel ~= female
+end
+
+function ToggleClothing(data)
+	local which = data.id or data[1]
+	local extra = data.extra
+    if which == "Shirt" or which == "Pants" or which == "Bagoff" then
+        extra = true
+    end
+	if Cooldown then return end
+	local Toggle = drawables[which]
+	if extra then Toggle = Extras[which] end
+	local Cur = {
+		Drawable = GetPedDrawableVariation(cache.ped, Toggle.Drawable),
+		Id = Toggle.Drawable,
+		Ped = cache.ped,
+		Texture = GetPedTextureVariation(cache.ped, Toggle.Drawable),
+	}
+	local Gender = IsMpPed(cache.ped)
+	local isCustomPed = IsCustomPed(cache.ped)
+	
+	if which ~= "Mask" then
+		if not Gender then Notify(Lang:t("info.wrong_ped")) return false end
+	end
+	
+	-- HANDLE CUSTOM PED
+	if isCustomPed then
+		if not LastEquipped[which] then
+			-- Belum di-toggle, simpan current lalu ganti ke 0
+			if Cur.Drawable ~= 0 then
+				PlayToggleEmote(Toggle.Emote, function() 
+					LastEquipped[which] = Cur 
+					SetPedComponentVariation(cache.ped, Toggle.Drawable, 0, 0, 0)
+					-- Handle extra components (untuk Shirt)
+					if Toggle.Table.Extra then
+						for _, v in pairs(Toggle.Table.Extra) do
+							local ExtraCur = {
+								Drawable = GetPedDrawableVariation(cache.ped, v.Drawable),  
+								Texture = GetPedTextureVariation(cache.ped, v.Drawable), 
+								Id = v.Drawable
+							}
+							LastEquipped[v.Name] = ExtraCur
+							SetPedComponentVariation(cache.ped, v.Drawable, 0, 0, 0)
+						end
+					end
+				end) 
+				return true
+			else
+				Notify(Lang:t("info.already_wearing")) 
+				return false
+			end
+		else
+			-- Sudah di-toggle, kembalikan ke semula
+			local Last = LastEquipped[which]
+			PlayToggleEmote(Toggle.Emote, function() 
+				SetPedComponentVariation(cache.ped, Toggle.Drawable, Last.Drawable, Last.Texture, 0) 
+				LastEquipped[which] = nil
+				-- Handle extra components (untuk Shirt)
+				if Toggle.Table.Extra then
+					for _, v in pairs(Toggle.Table.Extra) do
+						if LastEquipped[v.Name] then
+							local ExtraLast = LastEquipped[v.Name]
+							SetPedComponentVariation(cache.ped, ExtraLast.Id, ExtraLast.Drawable, ExtraLast.Texture, 0)
+							LastEquipped[v.Name] = nil
+						end
+					end
+				end
+			end) 
+			return true
+		end
+	end
+	
+	-- HANDLE MP FREEMODE PED (kode original)
+	local Table = Toggle.Table[Gender]
+	if not Toggle.Table.Standalone then
+		for k,v in pairs(Table) do
+			if not Toggle.Remember then
+				if k == Cur.Drawable then
+					PlayToggleEmote(Toggle.Emote, function() SetPedComponentVariation(cache.ped, Toggle.Drawable, v, Cur.Texture, 0) end) return true
+				end
+			else
+				if not LastEquipped[which] then
+					if k == Cur.Drawable then
+						PlayToggleEmote(Toggle.Emote, function() LastEquipped[which] = Cur SetPedComponentVariation(cache.ped, Toggle.Drawable, v, Cur.Texture, 0) end) return true
+					end
+				else
+					local Last = LastEquipped[which]
+					PlayToggleEmote(Toggle.Emote, function() SetPedComponentVariation(cache.ped, Toggle.Drawable, Last.Drawable, Last.Texture, 0) LastEquipped[which] = false end) return true
+				end
+			end
+		end
+		Notify(Lang:t("info.no_variants")) return
+	else
+		if not LastEquipped[which] then
+			if Cur.Drawable ~= Table then
+				PlayToggleEmote(Toggle.Emote, function()
+					LastEquipped[which] = Cur
+					SetPedComponentVariation(cache.ped, Toggle.Drawable, Table, 0, 0)
+					if Toggle.Table.Extra then
+						local extraToggled = Toggle.Table.Extra
+						for _, v in pairs(extraToggled) do
+							local ExtraCur = {Drawable = GetPedDrawableVariation(cache.ped, v.Drawable),  Texture = GetPedTextureVariation(cache.ped, v.Drawable), Id = v.Drawable}
+							SetPedComponentVariation(cache.ped, v.Drawable, v.Id, v.Tex, 0)
+							LastEquipped[v.Name] = ExtraCur
+						end
+					end
+				end)
+				return true
+			end
+		else
+			local Last = LastEquipped[which]
+			PlayToggleEmote(Toggle.Emote, function()
+				SetPedComponentVariation(cache.ped, Toggle.Drawable, Last.Drawable, Last.Texture, 0)
+				LastEquipped[which] = false
+				if Toggle.Table.Extra then
+					local extraToggled = Toggle.Table.Extra
+					for _, v in pairs(extraToggled) do
+						if LastEquipped[v.Name] then
+							Last = LastEquipped[v.Name]
+							SetPedComponentVariation(cache.ped, Last.Id, Last.Drawable, Last.Texture, 0)
+							LastEquipped[v.Name] = false
+						end
+					end
+				end
+			end)
+			return true
+		end
+	end
+	Notify(Lang:t("info.already_wearing")) return false
+end
+
+RegisterNetEvent('qb-radialmenu:ToggleClothing', ToggleClothing)
+
+function ToggleProps(id)
+	if Cooldown then return end
+	local Prop = Props[id] or Props[id[1]]
+	local Cur = {
+		Id = Prop.Prop,
+		Ped = cache.ped,
+		Prop = GetPedPropIndex(cache.ped, Prop.Prop),
+		Texture = GetPedPropTextureIndex(cache.ped, Prop.Prop),
+	}
+	local isCustomPed = IsCustomPed(cache.ped)
+	
+	if not Prop.Variants or isCustomPed then
+		if Cur.Prop ~= -1 then
+			-- Sedang pakai prop, lepaskan
+			PlayToggleEmote(Prop.Emote.Off, function() 
+				LastEquipped[id] = Cur 
+				ClearPedProp(cache.ped, Prop.Prop) 
+			end) 
+			return true
+		else
+			local Last = LastEquipped[id]
+			if Last then
+				PlayToggleEmote(Prop.Emote.On, function() 
+					SetPedPropIndex(cache.ped, Prop.Prop, Last.Prop, Last.Texture, true) 
+					LastEquipped[id] = nil 
+				end) 
+				return true
+			end
+		end
+		Notify(Lang:t("info.nothing_to_remove")) 
+		return false
+	end
+	
+	-- HANDLE MP FREEMODE PED dengan variants
+	local Gender = IsMpPed(cache.ped)
+	if not Gender then Notify(Lang:t("info.wrong_ped")) return false end
+	local variations = Prop.Variants[Gender]
+	for k,v in pairs(variations) do
+		if Cur.Prop == k then
+			PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(cache.ped, Prop.Prop, v, Cur.Texture, true) end) return true
+		end
+	end
+	Notify(Lang:t("info.no_variants")) return false
+end
+
+RegisterNetEvent('qb-radialmenu:ToggleProps', ToggleProps)
+
+--- Clothing commands are registered by sm_appearance instead, so Config.Commands and
+--- Config.ExtraCommands are no longer read here.
+
+AddEventHandler('onResourceStop', function(resource) -- Mostly for development, restart the resource and it will put all the clothes back on.
+	if resource == GetCurrentResourceName() then
+		ResetClothing()
+	end
+end)
+
+function IncurCooldown(ms)
+	CreateThread(function()
+		Cooldown = true Wait(ms) Cooldown = false
+	end)
+end
+
+function Notify(message, color) -- However you want your notifications to be shown, you can switch it up here.
+	QBCore.Functions.Notify(message, color)
+end
+
+function IsMpPed(ped)
+	local male = `mp_m_freemode_01` 
+	local female = `mp_f_freemode_01`
+	local CurrentModel = GetEntityModel(ped)
+	
+	if CurrentModel == male then 
+		return "male" 
+	elseif CurrentModel == female then 
+		return "female" 
+	else 
+		-- Untuk custom ped, deteksi gender berdasarkan IsPedMale native
+		if IsPedMale(ped) then
+			return "male"
+		else
+			return "female"
+		end
+	end
+end
+
+RegisterNetEvent('dpc:EquipLast', function()
+	for _, v in pairs(LastEquipped) do
+		if v then
+			if v.Drawable then SetPedComponentVariation(cache.ped, v.ID, v.Drawable, v.Texture, 0)
+			elseif v.Prop then ClearPedProp(cache.ped, v.ID) SetPedPropIndex(cache.ped, v.ID, v.Prop, v.Texture, true) end
+		end
+	end
+	LastEquipped = {}
+end)
+
+RegisterNetEvent('dpc:ResetClothing', function()
+	LastEquipped = {}
+end)
+
+
+########## FILE: \client\main.lua
+QBCore = exports['qb-core']:GetCoreObject()
+PlayerData = QBCore.Functions.GetPlayerData()
+
+-- Functions
+
+local function convert(tbl)
+    if tbl.items then
+        local items = {}
+        for _, v in pairs(tbl.items) do
+            items[#items + 1] = convert(v)
+        end
+        lib.registerRadial({
+            id = tbl.id .. '_menu',
+            items = items
+        })
+        return { id = tbl.id, label = tbl.title or tbl.label, icon = tbl.icon, menu = tbl.id .. '_menu' }
+    end
+    local action
+    if tbl.event then
+        if tbl.type == 'client' then
+            action = function() TriggerEvent(tbl.event, tbl.arg or nil) end
+        elseif tbl.type == 'server' then
+            action = function() TriggerServerEvent(tbl.event, tbl.arg or nil) end
+        elseif tbl.type == 'command' then
+            action = function() ExecuteCommand(tbl.event) end
+        end
+    elseif tbl.action then
+        action = function() tbl.action(tbl.arg) end
+    elseif tbl.command then
+        action = function() ExecuteCommand(tbl.command .. " " .. tbl.arg) end
+    end
+    local onSelect = tbl.onSelect or function()
+        if action then action() end
+    end
+    return { id = tbl.id, label = tbl.title or tbl.label, icon = tbl.icon, onSelect = onSelect, keepOpen = not tbl
+    .shouldClose or false }
+end
+
+local function SetupVehicleMenu(vehicle)
+    lib.removeRadialItem('vehicle-menu')
+    lib.removeRadialItem('vehicle-flip')
+    lib.removeRadialItem('give-keys')
+
+    if cache.vehicle then
+        lib.addRadialItem({
+            id = 'vehicle-menu',
+            label = 'Vehicle Menu',
+            icon = 'gauge',
+            onSelect = function()
+                ExecuteCommand('vehmenu')
+                lib.hideRadial()
+            end,
+        })
+    end
+
+    if not IsPedInAnyVehicle(PlayerPedId(), false) and vehicle ~= 0 then
+        lib.addRadialItem({
+            id = 'vehicle-flip',
+            label = Lang:t("options.flip"),
+            icon = 'car-burst',
+            onSelect = function()
+                TriggerEvent('radialmenu:flipveh')
+                lib.hideRadial()
+            end,
+        })
+    end
+
+    lib.addRadialItem({
+        id = 'give-keys',
+        label = 'Give Keys',
+        icon = 'key',
+        onSelect = function()
+            ExecuteCommand('givekeys')
+            lib.hideRadial()
+        end,
+    })
+end
+
+local function IsDead()
+    return PlayerData.metadata.inlaststand or PlayerData.metadata.isdead
+end
+
+---@param vehicle number|false
+local function SetDriftItem(vehicle)
+    if not vehicle then
+        lib.removeRadialItem('driftmode')
+        return
+    end
+    lib.addRadialItem({
+        id = 'driftmode',
+        label = 'Toggle Drift Mode',
+        icon = 'car',
+        onSelect = function()
+            if cache.vehicle then exports.sm_resource:toggleDrift(cache.vehicle) end
+        end,
+    })
+end
+
+lib.onCache('vehicle', SetDriftItem)
+
+RegisterNetEvent('qb-radialmenu:client:onRadialmenuOpen', function(data)
+    if IsDead() then return end
+
+    local vehicle, dist = QBCore.Functions.GetClosestVehicle()
+    if vehicle and dist < 3.0 then
+        SetupVehicleMenu(vehicle)
+    else
+        lib.removeRadialItem('vehicle-menu')
+        lib.removeRadialItem('vehicle-flip')
+        lib.removeRadialItem('give-keys')
+    end
+end)
+
+-- MAIN FUNCTION: Setup semua radial menu dengan prioritas job interactions di depan
+local function SetupRadialMenu()
+    lib.clearRadialItems()
+    
+    -- 1. JOB INTERACTIONS PERTAMA (posisi paling depan)
+    if PlayerData.job and PlayerData.job.onduty and Config.JobInteractions[PlayerData.job.name] then
+        lib.addRadialItem(convert({
+            id = 'jobinteractions',
+            label = Lang:t("general.job_radial"),
+            icon = 'briefcase',
+            items = Config.JobInteractions[PlayerData.job.name]
+        }))
+    end
+    
+    -- 2. GANG INTERACTIONS KEDUA
+    if PlayerData.gang and Config.GangInteractions[PlayerData.gang.name] and next(Config.GangInteractions[PlayerData.gang.name]) then
+        lib.addRadialItem(convert({
+            id = 'ganginteractions',
+            label = Lang:t("general.gang_radial"),
+            icon = 'skull-crossbones',
+            items = Config.GangInteractions[PlayerData.gang.name]
+        }))
+    end
+    
+    -- 3. MENU ITEMS REGULER TERAKHIR
+    for _, v in pairs(Config.MenuItems) do
+        lib.addRadialItem(convert(v))
+    end
+
+    SetDriftItem(cache.vehicle)
+end
+
+local function IsPolice()
+    return PlayerData.job.type == "leo" and PlayerData.job.onduty
+end
+
+local function IsEMS()
+    return PlayerData.job.type == "medic" and PlayerData.job.onduty
+end
+
+-- Events
+RegisterNetEvent('radialmenu:client:deadradial', function(isDead)
+    if isDead then
+        local ispolice, isems = IsPolice(), IsEMS()
+        if not ispolice or isems then return lib.disableRadial(true) end
+        lib.clearRadialItems()
+        lib.addRadialItem({
+            id = 'emergencybutton2',
+            label = Lang:t("options.emergency_button"),
+            icon = 'circle-exclamation',
+            onSelect = function()
+                if ispolice then
+                    exports['ps-dispatch']:OfficerDown()
+                elseif isems then
+                    exports['ps-dispatch']:EmsDown()
+                end
+                lib.hideRadial()
+            end
+        })
+    else
+        lib.clearRadialItems()
+        SetupRadialMenu()
+        lib.disableRadial(false)
+    end
+end)
+
+RegisterNetEvent('radialmenu:client:ChangeSeat', function(id, label)
+    local Veh = cache.vehicle
+    local IsSeatFree = IsVehicleSeatFree(Veh, id - 2)
+    local speed = GetEntitySpeed(Veh)
+
+    if not IsSeatFree then
+        return QBCore.Functions.Notify(Lang:t("error.seat_occupied"), 'error')
+    end
+
+    local kmh = speed * 3.6
+
+    if kmh > 100.0 then
+        return QBCore.Functions.Notify(Lang:t("error.vehicle_driving_fast"), 'error')
+    end
+
+    SetPedIntoVehicle(cache.ped, Veh, id - 2)
+    QBCore.Functions.Notify(Lang:t("info.switched_seats", { seat = label }))
+end)
+
+RegisterNetEvent('qb-radialmenu:trunk:client:Door', function(plate, door, open)
+    local veh = cache.vehicle
+    if not veh then return end
+
+    local pl = QBCore.Functions.GetPlate(veh)
+    if pl ~= plate then return end
+
+    if open then
+        SetVehicleDoorOpen(veh, door, false, false)
+    else
+        SetVehicleDoorShut(veh, door, false)
+    end
+end)
+
+RegisterNetEvent('qb-radialmenu:client:openDoor', function(id)
+    local door = id
+    local closestVehicle = cache.vehicle or QBCore.Functions.GetClosestVehicle(GetEntityCoords(cache.ped))
+    if closestVehicle ~= 0 then
+        if closestVehicle ~= cache.vehicle then
+            local plate = QBCore.Functions.GetPlate(closestVehicle)
+            if GetVehicleDoorAngleRatio(closestVehicle, door) > 0.0 then
+                if not IsVehicleSeatFree(closestVehicle, -1) then
+                    TriggerServerEvent('qb-radialmenu:trunk:server:Door', false, plate, door)
+                else
+                    SetVehicleDoorShut(closestVehicle, door, false)
+                end
+            else
+                if not IsVehicleSeatFree(closestVehicle, -1) then
+                    TriggerServerEvent('qb-radialmenu:trunk:server:Door', true, plate, door)
+                else
+                    SetVehicleDoorOpen(closestVehicle, door, false, false)
+                end
+            end
+        else
+            if GetVehicleDoorAngleRatio(closestVehicle, door) > 0.0 then
+                SetVehicleDoorShut(closestVehicle, door, false)
+            else
+                SetVehicleDoorOpen(closestVehicle, door, false, false)
+            end
+        end
+    else
+        QBCore.Functions.Notify(Lang:t("error.no_vehicle_found"), 'error', 2500)
+    end
+end)
+
+RegisterNetEvent('radialmenu:client:setExtra', function(id)
+    local extra = id
+    local veh = cache.vehicle
+    if veh ~= nil then
+        if cache.seat == -1 then
+            SetVehicleAutoRepairDisabled(veh, true) -- Forces Auto Repair off when Toggling Extra [GTA 5 Niche Issue]
+            if DoesExtraExist(veh, extra) then
+                if IsVehicleExtraTurnedOn(veh, extra) then
+                    SetVehicleExtra(veh, extra, true)
+                    QBCore.Functions.Notify(Lang:t("error.extra_deactivated", { extra = extra }), 'error', 2500)
+                else
+                    SetVehicleExtra(veh, extra, false)
+                    QBCore.Functions.Notify(Lang:t("success.extra_activated", { extra = extra }), 'success', 2500)
+                end
+            else
+                QBCore.Functions.Notify(Lang:t("error.extra_not_present", { extra = extra }), 'error', 2500)
+            end
+        else
+            QBCore.Functions.Notify(Lang:t("error.not_driver"), 'error', 2500)
+        end
+    end
+end)
+
+AddEventHandler('onResourceStart', function(resource)
+    if resource == GetCurrentResourceName() then
+        SetupRadialMenu()
+    end
+end)
+
+AddEventHandler('onResourceStop', function(resource)
+    if resource == GetCurrentResourceName() then
+        lib.clearRadialItems()
+    end
+end)
+
+-- Sets the metadata when the player spawns
+AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+    PlayerData = QBCore.Functions.GetPlayerData()
+    SetupRadialMenu()
+end)
+
+-- Sets the playerdata to an empty table when the player has quit or did /logout
+RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
+    PlayerData = {}
+end)
+
+-- This will update all the PlayerData that doesn't get updated with a specific event other than this like the metadata
+RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)
+    PlayerData = val
+end)
+
+-- FIXED EVENT HANDLERS: Cuma panggil SetupRadialMenu() aja, jangan tambah manual lagi
+RegisterNetEvent('QBCore:Client:OnJobUpdate', function(job)
+    PlayerData.job = job
+    SetupRadialMenu() -- Ini udah handle semua, termasuk job interactions di posisi depan
+end)
+
+RegisterNetEvent('QBCore:Client:SetDuty', function(onduty)
+    PlayerData.job.onduty = onduty
+    SetupRadialMenu() -- Ini udah handle semua, termasuk job interactions di posisi depan
+end)
+
+RegisterNetEvent('QBCore:Client:OnGangUpdate', function(gang)
+    PlayerData.gang = gang
+    SetupRadialMenu() -- Ini udah handle semua, termasuk gang interactions di posisi depan
+end)
+
+exports('AddOption', function(data, id)
+    data.id = data.id or id and id
+    lib.addRadialItem(convert(data))
+    return data.id
+end)
+
+exports('RemoveOption', function(id)
+    lib.removeRadialItem(id)
+end)
+
+-- Backwards Compatibility --
+function exportHandler(exportName, func)
+    AddEventHandler(('__cfx_export_qb-radialmenu_%s'):format(exportName), function(setCB)
+        setCB(func)
+    end)
+    AddEventHandler(('__cfx_export_qbx_radialmenu_%s'):format(exportName), function(setCB)
+        setCB(func)
+    end)
+end
+
+exportHandler('AddOption', function(data, id)
+    data.id = data.id or id and id
+    lib.addRadialItem(convert(data))
+    return data.id
+end)
+
+exportHandler('RemoveOption', function(id)
+    lib.removeRadialItem(id)
+end)
+
+RegisterNetEvent('qb-radialmenu:OfficerInDistress', function()
+    exports['ps-dispatch']:OfficerInDistress()
+end)
+
+RegisterNetEvent('qb-radialmenu:OfficerBackup', function()
+    exports['ps-dispatch']:OfficerBackup()
+end)
+
+--emotemenumoods
+
+AddEventHandler("expressions:angry", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "mood_angry_1", 0)
+end)
+AddEventHandler("expressions:drunk", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "mood_drunk_1", 0)
+end)
+AddEventHandler("expressions:dumb", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "pose_injured_1", 0)
+end)
+AddEventHandler("expressions:grumpy", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "mood_drivefast_1", 0)
+end)
+AddEventHandler("expressions:electrocuted", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "electrocuted_1", 0)
+end)
+
+AddEventHandler("expressions:happy", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "mood_happy_1", 0)
+end)
+AddEventHandler("expressions:injured", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "mood_injured_1", 0)
+end)
+AddEventHandler("expressions:joyful", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "mood_dancing_low_1", 0)
+end)
+AddEventHandler("expressions:mouthbreather", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "smoking_hold_1", 0)
+end)
+
+AddEventHandler("expressions:oneeye", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "pose_aiming_1", 0)
+end)
+
+AddEventHandler("expressions:shocked", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "shocked_1", 0)
+end)
+AddEventHandler("expressions:sleeping", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "dead_1", 0)
+end)
+AddEventHandler("expressions:smug", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "mood_smug_1", 0)
+end)
+AddEventHandler("expressions:speculative", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "mood_aiming_1", 0)
+end)
+
+AddEventHandler("expressions:stressed", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "mood_stressed_1", 0)
+end)
+AddEventHandler("expressions:sulking", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "mood_sulk_1", 0)
+end)
+AddEventHandler("expressions:weird", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "effort_2", 0)
+end)
+AddEventHandler("expressions:weird2", function()
+    SetFacialIdleAnimOverride(PlayerPedId(), "effort_3", 0)
+end)
+
+AddEventHandler("expressions:clear",function() 
+    ClearFacialIdleAnimOverride(PlayerPedId()) 
+end)
+
+RegisterNetEvent('axon:openPhone')
+AddEventHandler('axon:openPhone', function()
+    SetTimeout(200, function()
+        -- Panggil export TogglePhone pada ox_inventory jika tersedia
+        if exports['ox_inventory'] and exports['ox_inventory'].TogglePhone then
+            local ok = exports['ox_inventory']:TogglePhone(nil, nil)
+            if not ok then
+                -- optional feedback: already handled by inventory but you can add something
+                -- lib.notify({ title = 'PHONE', description = 'Cannot open phone.', type = 'error' })
+            end
+            return
+        end
+
+        -- Jika export tidak tersedia, coba useItem/useSlot. Tapi HENTIKAN jika mereka tidak menemukan slot
+        local slotId
+        local ok, res = pcall(function()
+            if exports['ox_inventory'] and exports['ox_inventory'].GetSlotIdWithItem then
+                return exports['ox_inventory']:GetSlotIdWithItem('phone', nil, false)
+            end
+            return nil
+        end)
+        if ok and res then slotId = res end
+
+        if slotId then
+            if exports['ox_inventory'] and exports['ox_inventory'].useSlot then
+                local success = exports['ox_inventory']:useSlot(slotId)
+                -- useSlot sendiri harus menolak bila durability 0
+                return
+            end
+        else
+            -- Jika tidak ada slot, jangan panggil TriggerEvent fallback yang membuka phone tanpa slot
+            -- Sebagai gantinya beri notifikasi
+            lib.notify({ title = 'PHONE', description = 'No phone found in inventory.', type = 'error' })
+            return
+        end
+    end)
+end)
+
+RegisterNetEvent("radialmenu:flipveh", function()
+    local ped = cache.ped
+    local coords = GetEntityCoords(ped)
+    local vehicle = nil
+    
+    -- Check if player is in vehicle or get closest vehicle
+    if IsPedInAnyVehicle(ped, false) then
+        vehicle = GetVehiclePedIsIn(ped, false)
+    else
+        vehicle = lib.getClosestVehicle(coords, 6.0, false)
+    end
+    
+    -- Check if vehicle exists
+    if not vehicle or not DoesEntityExist(vehicle) then
+        return QBCore.Functions.Notify("Tidak ada kendaraan terdekat", 'error')
+    end
+    
+    -- Check distance
+    local vehicleCoords = GetEntityCoords(vehicle)
+    if #(coords - vehicleCoords) > 6.0 then
+        return QBCore.Functions.Notify("Tidak ada kendaraan terdekat", 'error')
+    end
+    
+    -- Check if vehicle is actually flipped (not on all wheels)
+    if IsVehicleOnAllWheels(vehicle) then
+        return QBCore.Functions.Notify("Kendaraan sudah dalam posisi normal", 'error')
+    end
+    
+    -- Load animation
+    local animDict = 'random@mugging4'
+    RequestAnimDict(animDict)
+    while not HasAnimDictLoaded(animDict) do
+        Wait(10)
+    end
+    
+    -- Play animation
+    TaskPlayAnim(ped, animDict, 'struggle_loop_b_thief', 2.0, -8.0, -1, 35, 0, 0, 0, 0)
+    
+    -- Progress bar
+    if lib.progressBar({
+        label = "Membalikkan kendaraan",
+        duration = 10000,
+        useWhileDead = false,
+        canCancel = true,
+        disable = {
+            move = true,
+            car = true,
+            mouse = false,
+            combat = true
+        },
+    }) then
+        -- Success - flip the vehicle
+        local carRotation = GetEntityRotation(vehicle, 2)
+        SetEntityRotation(vehicle, carRotation[1], 0, carRotation[3], 2, true)
+        SetVehicleOnGroundProperly(vehicle)
+        
+        ClearPedTasks(ped)
+        QBCore.Functions.Notify("Berhasil membalikkan kendaraan", 'success')
+    else
+        -- Cancelled
+        ClearPedTasks(ped)
+        QBCore.Functions.Notify("Dibatalkan", 'error')
+    end
+end)
+
+RegisterNetEvent('radialmenu:client:forceUnlockVehicle', function()
+    local ped = PlayerPedId()
+    local vehicle = nil
+    
+    -- Cek apakah player di dalam kendaraan
+    if IsPedInAnyVehicle(ped, false) then
+        vehicle = GetVehiclePedIsIn(ped, false)
+    else
+        -- Cek kendaraan terdekat
+        local coords = GetEntityCoords(ped)
+        vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 3.0, 0, 71)
+    end
+    
+    -- Validasi vehicle
+    if vehicle == 0 or not DoesEntityExist(vehicle) then
+        QBCore.Functions.Notify("Tidak ada kendaraan di sekitar!", "error", 3000)
+        return
+    end
+    
+    -- Cek jarak (untuk safety)
+    local playerCoords = GetEntityCoords(ped)
+    local vehicleCoords = GetEntityCoords(vehicle)
+    local distance = #(playerCoords - vehicleCoords)
+    
+    if distance > 3.0 then
+        QBCore.Functions.Notify("Kamu terlalu jauh dari kendaraan!", "error", 3000)
+        return
+    end
+    
+    -- Cek apakah kendaraan terkunci
+    if GetVehicleDoorLockStatus(vehicle) == 1 then
+        QBCore.Functions.Notify("Kendaraan sudah tidak terkunci!", "error", 3000)
+        return
+    end
+    
+    local plate = GetVehicleNumberPlateText(vehicle)
+    
+    TaskStartScenarioInPlace(ped, "WORLD_HUMAN_WELDING", 0, true)
+    
+    QBCore.Functions.Progressbar("unlocking_vehicle", "Membobol Kendaraan...", 8000, false, true, {
+        disableMovement = true,
+        disableCarMovement = true,
+        disableMouse = false,
+        disableCombat = true,
+    }, {}, {}, {}, function()
+        -- Success
+        ClearPedTasks(ped)
+        SetVehicleDoorsLocked(vehicle, 1)
+        SetVehicleDoorsLockedForAllPlayers(vehicle, false)
+        -- TriggerServerEvent('sm_vehiclekeys:server:AcquireVehicleKeys', plate)
+        QBCore.Functions.Notify("Kendaraan berhasil dibobol", "success", 3000)
+    end, function()
+        -- Cancel
+        ClearPedTasks(ped)
+        QBCore.Functions.Notify("Pembobolan dibatalkan!", "error", 3000)
+    end)
+end)
+
+RegisterNetEvent('radialmenu:client:JoinRadio', function(data)
+    local channel = type(data) == "table" and data.arg or data
+    
+    if not channel then
+        QBCore.Functions.Notify("Channel radio tidak valid!", "error")
+        return
+    end
+    
+    local hasRadio = false
+    
+    if exports.ox_inventory then
+        local items = exports.ox_inventory:Search('count', 'radio')
+        if items and items > 0 then
+            hasRadio = true
+        end
+    end
+    
+    if not hasRadio then
+        QBCore.Functions.Notify("Kamu tidak memiliki radio!", "error")
+        return
+    end
+    
+    exports["mm_radio"]:JoinRadio(channel)
+    QBCore.Functions.Notify("Bergabung ke radio channel " .. channel, "success")
+end)
+
+RegisterNetEvent('radialmenu:client:openmdt', function(data)
+    local count = exports.ox_inventory:Search('count', 'pol_mdt')
+
+    if not count or count < 1 then
+        QBCore.Functions.Notify("Kamu tidak memiliki MDT Police!", "error")
+        return
+    end
+
+    TriggerServerEvent('sm_nui_browser:openMdt', 'pol_mdt')
+end)
+
+########## FILE: \client\stretcher.lua
+local QBCore = exports['qb-core']:GetCoreObject()
+local isAttached = false
+local stretcherObject = nil
+local isLayingOnBed = false
+local detachKeys = { 157, 158, 160, 164, 165, 73, 36 }
+
+local allowedStretcherVehicles = {
+    'ambulance',
+    'mh_md_rs6',
+    'smgsems',
+    'smemsx5',
+    'mh_md_gt63',
+    'ms_m5',
+    'gle53medic',
+    'sprintermedic',
+}
+
+-- Functions
+
+local function DrawText3Ds(x, y, z, text)
+    SetTextScale(0.35, 0.35)
+    SetTextFont(4)
+    SetTextProportional(1)
+    SetTextColour(255, 255, 255, 215)
+    BeginTextCommandDisplayText('STRING')
+    SetTextCentre(true)
+    AddTextComponentSubstringPlayerName(text)
+    SetDrawOrigin(x, y, z, 0)
+    EndTextCommandDisplayText(0.0, 0.0)
+    local factor = (string.len(text)) / 370
+    DrawRect(0.0, 0.0 + 0.0125, 0.017 + factor, 0.03, 0, 0, 0, 75)
+    ClearDrawOrigin()
+end
+
+local function checkForVehicles()
+    local PlayerPed = PlayerPedId()
+    local PlayerPos = GetEntityCoords(PlayerPed)
+    local veh = 0
+    for _, v in pairs(allowedStretcherVehicles) do
+        veh = GetClosestVehicle(PlayerPos.x, PlayerPos.y, PlayerPos.z, 7.5, GetHashKey(v), 70)
+        if veh ~= 0 then break end
+    end
+    return veh
+end
+
+local function setClosestStretcher()
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
+    local object = GetClosestObjectOfType(coords.x, coords.y, coords.z, 10.0, `prop_ld_binbag_01`, false, false, false)
+    if object ~= 0 then
+        stretcherObject = object
+    end
+end
+
+local function loadAnim(dict)
+    RequestAnimDict(dict)
+    while not HasAnimDictLoaded(dict) do
+        Wait(0)
+    end
+end
+
+local function GetClosestPlayer()
+    local closestPlayers = QBCore.Functions.GetPlayersFromCoords()
+    local closestDistance = -1
+    local closestPlayer = -1
+    local coords = GetEntityCoords(PlayerPedId())
+    local player = PlayerId()
+    for i = 1, #closestPlayers, 1 do
+        if closestPlayers[i] ~= player then
+            local pos = GetEntityCoords(GetPlayerPed(closestPlayers[i]))
+            local distance = #(pos - coords)
+            if closestDistance == -1 or closestDistance > distance then
+                closestPlayer = closestPlayers[i]
+                closestDistance = distance
+            end
+        end
+    end
+    return closestPlayer, closestDistance
+end
+
+local function LayOnStretcher()
+    local inBedDicts = 'anim@gangops@morgue@table@'
+    local inBedAnims = 'ko_front'
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
+    local player, distance = GetClosestPlayer()
+
+    if player == -1 then
+        loadAnim(inBedDicts)
+        if stretcherObject and #(coords - GetEntityCoords(stretcherObject)) <= 3.0 then
+            TaskPlayAnim(ped, inBedDicts, inBedAnims, 8.0, 8.0, -1, 69, 1, false, false, false)
+            AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.0, 0.0, 0.0, 180.0, 0.0, false, false, false, false,
+                2)
+            isLayingOnBed = true
+        end
+    else
+        if distance < 2.0 then
+            TriggerTokenEvent('qb-radialmenu:Stretcher:BusyCheck', GetPlayerServerId(player), 'lay')
+        else
+            loadAnim(inBedDicts)
+            if stretcherObject and #(coords - GetEntityCoords(stretcherObject)) <= 3.0 then
+                TaskPlayAnim(ped, inBedDicts, inBedAnims, 8.0, 8.0, -1, 69, 1, false, false, false)
+                AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.0, 0.0, 0.0, 360.0, 0.0, false, false, false,
+                    false, 2)
+                isLayingOnBed = true
+            end
+        end
+    end
+end
+
+local function getOffStretcher()
+    local ped = PlayerPedId()
+    local coords = GetOffsetFromEntityInWorldCoords(stretcherObject, 0.85, 0.0, 0)
+    ClearPedTasks(ped)
+    DetachEntity(ped, false, true)
+    SetEntityCoords(ped, coords.x, coords.y, coords.z)
+    isLayingOnBed = false
+end
+
+local function attachToStretcher()
+    local ped = PlayerPedId()
+    local closestPlayer, distance = GetClosestPlayer()
+
+    if stretcherObject then
+        if closestPlayer == -1 or distance >= 2.0 then
+            NetworkRequestControlOfEntity(stretcherObject)
+            loadAnim('anim@heists@box_carry@')
+            TaskPlayAnim(ped, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
+            SetTimeout(150, function()
+                AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -0.50, 195.0, 180.0,
+                    180.0, 90.0, false, false, true, false, 2)
+            end)
+            FreezeEntityPosition(stretcherObject, false)
+        else
+            TriggerTokenEvent('qb-radialmenu:Stretcher:BusyCheck', GetPlayerServerId(closestPlayer), 'attach')
+        end
+    end
+end
+
+local function detachStretcher()
+    DetachEntity(stretcherObject, false, true)
+    ClearPedTasksImmediately(PlayerPedId())
+    isAttached = false
+end
+
+-- Events
+
+RegisterNetEvent('qb-radialmenu:client:TakeStretcher', function()
+    local vehicle = checkForVehicles()
+    if vehicle ~= 0 then
+        RequestModel('prop_ld_binbag_01')
+        while not HasModelLoaded('prop_ld_binbag_01') do
+            Wait(0)
+        end
+        local obj = CreateObject(`prop_ld_binbag_01`, GetEntityCoords(PlayerPedId()), true)
+        if obj ~= 0 then
+            SetEntityRotation(obj, 0.0, 0.0, GetEntityHeading(vehicle), false, false)
+            FreezeEntityPosition(obj, true)
+            PlaceObjectOnGroundProperly(obj)
+            stretcherObject = obj
+            SetTimeout(200, function()
+                attachToStretcher()
+                isAttached = true
+            end)
+        else
+            QBCore.Functions.Notify(Lang:t('error.obj_not_found'), 'error')
+        end
+    else
+        QBCore.Functions.Notify(Lang:t('error.not_near_ambulance'), 'error')
+    end
+end)
+
+RegisterNetEvent('qb-radialmenu:client:RemoveStretcher', function()
+    local ped = PlayerPedId()
+    local coords = GetOffsetFromEntityInWorldCoords(ped, 0, 1.5, 0)
+    if stretcherObject then
+        local bCoords = GetEntityCoords(stretcherObject)
+        if #(coords - bCoords) < 3.0 then
+            if DoesEntityExist(stretcherObject) then
+                DeleteEntity(stretcherObject)
+                ClearPedTasks(ped)
+                DetachEntity(ped, false, true)
+                TriggerTokenEvent('qb-radialmenu:server:RemoveStretcher', coords, stretcherObject)
+                isAttached = false
+                stretcherObject = nil
+                isLayingOnBed = false
+            end
+        else
+            QBCore.Functions.Notify(Lang:t('error.far_away'), 'error')
+        end
+    end
+end)
+
+RegisterNetEvent('qb-radialmenu:client:RemoveStretcherFromArea', function(playerPos, bObject)
+    local ped = PlayerPedId()
+    local pos = GetEntityCoords(ped)
+    if pos ~= playerPos then
+        if stretcherObject and stretcherObject == bObject then
+            if #(pos - playerPos) < 10 then
+                if IsEntityPlayingAnim(ped, 'anim@heists@box_carry@', 'idle', false) then
+                    detachStretcher()
+                end
+                if IsEntityPlayingAnim(ped, 'anim@gangops@morgue@table@', 'ko_front', false) then
+                    local coords = GetOffsetFromEntityInWorldCoords(ped, 0.85, 0.0, 0)
+                    ClearPedTasks(ped)
+                    DetachEntity(ped, false, true)
+                    SetEntityCoords(ped, coords.x, coords.y, coords.z)
+                    isLayingOnBed = false
+                end
+            end
+        end
+    end
+end)
+
+RegisterNetEvent('qb-radialmenu:Stretcher:client:BusyCheck', function(otherId, type)
+    local ped = PlayerPedId()
+    if type == 'lay' then
+        loadAnim('anim@gangops@morgue@table@')
+        local busy = IsEntityPlayingAnim(ped, 'anim@gangops@morgue@table@', 'ko_front', 3)
+        TriggerTokenEvent('qb-radialmenu:server:BusyResult', busy, otherId, type)
+    else
+        loadAnim('anim@heists@box_carry@')
+        local busy = IsEntityPlayingAnim(ped, 'anim@heists@box_carry@', 'idle', 3)
+        TriggerTokenEvent('qb-radialmenu:server:BusyResult', busy, otherId, type)
+    end
+end)
+
+RegisterNetEvent('qb-radialmenu:client:Result', function(isBusy, type)
+    local ped = PlayerPedId()
+    if type == 'lay' then
+        if not isBusy then
+            NetworkRequestControlOfEntity(stretcherObject)
+            loadAnim('anim@gangops@morgue@table@')
+            TaskPlayAnim(ped, 'anim@gangops@morgue@table@', 'ko_front', 8.0, 8.0, -1, 69, 1, false, false, false)
+            AttachEntityToEntity(ped, stretcherObject, 0, 0, 0.0, 1.0, 0.0, 0.0, 360.0, 0.0, false, false, false, false,
+                2)
+            isLayingOnBed = true
+        else
+            QBCore.Functions.Notify(Lang:t('error.stretcher_in_use'), 'error')
+            isLayingOnBed = false
+        end
+    else
+        if not isBusy then
+            NetworkRequestControlOfEntity(stretcherObject)
+            loadAnim('anim@heists@box_carry@')
+            TaskPlayAnim(ped, 'anim@heists@box_carry@', 'idle', 8.0, 8.0, -1, 50, 0, false, false, false)
+            SetTimeout(150, function()
+                AttachEntityToEntity(stretcherObject, ped, GetPedBoneIndex(ped, 28422), 0.0, -1.0, -0.50, 195.0, 180.0,
+                    180.0, 90.0, false, false, true, false, 2)
+            end)
+            FreezeEntityPosition(stretcherObject, false)
+            isAttached = true
+        else
+            QBCore.Functions.Notify(Lang:t('error.stretcher_in_use'), 'error')
+            isAttached = false
+        end
+    end
+end)
+
+AddEventHandler('onResourceStop', function(resource)
+    if resource == GetCurrentResourceName() then
+        if stretcherObject then
+            detachStretcher()
+            DeleteObject(stretcherObject)
+            ClearPedTasksImmediately(PlayerPedId())
+        end
+    end
+end)
+
+-- Threads
+
+CreateThread(function()
+    while true do
+        setClosestStretcher()
+        Wait(1000)
+    end
+end)
+
+CreateThread(function()
+    while true do
+        local sleep = 1000
+        local ped = PlayerPedId()
+        local pos = GetEntityCoords(ped)
+        if stretcherObject then
+            local offsetCoords = GetOffsetFromEntityInWorldCoords(stretcherObject, 0, 0.85, 0)
+            local distance = #(pos - offsetCoords)
+            if distance <= 1.0 then
+                if not isAttached then
+                    sleep = 0
+                    DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z, Lang:t('general.push_stretcher_button'))
+                    if IsControlJustPressed(0, 51) then
+                        attachToStretcher()
+                        isAttached = true
+                        sleep = 100
+                    end
+                    if IsControlJustPressed(0, 74) then
+                        FreezeEntityPosition(stretcherObject, true)
+                        sleep = 100
+                    end
+                else
+                    sleep = 0
+                    DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z,
+                        Lang:t('general.stop_pushing_stretcher_button'))
+                    if IsControlJustPressed(0, 51) then
+                        detachStretcher()
+                        isAttached = false
+                        sleep = 100
+                    end
+                end
+
+                if not isLayingOnBed and not isAttached then
+                    sleep = 0
+                    DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z + 0.2,
+                        Lang:t('general.lay_stretcher_button'))
+                    if IsControlJustPressed(0, 47) or IsDisabledControlJustPressed(0, 47) then
+                        LayOnStretcher()
+                        sleep = 100
+                    end
+                end
+            elseif distance <= 2 then
+                if not isLayingOnBed then
+                    sleep = 0
+                    DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z, Lang:t('general.push_position_drawtext'))
+                else
+                    if not isAttached then
+                        sleep = 0
+                        DrawText3Ds(offsetCoords.x, offsetCoords.y, offsetCoords.z + 0.2,
+                            Lang:t('general.get_off_stretcher_button'))
+                        if IsControlJustPressed(0, 47) or IsDisabledControlJustPressed(0, 47) then
+                            getOffStretcher()
+                            sleep = 100
+                        end
+                    end
+                end
+            end
+        end
+        Wait(sleep)
+    end
+end)
+
+CreateThread(function()
+    while true do
+        local sleep = 1000
+        if isAttached then
+            sleep = 0
+            local ped = PlayerPedId()
+            for _, PressedKey in pairs(detachKeys) do
+                if IsControlJustPressed(0, PressedKey) or IsDisabledControlJustPressed(0, PressedKey) then
+                    detachStretcher()
+                    sleep = 100
+                end
+            end
+            if IsPedShooting(ped) or IsPlayerFreeAiming(PlayerId()) or IsPedInMeleeCombat(ped) or IsEntityDead(ped) or IsPedRagdoll(ped) then
+                detachStretcher()
+            end
+        end
+        Wait(sleep)
+    end
+end)
+
+
+########## FILE: \client\trunk.lua
+local inTrunk = false
+local isKidnapped = false
+local isKidnapping = false
+local cam = nil
+local disabledTrunk = {
+    [`penetrator`] = "penetrator",
+    [`vacca`] = "vacca",
+    [`monroe`] = "monroe",
+    [`turismor`] = "turismor",
+    [`osiris`] = "osiris",
+    [`comet`] = "comet",
+    [`ardent`] = "ardent",
+    [`jester`] = "jester",
+    [`nero`] = "nero",
+    [`nero2`] = "nero2",
+    [`vagner`] = "vagner",
+    [`infernus`] = "infernus",
+    [`zentorno`] = "zentorno",
+    [`comet2`] = "comet2",
+    [`comet3`] = "comet3",
+    [`comet4`] = "comet4",
+    [`bullet`] = "bullet",
+}
+
+-- Functions
+
+local function DrawText3Ds(x, y, z, text)
+	SetTextScale(0.35, 0.35)
+    SetTextFont(4)
+    SetTextProportional(true)
+    SetTextColour(255, 255, 255, 215)
+    BeginTextCommandDisplayText("STRING")
+    SetTextCentre(true)
+    AddTextComponentSubstringPlayerName(text)
+    SetDrawOrigin(x,y,z, 0)
+    EndTextCommandDisplayText(0.0, 0.0)
+    local factor = string.len(text) / 370
+    DrawRect(0.0, 0.0 + 0.0125, 0.017 + factor, 0.03, 0, 0, 0, 75)
+    ClearDrawOrigin()
+end
+
+local function TrunkCam(bool)
+    local vehicle = GetEntityAttachedTo(cache.ped)
+    local drawPos = GetOffsetFromEntityInWorldCoords(vehicle, 0, -5.5, 0)
+    local vehHeading = GetEntityHeading(vehicle)
+    if bool then
+        RenderScriptCams(false, false, 0, true, false)
+        DestroyCam(cam, false)
+        if not DoesCamExist(cam) then
+            cam = CreateCam('DEFAULT_SCRIPTED_CAMERA', true)
+            SetCamActive(cam, true)
+            SetCamCoord(cam, drawPos.x, drawPos.y, drawPos.z + 2)
+            SetCamRot(cam, -2.5, 0.0, vehHeading, 0.0)
+            RenderScriptCams(true, false, 0, true, true)
+        end
+    else
+        RenderScriptCams(false, false, 0, true, false)
+        DestroyCam(cam, false)
+        cam = nil
+    end
+end
+
+-- Events
+
+RegisterNetEvent('qb-kidnapping:client:SetKidnapping', function(bool)
+    isKidnapping = bool
+end)
+
+RegisterNetEvent('qb-trunk:client:KidnapTrunk', function()
+    local closestPlayer, distance = QBCore.Functions.GetClosestPlayer()
+    if distance ~= -1 and distance < 2 then
+        if isKidnapping then
+            local closestVehicle, _ = QBCore.Functions.GetClosestVehicle(GetEntityCoords(cache.ped))
+            if closestVehicle ~= 0 then
+                TriggerTokenEvent("qb-trunk:server:KidnapTrunk", GetPlayerServerId(closestPlayer), closestVehicle)
+            end
+        else
+            QBCore.Functions.Notify(Lang:t("error.not_kidnapped"), 'error')
+        end
+    end
+end)
+
+RegisterNetEvent('qb-trunk:client:KidnapGetIn', function(veh)
+    local closestVehicle = veh
+    local vehClass = GetVehicleClass(closestVehicle)
+    local plate = QBCore.Functions.GetPlate(closestVehicle)
+    if Config.TrunkClasses[vehClass].allowed then
+        local isBusy = lib.callback.await('qb-trunk:server:getTrunkBusy', false, plate)
+        if not disabledTrunk[GetEntityModel(closestVehicle)] then
+            if not inTrunk then
+                if not isBusy then
+                    if not isKidnapped then
+                        if GetVehicleDoorAngleRatio(closestVehicle, 5) > 0 then
+                            local offset = {
+                                x = Config.TrunkClasses[vehClass].x,
+                                y = Config.TrunkClasses[vehClass].y,
+                                z = Config.TrunkClasses[vehClass].z,
+                            }
+                            lib.requestAnimDict("fin_ext_p1-7")
+                            TaskPlayAnim(cache.ped, "fin_ext_p1-7", "cs_devin_dual-7", 8.0, 8.0, -1, 1, 999.0, false, false, false)
+                            AttachEntityToEntity(cache.ped, closestVehicle, 0, offset.x, offset.y, offset.z, 0, 0, 40.0, true, true, true, true, 1, true)
+                            TriggerTokenEvent('qb-trunk:server:setTrunkBusy', plate, true)
+                            inTrunk = true
+                            Wait(500)
+                            SetVehicleDoorShut(closestVehicle, 5, false)
+                            QBCore.Functions.Notify(Lang:t("success.entered_trunk"), 'success', 4000)
+                            TrunkCam(true)
+                            isKidnapped = true
+                        else
+                            QBCore.Functions.Notify(Lang:t("error.trunk_closed"), 'error', 2500)
+                        end
+                    else
+                        local vehicle = GetEntityAttachedTo(cache.ped)
+                        plate = QBCore.Functions.GetPlate(vehicle)
+                        if GetVehicleDoorAngleRatio(vehicle, 5) > 0 then
+                            local vehCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0, -5.0, 0)
+                            DetachEntity(cache.ped, true, true)
+                            ClearPedTasks(cache.ped)
+                            inTrunk = false
+                            TriggerTokenEvent('qb-trunk:server:setTrunkBusy', plate, false)
+                            SetEntityCoords(cache.ped, vehCoords.x, vehCoords.y, vehCoords.z, false, false, false, false)
+                            SetEntityCollision(cache.ped, true, true)
+                            TrunkCam(false)
+                        else
+                            QBCore.Functions.Notify(Lang:t("error.trunk_closed"), 'error', 2500)
+                        end
+                    end
+                else
+                    QBCore.Functions.Notify(Lang:t("error.someone_in_trunk"), 'error', 2500)
+                end
+            else
+                QBCore.Functions.Notify(Lang:t("error.already_in_trunk"), 'error', 2500)
+            end
+        else
+            QBCore.Functions.Notify(Lang:t("error.cant_enter_trunk"), 'error', 2500)
+        end
+    else
+        QBCore.Functions.Notify(Lang:t("error.cant_enter_trunk"), 'error', 2500)
+    end
+end)
+
+RegisterNetEvent('qb-trunk:client:GetIn', function()
+    local closestVehicle = QBCore.Functions.GetClosestVehicle(GetEntityCoords(cache.ped))
+    if closestVehicle ~= 0 then
+        local vehClass = GetVehicleClass(closestVehicle)
+        local plate = QBCore.Functions.GetPlate(closestVehicle)
+        if Config.TrunkClasses[vehClass].allowed then
+            local isBusy = lib.callback.await('qb-trunk:server:getTrunkBusy', false, plate)
+            if not disabledTrunk[GetEntityModel(closestVehicle)] then
+                if not inTrunk then
+                    if not isBusy then
+                        if GetVehicleDoorAngleRatio(closestVehicle, 5) > 0 then
+                            local offset = {
+                                x = Config.TrunkClasses[vehClass].x,
+                                y = Config.TrunkClasses[vehClass].y,
+                                z = Config.TrunkClasses[vehClass].z,
+                            }
+                            lib.requestAnimDict("fin_ext_p1-7")
+                            TaskPlayAnim(cache.ped, "fin_ext_p1-7", "cs_devin_dual-7", 8.0, 8.0, -1, 1, 999.0, false, false, false)
+                            AttachEntityToEntity(cache.ped, closestVehicle, 0, offset.x, offset.y, offset.z, 0, 0, 40.0, true, true, true, true, 1, true)
+                            TriggerTokenEvent('qb-trunk:server:setTrunkBusy', plate, true)
+                            inTrunk = true
+                            Wait(500)
+                            SetVehicleDoorShut(closestVehicle, 5, false)
+                            QBCore.Functions.Notify(Lang:t("success.entered_trunk"), 'success', 4000)
+                            TrunkCam(true)
+                        else
+                            QBCore.Functions.Notify(Lang:t("error.trunk_closed"), 'error', 2500)
+                        end
+                    else
+                        QBCore.Functions.Notify(Lang:t("error.someone_in_trunk"), 'error', 2500)
+                    end
+                else
+                    QBCore.Functions.Notify(Lang:t("error.already_in_trunk"), 'error', 2500)
+                end
+            else
+                QBCore.Functions.Notify(Lang:t("error.cant_enter_trunk"), 'error', 2500)
+            end
+        else
+            QBCore.Functions.Notify(Lang:t("error.cant_enter_trunk"), 'error', 2500)
+        end
+    else
+        QBCore.Functions.Notify(Lang:t("error.no_vehicle_found"), 'error', 2500)
+    end
+end)
+
+-- Threads
+
+CreateThread(function()
+    while true do
+        local sleep = 1000
+        local vehicle = GetEntityAttachedTo(cache.ped)
+        local drawPos = GetOffsetFromEntityInWorldCoords(vehicle, 0, -5.5, 0)
+        local vehHeading = GetEntityHeading(vehicle)
+        if cam then
+            sleep = 0
+            SetCamRot(cam, -2.5, 0.0, vehHeading, 0.0)
+            SetCamCoord(cam, drawPos.x, drawPos.y, drawPos.z + 2)
+        end
+        Wait(sleep)
+    end
+end)
+
+CreateThread(function()
+    while true do
+        local sleep = 1000
+        if inTrunk then
+            if not isKidnapped then
+                local vehicle = GetEntityAttachedTo(cache.ped)
+                local drawPos = GetOffsetFromEntityInWorldCoords(vehicle, 0, -2.5, 0)
+                local plate = QBCore.Functions.GetPlate(vehicle)
+                if DoesEntityExist(vehicle) then
+                    sleep = 0
+                    DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.75, Lang:t("general.get_out_trunk_button"))
+                    if IsControlJustPressed(0, 38) then
+                        if GetVehicleDoorAngleRatio(vehicle, 5) > 0 then
+                            local vehCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0, -5.0, 0)
+                            DetachEntity(cache.ped, true, true)
+                            ClearPedTasks(cache.ped)
+                            inTrunk = false
+                            TriggerTokenEvent('qb-trunk:server:setTrunkBusy', plate, false)
+                            SetEntityCoords(cache.ped, vehCoords.x, vehCoords.y, vehCoords.z, false, false, false, false)
+                            SetEntityCollision(cache.ped, true, true)
+                            TrunkCam(false)
+                        else
+                            QBCore.Functions.Notify(Lang:t("error.trunk_closed"), 'error', 2500)
+                        end
+                        Wait(100)
+                    end
+                    if GetVehicleDoorAngleRatio(vehicle, 5) > 0 then
+                        DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.5, Lang:t("general.close_trunk_button"))
+                        if IsControlJustPressed(0, 47) then
+                            if not IsVehicleSeatFree(vehicle, -1) then
+                                TriggerTokenEvent('qb-radialmenu:trunk:server:Door', false, plate, 5)
+                            else
+                                SetVehicleDoorShut(vehicle, 5, false)
+                            end
+                            Wait(100)
+                        end
+                    else
+                        DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.5, Lang:t("general.open_trunk_button"))
+                        if IsControlJustPressed(0, 47) then
+                            if not IsVehicleSeatFree(vehicle, -1) then
+                                TriggerTokenEvent('qb-radialmenu:trunk:server:Door', true, plate, 5)
+                            else
+                                SetVehicleDoorOpen(vehicle, 5, false, false)
+                            end
+                            Wait(100)
+                        end
+                    end
+                end
+            end
+        end
+        Wait(sleep)
+    end
+end)
+
+
+########## FILE: \locales\en.lua
+local Translations = {
+    error = {
+        no_people_nearby = "No players nearby",
+        no_vehicle_found = "No vehicle found",
+        extra_deactivated = "Extra %{extra} has been deactivated",
+        extra_not_present = "Extra %{extra} is not present on this vehicle",
+        not_driver = "You're not the driver of the vehicle",
+        vehicle_driving_fast = "This vehicle is going too fast",
+        seat_occupied = "This seat is occupied",
+        race_harness_on = "You have a race harness on, you can't switch",
+        obj_not_found = "Couldn't create the requested object",
+        not_near_ambulance = "You're not near an Ambulance",
+        far_away = "You're too far away",
+        stretcher_in_use = "This stretcher is already in use",
+        not_kidnapped = "You did not kidnap this person",
+        trunk_closed = "The trunk is closed",
+        cant_enter_trunk = "You can't get in this trunk",
+        already_in_trunk = "You're already in the trunk",
+        cancel_task = "cancelled",
+        someone_in_trunk = "Someone is already in the trunk"
+    },
+    progress = {
+        flipping_car = "Flipping vehicle.."
+    },
+    success = {
+        extra_activated = "Extra %{extra} has been activated",
+        entered_trunk = "You're in the trunk"
+    },
+    info = {
+        no_variants = "There don't seem to be any variants for this",
+        wrong_ped = "This ped model does not allow for this option",
+        nothing_to_remove = "You don't appear to have anything to remove",
+        already_wearing = "You are already wearing that",
+        switched_seats = "You are now on the %{seat}"
+    },
+    general = {
+        command_description = "Open Radial Menu",
+        push_stretcher_button = "[E] - Push Stretcher",
+        stop_pushing_stretcher_button = "~g~E~w~ - Stop Pushing",
+        lay_stretcher_button = "[G] - Lay On Stretcher",
+        push_position_drawtext = "Push Here",
+        get_off_stretcher_button = "[G] - Get Off Stretcher",
+        get_out_trunk_button = "[E] Get out of the trunk",
+        close_trunk_button = "[G] Close the trunk",
+        open_trunk_button = "[G] Open the trunk",
+        getintrunk_command_desc = "Get In Trunk",
+        putintrunk_command_desc = "Put Player In Trunk",
+        gang_radial = "Gang",
+        job_radial = "Job"
+    },
+    options = {
+        flip = 'Flip vehicle',
+        vehicle = 'Vehicle',
+        emergency_button = "Emergency Button",
+        driver_seat = "Drivers Seat",
+        passenger_seat = "Passenger Seat",
+        other_seats = "Other Seat",
+        rear_left_seat = "Rear Left Seat",
+        rear_right_seat = "Rear Right Seat"
+    },
+}
+
+Lang = Lang or Locale:new({
+    phrases = Translations,
+    warnOnMissing = true
+})
+
+
+########## FILE: \server\main.lua
+local trunkBusy = {}
+
+local function trimPlate(plate)
+    return (plate:gsub('%s+$', ''))
+end
+
+local function vehicleByPlate(plate)
+    plate = trimPlate(plate)
+
+    for _, veh in ipairs(GetAllVehicles()) do
+        if DoesEntityExist(veh) and trimPlate(GetVehicleNumberPlateText(veh)) == plate then
+            return veh
+        end
+    end
+end
+
+local function nearVehicle(source, veh, range)
+    local ped = GetPlayerPed(source)
+
+    if not ped or ped == 0 then return false end
+
+    return #(GetEntityCoords(ped) - GetEntityCoords(veh)) <= range
+end
+
+lib.callback.register('qb-trunk:server:getTrunkBusy', function(source, plate)
+    if type(plate) ~= 'string' then return false end
+
+    local holder = trunkBusy[trimPlate(plate)]
+
+    return holder ~= nil and holder ~= source
+end)
+
+RegisterNetEvent('qb-trunk:server:setTrunkBusy', function(plate, busy)
+    local source = source
+
+    if type(plate) ~= 'string' then return end
+
+    plate = trimPlate(plate)
+
+    if busy then
+        trunkBusy[plate] = source
+    elseif trunkBusy[plate] == source then
+        trunkBusy[plate] = nil
+    end
+end)
+
+RegisterNetEvent('qb-radialmenu:trunk:server:Door', function(open, plate, door)
+    local source = source
+
+    if type(plate) ~= 'string' or type(door) ~= 'number' then return end
+    if door < 0 or door > 5 then return end
+
+    local veh = vehicleByPlate(plate)
+
+    if not veh or not nearVehicle(source, veh, 12.0) then return end
+
+    TriggerClientEvent('qb-radialmenu:trunk:client:Door', -1, trimPlate(plate), door, open and true or false)
+end)
+
+RegisterNetEvent('qb-radialmenu:server:RemoveStretcher', function(coords, obj)
+    if type(coords) ~= 'vector3' and type(coords) ~= 'table' then return end
+
+    TriggerClientEvent('qb-radialmenu:client:RemoveStretcherFromArea', -1, coords, obj)
+end)
+
+RegisterNetEvent('qb-radialmenu:server:LayOnStretcher', function(target, kind)
+    local source = source
+
+    target = tonumber(target)
+
+    if not target or not GetPlayerName(target) then return end
+    if kind ~= 'lay' and kind ~= 'carry' then return end
+
+    TriggerClientEvent('qb-radialmenu:Stretcher:client:BusyCheck', target, source, kind)
+end)
+
+RegisterNetEvent('qb-radialmenu:server:BusyResult', function(busy, otherId, kind)
+    otherId = tonumber(otherId)
+
+    if not otherId then return end
+
+    TriggerClientEvent('qb-radialmenu:client:Result', otherId, busy and true or false, kind)
+end)
+
+AddEventHandler('playerDropped', function()
+    local source = source
+
+    for plate, holder in pairs(trunkBusy) do
+        if holder == source then
+            trunkBusy[plate] = nil
+        end
+    end
+end)
+
+lib.print.info('sm_radialmenu server siap')
+

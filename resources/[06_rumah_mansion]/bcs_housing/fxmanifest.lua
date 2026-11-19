@@ -1,7 +1,3 @@
-shared_scripts {
-    '@ox_lib/init.lua',
-    '@se_v2/trigger.lua',
-}
 
 
 
@@ -32,6 +28,8 @@ data_file 'DLC_ITYP_REQUEST' 'whiteroom.ytyp'
 data_file 'DLC_ITYP_REQUEST' 'signboard_potato.ytyp'
 
 shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
 	'utils.lua',
 	'config/*.lua',
 	'modules/init.lua',

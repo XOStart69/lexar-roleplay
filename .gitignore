@@ -1,4 +1,4 @@
-﻿*.ytd
+*.ytd
 *.ydr
 *.yft
 *.ydd
@@ -40,3 +40,7 @@ crashes/
 logs/
 *.bak*
 _ypt_backup/
+resources/\[03_fitur_tambahan\]/sm_resource_2/interface/sm_tcgcards/data/cards.json
+resources/\[03_fitur_tambahan\]/sm_resource_2/interface/sm_tcgcards/data/divisions.json
+resources/\[01_kendaraan_ekonomi\]/sm_custom/data/zones.json
+resources/\[01_kendaraan_ekonomi\]/sm_custom/data/pricing.json

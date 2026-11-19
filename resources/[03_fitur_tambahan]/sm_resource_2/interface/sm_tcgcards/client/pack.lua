@@ -39,15 +39,15 @@ local function openPack(slot)
     if Nui.view() then return end
     if not Catalog.sync() then return fail('catalog_unavailable') end
 
-    local result, reason = lib.callback.await('sm_tcgcards:pack:open', 500, slot)
+    local ok, count = lib.callback.await('sm_tcgcards:pack:open', 500, slot)
 
-    if not result then return fail(reason) end
+    if not ok then return fail(count) end
 
     local pack = {}
 
     opened = pack
     lib.playAnim(cache.ped, anim.dict, anim.clip, 3.0, 3.0, -1, anim.flag)
-    Nui.open('pack', result, function()
+    Nui.open('pack', count, function()
         opened = nil
         StopAnimTask(cache.ped, anim.dict, anim.clip, 2.0)
         CreateThread(function()
@@ -59,9 +59,9 @@ end
 Nui.on('pack:tear', function()
     if not opened then return fail() end
 
-    local cards = lib.callback.await('sm_tcgcards:pack:reveal', false)
+    local cards, reason = lib.callback.await('sm_tcgcards:pack:reveal', false)
 
-    if not cards then return fail() end
+    if not cards then return fail(reason) end
 
     return { ok = true, cards = cards }
 end)

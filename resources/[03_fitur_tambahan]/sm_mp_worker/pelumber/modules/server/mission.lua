@@ -389,4 +389,7 @@ function Mission.taskValue(mission, taskType)
     return mission.unitDone[taskType] or 0
 end
 
+Mission.locations = locations
+
 return Mission
+

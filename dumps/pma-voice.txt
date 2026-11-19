@@ -1,0 +1,2074 @@
+########## MANIFEST: A:\Lexar Roleplay\resources\[00_core]\pma-voice
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+game 'common'
+
+fx_version 'cerulean'
+
+author 'AvarianKnight'
+description 'VOIP built using FiveM\'s built in mumble.'
+
+dependencies {
+	'/onesync'
+}
+
+lua54 'yes'
+
+shared_script 'shared.lua'
+
+client_scripts {
+	'client/utils/*',
+	'client/init/proximity.lua',
+	'client/init/init.lua',
+	'client/init/main.lua',
+	'client/init/submix.lua',
+	'client/module/*.lua',
+	'client/*.lua'
+}
+
+server_scripts {
+	'server/**/*.lua',
+'server/**/*.js'
+}
+
+files {
+	'ui/*.ogg',
+	'ui/css/*.css',
+	'ui/js/*.js',
+	'ui/index.html'
+}
+
+ui_page 'ui/index.html'
+
+provides {
+	'mumble-voip',
+	'tokovoip',
+	'toko-voip',
+	'tokovoip_script'
+}
+
+convar_category 'PMA-Voice' {
+	"PMA-Voice Configuration Options",
+	{
+		{ "Use native audio",                      "$voice_useNativeAudio",       "CV_BOOL",   "false" },
+		{ "Use 2D audio",                          "$voice_use2dAudio",           "CV_BOOL",   "false" },
+		{ "Use sending range only",                "$voice_useSendingRangeOnly",  "CV_BOOL",   "false" },
+		{ "Enable UI",                             "$voice_enableUi",             "CV_INT",    "1" },
+		{ "Enable F11 proximity key",              "$voice_enableProximityCycle", "CV_INT",    "1" },
+		{ "Proximity cycle key",                   "$voice_defaultCycle",         "CV_STRING", "F11" },
+		{ "Voice radio volume",                    "$voice_defaultRadioVolume",   "CV_INT",    "30" },
+		{ "Voice call volume",                     "$voice_defaultCallVolume",    "CV_INT",    "60" },
+		{ "Enable radios",                         "$voice_enableRadios",         "CV_INT",    "1" },
+		{ "Enable calls",                          "$voice_enableCalls",          "CV_INT",    "1" },
+		{ "Enable submix",                         "$voice_enableSubmix",         "CV_INT",    "1" },
+		{ "Enable radio animation",                "$voice_enableRadioAnim",      "CV_INT",    "0" },
+		{ "Radio key",                             "$voice_defaultRadio",         "CV_STRING", "LMENU" },
+		{ "UI refresh rate",                       "$voice_uiRefreshRate",        "CV_INT",    "200" },
+		{ "Allow players to set audio intent",     "$voice_allowSetIntent",       "CV_INT",    "1" },
+		{ "External mumble server address",        "$voice_externalAddress",      "CV_STRING", "" },
+		{ "External mumble server port",           "$voice_externalPort",         "CV_INT",    "0" },
+		{ "Voice debug mode",                      "$voice_debugMode",            "CV_INT",    "0" },
+		{ "Disable players being allowed to join", "$voice_externalDisallowJoin", "CV_INT",    "0" },
+		{ "Hide server endpoints in logs",         "$voice_hideEndpoints",        "CV_INT",    "1" }
+}
+}
+dependency 'se_v2'
+
+
+########## FILE: \fxmanifest.lua
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+game 'common'
+
+fx_version 'cerulean'
+
+author 'AvarianKnight'
+description 'VOIP built using FiveM\'s built in mumble.'
+
+dependencies {
+	'/onesync'
+}
+
+lua54 'yes'
+
+shared_script 'shared.lua'
+
+client_scripts {
+	'client/utils/*',
+	'client/init/proximity.lua',
+	'client/init/init.lua',
+	'client/init/main.lua',
+	'client/init/submix.lua',
+	'client/module/*.lua',
+	'client/*.lua'
+}
+
+server_scripts {
+	'server/**/*.lua',
+'server/**/*.js'
+}
+
+files {
+	'ui/*.ogg',
+	'ui/css/*.css',
+	'ui/js/*.js',
+	'ui/index.html'
+}
+
+ui_page 'ui/index.html'
+
+provides {
+	'mumble-voip',
+	'tokovoip',
+	'toko-voip',
+	'tokovoip_script'
+}
+
+convar_category 'PMA-Voice' {
+	"PMA-Voice Configuration Options",
+	{
+		{ "Use native audio",                      "$voice_useNativeAudio",       "CV_BOOL",   "false" },
+		{ "Use 2D audio",                          "$voice_use2dAudio",           "CV_BOOL",   "false" },
+		{ "Use sending range only",                "$voice_useSendingRangeOnly",  "CV_BOOL",   "false" },
+		{ "Enable UI",                             "$voice_enableUi",             "CV_INT",    "1" },
+		{ "Enable F11 proximity key",              "$voice_enableProximityCycle", "CV_INT",    "1" },
+		{ "Proximity cycle key",                   "$voice_defaultCycle",         "CV_STRING", "F11" },
+		{ "Voice radio volume",                    "$voice_defaultRadioVolume",   "CV_INT",    "30" },
+		{ "Voice call volume",                     "$voice_defaultCallVolume",    "CV_INT",    "60" },
+		{ "Enable radios",                         "$voice_enableRadios",         "CV_INT",    "1" },
+		{ "Enable calls",                          "$voice_enableCalls",          "CV_INT",    "1" },
+		{ "Enable submix",                         "$voice_enableSubmix",         "CV_INT",    "1" },
+		{ "Enable radio animation",                "$voice_enableRadioAnim",      "CV_INT",    "0" },
+		{ "Radio key",                             "$voice_defaultRadio",         "CV_STRING", "LMENU" },
+		{ "UI refresh rate",                       "$voice_uiRefreshRate",        "CV_INT",    "200" },
+		{ "Allow players to set audio intent",     "$voice_allowSetIntent",       "CV_INT",    "1" },
+		{ "External mumble server address",        "$voice_externalAddress",      "CV_STRING", "" },
+		{ "External mumble server port",           "$voice_externalPort",         "CV_INT",    "0" },
+		{ "Voice debug mode",                      "$voice_debugMode",            "CV_INT",    "0" },
+		{ "Disable players being allowed to join", "$voice_externalDisallowJoin", "CV_INT",    "0" },
+		{ "Hide server endpoints in logs",         "$voice_hideEndpoints",        "CV_INT",    "1" }
+}
+}
+dependency 'se_v2'
+
+
+########## FILE: \shared.lua
+Cfg = {}
+
+voiceTarget = 1
+
+gameVersion = GetGameName()
+
+-- these are just here to satisfy linting
+if not IsDuplicityVersion() then
+	LocalPlayer = LocalPlayer
+	playerServerId = GetPlayerServerId(PlayerId())
+
+	if gameVersion == "redm" then
+		function CreateAudioSubmix(name)
+			return Citizen.InvokeNative(0x658d2bc8, name, Citizen.ResultAsInteger())
+		end
+
+		function AddAudioSubmixOutput(submixId, outputSubmixId)
+			Citizen.InvokeNative(0xAC6E290D, submixId, outputSubmixId)
+		end
+
+		function MumbleSetSubmixForServerId(serverId, submixId)
+			Citizen.InvokeNative(0xFE3A3054, serverId, submixId)
+		end
+
+		function SetAudioSubmixEffectParamFloat(submixId, effectSlot, paramIndex, paramValue)
+			Citizen.InvokeNative(0x9A209B3C, submixId, effectSlot, paramIndex, paramValue)
+		end
+
+		function SetAudioSubmixEffectParamInt(submixId, effectSlot, paramIndex, paramValue)
+			Citizen.InvokeNative(0x77FAE2B8, submixId, effectSlot, paramIndex, paramValue)
+		end
+
+		function SetAudioSubmixEffectRadioFx(submixId, effectSlot)
+			Citizen.InvokeNative(0xAAA94D53, submixId, effectSlot)
+		end
+
+		function SetAudioSubmixOutputVolumes(submixId, outputSlot, frontLeftVolume, frontRightVolume, rearLeftVolume,
+											 rearRightVolume, channel5Volume, channel6Volume)
+			Citizen.InvokeNative(0x825DC0D1, submixId, outputSlot, frontLeftVolume, frontRightVolume, rearLeftVolume,
+				rearRightVolume, channel5Volume, channel6Volume)
+		end
+	end
+end
+Player = Player
+Entity = Entity
+
+if GetConvar('voice_useNativeAudio', 'false') == 'true' then
+	-- native audio distance seems to be larger then regular gta units
+	Cfg.voiceModes = {
+		{ 1.5, "Whisper" }, -- Whisper speech distance in gta distance units
+		{ 3.0, "Normal" },  -- Normal speech distance in gta distance units
+		{ 15.0, "Shouting" } -- Shout speech distance in gta distance units
+	}
+else
+	Cfg.voiceModes = {
+		{ 3.0,  "Whisper" }, -- Whisper speech distance in gta distance units
+		{ 7.0,  "Normal" },  -- Normal speech distance in gta distance units
+		{ 15.0, "Shouting" } -- Shout speech distance in gta distance units
+	}
+end
+
+logger = {
+	log = function(message, ...)
+		print((message):format(...))
+	end,
+	info = function(message, ...)
+		if GetConvarInt('voice_debugMode', 0) >= 1 then
+			print(('[info] ' .. message):format(...))
+		end
+	end,
+	warn = function(message, ...)
+		print(('[^1WARNING^7] ' .. message):format(...))
+	end,
+	error = function(message, ...)
+		error((message):format(...))
+	end,
+	verbose = function(message, ...)
+		if GetConvarInt('voice_debugMode', 0) >= 4 then
+			print(('[verbose] ' .. message):format(...))
+		end
+	end,
+}
+
+
+function tPrint(tbl, indent)
+	indent = indent or 0
+	for k, v in pairs(tbl) do
+		local tblType = type(v)
+		local formatting = string.rep("  ", indent) .. k .. ": "
+
+		if tblType == "table" then
+			print(formatting)
+			tPrint(v, indent + 1)
+		elseif tblType == 'boolean' then
+			print(formatting .. tostring(v))
+		elseif tblType == "function" then
+			print(formatting .. tostring(v))
+		else
+			print(formatting .. v)
+		end
+	end
+end
+
+local function types(args)
+	local argType = type(args[1])
+	for i = 2, #args do
+		local arg = args[i]
+		if argType == arg then
+			return true, argType
+		end
+	end
+	return false, argType
+end
+
+--- does a type check and errors if an invalid type is sent
+---@param ... table a table with the variable being the first argument and the expected type being the second
+function type_check(...)
+	local vars = { ... }
+	for i = 1, #vars do
+		local var = vars[i]
+		local matchesType, varType = types(var)
+		if not matchesType then
+			table.remove(var, 1)
+			error(("Invalid type sent to argument #%s, expected %s, got %s"):format(i, table.concat(var, "|"), varType))
+		end
+	end
+end
+
+
+########## FILE: \client\commands.lua
+local wasProximityDisabledFromOverride = false
+disableProximityCycle = false
+RegisterCommand('setvoiceintent', function(source, args)
+	if GetConvarInt('voice_allowSetIntent', 1) == 1 then
+		local intent = args[1]
+		if intent == 'speech' then
+			MumbleSetAudioInputIntent(`speech`)
+		elseif intent == 'music' then
+			MumbleSetAudioInputIntent(`music`)
+		end
+		LocalPlayer.state:set('voiceIntent', intent, true)
+	end
+end)
+TriggerEvent('chat:addSuggestion', '/setvoiceintent', 'Sets the players voice intent', {
+	{
+		name = "intent",
+		help = "speech is default and enables noise suppression & high pass filter, music disables both of these."
+	},
+})
+
+-- TODO: Better implementation of this?
+RegisterCommand('vol', function(_, args)
+	if not args[1] then return end
+	setVolume(tonumber(args[1]))
+end)
+TriggerEvent('chat:addSuggestion', '/vol', 'Sets the radio/phone volume', {
+	{ name = "volume", help = "A range between 1-100 on how loud you want them to be" },
+})
+
+exports('setAllowProximityCycleState', function(state)
+	type_check({ state, "boolean" })
+	disableProximityCycle = state
+end)
+
+function setProximityState(proximityRange, isCustom)
+	local voiceModeData = Cfg.voiceModes[mode]
+	MumbleSetTalkerProximity(proximityRange + 0.0)
+	LocalPlayer.state:set('proximity', {
+		index = mode,
+		distance = proximityRange,
+		mode = isCustom and "Custom" or voiceModeData[2],
+	}, true)
+	sendUIMessage({
+		-- JS expects this value to be - 1, "custom" voice is on the last index
+		voiceMode = isCustom and #Cfg.voiceModes or mode - 1
+	})
+end
+
+exports("overrideProximityRange", function(range, disableCycle)
+	type_check({ range, "number" })
+	setProximityState(range, true)
+	if disableCycle then
+		disableProximityCycle = true
+		wasProximityDisabledFromOverride = true
+	end
+end)
+
+exports("clearProximityOverride", function()
+	local voiceModeData = Cfg.voiceModes[mode]
+	setProximityState(voiceModeData[1], false)
+	if wasProximityDisabledFromOverride then
+		disableProximityCycle = false
+	end
+end)
+
+RegisterCommand('setproximity', function(source, args)
+	local level = tonumber(args?[1]) or 1
+
+	if type(level) ~= "number" or level < 1 or level > #Cfg.voiceModes then
+		return print('^3[WARNING]^7 Invalid proximity level. Please provide a number between 1 and ' .. #Cfg.voiceModes)
+	end
+
+	mode = level
+	local voiceModeData = Cfg.voiceModes[mode]
+	setProximityState(voiceModeData[1], false)
+	TriggerEvent('pma-voice:setTalkingMode', mode)
+end, false)
+
+RegisterCommand('cycleproximity', function()
+	-- Proximity is either disabled, or manually overwritten.
+	if GetConvarInt('voice_enableProximityCycle', 1) ~= 1 or disableProximityCycle then return end
+	local newMode = mode + 1
+
+	-- If we're within the range of our voice modes, allow the increase, otherwise reset to the first state
+	if newMode <= #Cfg.voiceModes then
+		mode = newMode
+	else
+		mode = 1
+	end
+
+	setProximityState(Cfg.voiceModes[mode][1], false)
+	TriggerEvent('pma-voice:setTalkingMode', mode)
+end, false)
+if gameVersion == 'fivem' then
+	RegisterKeyMapping('cycleproximity', 'Cycle Proximity', 'keyboard', GetConvar('voice_defaultCycle', 'F11'))
+end
+
+
+########## FILE: \client\c_voicemarkerui.lua
+local voiceModes = {}
+local proximityRangeTimeout = 0
+local proximityRangeMarkerReachTimeOut = false
+
+-- Fungsi menggambar marker dengan animasi dan warna biru
+local function DrawMarkerForProximityRange(proximityRange)
+    local playerPed = PlayerPedId()
+    local coords = GetEntityCoords(playerPed)
+    local vehicle = GetVehiclePedIsIn(playerPed, false)
+    
+    -- Adjust Z position based on whether player is in vehicle
+    local zOffset = -1.0
+    if vehicle ~= 0 then
+        -- Player is in vehicle - raise marker higher
+        local vehicleModel = GetEntityModel(vehicle)
+        local minDim, maxDim = GetModelDimensions(vehicleModel)
+        zOffset = minDim.z + 0.5 -- Use vehicle's bottom dimension minus small offset
+    end
+    
+    DrawMarker(
+        1, -- Marker Type: Cylinder
+        coords.x, coords.y, coords.z + zOffset,
+        0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0,
+        proximityRange * 2.0, proximityRange * 2.0, 0.5,
+        0, 191, 255, 150, -- Deep Sky Blue
+        true, -- bobUpAndDown
+        true, -- faceCamera
+        2, -- p19
+        false, -- rotate
+        nil, nil, false
+    )
+end
+
+local function CreateProximityRangeTimeout()
+    proximityRangeTimeout = 2
+    Citizen.CreateThread(function()
+        repeat
+            Wait(1000)
+            proximityRangeTimeout -= 1
+        until (proximityRangeTimeout <= 0)
+        proximityRangeMarkerReachTimeOut = true
+        Wait(1)
+        proximityRangeMarkerReachTimeOut = false
+    end)
+end
+
+local function CreateProximityRange(proximityRange)
+    proximityRangeMarkerReachTimeOut = true
+    Wait(1)
+    proximityRangeMarkerReachTimeOut = false
+
+    if proximityRangeTimeout <= 0 then
+        CreateProximityRangeTimeout()
+    end
+    proximityRangeTimeout = 2
+
+    Citizen.CreateThread(function()
+        while not proximityRangeMarkerReachTimeOut do
+            Wait(0)
+            DrawMarkerForProximityRange(proximityRange)
+        end
+    end)
+end
+
+-- Inisialisasi voiceModes dengan retry
+Citizen.CreateThread(function()
+    local attempts = 0
+    while #voiceModes == 0 and attempts < 10 do
+        TriggerEvent("pma-voice:settingsCallback", function(voiceSettings)
+            voiceModes = voiceSettings.voiceModes or {}
+        end)
+        attempts += 1
+        Wait(500)
+    end
+
+    if #voiceModes == 0 then
+        print("[voicemarker] Gagal mengambil voiceModes dari pma-voice.")
+    else
+        print(string.format("[voicemarker] voiceModes berhasil diambil. Total: %d mode.", #voiceModes))
+    end
+end)
+
+-- Event listener dari pma-voice
+AddEventHandler('pma-voice:setTalkingMode', function(mode)
+    if voiceModes and voiceModes[mode] and voiceModes[mode][1] then
+        CreateProximityRange(voiceModes[mode][1])
+    else
+        print(string.format("[voicemarker] Invalid voice mode: %s", tostring(mode)))
+    end
+end)
+
+########## FILE: \client\events.lua
+isInitialized = false
+
+function handleInitialState()
+	local voiceModeData = Cfg.voiceModes[mode]
+	MumbleSetTalkerProximity(voiceModeData[1] + 0.0)
+	MumbleClearVoiceTarget(voiceTarget)
+	MumbleSetVoiceTarget(voiceTarget)
+	MumbleSetVoiceChannel(LocalPlayer.state.assignedChannel)
+
+	while MumbleGetVoiceChannelFromServerId(playerServerId) ~= LocalPlayer.state.assignedChannel do
+		Wait(100)
+		MumbleSetVoiceChannel(LocalPlayer.state.assignedChannel)
+	end
+
+	isInitialized = true
+
+	MumbleAddVoiceTargetChannel(voiceTarget, LocalPlayer.state.assignedChannel)
+
+	addNearbyPlayers()
+end
+
+AddEventHandler('mumbleConnected', function(address, isReconnecting)
+	logger.info('Connected to mumble server with address of %s, is this a reconnect %s',
+		GetConvarInt('voice_hideEndpoints', 1) == 1 and 'HIDDEN' or address, isReconnecting)
+
+	logger.log('Connecting to mumble, setting targets.')
+	-- don't try to set channel instantly, we're still getting data.
+	local voiceModeData = Cfg.voiceModes[mode]
+	LocalPlayer.state:set('proximity', {
+		index = mode,
+		distance = voiceModeData[1],
+		mode = voiceModeData[2],
+	}, true)
+
+	handleInitialState()
+
+	logger.log('Finished connection logic')
+end)
+
+AddEventHandler('mumbleDisconnected', function(address)
+	isInitialized = false
+	logger.info('Disconnected from mumble server with address of %s',
+		GetConvarInt('voice_hideEndpoints', 1) == 1 and 'HIDDEN' or address)
+end)
+
+-- TODO: Convert the last Cfg to a Convar, while still keeping it simple.
+AddEventHandler('pma-voice:settingsCallback', function(cb)
+	cb(Cfg)
+end)
+
+
+########## FILE: \client\init\init.lua
+AddEventHandler('onClientResourceStart', function(resource)
+	if resource ~= GetCurrentResourceName() then
+		return
+	end
+	print('Starting script initialization')
+
+	-- Some people modify pma-voice and mess up the resource Kvp, which means that if someone
+	-- joins another server that has pma-voice, it will error out, this will catch and fix the kvp.
+	local success = pcall(function()
+		local micClicksKvp = GetResourceKvpString('pma-voice_enableMicClicks')
+		if not micClicksKvp then
+			SetResourceKvp('pma-voice_enableMicClicks', "true")
+			micClicks = true
+		else
+			if micClicksKvp ~= 'true' and micClicksKvp ~= 'false' then
+				error('Invalid Kvp, throwing error for automatic fix')
+			end
+			micClicks = micClicksKvp == "true"
+		end
+	end)
+
+	if not success then
+		logger.warn(
+			'Failed to load resource Kvp, likely was inappropriately modified by another server, resetting the Kvp.')
+		SetResourceKvp('pma-voice_enableMicClicks', "true")
+		micClicks = true
+	end
+	sendUIMessage({
+		uiEnabled = GetConvarInt("voice_enableUi", 1) == 1,
+		voiceModes = json.encode(Cfg.voiceModes),
+		voiceMode = mode - 1
+	})
+
+	local radioChannel = LocalPlayer.state.radioChannel or 0
+	local callChannel = LocalPlayer.state.callChannel or 0
+
+	-- Reinitialize channels if they're set.
+	if radioChannel ~= 0 then
+		setRadioChannel(radioChannel)
+	end
+
+	if callChannel ~= 0 then
+		setCallChannel(callChannel)
+	end
+	if not LocalPlayer.state.disableRadio then
+		LocalPlayer.state:set("disableRadio", 0, true)
+	end
+
+	print('Script initialization finished.')
+end)
+
+
+########## FILE: \client\init\main.lua
+local mutedPlayers = {}
+
+-- we can't use GetConvarInt because its not a integer, and theres no way to get a float... so use a hacky way it is!
+local volumes = {
+	-- people are setting this to 1 instead of 1.0 and expecting it to work.
+	['radio'] = GetConvarInt('voice_defaultRadioVolume', 60) / 100,
+	['call'] = GetConvarInt('voice_defaultCallVolume', 60) / 100,
+	['click_on'] = GetConvarInt('voice_onClickVolume', 10) / 100,
+	['click_off'] = GetConvarInt('voice_offClickVolume', 3) / 100,
+}
+
+radioEnabled, radioPressed, mode = true, false, GetConvarInt('voice_defaultVoiceMode', 2)
+radioData = {}
+callData = {}
+submixIndicies = {}
+--- function setVolume
+--- Toggles the players volume
+---@param volume number between 0 and 100
+---@param volumeType string the volume type (currently radio & call) to set the volume of (opt)
+function setVolume(volume, volumeType)
+	type_check({ volume, "number" })
+	local volumeFraction = volume / 100
+
+	if volumeType then
+		local volumeTbl = volumes[volumeType]
+		if volumeTbl then
+			LocalPlayer.state:set(volumeType, volume, true)
+			volumes[volumeType] = volumeFraction
+			resyncVolume(volumeType, volumeFraction)
+		else
+			error(('setVolume got a invalid volume type %s'):format(volumeType))
+		end
+	else
+		for volumeType, _ in pairs(volumes) do
+			volumes[volumeType] = volumeFraction
+			LocalPlayer.state:set(volumeType, volume, true)
+		end
+		resyncVolume("all", volumeFraction)
+	end
+end
+
+exports('setRadioVolume', function(vol)
+	setVolume(vol, 'radio')
+end)
+exports('getRadioVolume', function()
+	return volumes['radio'] * 100
+end)
+exports("setCallVolume", function(vol)
+	setVolume(vol, 'call')
+end)
+exports('getCallVolume', function()
+	return volumes['call'] * 100
+end)
+
+
+-- default submix incase people want to fiddle with it.
+-- freq_low = 389.0
+-- freq_hi = 3248.0
+-- fudge = 0.0
+-- rm_mod_freq = 0.0
+-- rm_mix = 0.16
+-- o_freq_lo = 348.0
+-- o_freq_hi = 4900.0
+
+local radioEffectId = CreateAudioSubmix('Radio')
+SetAudioSubmixEffectRadioFx(radioEffectId, 0)
+-- This is a GetHashKey on purpose, backticks break treesitter in nvim :|
+SetAudioSubmixEffectParamInt(radioEffectId, 0, GetHashKey('default'), 1)
+SetAudioSubmixOutputVolumes(
+	radioEffectId,
+	0,
+	1.0 --[[ frontLeftVolume ]],
+	0.25 --[[ frontRightVolume ]],
+	0.0 --[[ rearLeftVolume ]],
+	0.0 --[[ rearRightVolume ]],
+	1.0 --[[ channel5Volume ]],
+	1.0 --[[ channel6Volume ]]
+)
+AddAudioSubmixOutput(radioEffectId, 0)
+submixIndicies['radio'] = radioEffectId
+
+local callEffectId = CreateAudioSubmix('Call')
+SetAudioSubmixOutputVolumes(
+	callEffectId,
+	1,
+	0.10 --[[ frontLeftVolume ]],
+	0.50 --[[ frontRightVolume ]],
+	0.0 --[[ rearLeftVolume ]],
+	0.0 --[[ rearRightVolume ]],
+	1.0 --[[ channel5Volume ]],
+	1.0 --[[ channel6Volume ]]
+)
+AddAudioSubmixOutput(callEffectId, 1)
+submixIndicies['call'] = callEffectId
+
+-- Callback is expected to return data in an array, this is for compatibility sake with js, index 0 should be the name and index 1 should be the submixId
+-- the callback is sent the effectSlot it can register to, not sure if this is needed, but its here for safety
+exports("registerCustomSubmix", function(callback)
+	local submixTable = callback()
+	type_check({ submixTable, "table" })
+	local submixName, submixId = submixTable[1], submixTable[2]
+	type_check({ submixName, "string" }, { submixId, "number" })
+	logger.info("Creating submix %s with submixId %s", submixName, submixId)
+	submixIndicies[submixName] = submixId
+end)
+TriggerEvent("pma-voice:registerCustomSubmixes")
+
+--- export setEffectSubmix
+--- Sets a user defined audio submix for radio and phonecall effects
+---@param type string either "call" or "radio"
+---@param effectId number submix id returned from CREATE_AUDIO_SUBMIX
+exports("setEffectSubmix", function(type, effectId)
+	type_check({ type, "string" }, { effectId, "number" })
+	if submixIndicies[type] then
+		submixIndicies[type] = effectId
+	end
+end)
+
+function restoreDefaultSubmix(plyServerId)
+	local submix = Player(plyServerId).state.submix
+	local submixEffect = submixIndicies[submix]
+	if not submix or not submixEffect then
+		MumbleSetSubmixForServerId(plyServerId, -1)
+		return
+	end
+	MumbleSetSubmixForServerId(plyServerId, submixEffect)
+end
+
+-- used to prevent a race condition if they talk again afterwards, which would lead to their voice going to default.
+local disableSubmixReset = {}
+--- function toggleVoice
+--- Toggles the players voice
+---@param plySource number the players server id to override the volume for
+---@param enabled boolean if the players voice is getting activated or deactivated
+---@param moduleType string the volume & submix to use for the voice.
+function toggleVoice(plySource, enabled, moduleType)
+	if mutedPlayers[plySource] then return end
+	logger.verbose('[main] Updating %s to talking: %s with submix %s', plySource, enabled, moduleType)
+	local distance = currentTargets[plySource]
+	if enabled and (not distance or distance > 4.0) then
+		print(volumes[moduleType])
+		MumbleSetVolumeOverrideByServerId(plySource, enabled and volumes[moduleType])
+		if GetConvarInt('voice_enableSubmix', 1) == 1 then
+			if moduleType then
+				disableSubmixReset[plySource] = true
+				if submixIndicies[moduleType] then
+					MumbleSetSubmixForServerId(plySource, submixIndicies[moduleType])
+				end
+			else
+				restoreDefaultSubmix(plySource)
+			end
+		end
+	elseif not enabled then
+		if GetConvarInt('voice_enableSubmix', 1) == 1 then
+			-- garbage collect it
+			disableSubmixReset[plySource] = nil
+			SetTimeout(250, function()
+				if not disableSubmixReset[plySource] then
+					restoreDefaultSubmix(plySource)
+				end
+			end)
+		end
+		MumbleSetVolumeOverrideByServerId(plySource, -1.0)
+	end
+end
+
+local function updateVolumes(voiceTable, override)
+	for serverId, talking in pairs(voiceTable) do
+		if serverId == playerServerId then goto skip_iter end
+		MumbleSetVolumeOverrideByServerId(serverId, talking and override or -1.0)
+		::skip_iter::
+	end
+end
+
+--- resyncs the call/radio/etc volume to the new volume
+---@param volumeType any
+function resyncVolume(volumeType, newVolume)
+	if volumeType == "all" then
+		resyncVolume("radio", newVolume)
+		resyncVolume("call", newVolume)
+	elseif volumeType == "radio" then
+		updateVolumes(radioData, newVolume)
+	elseif volumeType == "call" then
+		updateVolumes(callData, newVolume)
+	end
+end
+
+---Adds players voices to the local players listen channels allowing them to
+---communicate at long range, ignoring proximity range.
+---
+---@diagnostic disable-next-line: undefined-doc-param
+---@param targets table expects multiple tables to be sent over
+function addVoiceTargets(...)
+	local targets = { ... }
+	local addedPlayers = {
+		[playerServerId] = true
+	}
+
+	for i = 1, #targets do
+		for id, _ in pairs(targets[i]) do
+			-- we don't want to log ourself, or listen to ourself
+			if addedPlayers[id] and id ~= playerServerId then
+				logger.verbose('[main] %s is already target don\'t re-add', id)
+				goto skip_loop
+			end
+			if not addedPlayers[id] then
+				logger.verbose('[main] Adding %s as a voice target', id)
+				addedPlayers[id] = true
+				MumbleAddVoiceTargetPlayerByServerId(voiceTarget, id)
+			end
+			::skip_loop::
+		end
+	end
+end
+
+--- function playMicClicks
+---plays the mic click if the player has them enabled.
+---@param clickType boolean whether to play the 'on' or 'off' click.
+function playMicClicks(clickType)
+	if micClicks ~= true then return logger.verbose("Not playing mic clicks because client has them disabled") end
+	-- TODO: Add customizable radio click volumes
+	sendUIMessage({
+		sound = (clickType and "audio_on" or "audio_off"),
+		volume = (clickType and volumes['click_on'] or volumes['click_off'])
+	})
+end
+
+--- check if player is muted
+exports('isPlayerMuted', function(source)
+	return mutedPlayers[source]
+end)
+
+--- getter for mutedPlayers
+exports('getMutedPlayers', function()
+	return mutedPlayers
+end)
+
+--- toggles the targeted player muted
+---@param source number the player to mute
+function toggleMutePlayer(source)
+	if mutedPlayers[source] then
+		mutedPlayers[source] = nil
+		MumbleSetVolumeOverrideByServerId(source, -1.0)
+	else
+		mutedPlayers[source] = true
+		MumbleSetVolumeOverrideByServerId(source, 0.0)
+	end
+end
+
+exports('toggleMutePlayer', toggleMutePlayer)
+
+--- function setVoiceProperty
+--- sets the specified voice property
+---@param type string what voice property you want to change (only takes 'radioEnabled' and 'micClicks')
+---@param value any the value to set the type to.
+function setVoiceProperty(type, value)
+	if type == "radioEnabled" then
+		radioEnabled = value
+		handleRadioEnabledChanged(value)
+		sendUIMessage({
+			radioEnabled = value
+		})
+	elseif type == "micClicks" then
+		micClicks = value == true or value == "true"
+		SetResourceKvp('pma-voice_enableMicClicks', tostring(micClicks))
+	end
+end
+
+exports('setVoiceProperty', setVoiceProperty)
+-- compatibility
+exports('SetMumbleProperty', setVoiceProperty)
+exports('SetTokoProperty', setVoiceProperty)
+
+
+-- cache their external servers so if it changes in runtime we can reconnect the client.
+local externalAddress = ''
+local externalPort = 0
+CreateThread(function()
+	while true do
+		Wait(500)
+		-- only change if what we have doesn't match the cache
+		if GetConvar('voice_externalAddress', '') ~= externalAddress or GetConvarInt('voice_externalPort', 0) ~= externalPort then
+			externalAddress = GetConvar('voice_externalAddress', '')
+			externalPort = GetConvarInt('voice_externalPort', 0)
+			MumbleSetServerAddress(GetConvar('voice_externalAddress', ''), GetConvarInt('voice_externalPort', 0))
+		end
+	end
+end)
+
+
+if gameVersion == 'redm' then
+	function on_key_up() end
+
+	local KEY_F11 = 0x7A
+
+	RegisterRawKeymap("pma-voice_proximityCycle", on_key_up, function()
+		ExecuteCommand('cycleproximity')
+	end, KEY_F11, true)
+
+	local KEY_LEFT_ALT = 0xA4
+
+	RegisterRawKeymap("pma-voice_radioTalk", function()
+			ExecuteCommand('+radiotalk')
+	end, function()
+			ExecuteCommand('-radiotalk')
+	end, KEY_LEFT_ALT, true)
+end
+
+--- handles initializiation for whenever radio or call data changes
+--- calls should always be last because they're assumed to always be enabled so
+--- theres no delay in talking.
+function handleRadioAndCallInit()
+	for tgt, enabled in pairs(radioData) do
+		if tgt ~= playerServerId then
+			toggleVoice(tgt, enabled, 'radio')
+		end
+	end
+
+	for tgt, enabled in pairs(callData) do
+		if tgt ~= playerServerId then
+			toggleVoice(tgt, true, 'call')
+		end
+	end
+end
+
+
+########## FILE: \client\init\proximity.lua
+-- used when muted
+local disableUpdates = false
+local isListenerEnabled = false
+local plyCoords = GetEntityCoords(PlayerPedId())
+proximity = MumbleGetTalkerProximity()
+currentTargets = {}
+
+-- a list of all the players the current client us listening to
+-- the value will be set to false if we didn't actually start listening to them (in situations where their channel didn't exist)
+-- TODO: PR a native to let us get if we're listening to a certain channel.
+local listeners = {}
+local lastChannelRejoin = 0
+
+function orig_addProximityCheck(ply)
+	local tgtPed = GetPlayerPed(ply)
+	local voiceRange = GetConvar('voice_useNativeAudio', 'false') == 'true' and proximity * 3 or proximity
+	local distance = #(plyCoords - GetEntityCoords(tgtPed))
+	return distance < voiceRange, distance
+end
+
+local addProximityCheck = orig_addProximityCheck
+
+exports("overrideProximityCheck", function(fn)
+	addProximityCheck = fn
+end)
+
+exports("resetProximityCheck", function()
+	addProximityCheck = orig_addProximityCheck
+end)
+
+function addNearbyPlayers()
+	if disableUpdates then return end
+	-- update here so we don't have to update every call of addProximityCheck
+	plyCoords = GetEntityCoords(PlayerPedId())
+	proximity = MumbleGetTalkerProximity()
+	currentTargets = {}
+	MumbleClearVoiceTargetChannels(voiceTarget)
+	if LocalPlayer.state.disableProximity then return end
+	local assignedChannel = LocalPlayer.state.assignedChannel
+	if not assignedChannel then return end
+	if MumbleGetVoiceChannelFromServerId(playerServerId) ~= assignedChannel then
+		local now = GetGameTimer()
+		if now - lastChannelRejoin >= 2000 then
+			lastChannelRejoin = now
+			logger.info('Not in assigned channel %s, rejoining', assignedChannel)
+			MumbleSetVoiceChannel(assignedChannel)
+		end
+		return
+	end
+	MumbleAddVoiceChannelListen(assignedChannel)
+	MumbleAddVoiceTargetChannel(voiceTarget, assignedChannel)
+
+	for source, _ in pairs(callData) do
+		if source ~= playerServerId then
+			local channel = MumbleGetVoiceChannelFromServerId(source)
+			if channel ~= -1 then
+				MumbleAddVoiceTargetChannel(voiceTarget, channel)
+			end
+		end
+	end
+
+	local players = GetActivePlayers()
+	for i = 1, #players do
+		local ply = players[i]
+		local serverId = GetPlayerServerId(ply)
+		local shouldAdd, distance = addProximityCheck(ply)
+		if shouldAdd then
+			-- if distance then
+			-- 	currentTargets[serverId] = distance
+			-- else
+			-- 	-- backwards compat, maybe remove in v7
+			-- 	currentTargets[serverId] = 15.0
+			-- end
+			-- logger.verbose('Added %s as a voice target', serverId)
+			local channel = MumbleGetVoiceChannelFromServerId(serverId)
+			if channel ~= -1 then
+				MumbleAddVoiceTargetChannel(voiceTarget, channel)
+			end
+		end
+	end
+end
+
+function addChannelListener(serverId)
+	-- not in the documentation, but this will return -1 whenever the client isn't in a channel
+	local channel = MumbleGetVoiceChannelFromServerId(serverId)
+	if channel ~= -1 then
+		MumbleAddVoiceChannelListen(channel)
+		logger.verbose("Adding %s to listen table", serverId)
+	end
+	listeners[serverId] = channel ~= -1
+end
+
+function removeChannelListener(serverId)
+	if listeners[serverId] then
+		local channel = MumbleGetVoiceChannelFromServerId(serverId)
+		if channel ~= -1 then
+			MumbleRemoveVoiceChannelListen(channel)
+		end
+		logger.verbose("Removing %s from listen table", serverId)
+	end
+	-- remove the listener if they exist
+	listeners[serverId] = nil
+end
+
+function setSpectatorMode(enabled)
+	logger.info('Setting spectate mode to %s', enabled)
+	isListenerEnabled = enabled
+	local players = GetActivePlayers()
+	if isListenerEnabled then
+		for i = 1, #players do
+			local ply = players[i]
+			local serverId = GetPlayerServerId(ply)
+			if serverId == playerServerId then goto skip_loop end
+			addChannelListener(serverId)
+			::skip_loop::
+		end
+	else
+		for i = 1, #players do
+			local ply = players[i]
+			local serverId = GetPlayerServerId(ply)
+			if serverId == playerServerId then goto skip_loop end
+			removeChannelListener(serverId)
+			::skip_loop::
+		end
+
+		-- cleanup table if we stop listening
+		listeners = {}
+	end
+end
+
+function tryListeningToFailedListeners()
+	for src, isListening in pairs(listeners) do
+		-- if we failed to listen before we'll be set to false
+		if not isListening then
+			addChannelListener(src)
+		end
+	end
+end
+
+RegisterNetEvent('onPlayerJoining', function(serverId)
+	if isListenerEnabled then
+		addChannelListener(serverId)
+	end
+end)
+
+RegisterNetEvent('onPlayerDropped', function(serverId)
+	if isListenerEnabled then
+		removeChannelListener(serverId)
+	end
+end)
+
+local listenerOverride = false
+exports("setListenerOverride", function(enabled)
+	type_check({ enabled, "boolean" })
+	listenerOverride = enabled
+end)
+
+-- cache talking status so we only send a nui message when its not the same as what it was before
+local lastTalkingStatus = false
+local lastRadioStatus = false
+local voiceState = "proximity"
+CreateThread(function()
+	TriggerEvent('chat:addSuggestion', '/muteply', 'Mutes the player with the specified id', {
+		{ name = "player id", help = "the player to toggle mute" },
+		{ name = "duration",  help = "(opt) the duration the mute in seconds (default: 900)" }
+	})
+	while true do
+		-- wait for mumble to reconnect
+		while not MumbleIsConnected() or not isInitialized do
+			Wait(100)
+		end
+		-- Leave the check here as we don't want to do any of this logic
+		if GetConvarInt('voice_enableUi', 1) == 1 then
+			local curTalkingStatus = MumbleIsPlayerTalking(PlayerId()) == 1
+			if lastRadioStatus ~= radioPressed or lastTalkingStatus ~= curTalkingStatus then
+				lastRadioStatus = radioPressed
+				lastTalkingStatus = curTalkingStatus
+				sendUIMessage({
+					usingRadio = lastRadioStatus,
+					talking = lastTalkingStatus
+				})
+			end
+		end
+
+		if voiceState == "proximity" then
+			addNearbyPlayers()
+			-- What a name, wowza
+			local cam = GetConvarInt("voice_disableAutomaticListenerOnCamera", 0) ~= 1 and GetRenderingCam() or -1
+			local isSpectating = NetworkIsInSpectatorMode() or cam ~= -1
+			if not isListenerEnabled and (isSpectating or listenerOverride) then
+				setSpectatorMode(true)
+			elseif isListenerEnabled and not isSpectating and not listenerOverride then
+				setSpectatorMode(false)
+			end
+			tryListeningToFailedListeners()
+		end
+
+		Wait(GetConvarInt('voice_refreshRate', 200))
+	end
+end)
+
+exports("setVoiceState", function(_voiceState, channel)
+	if _voiceState ~= "proximity" and _voiceState ~= "channel" then
+		logger.error("Didn't get a proper voice state, expected proximity or channel, got %s", _voiceState)
+	end
+	voiceState = _voiceState
+	if voiceState == "channel" then
+		type_check({ channel, "number" })
+		-- 65535 is the highest a client id can go, so we add that to the base channel so we don't manage to get onto a players channel
+		channel = channel + 65535
+		MumbleSetVoiceChannel(channel)
+		while MumbleGetVoiceChannelFromServerId(playerServerId) ~= channel do
+			Wait(250)
+		end
+		MumbleAddVoiceTargetChannel(voiceTarget, channel)
+	elseif voiceState == "proximity" then
+		handleInitialState()
+	end
+end)
+
+
+AddEventHandler("onClientResourceStop", function(resource)
+	if type(addProximityCheck) == "table" then
+		local proximityCheckRef = addProximityCheck.__cfx_functionReference
+		if proximityCheckRef then
+			local isResource = string.match(proximityCheckRef, resource)
+			if isResource then
+				addProximityCheck = orig_addProximityCheck
+				logger.warn(
+					'Reset proximity check to default, the original resource [%s] which provided the function restarted',
+					resource)
+			end
+		end
+	end
+end)
+
+exports("addVoiceMode", function(distance, name)
+	for i = 1, #Cfg.voiceModes do
+		local voiceMode = Cfg.voiceModes[i]
+		if voiceMode[2] == name then
+			logger.verbose("Already had %s, overwritting instead", name)
+			voiceMode[1] = distance
+			return
+		end
+	end
+	Cfg.voiceModes[#Cfg.voiceModes + 1] = { distance, name }
+end)
+
+exports("removeVoiceMode", function(name)
+	for i = 1, #Cfg.voiceModes do
+		local voiceMode = Cfg.voiceModes[i]
+		if voiceMode[2] == name then
+			table.remove(Cfg.voiceModes, i)
+			-- Reset our current range if we had it
+			if mode == i then
+				local newMode = Cfg.voiceModes[1]
+				mode = 1
+				setProximityState(newMode[mode], false)
+			end
+			return true
+		end
+	end
+
+	return false
+end)
+
+
+########## FILE: \client\init\submix.lua
+AddStateBagChangeHandler("submix", "", function(bagName, _, value)
+	local tgtId = tonumber(bagName:gsub('player:', ''), 10)
+	if not tgtId then return end
+	-- We got an invalid submix, discard we don't care about it
+	if value and not submixIndicies[value] then
+		return logger.warn("Player %s applied submix %s but it isn't valid",
+			tgtId, value)
+	end
+
+	-- we don't want to reset submix if the player is talking on the radio
+	if not value then
+		if not radioData[tgtId] and not callData[tgtId] then
+			logger.info("Resetting submix for player %s", tgtId)
+			MumbleSetSubmixForServerId(tgtId, -1)
+		end
+		return
+	end
+	logger.info("%s had their submix set to %s", tgtId, value)
+	MumbleSetSubmixForServerId(tgtId, submixIndicies[value])
+end)
+
+RegisterNetEvent("onPlayerDropped", function(tgtId)
+	if not radioData[tgtId] and not callData[tgtId] then
+		logger.info("Resetting submix for player %s", tgtId)
+		MumbleSetSubmixForServerId(tgtId, -1)
+	end
+end)
+
+
+########## FILE: \client\module\phone.lua
+local callChannel = 0
+
+RegisterNetEvent('pma-voice:syncCallData', function(callTable, channel)
+	callData = callTable
+	handleRadioAndCallInit()
+end)
+
+RegisterNetEvent('pma-voice:addPlayerToCall', function(plySource)
+	toggleVoice(plySource, true, 'call')
+	callData[plySource] = true
+end)
+
+RegisterNetEvent('pma-voice:removePlayerFromCall', function(plySource)
+	if plySource == playerServerId then
+		for tgt, _ in pairs(callData) do
+			if tgt ~= playerServerId then
+				toggleVoice(tgt, false, 'call')
+			end
+		end
+		callData = {}
+		MumbleClearVoiceTargetPlayers(voiceTarget)
+		addVoiceTargets((radioPressed and isRadioEnabled()) and radioData or {}, callData)
+	else
+		callData[plySource] = nil
+		toggleVoice(plySource, radioData[plySource], 'call')
+		if MumbleIsPlayerTalking(PlayerId()) then
+			MumbleClearVoiceTargetPlayers(voiceTarget)
+			addVoiceTargets((radioPressed and isRadioEnabled()) and radioData or {}, callData)
+		end
+	end
+end)
+
+function setCallChannel(channel)
+	if GetConvarInt('voice_enableCalls', 1) ~= 1 then return end
+	TriggerServerEvent('pma-voice:setPlayerCall', channel)
+	callChannel = channel
+	sendUIMessage({
+		callInfo = channel
+	})
+end
+
+exports('setCallChannel', setCallChannel)
+exports('SetCallChannel', setCallChannel)
+
+exports('addPlayerToCall', function(_call)
+	local call = tonumber(_call)
+	if call then
+		setCallChannel(call)
+	end
+end)
+exports('removePlayerFromCall', function()
+	setCallChannel(0)
+end)
+
+RegisterNetEvent('pma-voice:clSetPlayerCall', function(_callChannel)
+	if GetConvarInt('voice_enableCalls', 1) ~= 1 then return end
+	callChannel = _callChannel
+end)
+
+
+########## FILE: \client\module\radio.lua
+local radioChannel = 0
+local radioNames = {}
+local disableRadioAnim = false
+local radioAnim = {
+	dict = "anim@male@holding_radio",
+	anim = "holding_radio_clip",
+}
+
+local RadioModel = `prop_cs_hand_radio`
+local RadioProp = 0
+
+
+local function deleteRadio()
+    if RadioProp ~= 0 then
+        Citizen.InvokeNative(0xAE3CBE5BF394C9C9 , Citizen.PointerValueIntInitialized(RadioProp))
+        RadioProp = 0
+    end
+end
+ 
+local animationPed
+
+local function animPed()
+	if animationPed and DoesEntityExist(animationPed) then
+		return animationPed
+	end
+
+	return PlayerPedId()
+end
+
+exports('SetAnimationPed', function(ped)
+	animationPed = ped and DoesEntityExist(ped) and ped or nil
+end)
+
+local function newRadio()
+    deleteRadio()
+    RequestModel(RadioModel)
+    while not HasModelLoaded(RadioModel) do
+        Citizen.Wait(1)
+    end
+    RadioProp = CreateObject(RadioModel, 0.0750,0.0230, -0.0230, -90.0000, 0.0, -59.9999)
+    local ped = animPed()
+    local bone = GetPedBoneIndex(ped, 28422)
+    AttachEntityToEntity(RadioProp, ped, bone, 0.0750, 0.0230, -0.0230, -90.0000, 0.0, -59.9999, 1, 1, 0, 0, 2, 1)
+end
+
+---@return boolean isEnabled if radioEnabled is true and LocalPlayer.state.disableRadio is 0 (no bits set)
+function isRadioEnabled()
+	return radioEnabled and LocalPlayer.state.disableRadio == 0
+end
+
+--- event syncRadioData
+--- syncs the current players on the radio to the client
+---@param radioTable table the table of the current players on the radio
+---@param localPlyRadioName string the local players name
+function syncRadioData(radioTable, localPlyRadioName)
+	radioData = radioTable
+	logger.info('[radio] Syncing radio table.')
+	if GetConvarInt('voice_debugMode', 0) >= 4 then
+		print('-------- RADIO TABLE --------')
+		tPrint(radioData)
+		print('-----------------------------')
+	end
+
+	local isEnabled = isRadioEnabled()
+
+	if isEnabled then
+		handleRadioAndCallInit()
+	end
+
+	sendUIMessage({
+		radioChannel = radioChannel,
+		radioEnabled = isEnabled
+	})
+	if GetConvarInt("voice_syncPlayerNames", 0) == 1 then
+		radioNames[playerServerId] = localPlyRadioName
+	end
+end
+
+RegisterNetEvent('pma-voice:syncRadioData', syncRadioData)
+
+--- event setTalkingOnRadio
+--- sets the players talking status, triggered when a player starts/stops talking.
+---@param plySource number the players server id.
+---@param enabled boolean whether the player is talking or not.
+function setTalkingOnRadio(plySource, enabled)
+	radioData[plySource] = enabled
+
+	if not isRadioEnabled() then return logger.info("[radio] Ignoring setTalkingOnRadio. radioEnabled: %s disableRadio: %s", radioEnabled, LocalPlayer.state.disableRadio) end
+	-- If we're on a call we don't want to toggle their voice disabled this will break calls.
+	local enabled = enabled or callData[plySource]
+	toggleVoice(plySource, enabled, 'radio')
+	playMicClicks(enabled)
+end
+RegisterNetEvent('pma-voice:setTalkingOnRadio', setTalkingOnRadio)
+
+--- event addPlayerToRadio
+--- adds a player onto the radio.
+---@param plySource number the players server id to add to the radio.
+function addPlayerToRadio(plySource, plyRadioName)
+	radioData[plySource] = false
+	if GetConvarInt("voice_syncPlayerNames", 0) == 1 then
+		radioNames[plySource] = plyRadioName
+	end
+	logger.info('[radio] %s joined radio %s %s', plySource, radioChannel,
+		radioPressed and " while we were talking, adding them to targets" or "")
+	if radioPressed then
+		addVoiceTargets(radioData, callData)
+	end
+end
+RegisterNetEvent('pma-voice:addPlayerToRadio', addPlayerToRadio)
+
+--- event removePlayerFromRadio
+--- removes the player (or self) from the radio
+---@param plySource number the players server id to remove from the radio.
+function removePlayerFromRadio(plySource)
+	if plySource == playerServerId then
+		logger.info('[radio] Left radio %s, cleaning up.', radioChannel)
+		for tgt, _ in pairs(radioData) do
+			if tgt ~= playerServerId then
+				toggleVoice(tgt, false, 'radio')
+			end
+		end
+		sendUIMessage({
+			radioChannel = 0,
+			radioEnabled = radioEnabled
+		})
+		radioNames = {}
+		radioData = {}
+		addVoiceTargets(callData)
+	else
+		toggleVoice(plySource, false, 'radio')
+		if radioPressed then
+			logger.info('[radio] %s left radio %s while we were talking, updating targets.', plySource, radioChannel)
+			addVoiceTargets(radioData, callData)
+		else
+			logger.info('[radio] %s has left radio %s', plySource, radioChannel)
+		end
+		radioData[plySource] = nil
+		if GetConvarInt("voice_syncPlayerNames", 0) == 1 then
+			radioNames[plySource] = nil
+		end
+	end
+end
+
+RegisterNetEvent('pma-voice:removePlayerFromRadio', removePlayerFromRadio)
+
+RegisterNetEvent('pma-voice:radioChangeRejected', function()
+	logger.info("The server rejected your radio change.")
+	radioChannel = 0
+end)
+
+--- function setRadioChannel
+--- sets the local players current radio channel and updates the server
+---@param channel number the channel to set the player to, or 0 to remove them.
+function setRadioChannel(channel)
+	if GetConvarInt('voice_enableRadios', 1) ~= 1 then return end
+	type_check({ channel, "number" })
+	TriggerServerEvent('pma-voice:setPlayerRadio', channel)
+	radioChannel = channel
+end
+
+--- exports setRadioChannel
+--- sets the local players current radio channel and updates the server
+exports('setRadioChannel', setRadioChannel)
+-- mumble-voip compatability
+exports('SetRadioChannel', setRadioChannel)
+
+--- exports removePlayerFromRadio
+--- sets the local players current radio channel and updates the server
+exports('removePlayerFromRadio', function()
+	setRadioChannel(0)
+end)
+
+--- exports addPlayerToRadio
+--- sets the local players current radio channel and updates the server
+---@param _radio number the channel to set the player to, or 0 to remove them.
+exports('addPlayerToRadio', function(_radio)
+	local radio = tonumber(_radio)
+	if radio then
+		setRadioChannel(radio)
+	end
+end)
+
+--- exports toggleRadioAnim
+--- toggles whether the client should play radio anim or not, if the animation should be played or notvaliddance
+exports('toggleRadioAnim', function()
+	disableRadioAnim = not disableRadioAnim
+	TriggerEvent('pma-voice:toggleRadioAnim', disableRadioAnim)
+end)
+
+exports("setDisableRadioAnim", function(shouldDisable)
+	disableRadioAnim = shouldDisable
+end)
+
+-- exports disableRadioAnim
+--- returns whether the client is undercover or not
+exports('getRadioAnimState', function()
+	return disableRadioAnim
+end)
+
+--- check if the player is dead
+--- seperating this so if people use different methods they can customize
+--- it to their need as this will likely never be changed
+--- but you can integrate the below state bag to your death resources.
+--- LocalPlayer.state:set('isDead', true or false, false)
+function isDead()
+	if LocalPlayer.state.isDead then
+		return true
+	elseif IsPlayerDead(PlayerId()) then
+		return true
+	end
+	return false
+end
+
+function isRadioAnimEnabled()
+	if
+		GetConvarInt('voice_enableRadioAnim', 1) == 1
+		and not (GetConvarInt('voice_disableVehicleRadioAnim', 0) == 1
+			and IsPedInAnyVehicle(PlayerPedId(), false))
+		and not disableRadioAnim then
+		return true
+	end
+	return false
+end
+
+RegisterCommand('+radiotalk', function()
+	if GetConvarInt('voice_enableRadios', 1) ~= 1 then return end
+	if isDead() then return end
+	if not isRadioEnabled() then return end
+	if not radioPressed then
+		if radioChannel > 0 then
+			logger.info('[radio] Start broadcasting, update targets and notify server.')
+			addVoiceTargets(radioData, callData)
+			TriggerServerEvent('pma-voice:setTalkingOnRadio', true)
+			radioPressed = true
+			local shouldPlayAnimation = isRadioAnimEnabled()
+			playMicClicks(true)
+			-- localize here so in the off case someone changes this while its in use we
+			-- still remove our dictionary down below here
+			local dict = radioAnim.dict
+			local anim = radioAnim.anim
+			if shouldPlayAnimation then
+				RequestAnimDict(dict)
+				newRadio()
+			end
+			CreateThread(function()
+				TriggerEvent("pma-voice:radioActive", true)
+				LocalPlayer.state:set("radioActive", true, true);
+				local checkFailed = false
+				while radioPressed do
+					if radioChannel < 0 or isDead() or not isRadioEnabled() then
+						checkFailed = true
+						break
+					end
+					if shouldPlayAnimation and HasAnimDictLoaded(dict) then
+						local ped = animPed()
+						if not IsEntityPlayingAnim(ped, dict, anim, 3) then
+							TaskPlayAnim(ped, dict, anim, 8.0, 2.0, -1, 50, 2.0, false,
+								false,
+							false)
+						end
+					end
+					SetControlNormal(0, 249, 1.0)
+					SetControlNormal(1, 249, 1.0)
+					SetControlNormal(2, 249, 1.0)
+					Wait(0)
+				end
+
+
+				if checkFailed then
+					logger.info("Canceling radio talking as the checks have failed.")
+					ExecuteCommand("-radiotalk")
+				end
+				if shouldPlayAnimation then
+					RemoveAnimDict(dict)
+				end
+			end)
+		else
+			logger.info("Player tried to talk but was not on a radio channel")
+		end
+	end
+end, false)
+
+RegisterCommand('-radiotalk', function()
+	if radioChannel > 0 and radioPressed then
+		radioPressed = false
+		MumbleClearVoiceTargetPlayers(voiceTarget)
+		addVoiceTargets(callData)
+		TriggerEvent("pma-voice:radioActive", false)
+		LocalPlayer.state:set("radioActive", false, true);
+		playMicClicks(false)
+		if GetConvarInt('voice_enableRadioAnim', 1) == 1 then
+			StopAnimTask(animPed(), radioAnim.dict, radioAnim.anim, -4.0)
+		end
+		deleteRadio()
+		TriggerServerEvent('pma-voice:setTalkingOnRadio', false)
+	end
+end, false)
+if gameVersion == 'fivem' then
+	RegisterKeyMapping('+radiotalk', 'Talk over Radio', 'keyboard', GetConvar('voice_defaultRadio', 'LMENU'))
+end
+
+local function setRadioTalkAnim(dict, anim)
+    type_check({dict, "string"}, {anim, "string"})
+    if not DoesAnimDictExist(dict) then
+      return error(("Dict: %s did not exist"):format(dict))
+    end
+    radioAnim.dict = dict
+    radioAnim.anim = anim
+end
+
+exports('setRadioTalkAnim', setRadioTalkAnim)
+
+--- event syncRadio
+--- syncs the players radio, only happens if the radio was set server side.
+---@param _radioChannel number the radio channel to set the player to.
+function syncRadio(_radioChannel)
+	if GetConvarInt('voice_enableRadios', 1) ~= 1 then return end
+	logger.info('[radio] radio set serverside update to radio %s', radioChannel)
+	radioChannel = _radioChannel
+end
+RegisterNetEvent('pma-voice:clSetPlayerRadio', syncRadio)
+
+
+--- handles "radioEnabled" changing
+---@param wasRadioEnabled boolean whether radio is enabled or not
+function handleRadioEnabledChanged(wasRadioEnabled)
+	if wasRadioEnabled then
+		syncRadioData(radioData, "")
+	else
+		removePlayerFromRadio(playerServerId)
+	end
+end
+
+--- adds the bit to the disableRadio bits
+---@param bit number the bit to add
+local function addRadioDisableBit(bit)
+	local curVal = LocalPlayer.state.disableRadio or 0
+	curVal = curVal | bit
+	LocalPlayer.state:set("disableRadio", curVal, true)
+end
+exports("addRadioDisableBit", addRadioDisableBit)
+
+--- removes the bit from disableRadio
+---@param bit number the bit to remove
+local function removeRadioDisableBit(bit)
+	local curVal = LocalPlayer.state.disableRadio or 0
+	curVal = curVal & (~bit)
+	LocalPlayer.state:set("disableRadio", curVal, true)
+end
+exports("removeRadioDisableBit", removeRadioDisableBit)
+
+
+
+########## FILE: \client\utils\Nui.lua
+local uiReady = promise.new()
+function sendUIMessage(message)
+	Citizen.Await(uiReady)
+	SendNUIMessage(message)
+end
+
+RegisterNUICallback("uiReady", function(data, cb)
+	uiReady:resolve(true)
+
+	cb('ok')
+end)
+
+
+########## FILE: \server\main.lua
+voiceData = {}
+radioData = {}
+callData = {}
+
+local mappedChannels = {}
+function firstFreeChannel()
+	for i = 1, 2048 do
+		if not mappedChannels[i] then
+			return i
+		end
+	end
+
+	return 0
+end
+
+function defaultTable(source)
+	handleStateBagInitilization(source)
+	return {
+		radio = 0,
+		call = 0,
+		lastRadio = 0,
+		lastCall = 0
+	}
+end
+
+function handleStateBagInitilization(source)
+	local plyState = Player(source).state
+	if not plyState.pmaVoiceInit then
+		plyState:set('radio', GetConvarInt('voice_defaultRadioVolume', 30), true)
+		plyState:set('call', GetConvarInt('voice_defaultCallVolume', 60), true)
+		plyState:set('submix', nil, true)
+		plyState:set('proximity', {}, true)
+		plyState:set('callChannel', 0, true)
+		plyState:set('radioChannel', 0, true)
+		plyState:set('voiceIntent', 'speech', true)
+		-- We want to save voice inits because we'll automatically reinitalize calls and channels
+		plyState:set('pmaVoiceInit', true, false)
+	end
+
+	local assignedChannel = firstFreeChannel()
+	plyState:set('assignedChannel', assignedChannel, true)
+	if assignedChannel ~= 0 then
+		mappedChannels[assignedChannel] = source
+		logger.verbose('[reuse] Assigned %s to channel %s', source, assignedChannel)
+	else
+		logger.error('[reuse] Failed to find a free channel for %s', source)
+	end
+end
+
+CreateThread(function()
+	local plyTbl = GetPlayers()
+	for i = 1, #plyTbl do
+		local ply = tonumber(plyTbl[i])
+		voiceData[ply] = defaultTable(ply)
+	end
+
+	Wait(5000)
+
+	local nativeAudio = GetConvar('voice_useNativeAudio', 'not-set')
+	local _3dAudio = GetConvar('voice_use3dAudio', 'not-set')
+	local _2dAudio = GetConvar('voice_use2dAudio', 'not-set')
+	local sendingRangeOnly = GetConvar('voice_useSendingRangeOnly', 'not-set')
+	local gameVersion = GetConvar('gamename', 'fivem')
+
+	-- handle no convars being set (default drag n' drop)
+	if
+		nativeAudio == 'not-set'
+		and _3dAudio == 'not-set'
+		and _2dAudio == 'not-set'
+	then
+		SetConvarReplicated('voice_useNativeAudio', 'true')
+		logger.info('No voice mod detected, defaulting to \'setr voice_useNativeAudio true\'')
+	elseif sendingRangeOnly == 'true' then
+		logger.warn(
+			"It's recommended to have 'voice_useSendingRangeOnly' set to false, you can do that with 'setr voice_useSendingRangeOnly false', this makes clients ignore the position information sent from the client.")
+	end
+
+	local radioVolume = GetConvarInt("voice_defaultRadioVolume", 30)
+	local callVolume = GetConvarInt("voice_defaultCallVolume", 60)
+
+	-- When casted to an integer these get set to 0 or 1, so warn on these values that they don't work
+	if
+		radioVolume == 0 or radioVolume == 1 or
+		callVolume == 0 or callVolume == 1
+	then
+		SetConvarReplicated("voice_defaultRadioVolume", 30)
+		SetConvarReplicated("voice_defaultCallVolume", 60)
+		for i = 1, 5 do
+			Wait(5000)
+			logger.warn(
+				"`voice_defaultRadioVolume` or `voice_defaultCallVolume` have their value set as a float, this is going to automatically be fixed but please update your convars.")
+		end
+	end
+end)
+
+AddEventHandler('playerJoining', function()
+	if not voiceData[source] then
+		voiceData[source] = defaultTable(source)
+	end
+end)
+
+AddEventHandler("playerDropped", function()
+	local source = source
+	local mappedChannel = Player(source).state.assignedChannel
+
+	if voiceData[source] then
+		local plyData = voiceData[source]
+
+		if plyData.radio ~= 0 then
+			removePlayerFromRadio(source, plyData.radio)
+		end
+
+		if plyData.call ~= 0 then
+			removePlayerFromCall(source, plyData.call)
+		end
+
+		voiceData[source] = nil
+	end
+
+	if mappedChannel then
+		mappedChannels[mappedChannel] = nil
+		logger.verbose('[reuse] Unassigned %s from channel %s', source, mappedChannel)
+	end
+end)
+
+if GetConvarInt('voice_externalDisallowJoin', 0) == 1 then
+	AddEventHandler('playerConnecting', function(_, _, deferral)
+		deferral.defer()
+		Wait(0)
+		deferral.done('This server is not accepting connections.')
+	end)
+end
+
+-- only meant for internal use so no documentation
+function isValidPlayer(source)
+	return voiceData[source]
+end
+
+exports('isValidPlayer', isValidPlayer)
+
+function getPlayersInRadioChannel(channel)
+	local returnChannel = radioData[channel]
+	if returnChannel then
+		return returnChannel
+	end
+	-- channel doesnt exist
+	return {}
+end
+
+exports('getPlayersInRadioChannel', getPlayersInRadioChannel)
+exports('GetPlayersInRadioChannel', getPlayersInRadioChannel)
+
+
+########## FILE: \server\module\phone.lua
+--- removes a player from the call for everyone in the call.
+---@param source number the player to remove from the call
+---@param callChannel number the call channel to remove them from
+function removePlayerFromCall(source, callChannel)
+	logger.verbose('[call] Removed %s from call %s', source, callChannel)
+
+	callData[callChannel] = callData[callChannel] or {}
+	for player, _ in pairs(callData[callChannel]) do
+		TriggerClientEvent('pma-voice:removePlayerFromCall', player, source)
+	end
+	callData[callChannel][source] = nil
+	voiceData[source] = voiceData[source] or defaultTable(source)
+	voiceData[source].call = 0
+end
+
+--- adds a player to a call
+---@param source number the player to add to the call
+---@param callChannel number the call channel to add them to
+function addPlayerToCall(source, callChannel)
+	logger.verbose('[call] Added %s to call %s', source, callChannel)
+	-- check if the channel exists, if it does set the varaible to it
+	-- if not create it (basically if not callData make callData)
+	callData[callChannel] = callData[callChannel] or {}
+	for player, _ in pairs(callData[callChannel]) do
+		-- don't need to send to the source because they're about to get sync'd!
+		if player ~= source then
+			TriggerClientEvent('pma-voice:addPlayerToCall', player, source)
+		end
+	end
+	callData[callChannel][source] = true
+	voiceData[source] = voiceData[source] or defaultTable(source)
+	voiceData[source].call = callChannel
+	TriggerClientEvent('pma-voice:syncCallData', source, callData[callChannel])
+end
+
+--- set the players call channel
+---@param source number the player to set the call off
+---@param _callChannel number the channel to set the player to (or 0 to remove them from any call channel)
+function setPlayerCall(source, _callChannel)
+	if GetConvarInt('voice_enableCalls', 1) ~= 1 then return end
+	voiceData[source] = voiceData[source] or defaultTable(source)
+	local isResource = GetInvokingResource()
+	local plyVoice = voiceData[source]
+	local callChannel = tonumber(_callChannel)
+	if not callChannel then
+		-- only full error if its sent from another server-side resource
+		if isResource then
+			error(("'callChannel' expected 'number', got: %s"):format(type(_callChannel)))
+		else
+			return logger.warn("%s sent a invalid call, 'callChannel' expected 'number', got: %s", source,
+				type(_callChannel))
+		end
+	end
+	if isResource then
+		-- got set in a export, need to update the client to tell them that their call
+		-- changed
+		TriggerClientEvent('pma-voice:clSetPlayerCall', source, callChannel)
+	end
+
+	Player(source).state.callChannel = callChannel
+
+	if callChannel ~= 0 and plyVoice.call == 0 then
+		addPlayerToCall(source, callChannel)
+	elseif callChannel == 0 then
+		removePlayerFromCall(source, plyVoice.call)
+	elseif plyVoice.call > 0 then
+		removePlayerFromCall(source, plyVoice.call)
+		addPlayerToCall(source, callChannel)
+	end
+end
+
+exports('setPlayerCall', setPlayerCall)
+
+RegisterNetEvent('pma-voice:setPlayerCall', function(callChannel)
+	setPlayerCall(source, callChannel)
+end)
+
+
+########## FILE: \server\module\radio.lua
+
+local msgpack_pack_args = msgpack.pack_args
+
+local radioChecks = {}
+
+--- checks if the player can join the channel specified
+--- @param source number the source of the player
+--- @param radioChannel number the channel they're trying to join
+--- @return boolean if the user can join the channel
+function canJoinChannel(source, radioChannel)
+	if radioChecks[radioChannel] then
+		return radioChecks[radioChannel](source)
+	end
+	return true
+end
+
+--- adds a check to the channel, function is expected to return a boolean of true or false
+---@param channel number the channel to add a check to
+---@param cb function the function to execute the check on
+function addChannelCheck(channel, cb)
+	local channelType = type(channel)
+	local cbType = type(cb)
+	if channelType ~= "number" then
+		error(("'channel' expected 'number' got '%s'"):format(channelType))
+	end
+	if cbType ~= 'table' or not cb.__cfx_functionReference then
+		error(("'cb' expected 'function' got '%s'"):format(cbType))
+	end
+	radioChecks[channel] = cb
+	logger.info("%s added a check to channel %s", GetInvokingResource(), channel)
+end
+
+exports('addChannelCheck', addChannelCheck)
+
+--- removes any check for the channel
+---@param channel number the channel to add a check to
+function removeChannelCheck(channel)
+	local channelType = type(channel)
+	if channelType ~= "number" then
+		error(("'channel' expected 'number' got '%s'"):format(channelType))
+	end
+	radioChecks[channel] = nil
+	logger.info("%s removed check for channel %s", GetInvokingResource(), channel)
+end
+
+exports("removeChannelCheck", removeChannelCheck)
+
+local function radioNameGetter_orig(source)
+	return GetPlayerName(source)
+end
+local radioNameGetter = radioNameGetter_orig
+
+--- triggers an event for all of the players in the table while only doing msgpack
+--- serialization once
+local function triggerEventForRadioChannel(eventName, radioTbl, ...)
+		local payload = msgpack_pack_args(...)
+		for player, _ in pairs(radioTbl) do
+			TriggerClientEventInternal(eventName, player, payload, payload:len())
+		end
+end
+
+--- adds a check to the channel, function is expected to return a boolean of true or false
+---@param cb function the function to execute the check on
+function overrideRadioNameGetter(channel, cb)
+	local cbType = type(cb)
+	if cbType == 'table' and not cb.__cfx_functionReference then
+		error(("'cb' expected 'function' got '%s'"):format(cbType))
+	end
+	radioNameGetter = cb
+	logger.info("%s added a check to channel %s", GetInvokingResource(), channel)
+end
+
+exports('overrideRadioNameGetter', overrideRadioNameGetter)
+
+--- adds a player to the specified radion channel
+---@param source number the player to add to the channel
+---@param radioChannel number the channel to set them to
+---@return boolean wasAdded if the player was successfuly added to the radio channel, or if it failed.
+function addPlayerToRadio(source, radioChannel)
+	if not canJoinChannel(source, radioChannel) then
+		-- remove the player from the radio client side
+		TriggerClientEvent("pma-voice:radioChangeRejected", source)
+		TriggerClientEvent('pma-voice:removePlayerFromRadio', source, source)
+		return false
+	end
+	logger.verbose('[radio] Added %s to radio %s', source, radioChannel)
+
+	-- check if the channel exists, if it does set the varaible to it
+	-- if not create it (basically if not radiodata make radiodata)
+	radioData[radioChannel] = radioData[radioChannel] or {}
+	local plyName = radioNameGetter(source)
+	triggerEventForRadioChannel('pma-voice:addPlayerToRadio', radioData[radioChannel], source, plyName)
+	voiceData[source] = voiceData[source] or defaultTable(source)
+	voiceData[source].radio = radioChannel
+	radioData[radioChannel][source] = false
+	TriggerClientEvent('pma-voice:syncRadioData', source, radioData[radioChannel],
+		GetConvarInt("voice_syncPlayerNames", 0) == 1 and plyName)
+	return true
+end
+
+--- removes a player from the specified channel
+---@param source number the player to remove
+---@param radioChannel number the current channel to remove them from
+function removePlayerFromRadio(source, radioChannel)
+	logger.verbose('[radio] Removed %s from radio %s', source, radioChannel)
+	radioData[radioChannel] = radioData[radioChannel] or {}
+	triggerEventForRadioChannel('pma-voice:removePlayerFromRadio', radioData[radioChannel], source)
+	radioData[radioChannel][source] = nil
+	voiceData[source] = voiceData[source] or defaultTable(source)
+	voiceData[source].radio = 0
+end
+
+-- TODO: Implement this in a way that allows players to be on multiple channels
+--- sets the players current radio channel
+---@param source number the player to set the channel of
+---@param _radioChannel number the radio channel to set them to (or 0 to remove them from radios)
+function setPlayerRadio(source, _radioChannel)
+	if GetConvarInt('voice_enableRadios', 1) ~= 1 then return end
+	voiceData[source] = voiceData[source] or defaultTable(source)
+	local isResource = GetInvokingResource()
+	local plyVoice = voiceData[source]
+	local radioChannel = tonumber(_radioChannel)
+	if not radioChannel then
+		-- only full error if its sent from another server-side resource
+		if isResource then
+			error(("'radioChannel' expected 'number', got: %s"):format(type(_radioChannel)))
+		else
+			return logger.warn("%s sent a invalid radio, 'radioChannel' expected 'number', got: %s", source,
+				type(_radioChannel))
+		end
+	end
+	if isResource then
+		-- got set in a export, need to update the client to tell them that their radio
+		-- changed
+		TriggerClientEvent('pma-voice:clSetPlayerRadio', source, radioChannel)
+	end
+	if radioChannel ~= 0 then
+		if plyVoice.radio > 0 then
+			removePlayerFromRadio(source, plyVoice.radio)
+		end
+		local wasAdded = addPlayerToRadio(source, radioChannel)
+		Player(source).state.radioChannel = wasAdded and radioChannel or 0
+	elseif radioChannel == 0 then
+		removePlayerFromRadio(source, plyVoice.radio)
+		Player(source).state.radioChannel = 0
+	end
+end
+
+exports('setPlayerRadio', setPlayerRadio)
+
+RegisterNetEvent('pma-voice:setPlayerRadio', function(radioChannel)
+	setPlayerRadio(source, radioChannel)
+end)
+
+--- syncs the player talking across all radio members
+---@param talking boolean sets if the palyer is talking.
+function setTalkingOnRadio(talking)
+	if GetConvarInt('voice_enableRadios', 1) ~= 1 then return end
+	voiceData[source] = voiceData[source] or defaultTable(source)
+	local plyVoice = voiceData[source]
+	local radioTbl = radioData[plyVoice.radio]
+	if radioTbl then
+		radioTbl[source] = talking
+		logger.verbose('[radio] Set %s to talking: %s on radio %s', source, talking, plyVoice.radio)
+		triggerEventForRadioChannel('pma-voice:setTalkingOnRadio', radioTbl, source, talking)
+	end
+end
+
+RegisterNetEvent('pma-voice:setTalkingOnRadio', setTalkingOnRadio)
+
+AddEventHandler("onResourceStop", function(resource)
+	for channel, cfxFunctionRef in pairs(radioChecks) do
+		local functionRef = cfxFunctionRef.__cfx_functionReference
+		local functionResource = string.match(functionRef, resource)
+		if functionResource then
+			radioChecks[channel] = nil
+			logger.warn('Channel %s had its radio check removed because the resource that gave the checks stopped',
+				channel)
+		end
+	end
+
+	if type(radioNameGetter) == "table" then
+		local radioRef = radioNameGetter.__cfx_functionReference
+		if radioRef then
+			local isResource = string.match(radioRef, resource)
+			if isResource then
+				radioNameGetter = radioNameGetter_orig
+				logger.warn(
+					'Radio name getter is resetting to default because the resource that gave the cb got turned off')
+			end
+		end
+	end
+end)
+

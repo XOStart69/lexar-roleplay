@@ -10,12 +10,20 @@ local function detect()
     for i = 1, #SUPPORTED do
         local entry = SUPPORTED[i]
 
-        if GetResourceState(entry.resource) ~= "missing" then
+        if GetResourceState(entry.resource) == "started" then
             return entry.name
         end
     end
 
-    error("rhd_appearance: no supported framework found (qbx_core, qb-core, es_extended, ox_core)")
+    for i = 1, #SUPPORTED do
+        local entry = SUPPORTED[i]
+
+        if GetResourceState(entry.resource) == "starting" then
+            return entry.name
+        end
+    end
+
+    error("rhd_appearance: no supported framework is running (qbx_core, qb-core, es_extended, ox_core)")
 end
 
 local name = detect()

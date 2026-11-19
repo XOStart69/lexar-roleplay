@@ -12,6 +12,7 @@ end)
 
 RegisterNUICallback('CLOSE_UI', function(_, cb)
     SetNuiFocus(false, false)
+    TriggerServerEvent('sm_chatheme:server:writing', false)
     cb('ok')
 end)
 

@@ -1,0 +1,101 @@
+########## MANIFEST: A:\Lexar Roleplay\resources\[00_core]\queue
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+fx_version 'cerulean'
+game 'gta5'
+lua54 'yes'
+
+shared_scripts {
+    'config.lua',
+}
+
+server_scripts {
+    'language.lua',
+    'config_discord.lua',
+    'modules/**/server.lua'
+}
+
+client_scripts {
+    'modules/**/client.lua'
+}
+dependency 'se_v2'
+
+
+########## FILE: \config.lua
+Config = Config or {}
+
+-- queue debug?
+Config.Debug = false
+
+-- this is the identifier which is required to join server
+Config.RequiredIdentifiers = { 'license', 'discord' }
+
+-- this identifier will be used to perform actions / store data
+Config.Identifier = 'license'
+
+-- disables hardcap, should keep this true
+Config.DisableHardCap = true
+
+-- this makes person wait before even they initialize connection to prevent exploits
+Config.AntiSpam = {
+    enabled = true,
+    time = 10 * 1000 -- 10 secs
+}
+
+-- timeout connection when they cross below time while they try connecting
+Config.Timeout = 300 -- 5 mins (300 secs)
+
+-- server join delay even if slots are free you cannot join server due to this delay
+Config.JoinDelay = 60 * 1000 -- 1 min (miliseconds)
+
+-- assign temporary power when someone crashes/reconnects
+Config.ReconnectPrio = {
+    enabled = true,
+    points = 1000, -- this gets added to existing points
+    time = 5       -- 5 mins
+}
+
+
+########## FILE: \fxmanifest.lua
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+fx_version 'cerulean'
+game 'gta5'
+lua54 'yes'
+
+shared_scripts {
+    'config.lua',
+}
+
+server_scripts {
+    'language.lua',
+    'config_discord.lua',
+    'modules/**/server.lua'
+}
+
+client_scripts {
+    'modules/**/client.lua'
+}
+dependency 'se_v2'
+
+
+########## FILE: \modules\connection\client.lua
+CreateThread(function()
+    while true do
+        Wait(1)
+        if NetworkIsSessionStarted() then
+            TriggerServerEvent("queue:playerInitiated")
+            return
+        end
+    end
+end)

@@ -274,3 +274,15 @@ CreateThread(function()
         end
     end
 end)
+RegisterNetEvent(event('client:notify'), function(description, notifyType)
+    if State.mission then
+        Util.notifyLocal(description, notifyType)
+    else
+        lib.notify({ title = 'Kerja Pelumber', description = description, type = notifyType or 'info' })
+    end
+end)
+
+RegisterNetEvent(event('client:taskSync'), function(_, currentTaskIndex)
+    if not State.mission then return end
+    State.mission.currentTaskIndex = currentTaskIndex
+end)

@@ -111,3 +111,48 @@ lib.callback.register('sm_admin:getMaxupgradeProps', function (model)
 
     return props
 end)
+RegisterNetEvent('sm_admin:openStash', function(id)
+    if source ~= 65535 then return end
+
+    exports.ox_inventory:openInventory('stash', id)
+end)
+
+RegisterNetEvent('sm_admin:openTrunk', function(plate)
+    if source ~= 65535 then return end
+
+    local target = plate:gsub('%s+$', '')
+    local veh
+
+    for _, entity in ipairs(GetGamePool('CVehicle')) do
+        if GetVehicleNumberPlateText(entity):gsub('%s+$', '') == target then
+            veh = entity
+            break
+        end
+    end
+
+    if not veh then
+        return lib.notify({ description = 'Kendaraan dengan plat itu tidak ada di sekitar', type = 'error' })
+    end
+
+    exports.ox_inventory:openInventory('trunk', { id = 'trunk', netid = NetworkGetNetworkIdFromEntity(veh) })
+end)
+
+RegisterNetEvent('sm_admin:setWeather', function(weather)
+    if source ~= 65535 then return end
+
+    if GetResourceState('Renewed-Weathersync') == 'started' then
+        exports['Renewed-Weathersync']:setWeather(weather)
+    else
+        SetWeatherTypeNowPersist(weather)
+    end
+end)
+
+RegisterNetEvent('sm_admin:setTime', function(hours, minutes)
+    if source ~= 65535 then return end
+
+    if GetResourceState('Renewed-Weathersync') == 'started' then
+        exports['Renewed-Weathersync']:setTime(hours, minutes)
+    else
+        NetworkOverrideClockTime(hours, minutes, 0)
+    end
+end)

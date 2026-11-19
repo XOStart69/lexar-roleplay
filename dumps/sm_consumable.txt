@@ -1,0 +1,2354 @@
+########## MANIFEST: A:\Lexar Roleplay\resources\[01_kendaraan_ekonomi]\sm_consumable
+fx_version 'cerulean'
+game 'gta5'
+lua54 'yes'
+
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+    'anim.lua',
+}
+
+client_scripts {
+    'client/*.lua',
+}
+
+server_scripts {
+    'server/*.lua',
+}
+
+ui_page 'ui/index.html'
+
+files {
+    'ui/index.html',
+    'consumable/*.lua',
+}
+
+dependency 'se_v2'
+
+
+########## FILE: \anim.lua
+Consumable = {}
+
+Consumable.anim = {
+    eat = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger', flag = 49 },
+    drink = { dict = 'mp_player_intdrink', clip = 'loop_bottle', flag = 49 },
+    pill = { dict = 'mp_suicide', clip = 'pill', flag = 49 },
+    idle_a =  { dict = 'missheistdockssetup1clipboard@idle_a', clip = 'idle_a', flag = 49 },
+}
+
+Consumable.prop = {
+    burger = { model = 'prop_cs_burger_01', bone = 60309, pos = vec3(0.0, 0.0, -0.02), rot = vec3(30, 0.0, 0.0) },
+    water = { model = 'vw_prop_casino_water_bottle_01a', bone = 60309, pos = vec3(0.0, 0.0, -0.05), rot = vec3(0.0, 0.0, -40) },
+    beer = { model = 'prop_cs_beer_bot_40oz', bone = 60309, pos = vec3(0.0, 0.0, -0.05), rot = vec3(0.0, 0.0, -40) },
+    bandage = { model = `prop_rolled_sock_02`, bone = 60309, pos = vec3(-0.14, -0.14, -0.08), rot = vec3(-50.0, -50.0, 0.0) },
+}
+
+########## FILE: \fxmanifest.lua
+fx_version 'cerulean'
+game 'gta5'
+lua54 'yes'
+
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+    'anim.lua',
+}
+
+client_scripts {
+    'client/*.lua',
+}
+
+server_scripts {
+    'server/*.lua',
+}
+
+ui_page 'ui/index.html'
+
+files {
+    'ui/index.html',
+    'consumable/*.lua',
+}
+
+dependency 'se_v2'
+
+
+########## FILE: \client\main.lua
+local inventory = exports.ox_inventory
+
+local makanan = require 'consumable.makanan'
+local minuman = require 'consumable.minuman'
+local alkohol = require 'consumable.alcohol'
+local other = require 'consumable.other'
+
+local function mergeTables(...)
+    local tables = {...}
+    local result = {}
+    for _, tbl in ipairs(tables) do
+        for key, value in pairs(tbl) do
+            if type(key) == 'number' then
+                result[#result + 1] = value
+            else
+                result[key] = value
+            end
+        end
+    end
+    return result
+end
+
+local usableItems = mergeTables(makanan, minuman, other, alkohol)
+
+local function applyDrunkEffect(duration)
+    Wait(100)
+    DoScreenFadeOut(1)
+    Wait(1000)
+
+    SetTimecycleModifier("spectator5")
+    SetPedMotionBlur(cache.ped, true)
+    SetPedMovementClipset(cache.ped, "MOVE_M@DRUNK@SLIGHTLYDRUNK", true)
+    SetPedIsDrunk(cache.ped, true)
+    SetPedAccuracy(cache.ped, 0)
+    ShakeGameplayCam("DRUNK_SHAKE", 5.0)
+    SetPedConfigFlag(cache.ped, 100, true)
+
+    DoScreenFadeIn(1)
+    Wait(duration)
+    DoScreenFadeOut(1)
+    Wait(1000)
+
+    DoScreenFadeIn(1000)
+    ClearTimecycleModifier()
+    ResetScenarioTypesEnabled()
+    ResetPedMovementClipset(cache.ped, 0)
+    ShakeGameplayCam("DRUNK_SHAKE", 0.0)
+    SetPedIsDrunk(cache.ped, false)
+    SetPedMotionBlur(cache.ped, false)
+end
+
+local activeProps = {}
+
+---@param prop number
+local function deleteProp(prop)
+    activeProps[prop] = nil
+
+    if not DoesEntityExist(prop) then return end
+
+    DetachEntity(prop, true, true)
+    DeleteEntity(prop)
+end
+
+---@param propName string
+---@param placement number[]
+---@param bone number?
+---@param ped number?
+---@return number?
+local function spawnProp(propName, placement, bone, ped)
+    ped = ped or cache.ped
+
+    local model = joaat(propName)
+
+    if not IsModelValid(model) or not lib.requestModel(model, 1000) then return end
+
+    if not DoesEntityExist(ped) then
+        SetModelAsNoLongerNeeded(model)
+        return
+    end
+
+    local x, y, z, rx, ry, rz = table.unpack(placement)
+    local coords = GetEntityCoords(ped)
+    local prop = CreateObject(model, coords.x, coords.y, coords.z + 0.2, false, false, false)
+
+    SetModelAsNoLongerNeeded(model)
+
+    if not DoesEntityExist(prop) then return end
+
+    SetEntityCollision(prop, false, false)
+    SetEntityCompletelyDisableCollision(prop, false, false)
+
+    AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, bone or 60309),
+        x or 0.0, y or 0.0, z or 0.0,
+        rx or 0.0, ry or 0.0, rz or 0.0,
+        true, true, false, true, 1, true
+    )
+
+    activeProps[prop] = true
+
+    return prop
+end
+
+local function handleProgress(itemConfig, itemData)
+    local progress = itemConfig.progress
+    if not progress then return true end
+
+    local previousEmote = exports['sm_emotes']:IsPlayerInAnim()
+    local progressLabel = progress.label:gsub("{itemname}", itemData?.label or "item")
+
+    local animDict, animClip
+    local spawnedProps = {}
+    local emoteData
+
+    if progress.anim then
+        animDict = progress.anim.dict
+        animClip = progress.anim.clip
+    elseif progress.emote then
+        emoteData = exports['sm_emotes']:getEmoteByCommand(progress.emote)
+        if emoteData then
+            animDict = emoteData.dict
+            animClip = emoteData.anim
+        end
+    end
+
+    local animFlag = previousEmote and 49 or (progress.anim?.flag or 49)
+
+    if emoteData and emoteData.AnimationOptions then
+        local opts = emoteData.AnimationOptions
+
+        if opts.Prop or opts.SecondProp then
+            LocalPlayer.state:set('consumableProp', progress.emote, true)
+        end
+
+        if opts.Prop and opts.PropPlacement and #opts.PropPlacement >= 5 then
+            local prop = spawnProp(opts.Prop, opts.PropPlacement, opts.PropBone)
+
+            if prop then
+                spawnedProps[#spawnedProps + 1] = prop
+            end
+        end
+
+        if opts.SecondProp and opts.SecondPropPlacement and #opts.SecondPropPlacement >= 5 then
+            local prop = spawnProp(opts.SecondProp, opts.SecondPropPlacement, opts.SecondPropBone)
+
+            if prop then
+                spawnedProps[#spawnedProps + 1] = prop
+            end
+        end
+    end
+
+    local success = lib.progressBar({
+        duration = progress.duration,
+        label = progressLabel,
+        useWhileDead = false,
+        canCancel = true,
+        anim = animDict and {
+            dict = animDict,
+            clip = animClip,
+            flag = animFlag
+        } or nil,
+        prop = progress.prop and {
+            model = progress.prop.model,
+            bone = progress.prop.bone,
+            pos = progress.prop.pos,
+            rot = progress.prop.rot,
+        } or nil
+    })
+
+    if animDict then
+        StopAnimTask(cache.ped, animDict, animClip, 0)
+    end
+
+    for i = 1, #spawnedProps do
+        deleteProp(spawnedProps[i])
+    end
+
+    if LocalPlayer.state.consumableProp then
+        LocalPlayer.state:set('consumableProp', nil, true)
+    end
+
+    if previousEmote then
+        ExecuteCommand('e ' .. previousEmote)
+    end
+
+    if success and progress.onSuccess then
+        CreateThread(function()
+            progress.onSuccess(itemData)
+        end)
+    elseif not success and progress.onFail then
+        CreateThread(function()
+            progress.onFail(itemData)
+        end)
+    end
+
+    return success
+end
+
+local function handleHealthEffects(config)
+    if config.addHealth then
+        local currentHealth = GetEntityHealth(cache.ped)
+        local newHealth = math.min(currentHealth + config.addHealth, 200)
+        SetEntityHealth(cache.ped, newHealth)
+
+        SetTimeout(1000, function()
+            TriggerTokenEvent('ni_consumable:saveHealthArmour')
+        end)
+    end
+
+    if config.removeHealth then
+        local newHealth = math.max(cache.health - config.removeHealth, 0)
+        SetEntityHealth(cache.ped, newHealth)
+
+        SetTimeout(1000, function()
+            TriggerTokenEvent('ni_consumable:saveHealthArmour')
+        end)
+    end
+end
+
+local function handleArmourEffects(config)
+    if config.addArmour then
+        local maxArmour = config.maxArmour or 95
+        if maxArmour < config.addArmour then
+            maxArmour = config.addArmour
+        end
+
+        local newArmour = math.min(cache.armour + config.addArmour, maxArmour)
+        SetPedArmour(cache.ped, newArmour)
+
+        SetTimeout(1000, function()
+            TriggerTokenEvent('ni_consumable:saveHealthArmour')
+        end)
+    end
+
+    if config.removeArmour then
+        local newArmour = math.max(cache.armour - config.removeArmour, 0)
+        SetPedArmour(cache.ped, newArmour)
+
+        SetTimeout(1000, function()
+            TriggerTokenEvent('ni_consumable:saveHealthArmour')
+        end)
+    end
+end
+
+local function handleStressEffects(config)
+    if config.addStress then
+        TriggerTokenEvent('sm_hud:server:addStress', config.addStress)
+    end
+
+    if config.removeStress then
+        TriggerTokenEvent('sm_hud:server:removeStress', config.removeStress)
+    end
+end
+
+local function handleDrunkEffects(config)
+    if config.drunk then
+        exports.sm_resource_2:setDrunk(config.drunk)
+    end
+
+    if config.removeDrunk then
+        exports.sm_resource_2:removeDrunkTime(config.removeDrunk)
+    end
+
+    if config.status?.drunkEffect then
+        local duration = config.status.drunkEffect
+        local durationTime = type(duration) == 'table' and math.random(duration.min, duration.max)
+            or type(duration) == 'number' and duration
+            or math.random(10, 20)
+
+        exports.sm_resource_2:setDrunk(durationTime)
+    end
+end
+
+local function handleSpecialEffects(config, itemData)
+    if config.animCoke then
+        CreateThread(function()
+            applyDrunkEffect(10000)
+        end)
+    end
+
+    if config.animVaksin then
+        CreateThread(function()
+            applyDrunkEffect(60000)
+        end)
+    end
+
+    if config.showImage then
+        exports['ps-ui']:ShowImage(config.showImage)
+    end
+
+    if config.clearBlood then
+        ClearPedBloodDamage(cache.ped)
+    end
+
+    if config.clientFunction then
+        config.clientFunction(itemData)
+    end
+end
+
+local function applyItemEffects(config, itemData)
+    handleHealthEffects(config)
+    handleArmourEffects(config)
+    handleStressEffects(config)
+    handleDrunkEffects(config)
+    handleSpecialEffects(config, itemData)
+end
+
+for itemKey, itemConfig in pairs(usableItems) do
+    RegisterNetEvent(('consumables:client:%s'):format(itemKey), function(customLabel)
+        if source ~= 65535 then return end
+
+        local responded = false
+
+        local function respond(success)
+            if responded then return end
+
+            responded = true
+
+            TriggerServerEvent(('consumables:server:response:%s'):format(itemKey), success)
+        end
+
+        local ok, err = pcall(function()
+            local itemData = inventory:Items(itemKey)
+
+            if type(customLabel) == 'string' and customLabel ~= '' and itemData then
+                local labelled = {}
+                for key, value in pairs(itemData) do labelled[key] = value end
+                labelled.label = customLabel
+                itemData = labelled
+            end
+
+            if itemConfig.validateClient and not itemConfig.validateClient(itemData) then
+                return respond(false)
+            end
+
+            if not handleProgress(itemConfig, itemData) then
+                return respond(false)
+            end
+
+            CreateThread(function()
+                applyItemEffects(itemConfig, itemData)
+            end)
+
+            respond(true)
+        end)
+
+        if not ok then
+            lib.print.error(('consumable %s gagal: %s'):format(itemKey, err))
+            respond(false)
+        end
+    end)
+end
+
+local RENDER_DISTANCE = 5.0
+
+local remoteProps = {}
+
+---@param serverId number
+local function removeRemoteProps(serverId)
+    local props = remoteProps[serverId]
+
+    if not props then return end
+
+    for i = 1, #props do
+        deleteProp(props[i])
+    end
+
+    remoteProps[serverId] = nil
+end
+
+---@param serverId number
+---@param emote string
+local function renderRemoteProps(serverId, emote)
+    removeRemoteProps(serverId)
+
+    local playerId = GetPlayerFromServerId(serverId)
+
+    if playerId == -1 then return end
+
+    local ped = GetPlayerPed(playerId)
+
+    if ped <= 0 or not DoesEntityExist(ped) then return end
+
+    if #(GetEntityCoords(cache.ped) - GetEntityCoords(ped)) > RENDER_DISTANCE then return end
+
+    local emoteData = exports['sm_emotes']:getEmoteByCommand(emote)
+    local opts = emoteData and emoteData.AnimationOptions
+
+    if not opts then return end
+
+    local props
+    local amount = 0
+
+    if opts.Prop and opts.PropPlacement and #opts.PropPlacement >= 5 then
+        local prop = spawnProp(opts.Prop, opts.PropPlacement, opts.PropBone, ped)
+
+        if prop then
+            props = props or {}
+            amount += 1
+            props[amount] = prop
+        end
+    end
+
+    if opts.SecondProp and opts.SecondPropPlacement and #opts.SecondPropPlacement >= 5 then
+        local prop = spawnProp(opts.SecondProp, opts.SecondPropPlacement, opts.SecondPropBone, ped)
+
+        if prop then
+            props = props or {}
+            amount += 1
+            props[amount] = prop
+        end
+    end
+
+    remoteProps[serverId] = props
+end
+
+AddStateBagChangeHandler('consumableProp', nil, function(bagName, _, value)
+    local serverId = tonumber(bagName:gsub('player:', ''), 10)
+
+    if not serverId or serverId == cache.serverId then return end
+
+    if not value then
+        return removeRemoteProps(serverId)
+    end
+
+    renderRemoteProps(serverId, value)
+end)
+
+RegisterNetEvent('onPlayerDropped', function(serverId)
+    removeRemoteProps(serverId)
+end)
+
+local function clearAllProps()
+    local props = {}
+    local amount = 0
+
+    for prop in pairs(activeProps) do
+        amount += 1
+        props[amount] = prop
+    end
+
+    for i = 1, amount do
+        deleteProp(props[i])
+    end
+
+    table.wipe(remoteProps)
+
+    if LocalPlayer.state.consumableProp then
+        LocalPlayer.state:set('consumableProp', nil, true)
+    end
+end
+
+RegisterNetEvent('QBCore:Client:OnPlayerUnload', clearAllProps)
+
+lib.onCache('ped', clearAllProps)
+
+AddEventHandler('onResourceStop', function(resource)
+    if resource ~= GetCurrentResourceName() then return end
+
+    clearAllProps()
+
+    pcall(function()
+        exports['sm_emotes']:EmoteCancel(true)
+    end)
+end)
+
+########## FILE: \consumable\alcohol.lua
+
+return {
+    scarlettseduction = {
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'whiskey'
+        },
+        -- addHealth = 5,
+        drunk = 1800,
+        removeStress = 35,
+        removeItems = true
+    },
+    azul = {
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'whiskey'
+        },
+        -- addHealth = 5,
+        drunk = 1800,
+        removeStress = 50,
+        removeItems = true
+    },
+    sheridan = {
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'whiskey'
+        },
+        -- addHealth = 5,
+        drunk = 1800,
+        removeStress = 25,
+        removeItems = true
+    },
+    pwine = {
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'whiskey'
+        },
+        -- addHealth = 5,
+        drunk = 300,
+        removeStress = 30,
+        removeItems = true
+    },
+    vodka = {
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'whiskey'
+        },
+        -- addHealth = 5,
+        drunk = 600,
+        removeStress = 40,
+        removeItems = true
+    },
+    dwhiskey = {
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'whiskey'
+        },
+        -- addHealth = 5,
+        drunk = 3600,
+        removeStress = 50,
+        removeItems = true
+    },
+}
+
+########## FILE: \consumable\makanan.lua
+return {
+    telur_gulung = {
+        status = {
+            hunger = 15
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'meat2'
+        },
+        removeItems = true
+    },
+    cilok = {
+        status = {
+            hunger = 15
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'meat2'
+        },
+        removeItems = true
+    },
+    scwings = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    ccsandwich = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'sandwich'
+        },
+        removeItems = true
+    },
+    omcheese = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    macaron = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'macaroon'
+        },
+        removeItems = true
+    },
+    scpancake = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'desert'
+        },
+        removeItems = true
+    },
+    bacongrilled = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'sandwich'
+        },
+        removeItems = true
+    },
+    multigrainbagel = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'donut'
+        },
+        removeItems = true
+    },
+    takoyaki = {
+        status = {
+            hunger = 35
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    driedmango = {
+        status = {
+            hunger = 25
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'xmasic'
+        },
+        removeItems = true
+    },
+    salad_sayur = {
+        status = {
+            hunger = 20
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },
+    mango_sticky_rice = {
+        status = {
+            hunger = 35
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'xmasic'
+        },
+        removeItems = true
+    },
+    chickensteak = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    chewycookie = {
+        status = {
+            hunger = 20
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'desert'
+        },
+        removeItems = true
+    },
+    siomay_kidsmeal = {
+        status = {
+            hunger = 20
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    bubur_ayam = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    bento = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    klepon = {
+        status = {
+            hunger = 20
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'desert'
+        },
+        removeItems = true
+    },
+    chocolate_love = {
+        status = {
+            hunger = 20
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'icecreamb'
+        },
+        removeItems = true
+    },
+    sop_buntut = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },
+    soto_medan = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },
+    burger_rendang = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'burger'
+        },
+        removeItems = true
+    },
+    nasi_padang = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    bakso = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },
+    mie_aceh = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },    
+    batagor = {
+        status = {
+            hunger = 20
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    padthai = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },
+    somtam = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },
+    goongten = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },
+    tomyum = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },
+    nasgor = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+
+    gudeg = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'nasigudeg'
+        },
+        removeItems = true
+    },
+
+    nasigorengkampung = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+
+    nasilemak = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'nasilemak'
+        },
+        removeItems = true
+    },
+
+    nasiliwet = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+
+    satemaranggi = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'sateayam'
+        },
+        removeItems = true
+    },
+    
+    burger = {
+        status = {
+            hunger = {
+                min = 5, max = 10
+            },
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'burger'
+        },
+        removeItems = true
+    },
+    baconfries = {
+        status = {
+            hunger = 15
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    steakplate = {
+        status = {
+            hunger = 15
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    beefbites = {
+        status = {
+            hunger = 15
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'meat2'
+        },
+        removeItems = true
+    },
+    calamari = {
+        status = {
+            hunger = 15
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'meat2'
+        },
+        removeItems = true
+    },
+    nasigorengmerah = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    lontongbalap = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    cumi_bakar = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    mini_pancake = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'desert'
+        },
+        removeItems = true
+    },
+    mie_nyemek = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    almondcrispy = {
+        status = {
+            hunger = 25
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'donut'
+        },
+        removeItems = true
+    },
+    corndog = {
+        status = {
+            hunger = 25
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'meat2'
+        },
+        removeItems = true
+    },
+
+    -- === MHCAFE FOOD ===
+    pastacreamychicken = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },
+    spicygrilledsalmon = {
+        status = {
+            hunger = 45
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'dinner'
+        },
+        removeItems = true
+    },
+    prawnsalad = {
+        status = {
+            hunger = 40
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'pho'
+        },
+        removeItems = true
+    },
+    matchabruleecream = {
+        status = {
+            hunger = 15
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'desert'
+        },
+        removeItems = true
+    },
+    ager_ager = {
+        status = {
+            hunger = 5
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'desert'
+        },
+        removeItems = true
+    },
+    minichickensliders = {
+        status = {
+            hunger = 15
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'burger'
+        },
+        removeItems = true
+    },
+}
+
+########## FILE: \consumable\minuman.lua
+return {
+    es_slurp = {
+        status = {
+            thirst = 15
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshakei'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    icecreamatcha = {
+        status = {
+            thirst = 20
+        },
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 5000,
+            emote = 'xmasic'
+        },
+        removeItems = true
+    },
+    teh_poco = {
+        status = {
+            thirst = 15
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    matchalattemh = {
+        status = {
+            thirst = 15
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    peachtea = {
+        status = {
+            thirst = 15
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    syogurtsmoothie = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshakeb'
+        },
+        removeItems = true
+    },
+    icofeemilk = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'coffee'
+        },
+        removeItems = true
+    },
+    orangesoda = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'soda9'
+        },
+        removeItems = true
+    },
+    nampraotan = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshakel'
+        },
+        removeItems = true
+    },
+    whitefrappe = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshakel'
+        },
+        removeItems = true
+    },
+    carjuice = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'cup'
+        },
+        removeItems = true
+    },
+    orangejuice = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipsodac'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    matchalatte = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'xmasmug'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    thaigreantea = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'xmasmug'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    ochatea = {
+        status = {
+            thirst = 35
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'xmasmug'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    banana_milk = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'drink'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    strawberry_milktea = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'drink'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    esbuah_kidsmeal = {
+        status = {
+            thirst = 20
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'xmasic'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    es_jelly_susu = {
+        status = {
+            thirst = 20
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'drink'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    susu_bantal = {
+        status = {
+            thirst = 5
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'drink'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    yogurt = {
+        status = {
+            thirst = 20
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'xmasic'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    ice_cream = {
+        status = {
+            thirst = 20
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'xmasic'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    teh_tarik = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    es_susu_jagung = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    es_timun_serut = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    jus_markisa = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    es_kopi_sanger = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    es_doger = {
+        status = {
+            thirst = 20
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'xmasic'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    
+    thaitea = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    nomyen = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    oliang = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+    eskelapa = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipsodab'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    esjeruk = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipsodac'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    esteh = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipsodab'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    applejuice = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipsodab'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    water = {
+        status = {
+            thirst = { min = 5, max = 10 }
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'water'
+        },
+        removeItems = true
+    },
+    susukotak = {
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 2000,
+            emote = 'water'
+        },
+        removeItems = true
+    },
+
+    rootbeer = {
+        status = {
+            thirst = 15
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'beercan2'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    lemonwater = {
+        status = {
+            thirst = 15
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'beercan2'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    strjuice = {
+        status = {
+            thirst = 15
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshakei'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    applecider = {
+        status = {
+            thirst = 15
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'wine'
+        },
+        -- removeDrunk = 900,
+        removeItems = true
+    },
+
+    cocomax = {
+        -- status = {
+        --     thirst = 5
+        -- },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'edrink'
+        },
+        removeDrunk = 1800,
+        removeItems = true
+    },
+
+    ydetox = {
+        -- status = {
+        --     thirst = 5
+        -- },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'edrink'
+        },
+        removeDrunk = 3600,
+        removeItems = true
+    },
+     -- === GZCAFE DRINKS ===
+    es_tebu = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshakeb'
+        },
+        removeItems = true
+    },
+    soda_gembira = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipsodab'
+        },
+        removeItems = true
+    },
+    kelpshake_soda = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipsodab'
+        },
+        removeItems = true
+    },
+    esmilo = {
+        status = {
+            thirst = 20
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshakeb'
+        },
+        removeItems = true
+    },
+    esdawet = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        removeItems = true
+    },
+
+    -- === MHCAFE DRINKS ===
+    tropicalmangobreeze = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipsodac'
+        },
+        removeItems = true
+    },
+    tropicalorange = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipsodac'
+        },
+        removeItems = true
+    },
+    sweetcorncocktail = {
+        status = {
+            thirst = 45
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'sipshaked'
+        },
+        removeItems = true
+    },
+}
+
+########## FILE: \consumable\other.lua
+return {
+    suppresant_pill = {
+        progress = {
+            label = 'Menggunakan {itemname}',
+            duration = 2500,
+            anim = {
+                dict = 'mp_suicide',
+                clip = 'pill',
+                flag = 49
+            }
+        },
+        removeItems = true,
+        drunk = 30,
+        status = {
+            hunger = 30,
+        },
+    },
+    maxcandy = {
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 2500,
+            emote = 'lollipop1'
+        },
+        removeItems = true,
+        removeStress = 15,
+        status = {
+            hunger = -2,
+            thirst = -2,
+        },
+    },
+    ycandy = {
+        progress = {
+            label = 'Memakan {itemname}',
+            duration = 2500,
+            emote = 'lollipop1'
+        },
+        removeItems = true,
+        removeStress = 15,
+        status = {
+            hunger = -2,
+            thirst = -2,
+        },
+    },
+    boxstarterpack = {
+        progress = {
+            label = 'Membuka {itemname}',
+            duration = 5000,
+        },
+        removeItems = true,
+        serverFunction = function(source)
+            local dataItems = {
+                { name = 'burger', count = 10 },
+                { name = 'water', count = 10 },
+                { name = 'phone', count = 1 },
+                { name = 'money', count = 50000 },
+            }
+
+            local player = exports['qb-core']:GetPlayer(source)
+            for _, val in ipairs(dataItems) do
+                player.Functions.AddItem(val.name, val.count)
+            end
+        end
+    },
+    paketmakanan = {
+        progress = {
+            label = 'Membuka {itemname}',
+            duration = 5000,
+        },
+        removeItems = true,
+        serverFunction = function(source)
+            local dataItems = {
+                { name = 'satemaranggi', count = 2 },
+                { name = 'oliang', count = 2 },
+            }
+
+            local player = exports['qb-core']:GetPlayer(source)
+            for _, val in ipairs(dataItems) do
+                player.Functions.AddItem(val.name, val.count)
+            end
+        end
+    },
+    tespek = {
+        emote = 'pee2',
+        progress = {
+            label = 'Menggunakan {itemname}',
+            duration = 2500,
+        },
+        removeItems = false,
+    },
+    dipurine = {
+        emote = 'pee2',
+        progress = {
+            label = 'Menggunakan {itemname}',
+            duration = 2500,
+        },
+        removeItems = false,
+    },
+    paracetamol = {
+        progress = {
+            label = 'Menggunakan {itemname}',
+            duration = 2500,
+            anim = {
+                dict = 'mp_suicide',
+                clip = 'pill',
+                flag = 49
+            }
+        },
+        removeItems = true,
+        removeStress = 25
+    },
+    ibuprofen = {
+        progress = {
+            label = 'Menggunakan {itemname}',
+            duration = 2500,
+            anim = {
+                dict = 'mp_suicide',
+                clip = 'pill',
+                flag = 49
+            }
+        },
+        removeItems = true,
+        removeStress = 25
+    },
+    ondansetron = {
+        progress = {
+            label = 'Menggunakan {itemname}',
+            duration = 2500,
+            anim = {
+                dict = 'mp_suicide',
+                clip = 'pill',
+                flag = 49
+            }
+        },
+        removeItems = true,
+        removeStress = 5
+    },
+    obat_custom = {
+        progress = {
+            label = 'Menggunakan {itemname}',
+            duration = 2500,
+            anim = {
+                dict = 'mp_suicide',
+                clip = 'pill',
+                flag = 49
+            }
+        },
+        removeItems = true,
+        removeStress = 5
+    },
+    golden_coffee = {
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'coffee'
+        },
+        removeItems = true,
+        status = {
+            hunger = 20,
+            thirst = 20,
+        },
+    },
+    vitaminec = {
+        progress = {
+            label = 'Menggunakan {itemname}',
+            duration = 2500,
+            anim = {
+                dict = 'mp_suicide',
+                clip = 'pill',
+                flag = 49
+            }
+        },
+        removeItems = true,
+        status = {
+            hunger = 10,
+            thirst = 10,
+        },
+    },
+    pregnanmilk = {
+        status = {
+            hunger = 10,
+            thirst = 10,
+        },
+        progress = {
+            label = 'Meminum {itemname}',
+            duration = 5000,
+            emote = 'drink'
+        },
+        removeItems = true
+    },
+    perban_anak = {
+        emote = 'mechanic4',
+        progress = {
+            label = 'Menggunakan {itemname}',
+            duration = 2500,
+        },
+        removeItems = true,
+        addHealth = 35,
+        validateClient = function(itemData)
+            local toddlerModels = require 'consumable.toddler_models'
+            local pedModel = GetEntityModel(cache.ped)
+
+            for _, model in ipairs(toddlerModels) do
+                if pedModel == model then
+                    return true
+                end
+            end
+
+            lib.notify({
+                description = 'Obat ini hanya bisa digunakan oleh anak-anak',
+                type = 'error'
+            })
+            return false
+        end
+    },
+    paracetamol_syrup = {
+        emote = 'drink',
+        progress = {
+            label = 'Menggunakan {itemname}',
+            duration = 2500,
+        },
+        removeItems = true,
+        removeStress = 45,
+        validateClient = function(itemData)
+            local toddlerModels = require 'consumable.toddler_models'
+            local pedModel = GetEntityModel(cache.ped)
+
+            for _, model in ipairs(toddlerModels) do
+                if pedModel == model then
+                    return true
+                end
+            end
+
+            lib.notify({
+                description = 'Obat ini hanya bisa digunakan oleh anak-anak',
+                type = 'error'
+            })
+            return false
+        end
+    },
+    heavyarmor = {
+        grantArmour = 95,
+        groups = {
+            'admin',
+            'police',
+            'government',
+            'paspampres',
+            'usmarshal',
+            'pengadilan'
+        },
+        progress = {
+            label = 'Memakai armor..',
+            duration = 3000,
+            anim = {
+                dict = 'rick3d@weapons',
+                clip = 'armorplate',
+                flag = 49
+            },
+            prop = {
+                model = 'prop_armorplate',
+                bone = 28422,
+                pos = vec3(0.030, 0.010, -0.145),
+                rot = vec3(-168.0, 96.0, 0.0)
+            }
+        },
+        removeItems = true,
+        clientFunction = function(items)
+            local currentArmor = GetPedArmour(cache.ped)
+            if currentArmor >= 95 then
+                lib.notify({ description = "Armor sudah maksimal!", type = 'error' })
+                return false
+            end
+            
+            local addAmount = currentArmor + 95
+            if addAmount > 95 then
+                addAmount = 95
+            end
+            SetPedArmour(cache.ped, addAmount)
+        end
+    },
+    lockpick = {
+        serverFunction = function(source)
+            TriggerClientEvent('lockpicks:UseLockpick', source, false)
+            TriggerEvent('lockpicks:UseLockpick', source, false)
+            TriggerEvent('lockpicks:UseLockpickHouseRobbery', source, false)
+        end
+    },
+    advancedlockpick = {
+        serverFunction = function(source)
+            TriggerClientEvent('lockpicks:UseLockpick', source, true)
+            TriggerEvent('lockpicks:UseLockpick', source, true)
+        end
+    }
+}
+
+########## FILE: \consumable\toddler_models.lua
+return {
+    GetHashKey('ks_ias'),
+    GetHashKey('Paws_Ricie'),
+    GetHashKey('Paws_Naya'),
+    GetHashKey('jwcbaby_nata'),
+    GetHashKey('babysen'),
+    GetHashKey('gs_mora'),
+    GetHashKey('sps_rebecca'),
+    GetHashKey('aiz_biel'),
+    GetHashKey('Paws_Hunter'),
+    GetHashKey('Paws_Relio'),
+    GetHashKey('Paws_Relia'),
+    GetHashKey('lpxnf_alyourna'),
+    GetHashKey('paws_moon'),
+    GetHashKey('carxpoppy'),
+    GetHashKey('Paws_Ana'),
+    GetHashKey('ks_putri'),
+    GetHashKey('vs_hawa'),
+    GetHashKey('paws_shashe2'),
+    GetHashKey('paws_yinhua'),
+    GetHashKey('paws_yinhuo'),
+    GetHashKey('gs_fel'),
+    GetHashKey('MadisonToddler_WWMods'),
+    GetHashKey('paws_shashe3'),
+    GetHashKey('ps_luna'),
+    GetHashKey('carxbaby_jeni'),
+    GetHashKey('SPS_HANNABIE'),
+    GetHashKey('baby_yuma'),
+    GetHashKey('cm_theas'),
+    GetHashKey('yoyukihime'),
+    GetHashKey('Yoshiehime'),
+    GetHashKey('cm_kasya'),
+    GetHashKey('carxbaby_blythe'),
+    GetHashKey('Paws_Ara'),
+    GetHashKey('baby_1'),
+    GetHashKey('paws_isa'),
+    GetHashKey('Paws_Anyaa'),
+    GetHashKey('Paws_Anya'),
+    GetHashKey('twzl_vion'),
+    GetHashKey('twzl_viona'),
+    GetHashKey('carxb2603'),
+    GetHashKey('paws_ale'),
+    GetHashKey('ks_todelsy'),
+    GetHashKey('paws_bastian'),
+    GetHashKey('carxb2601'),
+    GetHashKey('paws_ayya'),
+    GetHashKey('paws_ceylo'),
+    GetHashKey('paws_kiara'),
+    GetHashKey('carxmoon'),
+    GetHashKey('Paws_Ael'),
+    GetHashKey('ps_berlin'),
+    GetHashKey('baby_kikoo'),
+    GetHashKey('baby_Yuuki'),
+    GetHashKey('paws_achell'),
+    GetHashKey('paws_orel'),
+    GetHashKey('una'),
+    GetHashKey('ps_keycoa'),
+    GetHashKey('hn_gireng'),
+    GetHashKey('paws_senn'),
+    GetHashKey('carxyin'),
+    GetHashKey('paws_rochelle'),
+    GetHashKey('paws_noland'),
+    GetHashKey('paws_rachel'),
+    GetHashKey('paws_mikanw'),
+    GetHashKey('carxbaby_liya'),
+    GetHashKey('haq_babydrew'),
+    GetHashKey('eps_yume'),
+    GetHashKey('ks_ikkie'),
+    GetHashKey('ks_makotod'),
+    GetHashKey('wilstore_dhynosaurus'),
+    GetHashKey('ws_cala'),
+    GetHashKey('paws_nokk'),
+    GetHashKey('Paws_Xaviero'),
+    GetHashKey('paws_alicia'),
+    GetHashKey('7star_BabyBT'),
+    GetHashKey('Paws_Noah'),
+    GetHashKey('paws_tomoyoy'),
+    GetHashKey('paws_lily'),
+    GetHashKey('paws_ajeng'),
+    GetHashKey('paws_biwa'),
+    GetHashKey('paws_lexia'),
+    GetHashKey('wilstore_jrhden'),
+    GetHashKey('celix_jasrig_0058'),
+    GetHashKey('sorsorbaby_milen'),
+    GetHashKey('paws_lexio'),
+    GetHashKey('7star_keii'),
+    GetHashKey('wilstore_maple'),
+    GetHashKey('wilstore_mochi'),
+    GetHashKey('wilstore_mochaa'),
+    GetHashKey('cm_mekdi'),
+    GetHashKey('Paws_Renata'),
+    GetHashKey('Paws_Akira'),
+    GetHashKey('ame_news'),
+    GetHashKey('paws_cost'),
+    GetHashKey('carxchachu'),
+    GetHashKey('paws_miya'),
+    GetHashKey('carxblana'),
+    GetHashKey('candies_cecil'),
+    GetHashKey('gh_livya'),
+    GetHashKey('paws_cyrus'),
+    GetHashKey('paws_niel'),
+    GetHashKey('paws_ame'),
+    GetHashKey('paws_queenn'),
+    GetHashKey('paws_richie'),
+    GetHashKey('paws_caca'),
+    GetHashKey('candiesbaby_surya'),
+    GetHashKey('wilstore_oreo'),
+    GetHashKey('wilstore_milk'),
+    GetHashKey('wilstore_choco'),
+    GetHashKey('carxcmale'),
+    GetHashKey('jumjum_co'),
+    GetHashKey('paws_akiw'),
+    GetHashKey('cm_kasya3'),
+}
+
+########## FILE: \server\main.lua
+local QBCore = exports['qb-core']:GetCoreObject()
+
+local makanan = require 'consumable.makanan'
+local minuman = require 'consumable.minuman'
+local alkohol = require 'consumable.alcohol'
+local other = require 'consumable.other'
+
+local items = {}
+
+local function merge(source)
+    for key, value in pairs(source) do
+        items[key] = value
+    end
+end
+
+merge(makanan)
+merge(minuman)
+merge(alkohol)
+merge(other)
+
+local function clampStatus(Player, key, delta)
+    local current = Player.PlayerData.metadata[key] or 100
+
+    Player.Functions.SetMetaData(key, math.max(math.min(current + delta, 100), 0))
+end
+
+local function applyStatus(Player, cfg)
+    if type(cfg.status) ~= 'table' then return end
+
+    for key, delta in pairs(cfg.status) do
+        if (key == 'hunger' or key == 'thirst') and type(delta) == 'number' then
+            clampStatus(Player, key, delta)
+        end
+    end
+end
+
+local function useItem(source, itemName, label)
+    local cfg = items[itemName]
+
+    if not cfg then return false end
+
+    TriggerClientEvent(('consumables:client:%s'):format(itemName), source, label)
+
+    return true
+end
+
+exports('use', useItem)
+
+RegisterNetEvent('consumables:server:use', function(itemName, label)
+    useItem(source, itemName, label)
+end)
+
+for itemName, cfg in pairs(items) do
+    RegisterNetEvent(('consumables:server:response:%s'):format(itemName), function(success)
+        local source = source
+        local Player = QBCore.Functions.GetPlayer(source)
+
+        if not Player or not success then return end
+
+        local item = Player.Functions.GetItemByName(itemName)
+
+        if not item then return end
+
+        if cfg.removeItems then
+            Player.Functions.RemoveItem(itemName, 1)
+        end
+
+        applyStatus(Player, cfg)
+    end)
+end
+
+RegisterNetEvent('ni_consumable:saveHealthArmour', function()
+    local source = source
+    local Player = QBCore.Functions.GetPlayer(source)
+    local ped = GetPlayerPed(source)
+
+    if not Player or not ped or ped == 0 then return end
+
+    local health = GetEntityHealth(ped)
+    local armour = GetPedArmour(ped)
+
+    if health > 0 then
+        Player.Functions.SetMetaData('health', math.max(health, 100))
+    end
+
+    Player.Functions.SetMetaData('armour', armour)
+end)
+
+AddEventHandler('playerDropped', function()
+    TriggerClientEvent('onPlayerDropped', -1, source)
+end)
+
+lib.print.info(('sm_consumable server siap (%d item)'):format((function()
+    local n = 0
+    for _ in pairs(items) do n = n + 1 end
+    return n
+end)()))
+

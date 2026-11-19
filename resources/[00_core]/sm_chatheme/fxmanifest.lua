@@ -52,7 +52,9 @@ escrow_ignore {
 files {
     'web/build/*.*',
     'web/build/**/*.*',
-    'locales/*.json'
+    'locales/*.json',
+    'config/*.lua',
+    'utils/*.lua'
 }
 
 ui_page 'web/build/index.html'

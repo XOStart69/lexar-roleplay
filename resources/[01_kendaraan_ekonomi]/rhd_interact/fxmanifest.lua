@@ -1,18 +1,16 @@
 -- decrypted + fixed
 fx_version 'cerulean'
 game 'gta5'
-
+lua54 'yes'
+use_experimental_fxv2_oal 'yes'
 
 description "RHD Interaction System"
 author "RHD Team"
-
 version "1.0.0"
-use_experimental_fxv2_oal 'yes'
-
-lua54 'yes'
 
 shared_scripts {
     '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
 }
 
 client_script {
@@ -23,17 +21,19 @@ client_script {
     'core/dui.lua',
     'dev/command.lua',
 }
+
 server_script 'server.lua'
 
 files {
     'web/build/assets/*.*',
     'web/build/**/*.*',
-
     'utils/main.lua',
     'framework/init.lua',
     'framework/**/*.lua',
     'config/*.lua',
 }
 
-
-dependency 'ox_lib'
+dependencies {
+    'ox_lib',
+}
+dependency 'se_v2'

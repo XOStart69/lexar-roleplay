@@ -148,3 +148,14 @@ AddEventHandler("Housing:wardrobe_delete", function()
 	lib.hideContext()
 	lib.showMenu("wardrobe_delete")
 end)
+
+RegisterNetEvent('Housing:client:RefreshOutfits', function(homeId, outfits)
+    local home = Homes[homeId]
+    if not home then return end
+
+    home.data = home.data or {}
+    home.data.outfits = outfits
+    if OpenWardrobe then
+        OpenWardrobe(homeId)
+    end
+end)

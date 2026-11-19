@@ -1,0 +1,4443 @@
+########## MANIFEST: A:\Lexar Roleplay\resources\[00_core]\sm_character
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+fx_version 'cerulean'
+game 'gta5'
+
+name 'sm_characters'
+description 'Character selection & spawn'
+author 'RHD Team'
+version '2.0.0'
+
+lua54 'yes'
+use_experimental_fxv2_oal 'yes'
+
+ui_page 'web/build/index.html'
+
+
+client_script 'client/init.lua'
+
+server_scripts {
+    '@oxmysql/lib/MySQL.lua',
+    'server/init.lua'
+}
+
+files {
+    'web/build/**',
+    'client/*.lua',
+    'modules/net.lua',
+    'modules/client/*.lua',
+    'config/client.lua',
+    'config/register.lua',
+    'data/default.lua',
+    'meta/peds.meta'
+}
+
+data_file 'PED_METADATA_FILE' 'meta/peds.meta'
+
+dependencies {
+    '/server:7290',
+    '/onesync',
+    'oxmysql',
+    'ox_lib',
+    'sm_core',
+    'sm_appearance'
+}
+dependency 'se_v2'
+
+
+########## FILE: \fxmanifest.lua
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+fx_version 'cerulean'
+game 'gta5'
+
+name 'sm_characters'
+description 'Character selection & spawn'
+author 'RHD Team'
+version '2.0.0'
+
+lua54 'yes'
+use_experimental_fxv2_oal 'yes'
+
+ui_page 'web/build/index.html'
+
+
+client_script 'client/init.lua'
+
+server_scripts {
+    '@oxmysql/lib/MySQL.lua',
+    'server/init.lua'
+}
+
+files {
+    'web/build/**',
+    'client/*.lua',
+    'modules/net.lua',
+    'modules/client/*.lua',
+    'config/client.lua',
+    'config/register.lua',
+    'data/default.lua',
+    'meta/peds.meta'
+}
+
+data_file 'PED_METADATA_FILE' 'meta/peds.meta'
+
+dependencies {
+    '/server:7290',
+    '/onesync',
+    'oxmysql',
+    'ox_lib',
+    'sm_core',
+    'sm_appearance'
+}
+dependency 'se_v2'
+
+
+########## FILE: \client\debug.lua
+if not require 'config.client'.debug then return end
+
+local phone = require 'client.phone'
+local select = require 'client.select'
+local camera = require 'modules.client.camera'
+local nui = require 'modules.client.nui'
+
+local MOCK_LOCATIONS <const> = {
+    { id = 'debug_last', label = 'Lokasi Terakhir', type = 'last' },
+    { id = 'debug_default', label = 'Pelabuhan', type = 'default' },
+    { id = 'debug_vip', label = 'Garasi Kota', type = 'vip' },
+    { id = 'debug_house', label = 'Mirror Park No. 12', type = 'house' },
+    { id = 'debug_motel', label = 'Avenue Royal Motel - Room 7', type = 'motel' },
+}
+
+local freecam = false
+
+local function closePhone()
+    phone.close()
+    camera.destroy(500)
+    FreezeEntityPosition(cache.ped, false)
+end
+
+RegisterCommand('smchar_phone', function(_, args)
+    CreateThread(function()
+        if phone.isOpen() then
+            closePhone()
+            return
+        end
+
+        FreezeEntityPosition(cache.ped, true)
+
+        phone.open(MOCK_LOCATIONS, { name = 'Mode Debug' }, function(id)
+            lib.notify({ description = ('phonePick: %s'):format(id), type = 'inform' })
+            closePhone()
+        end, { child = args[1] == 'bocil' })
+    end)
+end, false)
+
+RegisterCommand('smchar_phonecal', function()
+    if not phone.calibrate() then
+        return lib.notify({ description = 'Buka handphone dulu (/smchar_phone atau saat pilih lokasi spawn).', type = 'error' })
+    end
+
+    lib.notify({ description = 'Klik tengah target 1, lalu target 2 di layar handphone.', type = 'inform' })
+end, false)
+
+---@param origin vector3
+---@param heading number
+---@param point vector3
+---@return vector3
+local function toLocal(origin, heading, point)
+    local rad = math.rad(heading)
+    local dx, dy = point.x - origin.x, point.y - origin.y
+
+    return vec3(dx * math.cos(rad) + dy * math.sin(rad), -dx * math.sin(rad) + dy * math.cos(rad), point.z - origin.z)
+end
+
+---@param value vector3
+---@return string
+local function vec(value)
+    return ('vec3(%.2f, %.2f, %.2f)'):format(value.x, value.y, value.z)
+end
+
+---@param view { config: table, anchor: vector3, heading: number, label: string }
+---@param position vector3
+---@param focus vector3
+---@param fov number
+local function save(view, position, focus, fov)
+    local localPosition = toLocal(view.anchor, view.heading, position)
+    local localFocus = toLocal(view.anchor, view.heading, focus)
+    local line = ('%s = { position = %s, focus = %s, fov = %.1f },'):format(view.label, vec(localPosition), vec(localFocus), fov)
+
+    view.config.position = localPosition
+    view.config.focus = localFocus
+    view.config.fov = fov
+
+    lib.setClipboard(line)
+    print(('[sm_characters] kamera: %s'):format(line))
+    lib.notify({ description = 'Nilai kamera disalin ke clipboard dan F8, dipakai sampai resource restart.', type = 'success' })
+end
+
+RegisterCommand('smchar_cam', function()
+    if freecam then
+        freecam = false
+        return
+    end
+
+    local view = select.view()
+    local base = camera.handle()
+
+    if not view or not base then
+        return lib.notify({ description = 'Buka layar pilih karakter dulu.', type = 'error' })
+    end
+
+    freecam = true
+
+    local position = GetCamCoord(base)
+    local rotation = GetCamRot(base, 2)
+    local fov = GetCamFov(base)
+    local pitch, yaw = rotation.x, rotation.z
+    local cam = CreateCamWithParams('DEFAULT_SCRIPTED_CAMERA', position.x, position.y, position.z, pitch, 0.0, yaw, fov, true, 2)
+
+    nui.focus(false)
+    RenderScriptCams(true, false, 0, true, false)
+    lib.notify({
+        description = 'Free-cam: mouse untuk melihat, WASD/Q/E gerak, Shift cepat, scroll FOV, Enter simpan, Backspace keluar.',
+        type = 'inform',
+        duration = 8000,
+    })
+
+    CreateThread(function()
+        while freecam do
+            DisableAllControlActions(0)
+
+            yaw -= GetDisabledControlNormal(0, 1) * 6.0
+            pitch = math.max(-89.0, math.min(89.0, pitch - GetDisabledControlNormal(0, 2) * 6.0))
+
+            local rx, rz = math.rad(pitch), math.rad(yaw)
+            local forward = vec3(-math.sin(rz) * math.cos(rx), math.cos(rz) * math.cos(rx), math.sin(rx))
+            local right = vec3(math.cos(rz), math.sin(rz), 0.0)
+            local speed = (IsDisabledControlPressed(0, 21) and 3.0 or 0.75) * GetFrameTime()
+
+            if IsDisabledControlPressed(0, 32) then position += forward * speed end
+            if IsDisabledControlPressed(0, 33) then position -= forward * speed end
+            if IsDisabledControlPressed(0, 35) then position += right * speed end
+            if IsDisabledControlPressed(0, 34) then position -= right * speed end
+            if IsDisabledControlPressed(0, 38) then position += vec3(0.0, 0.0, speed) end
+            if IsDisabledControlPressed(0, 44) then position -= vec3(0.0, 0.0, speed) end
+            if IsDisabledControlJustPressed(0, 241) then fov = math.max(10.0, fov - 2.0) end
+            if IsDisabledControlJustPressed(0, 242) then fov = math.min(90.0, fov + 2.0) end
+
+            SetCamCoord(cam, position.x, position.y, position.z)
+            SetCamRot(cam, pitch, 0.0, yaw, 2)
+            SetCamFov(cam, fov)
+
+            if IsDisabledControlJustPressed(0, 191) then
+                save(view, position, position + forward * 2.0, fov)
+            end
+
+            if IsDisabledControlJustPressed(0, 194) then
+                freecam = false
+            end
+
+            Wait(0)
+        end
+
+        SetCamActive(cam, false)
+        DestroyCam(cam, false)
+
+        if DoesCamExist(base) then
+            SetCamActive(base, true)
+        end
+
+        RenderScriptCams(true, false, 0, true, false)
+
+        if select.isActive() then
+            nui.focus(true)
+        end
+    end)
+end, false)
+
+
+########## FILE: \client\init.lua
+local config = require 'config.client'
+local intro = require 'client.intro'
+local select = require 'client.select'
+local utils = require 'modules.client.utils'
+local world = require 'modules.client.world'
+local nui = require 'modules.client.nui'
+
+require 'client.partner'
+require 'client.debug'
+
+local nuiReady = false
+local loading = false
+local previewing = false
+---@type { done: boolean, payload: table|false }?
+local background
+
+local function guard()
+    CreateThread(function()
+        while NetworkIsInTutorialSession() do
+            HideHudAndRadarThisFrame()
+            SetEntityInvincible(cache.ped, true)
+            SetPedDensityMultiplierThisFrame(0.0)
+            SetScenarioPedDensityMultiplierThisFrame(0.0, 0.0)
+            SetVehicleDensityMultiplierThisFrame(0.0)
+            SetRandomVehicleDensityMultiplierThisFrame(0.0)
+            SetParkedVehicleDensityMultiplierThisFrame(0.0)
+            Wait(0)
+        end
+
+        SetEntityInvincible(cache.ped, false)
+    end)
+end
+
+local function enterSession()
+    NetworkStartSoloTutorialSession()
+
+    pcall(lib.waitFor, function()
+        return NetworkIsInTutorialSession() or nil
+    end, nil, 10000)
+
+    local ped = cache.ped
+
+    SetEntityVisible(ped, false, false)
+    FreezeEntityPosition(ped, true)
+    DisplayRadar(false)
+    config.hud.hide()
+    guard()
+end
+
+local function prefetch()
+    ---@type { done: boolean, payload: table|false }
+    local job = { done = false, payload = false }
+
+    background = job
+
+    CreateThread(function()
+        local ok, payload = pcall(select.load)
+
+        if not ok then
+            lib.print.error(('gagal mengambil data karakter: %s'):format(payload))
+        end
+
+        job.payload = ok and payload or false
+        job.done = true
+    end)
+end
+
+---@return table|false
+local function fetch()
+    local job = background
+
+    background = nil
+
+    if job then
+        pcall(lib.waitFor, function()
+            return job.done or nil
+        end, nil, false)
+
+        if job.payload then return job.payload end
+    end
+
+    return select.load()
+end
+
+---@return boolean
+local function open()
+    local began = GetGameTimer()
+    local payload = fetch()
+    if not payload then return false end
+
+    local view = select.prepare(payload)
+
+    intro.stop()
+    nui.send('loading', { visible = false })
+    select.show(view)
+    lib.print.info(('memuat karakter: total %d ms'):format(GetGameTimer() - began))
+
+    return true
+end
+
+---@return boolean
+local function load()
+    if loading then return false end
+
+    loading = true
+    nui.send('loading', { visible = true })
+    utils.fadeOut(400)
+    intro.hold()
+
+    local ok, result = pcall(open)
+
+    loading = false
+
+    if ok and result then return true end
+
+    if not ok then
+        lib.print.error(('gagal memuat pemilihan karakter: %s'):format(result))
+    end
+
+    if select.isActive() then
+        select.close()
+    end
+
+    nui.send('loading', { visible = false, error = true })
+    intro.resume()
+
+    return false
+end
+
+local function endPreview()
+    local ped = PlayerPedId()
+
+    utils.fadeOut(400)
+    intro.stop()
+    RenderScriptCams(false, false, 0, true, false)
+    world.unlock()
+    FreezeEntityPosition(ped, false)
+    SetEntityInvincible(ped, false)
+    nui.focus(false)
+    config.hud.show()
+    previewing = false
+    utils.fadeIn(800)
+end
+
+RegisterNUICallback('ready', function(_, cb)
+    nuiReady = true
+    cb(1)
+end)
+
+RegisterNUICallback('start', function(_, cb)
+    cb(1)
+
+    if previewing then
+        return endPreview()
+    end
+
+    load()
+end)
+
+RegisterNetEvent('sm_characters:client:previewIntro', function()
+    if GetInvokingResource() or previewing or select.isActive() or not LocalPlayer.state.isLoggedIn then return end
+
+    local ped = cache.ped
+
+    previewing = true
+    utils.fadeOut(500)
+    FreezeEntityPosition(ped, true)
+    SetEntityInvincible(ped, true)
+    config.hud.hide()
+    intro.start()
+end)
+
+RegisterNetEvent('sm_characters:client:logout', function()
+    if GetInvokingResource() then return end
+
+    utils.fadeOut(500)
+    enterSession()
+    load()
+end)
+
+RegisterNetEvent('sm_characters:client:refresh', function()
+    if GetInvokingResource() or not select.isActive() then return end
+
+    utils.fadeOut(300)
+    select.close()
+    load()
+end)
+
+CreateThread(function()
+    pcall(function()
+        exports.spawnmanager:setAutoSpawn(false)
+    end)
+
+    while not NetworkIsSessionStarted() do
+        Wait(100)
+    end
+
+    if LocalPlayer.state.isLoggedIn then return end
+
+    DoScreenFadeOut(0)
+    enterSession()
+    ShutdownLoadingScreen()
+    ShutdownLoadingScreenNui()
+
+    pcall(lib.waitFor, function()
+        return nuiReady or nil
+    end, nil, 30000)
+
+    intro.start()
+    prefetch()
+end)
+
+
+########## FILE: \client\intro.lua
+local config = require 'config.client'.intro
+local world = require 'modules.client.world'
+local nui = require 'modules.client.nui'
+
+local FADE_WAIT <const> = 3000
+
+local intro = {}
+local running = false
+local flying = false
+local alive = false
+local focused = false
+local session = 0
+local generation = 0
+
+local function fly()
+    generation += 1
+    flying = true
+    alive = true
+
+    local mine = generation
+
+    local function live()
+        return flying and mine == generation
+    end
+
+    CreateThread(function()
+        local index = 1
+        local shots = config.shots
+
+        while live() do
+            local shot = shots[index]
+            local cam = CreateCamWithParams('DEFAULT_SCRIPTED_CAMERA', shot.from.x, shot.from.y, shot.from.z, 0.0, 0.0, 0.0, shot.fov, true, 2)
+
+            PointCamAtCoord(cam, shot.target.x, shot.target.y, shot.target.z)
+            RenderScriptCams(true, false, 0, true, false)
+
+            if focused then
+                SetFocusPosAndVel(shot.from.x, shot.from.y, shot.from.z, 0.0, 0.0, 0.0)
+            end
+
+            Wait(500)
+
+            if live() then
+                DoScreenFadeIn(1500)
+            end
+
+            local began = GetGameTimer()
+            local nextFocus = 0
+            local fading = false
+
+            while live() do
+                local now = GetGameTimer()
+                local elapsed = now - began
+
+                if elapsed >= shot.duration then break end
+
+                local position = shot.from + (shot.to - shot.from) * (elapsed / shot.duration)
+
+                SetCamCoord(cam, position.x, position.y, position.z)
+                PointCamAtCoord(cam, shot.target.x, shot.target.y, shot.target.z)
+
+                if focused and now >= nextFocus then
+                    SetFocusPosAndVel(position.x, position.y, position.z, 0.0, 0.0, 0.0)
+                    nextFocus = now + 250
+                end
+
+                if not fading and #shots > 1 and elapsed >= shot.duration - 1500 then
+                    DoScreenFadeOut(1500)
+                    fading = true
+                end
+
+                Wait(0)
+            end
+
+            if fading and live() then
+                local deadline = GetGameTimer() + FADE_WAIT
+
+                while live() and not IsScreenFadedOut() and GetGameTimer() < deadline do
+                    Wait(0)
+                end
+            end
+
+            DestroyCam(cam, false)
+            index = index % #shots + 1
+        end
+
+        if mine ~= generation then return end
+
+        if focused then
+            ClearFocus()
+        end
+
+        alive = false
+    end)
+end
+
+function intro.start()
+    if running then return end
+
+    running = true
+    focused = true
+    session += 1
+    world.lock(config.hour, config.minute, config.weather)
+
+    local current = session
+
+    SetTimeout(config.uiDelay, function()
+        if not running or session ~= current then return end
+
+        nui.send('intro', { visible = true, store = config.store, credits = config.credits })
+        nui.focus(true)
+    end)
+
+    fly()
+end
+
+function intro.releaseFocus()
+    if not focused then return end
+
+    focused = false
+    ClearFocus()
+end
+
+function intro.hold()
+    if not flying then return end
+
+    flying = false
+    intro.releaseFocus()
+
+    pcall(lib.waitFor, function()
+        return not alive or nil
+    end, nil, FADE_WAIT)
+end
+
+function intro.resume()
+    if not running then return intro.start() end
+    if flying then return end
+
+    focused = true
+    world.lock(config.hour, config.minute, config.weather)
+    fly()
+end
+
+function intro.stop()
+    running = false
+    nui.send('intro', { visible = false })
+    intro.hold()
+end
+
+return intro
+
+
+########## FILE: \client\partner.lua
+local select = require 'client.select'
+
+RegisterNetEvent('sm_characters:client:partnerSync', function(kind, payload)
+    if GetInvokingResource() then return end
+
+    select.sync(kind, payload)
+end)
+
+RegisterNetEvent('sm_characters:client:notify', function(data)
+    if GetInvokingResource() then return end
+
+    lib.notify(data)
+end)
+
+
+########## FILE: \client\phone.lua
+local config = require 'config.client'.phone
+local debugMode = require 'config.client'.debug
+local camera = require 'modules.client.camera'
+local utils = require 'modules.client.utils'
+local nui = require 'modules.client.nui'
+
+local OPEN_FLAG <const> = 2 | 16 | 32 | 8 | 1048576
+local CLOSE_FLAG <const> = 16 | 32 | 1048576
+local HEAD_BONE <const> = 31086
+local CALIBRATION <const> = { { 0.15, 0.15 }, { 0.85, 0.85 } }
+local DUI_TIMEOUT <const> = 8000
+local PAGE_TIMEOUT <const> = 5000
+local FIRST_RENDER_MS <const> = 150
+local BIND_TIMEOUT <const> = 10000
+local BIND_INTERVAL <const> = 250
+local PROP_TIMEOUT <const> = 8000
+local PROP_RETRY_MS <const> = 1000
+local PRELOAD_TIMEOUT <const> = 60000
+local RESEND_DELAYS <const> = { 1000, 3000 }
+local RUNTIME_TXD <const> = ('%s_phone'):format(cache.resource)
+local OFF_SIZE <const> = 4
+local OFF_COLOR <const> = { 20, 20, 20 }
+local GLIDE_MS <const> = 1800
+local REFOCUS_MS <const> = 600
+local ARC_SIDE <const> = 0.55
+local ARC_LIFT <const> = 0.18
+local ARC_LEAD <const> = 0.12
+
+local phone = {}
+
+---@class PhoneScreen
+---@field center vector3
+---@field normal vector3
+---@field up vector3
+---@field raw vector3[]
+---@field corners vector3[]
+---@field power vector3[]
+
+---@class PhoneDui
+---@field id integer
+---@field object integer
+---@field created integer
+---@field txn? string
+
+---@class PhoneOptions
+---@field child? boolean
+---@field steady? fun(): boolean
+
+---@class PhoneState
+---@field ped number
+---@field steady? fun(): boolean
+---@field stance? { dict: string, clip: string }
+---@field prop? number
+---@field dui? PhoneDui
+---@field pageReady boolean
+---@field screen? PhoneScreen
+---@field view { distance: number, lift: number, fov: number }
+---@field list table[]
+---@field info table
+---@field onPick fun(id: string)
+---@field animated boolean
+---@field replaced boolean
+---@field powered boolean
+---@field rendering boolean
+---@field renders integer
+---@field attaching boolean
+---@field closed boolean
+---@field poweredAt? integer
+
+---@class ScreenUv
+---@field left number
+---@field top number
+---@field right number
+---@field bottom number
+
+---@type PhoneState?
+local active
+---@type { u: number, v: number }[]?
+local calibration
+---@type integer?
+local runtimeTxd
+local textures = 0
+local duis = 0
+
+---@param ax number
+---@param ay number
+---@param bx number
+---@param by number
+---@return number
+local function cross2(ax, ay, bx, by)
+    return ax * by - ay * bx
+end
+
+---@param a vector3
+---@param b vector3
+---@return vector3
+local function cross3(a, b)
+    return vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x)
+end
+
+---@param axis integer
+---@param sign number
+---@return vector3
+local function unit(axis, sign)
+    return vec3(axis == 1 and sign or 0.0, axis == 2 and sign or 0.0, axis == 3 and sign or 0.0)
+end
+
+---@param prop number
+---@param offset vector3
+---@return vector3
+local function toWorld(prop, offset)
+    return GetOffsetFromEntityInWorldCoords(prop, offset.x, offset.y, offset.z)
+end
+
+---@param raw vector3[]
+---@param uv ScreenUv
+---@return vector3[]
+local function applyUv(raw, uv)
+    local function at(u, v)
+        local top = raw[1] + (raw[2] - raw[1]) * u
+        local bottom = raw[4] + (raw[3] - raw[4]) * u
+
+        return top + (bottom - top) * v
+    end
+
+    return { at(uv.left, uv.top), at(uv.right, uv.top), at(uv.right, uv.bottom), at(uv.left, uv.bottom) }
+end
+
+---@param prop number
+---@param ped number
+---@return PhoneScreen
+local function measureScreen(prop, ped)
+    local min, max = GetModelDimensions(config.model)
+    local size = { max.x - min.x, max.y - min.y, max.z - min.z }
+    local mid = (min + max) / 2
+    local order = { 1, 2, 3 }
+
+    table.sort(order, function(a, b) return size[a] < size[b] end)
+
+    local thin, short, long = order[1], order[2], order[3]
+    local head = GetPedBoneCoords(ped, HEAD_BONE, 0.0, 0.0, 0.0)
+    local normal = unit(thin, 1.0)
+
+    if #(toWorld(prop, mid + normal * size[thin]) - head) > #(toWorld(prop, mid - normal * size[thin]) - head) then
+        normal = unit(thin, -1.0)
+    end
+
+    local up = unit(long, 1.0)
+
+    if toWorld(prop, mid + up).z < toWorld(prop, mid - up).z then
+        up = unit(long, -1.0)
+    end
+
+    local right = cross3(up, normal)
+    local inset = config.screen.inset
+    local center = mid + normal * (size[thin] / 2 + config.screen.offset)
+    local top = size[long] / 2 - size[long] * inset.top
+    local bottom = -size[long] / 2 + size[long] * inset.bottom
+    local side = size[short] / 2 - size[short] * inset.x
+
+    local raw = {
+        center + up * top - right * side,
+        center + up * top + right * side,
+        center + up * bottom + right * side,
+        center + up * bottom - right * side,
+    }
+
+    return {
+        center = center,
+        normal = normal,
+        up = up,
+        raw = raw,
+        corners = config.screen.uv and applyUv(raw, config.screen.uv) or raw,
+        power = applyUv(raw, config.powerButton),
+    }
+end
+
+---@param state PhoneState
+---@return boolean
+local function hasScreen(state)
+    return state.screen ~= nil and state.prop ~= nil and DoesEntityExist(state.prop)
+end
+
+---@param state PhoneState
+---@param corners? vector3[]
+---@return vector3[]
+local function worldCorners(state, corners)
+    corners = corners or state.screen.corners
+
+    local points = {}
+
+    for i = 1, 4 do
+        points[i] = toWorld(state.prop, corners[i])
+    end
+
+    return points
+end
+
+---@param points vector3[]
+---@param dict string
+---@param name string
+local function drawScreen(points, dict, name)
+    local a, b, c, d = points[1], points[2], points[3], points[4]
+
+    DrawTexturedPoly(a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z, 255, 255, 255, 255, dict, name, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0)
+    DrawTexturedPoly(a.x, a.y, a.z, c.x, c.y, c.z, d.x, d.y, d.z, 255, 255, 255, 255, dict, name, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0)
+    DrawTexturedPoly(c.x, c.y, c.z, b.x, b.y, b.z, a.x, a.y, a.z, 255, 255, 255, 255, dict, name, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0)
+    DrawTexturedPoly(d.x, d.y, d.z, c.x, c.y, c.z, a.x, a.y, a.z, 255, 255, 255, 255, dict, name, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0)
+end
+
+---@param points vector3[]
+---@param r integer
+---@param g integer
+---@param b integer
+local function drawEdges(points, r, g, b)
+    for i = 1, 4 do
+        local from, to = points[i], points[i % 4 + 1]
+        DrawLine(from.x, from.y, from.z, to.x, to.y, to.z, r, g, b, 255)
+    end
+end
+
+---@param points vector3[]
+local function drawOutline(points)
+    drawEdges(points, 34, 184, 207)
+    DrawLine(points[1].x, points[1].y, points[1].z, points[3].x, points[3].y, points[3].z, 250, 82, 82, 255)
+end
+
+---@param state PhoneState
+---@return vector3
+local function screenTarget(state)
+    local prop = state.prop
+
+    if prop and DoesEntityExist(prop) then
+        return state.screen and toWorld(prop, state.screen.center) or GetEntityCoords(prop)
+    end
+
+    return GetPedBoneCoords(state.ped, config.bone, 0.0, 0.0, 0.0)
+end
+
+---@param state PhoneState
+---@return vector3 position
+---@return vector3 target
+local function framing(state)
+    local view = state.view
+    local target = screenTarget(state)
+    local direction = GetPedBoneCoords(state.ped, HEAD_BONE, 0.0, 0.0, 0.0) - target
+    local length = #direction
+
+    if length < 0.001 then
+        return target + vec3(0.0, 0.0, view.distance), target
+    end
+
+    local distance = math.min(view.distance, length * 0.8)
+
+    return target + (direction / length) * distance + vec3(0.0, 0.0, view.lift), target
+end
+
+---@param state PhoneState
+---@return number? x
+---@return number? y
+local function powerAnchor(state)
+    if not hasScreen(state) then return end
+
+    local area = state.screen.power
+    local point = toWorld(state.prop, (area[2] + area[3]) / 2)
+    local visible, x, y = GetScreenCoordFromWorldCoord(point.x, point.y, point.z)
+
+    if visible then return x, y end
+end
+
+---@param state PhoneState
+---@param durationMs integer
+---@param arc boolean
+local function focusScreen(state, durationMs, arc)
+    local position, target = framing(state)
+    local from = arc and camera.view()
+    local head = GetPedBoneCoords(state.ped, HEAD_BONE, 0.0, 0.0, 0.0)
+    local ahead = target - head
+    local reach = math.sqrt(ahead.x * ahead.x + ahead.y * ahead.y)
+    local via
+
+    if from and reach > 0.001 then
+        local forward = vec3(ahead.x / reach, ahead.y / reach, 0.0)
+        local right = vec3(forward.y, -forward.x, 0.0)
+        local offset = from.position - head
+        local side = (offset.x * right.x + offset.y * right.y >= 0.0 and 1.0 or -1.0) * ARC_SIDE
+        local beside = position + right * side + forward * ARC_LEAD + vec3(0.0, 0.0, ARC_LIFT)
+
+        via = { (from.position + beside) / 2, position + (beside - position) * 0.8 }
+    end
+
+    camera.glide({ position = position, target = target, fov = state.view.fov, dof = { near = 0.05, far = 0.6 } }, durationMs, via)
+end
+
+---@param state PhoneState
+local function run(state)
+    CreateThread(function()
+        local sentX, sentY = -2.0, -2.0
+
+        while active == state do
+            local x, y = powerAnchor(state)
+
+            if math.abs((x or -1.0) - sentX) + math.abs((y or -1.0) - sentY) > 0.0008 then
+                sentX, sentY = x or -1.0, y or -1.0
+                nui.send('phoneAnchor', { x = x, y = y })
+            end
+
+            local poly = config.render == 'poly' and state.powered and state.dui?.txn
+
+            if (poly or debugMode) and hasScreen(state) then
+                local points = worldCorners(state)
+
+                if poly then
+                    drawScreen(points, RUNTIME_TXD, poly)
+                end
+
+                if debugMode then
+                    drawOutline(points)
+                    drawEdges(worldCorners(state, state.screen.power), 250, 200, 60)
+                end
+            end
+
+            Wait(0)
+        end
+    end)
+end
+
+---@param state PhoneState
+local function measure(state)
+    if state.screen or not state.prop or not DoesEntityExist(state.prop) then return end
+
+    state.screen = measureScreen(state.prop, state.ped)
+
+    if debugMode then
+        lib.print.info(('layar HP: tengah %s, normal %s, atas %s'):format(state.screen.center, state.screen.normal, state.screen.up))
+    end
+end
+
+---@param state PhoneState
+---@param prop number
+local function attachTo(state, prop)
+    local ped = state.ped
+
+    AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, config.bone), config.offset.x, config.offset.y, config.offset.z, config.rotation.x, config.rotation.y, config.rotation.z, false, false, false, false, 2, true)
+end
+
+---@param state PhoneState
+---@return boolean created
+local function attachProp(state)
+    if state.attaching or state.prop and DoesEntityExist(state.prop) then return false end
+
+    state.attaching = true
+
+    local prop = utils.createObject(config.model, GetEntityCoords(state.ped), PROP_TIMEOUT)
+
+    state.attaching = false
+
+    if not prop then return false end
+
+    if state.closed then
+        DeleteEntity(prop)
+        return false
+    end
+
+    attachTo(state, prop)
+    state.prop = prop
+    state.screen = nil
+
+    return true
+end
+
+---@param state PhoneState
+---@return boolean raised
+local function holdPose(state)
+    if not state.animated or IsEntityPlayingAnim(state.ped, config.dict, config.enter, 3) then return false end
+
+    TaskPlayAnim(state.ped, config.dict, config.enter, 8.0, -8.0, -1, OPEN_FLAG, 0.0, false, false, false)
+    Wait(math.floor(GetAnimDuration(config.dict, config.enter) * 1000))
+
+    return true
+end
+
+---@param state PhoneState
+local function stand(state)
+    local stances = config.stance
+    if not stances then return end
+
+    local stance = IsPedMale(state.ped) and stances.male or stances.female
+
+    if not utils.loadAnimDict(stance.dict) then return end
+
+    TaskPlayAnim(state.ped, stance.dict, stance.clip, 8.0, -8.0, -1, 1, 0.0, false, false, false)
+
+    pcall(lib.waitFor, function()
+        return IsEntityPlayingAnim(state.ped, stance.dict, stance.clip, 3) or nil
+    end, nil, 500)
+
+    SetEntityAnimSpeed(state.ped, stance.dict, stance.clip, 0.0)
+    state.stance = stance
+end
+
+---@param state PhoneState
+local function steady(state)
+    if state.steady and state.steady() then return end
+
+    stand(state)
+end
+
+---@param state PhoneState
+local function raise(state)
+    local ped = state.ped
+
+    steady(state)
+    state.animated = utils.loadAnimDict(config.dict)
+
+    if state.animated then
+        TaskPlayAnim(ped, config.dict, config.enter, 8.0, -8.0, -1, OPEN_FLAG, 0.0, false, false, false)
+        Wait(300)
+    end
+
+    attachProp(state)
+
+    if state.animated then
+        Wait(math.max(GetAnimDuration(config.dict, config.enter) * 1000 - 300, 0))
+    end
+
+    measure(state)
+end
+
+---@param state PhoneState
+local function createDui(state)
+    duis += 1
+
+    local url = ('https://cfx-nui-%s/web/build/phone.html?dui=%d'):format(cache.resource, duis)
+    local dui = { id = duis, object = CreateDui(url, config.resolution.x, config.resolution.y), created = GetGameTimer() }
+
+    state.pageReady = false
+    state.dui = dui
+    lib.print.info(('dui %d: dibuat'):format(dui.id))
+
+    CreateThread(function()
+        while state.dui == dui and not IsDuiAvailable(dui.object) do
+            Wait(100)
+        end
+
+        if state.dui == dui then
+            lib.print.info(('dui %d: browser tersedia (%d ms)'):format(dui.id, GetGameTimer() - dui.created))
+        end
+    end)
+end
+
+---@return integer
+local function phoneTxd()
+    runtimeTxd = runtimeTxd or CreateRuntimeTxd(RUNTIME_TXD)
+
+    return runtimeTxd
+end
+
+---@param state PhoneState
+---@param dui PhoneDui
+---@return string? txn
+---@return integer attempts
+---@return integer elapsed
+local function bindDui(state, dui)
+    if dui.txn then return dui.txn, 0, 0 end
+
+    local began = GetGameTimer()
+    local attempts = 0
+
+    repeat
+        attempts += 1
+        textures += 1
+
+        local txn = ('screen_%d'):format(textures)
+        local texture = CreateRuntimeTextureFromDuiHandle(phoneTxd(), txn, GetDuiHandle(dui.object))
+
+        if texture and texture ~= 0 and GetRuntimeTextureWidth(texture) > 0 then
+            dui.txn = txn
+
+            return txn, attempts, GetGameTimer() - began
+        end
+
+        Wait(BIND_INTERVAL)
+    until active ~= state or GetGameTimer() - began >= BIND_TIMEOUT
+
+    return nil, attempts, GetGameTimer() - began
+end
+
+---@param dui PhoneDui
+---@param message table
+local function postDui(dui, message)
+    SendDuiMessage(dui.object, json.encode(message))
+end
+
+---@param state PhoneState
+local function screenOff(state)
+    textures += 1
+
+    local txn = ('off_%d'):format(textures)
+    local texture = CreateRuntimeTexture(phoneTxd(), txn, OFF_SIZE, OFF_SIZE)
+
+    for x = 0, OFF_SIZE - 1 do
+        for y = 0, OFF_SIZE - 1 do
+            SetRuntimeTexturePixel(texture, x, y, OFF_COLOR[1], OFF_COLOR[2], OFF_COLOR[3], 255)
+        end
+    end
+
+    CommitRuntimeTexture(texture)
+    RemoveReplaceTexture(config.txd, config.txn)
+    AddReplaceTexture(config.txd, config.txn, RUNTIME_TXD, txn)
+    state.replaced = true
+end
+
+---@param state PhoneState
+local function restoreScreen(state)
+    if not state.replaced then return end
+
+    RemoveReplaceTexture(config.txd, config.txn)
+    state.replaced = false
+end
+
+---@param state PhoneState
+local function destroyDui(state)
+    local dui = state.dui
+    if not dui then return end
+
+    state.dui = nil
+    SetDuiUrl(dui.object, 'about:blank')
+    DestroyDui(dui.object)
+    lib.print.info(('dui %d: dihapus'):format(dui.id))
+end
+
+---@param state PhoneState
+local function sendLocations(state)
+    if not state.dui then return end
+
+    postDui(state.dui, { action = 'locations', data = { locations = state.list, character = state.info } })
+end
+
+---@param state PhoneState
+---@param cooldown? integer
+local function sendStatus(state, cooldown)
+    nui.send('phoneStatus', { powered = state.powered, cooldown = cooldown })
+end
+
+---@param state PhoneState
+---@param check fun(): boolean
+---@param timeout integer
+---@return boolean
+local function waitUntil(state, check, timeout)
+    pcall(lib.waitFor, function()
+        if active ~= state or check() then return true end
+    end, nil, timeout)
+
+    return active == state and check()
+end
+
+---@param state PhoneState
+local function showProp(state)
+    if not state.powered then
+        screenOff(state)
+    elseif state.dui?.txn and config.render == 'texture' then
+        RemoveReplaceTexture(config.txd, config.txn)
+        AddReplaceTexture(config.txd, config.txn, RUNTIME_TXD, state.dui.txn)
+        state.replaced = true
+    end
+
+    Wait(100)
+    measure(state)
+
+    if active ~= state then return end
+
+    focusScreen(state, REFOCUS_MS, false)
+    nui.send('phone', { visible = true, fallback = not hasScreen(state) })
+end
+
+---@param state PhoneState
+---@param attempts integer
+---@return integer attempts
+local function checkProp(state, attempts)
+    if active ~= state or state.attaching then return attempts end
+
+    local prop = state.prop
+
+    if prop and DoesEntityExist(prop) then
+        if not IsEntityAttachedToEntity(prop, state.ped) then
+            lib.print.warn('prop hp: lepas dari tangan, dipasang ulang')
+            attachTo(state, prop)
+        end
+
+        return 0
+    end
+
+    if prop then
+        state.prop = nil
+        lib.print.warn('prop hp: hilang, dibuat ulang')
+    end
+
+    attempts += 1
+
+    if not attachProp(state) then
+        if active == state then
+            lib.print.warn(('prop hp: gagal dibuat (percobaan %d)'):format(attempts))
+        end
+
+        return attempts
+    end
+
+    lib.print.info(('prop hp: dibuat (percobaan %d)'):format(attempts))
+    showProp(state)
+
+    return 0
+end
+
+---@param state PhoneState
+local function keepProp(state)
+    CreateThread(function()
+        local attempts = 0
+
+        while active == state do
+            Wait(PROP_RETRY_MS)
+            attempts = checkProp(state, attempts)
+        end
+    end)
+end
+
+---@param state PhoneState
+local function render(state)
+    state.renders += 1
+
+    local renders = state.renders
+
+    if not state.animated then
+        state.animated = utils.loadAnimDict(config.dict)
+    end
+
+    local moved = holdPose(state)
+
+    if attachProp(state) then
+        moved = true
+        screenOff(state)
+        Wait(100)
+    end
+
+    measure(state)
+
+    if moved and active == state then
+        focusScreen(state, REFOCUS_MS, false)
+    end
+
+    if not state.dui then
+        createDui(state)
+    end
+
+    local dui = state.dui --[[@as PhoneDui]]
+
+    if not waitUntil(state, function() return IsDuiAvailable(dui.object) end, DUI_TIMEOUT) then
+        if active ~= state then return end
+
+        lib.print.error(('dui %d: browser tidak tersedia (%d ms), dibatalkan'):format(dui.id, GetGameTimer() - dui.created))
+        destroyDui(state)
+        state.powered = false
+        return
+    end
+
+    if not waitUntil(state, function() return state.pageReady end, PAGE_TIMEOUT) then
+        if active ~= state then return end
+
+        lib.print.warn(('dui %d: halaman belum siap (%d ms), texture tetap diikat'):format(dui.id, GetGameTimer() - dui.created))
+    end
+
+    Wait(FIRST_RENDER_MS)
+
+    if active ~= state then return end
+
+    local txn, attempts, elapsed = bindDui(state, dui)
+
+    if active ~= state then return end
+
+    if not txn then
+        lib.print.error(('dui %d: texture tidak terikat (%d percobaan, %d ms), dibatalkan'):format(dui.id, attempts, elapsed))
+        destroyDui(state)
+        state.powered = false
+        return
+    end
+
+    if attempts > 0 then
+        local log = attempts > 1 and lib.print.warn or lib.print.info
+
+        log(('dui %d: texture terikat (percobaan %d, %d ms)'):format(dui.id, attempts, elapsed))
+    end
+
+    if config.render == 'texture' then
+        RemoveReplaceTexture(config.txd, config.txn)
+        AddReplaceTexture(config.txd, config.txn, RUNTIME_TXD, txn)
+        state.replaced = true
+    end
+
+    lib.print.info(('dui %d: layar on'):format(dui.id))
+    state.powered = true
+    postDui(dui, { action = 'power' })
+    sendLocations(state)
+
+    for i = 1, #RESEND_DELAYS do
+        SetTimeout(RESEND_DELAYS[i], function()
+            if active == state and state.renders == renders then
+                sendLocations(state)
+            end
+        end)
+    end
+
+    nui.send('phone', { visible = true, fallback = not hasScreen(state) })
+end
+
+---@param state PhoneState
+---@return boolean
+local function power(state)
+    if state.rendering then return false end
+
+    state.rendering = true
+
+    local ok, result = pcall(render, state)
+
+    state.rendering = false
+
+    if not ok then
+        lib.print.error(('gagal render handphone: %s'):format(result))
+    end
+
+    if active == state then
+        sendStatus(state)
+    end
+
+    return ok
+end
+
+---@param state PhoneState
+local function powerOff(state)
+    state.renders += 1
+    state.powered = false
+    calibration = nil
+    screenOff(state)
+    lib.print.info(('dui %d: layar off'):format(state.dui and state.dui.id or 0))
+    destroyDui(state)
+    createDui(state)
+    sendStatus(state)
+end
+
+---@param corners vector3[]
+---@param x number
+---@param y number
+---@return number? u
+---@return number? v
+local function cursorUv(corners, x, y)
+    local points = {}
+
+    for i = 1, 4 do
+        local visible, sx, sy = GetScreenCoordFromWorldCoord(corners[i].x, corners[i].y, corners[i].z)
+
+        if not visible then return end
+
+        points[i] = { x = sx, y = sy }
+    end
+
+    local p0, p1, p2, p3 = points[1], points[2], points[3], points[4]
+    local u, v = 0.5, 0.5
+
+    for _ = 1, 10 do
+        local iu, iv = 1 - u, 1 - v
+        local qx = iu * iv * p0.x + u * iv * p1.x + u * v * p2.x + iu * v * p3.x
+        local qy = iu * iv * p0.y + u * iv * p1.y + u * v * p2.y + iu * v * p3.y
+        local ex, ey = x - qx, y - qy
+
+        if math.abs(ex) < 0.00001 and math.abs(ey) < 0.00001 then break end
+
+        local dux = -iv * p0.x + iv * p1.x + v * p2.x - v * p3.x
+        local duy = -iv * p0.y + iv * p1.y + v * p2.y - v * p3.y
+        local dvx = -iu * p0.x - u * p1.x + u * p2.x + iu * p3.x
+        local dvy = -iu * p0.y - u * p1.y + u * p2.y + iu * p3.y
+        local det = cross2(dux, duy, dvx, dvy)
+
+        if math.abs(det) < 0.0000001 then break end
+
+        u = u + cross2(ex, ey, dvx, dvy) / det
+        v = v + cross2(dux, duy, ex, ey) / det
+    end
+
+    return u, v
+end
+
+---@param x number
+---@param y number
+---@return number? u
+---@return number? v
+local function screenToUv(x, y)
+    local u, v = cursorUv(worldCorners(active --[[@as PhoneState]]), x, y)
+
+    if not u or u < 0 or u > 1 or v < 0 or v > 1 then return end
+
+    if config.render == 'texture' then
+        if config.screen.flipX then u = 1 - u end
+        if config.screen.flipY then v = 1 - v end
+    end
+
+    return u, v
+end
+
+---@param state PhoneState
+---@param x number
+---@param y number
+---@return boolean
+local function onPowerButton(state, x, y)
+    local corners = worldCorners(state, state.screen.power)
+    local points = {}
+
+    for i = 1, 4 do
+        local visible, sx, sy = GetScreenCoordFromWorldCoord(corners[i].x, corners[i].y, corners[i].z)
+
+        if not visible then return false end
+
+        points[i] = { x = sx, y = sy }
+    end
+
+    local sign = 0
+
+    for i = 1, 4 do
+        local a, b = points[i], points[i % 4 + 1]
+        local side = cross2(b.x - a.x, b.y - a.y, x - a.x, y - a.y)
+        local current = side > 0 and 1 or side < 0 and -1 or 0
+
+        if current ~= 0 then
+            if sign ~= 0 and current ~= sign then return false end
+
+            sign = current
+        end
+    end
+
+    return true
+end
+
+---@param state PhoneState
+---@return boolean ok
+---@return integer wait
+local function tryPower(state)
+    local now = GetGameTimer()
+    local wait = state.poweredAt and state.poweredAt + config.powerCooldown - now or 0
+
+    if wait > 0 or state.rendering then return false, math.max(wait, 0) end
+
+    state.poweredAt = now
+    sendStatus(state, config.powerCooldown)
+
+    CreateThread(function()
+        if state.powered then
+            powerOff(state)
+        else
+            power(state)
+        end
+    end)
+
+    return true, config.powerCooldown
+end
+
+---@param state PhoneState
+---@param step integer
+local function showCalibration(state, step)
+    postDui(state.dui --[[@as PhoneDui]], { action = 'calibrate', data = { step = step, targets = CALIBRATION } })
+end
+
+---@param x number
+---@param y number
+local function calibrateClick(x, y)
+    local state = active --[[@as PhoneState]]
+    local u, v = cursorUv(worldCorners(state, state.screen.raw), x, y)
+    if not u or not calibration then return end
+
+    calibration[#calibration + 1] = { u = u, v = v }
+
+    if #calibration < #CALIBRATION then
+        return showCalibration(state, #calibration + 1)
+    end
+
+    local first, second = calibration[1], calibration[2]
+    local a, b = CALIBRATION[1], CALIBRATION[2]
+    local width = (second.u - first.u) / (b[1] - a[1])
+    local height = (second.v - first.v) / (b[2] - a[2])
+
+    calibration = nil
+    showCalibration(state, 0)
+
+    if math.abs(width) < 0.05 or math.abs(height) < 0.05 then
+        return lib.print.warn('kalibrasi layar HP gagal: dua klik terlalu berdekatan, ulangi /smchar_phonecal')
+    end
+
+    ---@type ScreenUv
+    local uv = { left = first.u - a[1] * width, top = first.v - a[2] * height }
+
+    uv.right = uv.left + width
+    uv.bottom = uv.top + height
+    state.screen.corners = applyUv(state.screen.raw, uv)
+
+    lib.print.info(('kalibrasi layar HP: uv = { left = %.4f, top = %.4f, right = %.4f, bottom = %.4f }'):format(uv.left, uv.top, uv.right, uv.bottom))
+end
+
+---@param list table[]
+---@param info table
+---@param onPick fun(id: string)
+---@param options? PhoneOptions
+function phone.open(list, info, onPick, options)
+    options = options or {}
+
+    ---@type PhoneState
+    local state = {
+        ped = PlayerPedId(),
+        steady = options.steady,
+        view = options.child and config.childCamera or config.camera,
+        list = list,
+        info = info,
+        onPick = onPick,
+        animated = false,
+        pageReady = false,
+        replaced = false,
+        powered = false,
+        rendering = false,
+        renders = 0,
+        attaching = false,
+        closed = false,
+    }
+
+    screenOff(state)
+    raise(state)
+    screenOff(state)
+
+    active = state
+    createDui(state)
+    focusScreen(state, GLIDE_MS, true)
+    run(state)
+    keepProp(state)
+
+    nui.send('phone', { visible = true, fallback = not hasScreen(state) })
+    sendStatus(state)
+    nui.focus(true)
+end
+
+---@param list table[]
+---@param info table
+function phone.rerender(list, info)
+    local state = active
+    if not state then return end
+
+    state.list = list
+    state.info = info
+
+    if state.powered then
+        sendLocations(state)
+    end
+end
+
+---@param list table[]
+---@param info table
+---@return boolean
+function phone.render(list, info)
+    local state = active
+    if not state or state.rendering then return false end
+
+    state.list = list
+    state.info = info
+
+    if state.powered then
+        powerOff(state)
+    end
+
+    return power(state)
+end
+
+---@return boolean
+function phone.isOpen()
+    return active ~= nil
+end
+
+function phone.preload()
+    CreateThread(function()
+        utils.loadModel(config.model, PRELOAD_TIMEOUT)
+        utils.loadAnimDict(config.dict, PRELOAD_TIMEOUT)
+
+        if config.stance then
+            utils.loadAnimDict(config.stance.male.dict, PRELOAD_TIMEOUT)
+            utils.loadAnimDict(config.stance.female.dict, PRELOAD_TIMEOUT)
+        end
+    end)
+end
+
+---@return boolean
+function phone.calibrate()
+    if not active or not active.powered or not hasScreen(active) then return false end
+
+    calibration = {}
+    showCalibration(active, 1)
+
+    return true
+end
+
+---@param instant? boolean
+function phone.close(instant)
+    local state = active
+    if not state then return end
+
+    active = nil
+    calibration = nil
+    state.closed = true
+
+    nui.send('phone', { visible = false })
+    nui.focus(false)
+    restoreScreen(state)
+    destroyDui(state)
+
+    if not instant and state.animated then
+        TaskPlayAnim(state.ped, config.dict, config.exit, 8.0, -8.0, 950, CLOSE_FLAG, 0.0, false, false, false)
+        Wait(400)
+    end
+
+    if state.prop and DoesEntityExist(state.prop) then
+        DeleteEntity(state.prop)
+    end
+
+    if state.stance then
+        StopAnimTask(state.ped, state.stance.dict, state.stance.clip, 2.0)
+        RemoveAnimDict(state.stance.dict)
+    end
+
+    RemoveAnimDict(config.dict)
+end
+
+RegisterNUICallback('phonePower', function(_, cb)
+    if not active then return cb({ ok = false }) end
+
+    local ok, wait = tryPower(active)
+
+    cb({ ok = ok, wait = wait })
+end)
+
+RegisterNUICallback('phoneReady', function(data, cb)
+    cb(1)
+
+    local dui = active and active.dui
+    local id = type(data) == 'table' and math.tointeger(data.dui)
+
+    if not dui or id ~= dui.id then return end
+
+    active.pageReady = true
+    lib.print.info(('dui %d: halaman siap (%d ms)'):format(dui.id, GetGameTimer() - dui.created))
+
+    if active.powered then
+        postDui(dui, { action = 'power' })
+    end
+
+    sendLocations(active)
+end)
+
+RegisterNUICallback('phoneMouse', function(data, cb)
+    cb(1)
+
+    if not active or not hasScreen(active) or type(data) ~= 'table' then return end
+
+    if data.type == 'down' and data.button ~= 2 then
+        local x, y = tonumber(data.x) or -1, tonumber(data.y) or -1
+        local hit = onPowerButton(active, x, y)
+
+        if debugMode then
+            lib.print.info(('klik %.3f, %.3f: tombol power %s'):format(x, y, hit and 'kena' or 'tidak kena'))
+        end
+
+        if hit then
+            tryPower(active)
+            return
+        end
+    end
+
+    if not active.powered then return end
+
+    if calibration and data.type ~= 'move' then
+        if data.type == 'down' and data.button ~= 2 then
+            calibrateClick(tonumber(data.x) or -1, tonumber(data.y) or -1)
+        end
+
+        return
+    end
+
+    local u, v = screenToUv(tonumber(data.x) or -1, tonumber(data.y) or -1)
+
+    if debugMode and data.type == 'down' then
+        lib.print.info(('klik layar %.3f, %.3f -> uv %s'):format(tonumber(data.x) or -1, tonumber(data.y) or -1, u and ('%.3f, %.3f'):format(u, v) or 'di luar layar'))
+    end
+
+    if not u or not active.dui then return end
+
+    local object = active.dui.object
+
+    SendDuiMouseMove(object, math.floor(u * config.resolution.x + 0.5), math.floor(v * config.resolution.y + 0.5))
+
+    if data.type == 'down' then
+        SendDuiMouseDown(object, data.button == 2 and 'right' or 'left')
+    elseif data.type == 'up' then
+        SendDuiMouseUp(object, data.button == 2 and 'right' or 'left')
+    elseif data.type == 'wheel' then
+        SendDuiMouseWheel(object, -(tonumber(data.delta) or 0), 0.0)
+    end
+end)
+
+RegisterNUICallback('phoneKey', function(data, cb)
+    cb(1)
+
+    if not active or not active.powered or not active.dui or type(data) ~= 'table' or type(data.key) ~= 'string' then return end
+
+    postDui(active.dui, { action = 'key', data = { key = data.key } })
+end)
+
+RegisterNUICallback('phonePick', function(data, cb)
+    cb(1)
+
+    if not active or type(data) ~= 'table' or type(data.id) ~= 'string' then return end
+
+    local onPick = active.onPick
+
+    CreateThread(function()
+        onPick(data.id)
+    end)
+end)
+
+AddEventHandler('onResourceStop', function(resource)
+    if resource ~= cache.resource or not active then return end
+
+    restoreScreen(active)
+    destroyDui(active)
+
+    if active.prop and DoesEntityExist(active.prop) then
+        DeleteEntity(active.prop)
+    end
+
+    if active.stance then
+        StopAnimTask(active.ped, active.stance.dict, active.stance.clip, 2.0)
+    end
+end)
+
+return phone
+
+
+########## FILE: \client\select.lua
+local config = require 'config.client'
+local register = require 'config.register'
+local camera = require 'modules.client.camera'
+local utils = require 'modules.client.utils'
+local world = require 'modules.client.world'
+local nui = require 'modules.client.nui'
+local net = require 'modules.net'
+local spawn = require 'client.spawn'
+
+local selection = config.selection
+
+local FEMALE <const> = `mp_f_freemode_01`
+
+local select = {}
+
+local state = {
+    active = false,
+    busy = false,
+    registering = false,
+    index = 1,
+    characters = {},
+    incoming = {},
+    outgoing = {},
+    slots = 0,
+    canCreate = false,
+    canDelete = false,
+}
+
+---@type table<string, string|false>
+local skins = {}
+---@type table<string, table>
+local decoded = {}
+---@type table<string, { duo: boolean, coords: vector4 }>
+local spots = {}
+---@type table|false|nil
+local received
+
+local STAGE_BLEND <const> = 1000.0
+local SETTLE_BLEND <const> = 1.0
+local EXIT_BLEND <const> = 2.0
+local LEAVE_BLEND <const> = -1.5
+local HEAD_BONE <const> = 31086
+local PARTNER_TIMEOUT <const> = 300000
+local PROP_TIMEOUT <const> = 30000
+local FETCH_TIMEOUT <const> = 30000
+local SKIN_TIMEOUT <const> = 10000
+local SETTLE_TIMEOUT <const> = 5000
+
+local staged = { handle = nil, anchor = nil, dict = nil, origin = nil, idle = nil, partner = nil, placeholder = nil, bed = nil, view = nil, props = {} }
+
+---@param data table<string, string|false>
+local function storeSkins(data)
+    for citizenid, raw in pairs(data) do
+        skins[citizenid] = raw
+        decoded[citizenid] = nil
+    end
+end
+
+RegisterNetEvent('sm_characters:client:skins', function(data)
+    if source == '' or type(data) ~= 'table' then return end
+
+    storeSkins(data)
+end)
+
+RegisterNetEvent('sm_characters:client:characters', function(payload)
+    if source == '' then return end
+
+    received = type(payload) == 'table' and payload or false
+end)
+
+---@param citizenid string
+---@param gender 'male'|'female'
+---@return table
+local function skinFor(citizenid, gender)
+    local skin = decoded[citizenid]
+
+    if not skin then
+        skin = utils.decodeSkin(skins[citizenid]) or utils.defaultAppearance(gender)
+        decoded[citizenid] = skin
+    end
+
+    return skin
+end
+
+---@param citizenid string
+---@param ms number
+---@return boolean received
+local function waitSkin(citizenid, ms)
+    return net.awaitPush(function() return skins[citizenid] end, ms) ~= nil
+end
+
+---@param citizenid string
+---@return table?, integer?
+local function findCharacter(citizenid)
+    for i = 1, #state.characters do
+        if state.characters[i].citizenid == citizenid then
+            return state.characters[i], i
+        end
+    end
+end
+
+---@param list table[]
+---@param test fun(item: table): boolean
+local function removeWhere(list, test)
+    for i = #list, 1, -1 do
+        if test(list[i]) then
+            table.remove(list, i)
+        end
+    end
+end
+
+---@return table
+local function snapshot()
+    return {
+        characters = state.characters,
+        incoming = state.incoming,
+        outgoing = state.outgoing,
+        slots = state.slots,
+        canCreate = #state.characters < state.slots,
+        canDelete = state.canDelete,
+        index = state.index,
+        registering = state.registering,
+        rules = { name = register.name, birthYear = register.birthYear, nationalities = register.nationalities },
+    }
+end
+
+local function pushUpdate()
+    nui.send('update', snapshot())
+end
+
+local function clearStage()
+    ClearPedTasksImmediately(PlayerPedId())
+
+    if staged.partner and DoesEntityExist(staged.partner) then
+        DeleteEntity(staged.partner)
+    end
+
+    if staged.placeholder and DoesEntityExist(staged.placeholder) then
+        DeleteEntity(staged.placeholder)
+    end
+
+    utils.deleteAll(staged.props)
+
+    if staged.dict then
+        RemoveAnimDict(staged.dict)
+    end
+
+    staged.partner = nil
+    staged.placeholder = nil
+    staged.dict = nil
+    staged.handle = nil
+    staged.anchor = nil
+    staged.origin = nil
+    staged.idle = nil
+    staged.bed = nil
+    staged.view = nil
+end
+
+---@param ped number
+---@param partner number
+local function walkAway(ped, partner)
+    local leave = selection.partnerLeave
+    local origin = GetEntityCoords(partner)
+    local side = GetOffsetFromEntityGivenWorldCoords(ped, origin.x, origin.y, origin.z).x < 0.0 and -1.0 or 1.0
+    local away = GetOffsetFromEntityInWorldCoords(ped, side * leave.side, -leave.back, 0.0)
+    local heading = GetHeadingFromVector_2d(away.x - origin.x, away.y - origin.y)
+    local deadline = GetGameTimer() + leave.waitMs
+
+    ClearPedTasks(partner)
+    TaskGoStraightToCoord(partner, away.x, away.y, away.z, 1.0, leave.waitMs * 2, heading, 0.5)
+
+    CreateThread(function()
+        while DoesEntityExist(partner) do
+            local far = #(GetEntityCoords(partner) - GetEntityCoords(ped)) >= leave.removeDistance
+
+            if far or IsPedFalling(partner) or GetGameTimer() >= deadline then
+                FreezeEntityPosition(partner, true)
+                DeleteEntity(partner)
+                break
+            end
+
+            Wait(0)
+        end
+    end)
+end
+
+---@param ped number
+local function settle(ped)
+    local origin = staged.origin
+
+    if not staged.idle or not origin then
+        staged.anchor = nil
+        return ClearPedTasks(ped)
+    end
+
+    local handle = CreateSynchronizedScene(origin.x, origin.y, origin.z, 0.0, 0.0, origin.w, 2)
+
+    SetSynchronizedSceneLooped(handle, true)
+    TaskSynchronizedScene(ped, handle, staged.dict, staged.idle, SETTLE_BLEND, -4.0, 1, 16, 1000.0, 0)
+    staged.handle = handle
+    staged.anchor = handle
+end
+
+---@param ped number
+---@param bed { scene: table, origin: vector4 }
+---@return integer
+local function leaveBed(ped, bed)
+    local scene, origin = bed.scene, bed.origin
+    local exit = scene.exits[math.random(#scene.exits)]
+    local handle = CreateSynchronizedScene(origin.x, origin.y, origin.z, 0.0, 0.0, origin.w, 2)
+
+    SetSynchronizedSceneHoldLastFrame(handle, true)
+    TaskSynchronizedScene(ped, handle, scene.dict, exit.player, EXIT_BLEND, -4.0, 1, 16, 1000.0, 0)
+
+    if staged.partner and DoesEntityExist(staged.partner) then
+        TaskSynchronizedScene(staged.partner, handle, scene.dict, exit.partner, EXIT_BLEND, -4.0, 1, 16, 1000.0, 0)
+    end
+
+    staged.handle = handle
+    staged.anchor = handle
+    camera.follow(ped, HEAD_BONE, not scene.camera.focus and scene.camera.shift or 0.0)
+
+    return math.floor(GetAnimDuration(scene.dict, exit.player) * 1000)
+end
+
+---@param ped number
+---@return integer waitMs
+local function leaveStage(ped)
+    utils.deleteAll(staged.props)
+
+    if staged.bed then
+        return leaveBed(ped, staged.bed)
+    end
+
+    local partner = staged.partner
+
+    staged.partner = nil
+
+    if partner and DoesEntityExist(partner) then
+        walkAway(ped, partner)
+        ClearPedTasks(ped)
+        staged.anchor = nil
+
+        return selection.partnerLeave.waitMs
+    end
+
+    settle(ped)
+
+    return 0
+end
+
+---@return boolean
+local function holdStage()
+    local handle = staged.anchor
+
+    if not handle or not IsSynchronizedSceneRunning(handle) then return false end
+
+    SetSynchronizedSceneRate(handle, 0.0)
+
+    return true
+end
+
+---@param character table
+---@param duo boolean
+---@return vector4
+local function spotFor(character, duo)
+    local spot = spots[character.citizenid]
+
+    if spot and spot.duo == duo then return spot.coords end
+
+    local pool = duo and selection.duo or selection.solo
+    local coords = pool[math.random(#pool)]
+
+    spots[character.citizenid] = { duo = duo, coords = coords }
+
+    return coords
+end
+
+---@param ped number
+---@param coords vector4
+local function stageDrinking(ped, coords)
+    local drinking = selection.drinking
+
+    if not utils.loadAnimDict(drinking.dict) then return end
+
+    staged.dict = drinking.dict
+
+    local origin = vec4(coords.x, coords.y, coords.z - 0.95, drinking.rotation)
+    local handle = CreateSynchronizedScene(origin.x, origin.y, origin.z, 0.0, 0.0, origin.w, 2)
+
+    SetSynchronizedSceneLooped(handle, true)
+    TaskSynchronizedScene(ped, handle, drinking.dict, drinking.clip, STAGE_BLEND, -4.0, 1, 16, 1000.0, 0)
+    staged.origin = origin
+    staged.idle = drinking.idle
+
+    for i = 1, #drinking.props do
+        local prop = drinking.props[i]
+        local object = utils.createObject(prop.model, coords, PROP_TIMEOUT)
+
+        if object then
+            staged.props[#staged.props + 1] = object
+            PlaySynchronizedEntityAnim(object, handle, prop.clip, drinking.dict, 1000.0, -4.0, 0, 1000.0)
+        end
+    end
+
+    staged.handle = handle
+end
+
+---@param partner table
+---@return { bed?: table, anim?: table }?
+local function coupleScene(partner)
+    waitSkin(partner.citizenid, SKIN_TIMEOUT)
+
+    local beds = selection.bedroom
+    local bed = selection.duoScene[partner.type] == 'bedroom' and beds[math.random(#beds)] or nil
+    local anims = selection.couple[partner.type]
+    local anim = not bed and anims[math.random(#anims)] or nil
+    local dict = bed and bed.dict or anim.dict
+    local skin = skinFor(partner.citizenid, partner.gender)
+
+    if not utils.loadAnimDict(dict) then return end
+
+    if not utils.loadModel(skin.model, PARTNER_TIMEOUT) then
+        RemoveAnimDict(dict)
+        return
+    end
+
+    return { bed = bed, anim = anim }
+end
+
+---@param ped number
+---@param coords vector4
+---@param partner table
+---@param anim table
+local function stageCouple(ped, coords, partner, anim)
+    local skin = skinFor(partner.citizenid, partner.gender)
+    local z, heading, own, other = coords.z, coords.w, nil, nil
+
+    if partner.type == 'bff' then
+        z = coords.z - 1.0
+        heading = coords.w + 90.0
+        own = anim.left
+        other = anim.right
+    else
+        local female = GetEntityModel(ped) == FEMALE
+
+        own = female and anim.female or anim.male
+        other = female and anim.male or anim.female
+    end
+
+    staged.dict = anim.dict
+
+    local partnerPed = utils.createPed(skin.model, coords, PARTNER_TIMEOUT)
+    local handle = CreateSynchronizedScene(coords.x, coords.y, z, 0.0, 0.0, heading, 2)
+
+    SetSynchronizedSceneLooped(handle, true)
+    TaskSynchronizedScene(ped, handle, anim.dict, own, STAGE_BLEND, LEAVE_BLEND, 1, 16, 1000.0, 0)
+    staged.handle = handle
+
+    if not partnerPed then return end
+
+    utils.applyPed(partnerPed, skin)
+    staged.partner = partnerPed
+    TaskSynchronizedScene(partnerPed, handle, anim.dict, other, STAGE_BLEND, LEAVE_BLEND, 1, 16, 1000.0, 0)
+end
+
+---@param ped number
+---@param bed table
+---@param partner table
+local function stageBed(ped, bed, partner)
+    local skin = skinFor(partner.citizenid, partner.gender)
+    local origin = vec4(bed.coords.x, bed.coords.y, bed.coords.z + bed.deltaZ, bed.coords.w)
+
+    staged.dict = bed.dict
+
+    local partnerPed = utils.createPed(skin.model, bed.coords, PARTNER_TIMEOUT)
+    local handle = CreateSynchronizedScene(origin.x, origin.y, origin.z, 0.0, 0.0, origin.w, 2)
+
+    SetSynchronizedSceneLooped(handle, true)
+    TaskSynchronizedScene(ped, handle, bed.dict, bed.idle.player, STAGE_BLEND, -4.0, 1, 16, 1000.0, 0)
+    staged.handle = handle
+    staged.bed = { scene = bed, origin = origin }
+
+    if not partnerPed then return end
+
+    utils.applyPed(partnerPed, skin)
+    staged.partner = partnerPed
+    TaskSynchronizedScene(partnerPed, handle, bed.dict, bed.idle.partner, STAGE_BLEND, -4.0, 1, 16, 1000.0, 0)
+end
+
+---@param ped number
+---@param scene table
+local function stageChild(ped, scene)
+    local coords = scene.coords
+    local found, ground = GetGroundZFor_3dCoord(coords.x, coords.y, coords.z + 0.5, false)
+
+    SetEntityCoords(ped, coords.x, coords.y, found and ground or coords.z - 1.0, false, false, false, false)
+    SetEntityHeading(ped, coords.w)
+
+    if not utils.loadAnimDict(scene.dict) then return end
+
+    staged.dict = scene.dict
+    TaskPlayAnim(ped, scene.dict, scene.clip, 5.0, 5.0, -1, scene.flag, 0.0, false, false, false)
+end
+
+---@param ped number
+---@param anchor vector3
+---@param heading number
+---@param view table
+---@return CameraFocus
+local function sceneView(ped, anchor, heading, view)
+    local position, focus = view.position, view.focus
+    local eye = GetOffsetFromCoordAndHeadingInWorldCoords(anchor.x, anchor.y, anchor.z, heading, position.x, position.y, position.z)
+    local target = focus and GetOffsetFromCoordAndHeadingInWorldCoords(anchor.x, anchor.y, anchor.z, heading, focus.x, focus.y, focus.z)
+        or camera.aside(eye, GetPedBoneCoords(ped, HEAD_BONE, 0.0, 0.0, 0.0), view.shift or 0.0)
+
+    staged.view = { config = view, anchor = anchor, heading = heading, label = 'camera' }
+
+    return {
+        position = eye,
+        target = target,
+        fov = view.fov,
+        dof = { near = 0.5, far = 4.0 },
+    }
+end
+
+---@param ped number
+---@return vector3
+local function anchorOf(ped)
+    local coords = GetEntityCoords(ped)
+    local partner = staged.partner
+
+    if partner and DoesEntityExist(partner) then
+        return (coords + GetEntityCoords(partner)) / 2
+    end
+
+    return coords
+end
+
+---@param spot vector4
+---@param anchor vector3
+---@param duo boolean
+---@return CameraFocus
+local function viewFor(spot, anchor, duo)
+    local view = duo and selection.camera.duo or selection.camera.solo
+    local position, focus = view.position, view.focus
+
+    staged.view = { config = view, anchor = anchor, heading = spot.w, label = duo and 'duo' or 'solo' }
+
+    return {
+        position = GetOffsetFromCoordAndHeadingInWorldCoords(anchor.x, anchor.y, anchor.z, spot.w, position.x, position.y, position.z),
+        target = GetOffsetFromCoordAndHeadingInWorldCoords(anchor.x, anchor.y, anchor.z, spot.w, focus.x, focus.y, focus.z),
+        fov = view.fov,
+        dof = { near = 0.5, far = 4.0 },
+    }
+end
+
+---@param model string|number
+local function requestModel(model)
+    local hash = type(model) == 'string' and joaat(model) or model
+
+    if IsModelInCdimage(hash) then
+        RequestModel(hash)
+    end
+end
+
+---@param character table
+---@param child table?
+---@param partner table?
+local function prefetch(character, child, partner)
+    requestModel(skinFor(character.citizenid, character.gender).model)
+
+    if child then
+        RequestAnimDict(child.dict)
+        return
+    end
+
+    if not partner then
+        local drinking = selection.drinking
+
+        RequestAnimDict(drinking.dict)
+
+        for i = 1, #drinking.props do
+            requestModel(drinking.props[i].model)
+        end
+
+        return
+    end
+
+    if waitSkin(partner.citizenid, SKIN_TIMEOUT) then
+        requestModel(skinFor(partner.citizenid, partner.gender).model)
+    end
+
+    local scenes = selection.duoScene[partner.type] == 'bedroom' and selection.bedroom or selection.couple[partner.type]
+
+    for i = 1, #scenes do
+        RequestAnimDict(scenes[i].dict)
+    end
+end
+
+---@param character table
+---@return CameraFocus
+local function buildPreview(character)
+    clearStage()
+
+    if not waitSkin(character.citizenid, SKIN_TIMEOUT) then
+        lib.print.warn(('memuat karakter: skin %s belum diterima, pakai default'):format(character.citizenid))
+    end
+
+    local child = character.child and selection.child or nil
+    local partner = not child and character.partner or nil
+
+    if partner?.child then
+        partner = nil
+    end
+
+    local began = GetGameTimer()
+
+    prefetch(character, child, partner)
+
+    local ped = utils.applyPlayer(skinFor(character.citizenid, character.gender), character.gender)
+    local modelAt = GetGameTimer()
+    local scene = partner and coupleScene(partner)
+    local partnerAt = GetGameTimer()
+    local bed = scene and scene.bed
+    local spot = child and child.coords or bed and bed.coords or spotFor(character, scene ~= nil)
+
+    utils.teleport(ped, spot, true)
+    ResetEntityAlpha(ped)
+    SetEntityVisible(ped, true, false)
+
+    local placedAt = GetGameTimer()
+
+    if child then
+        stageChild(ped, child)
+    elseif bed then
+        stageBed(ped, bed, partner)
+    elseif scene then
+        stageCouple(ped, spot, partner, scene.anim)
+    else
+        stageDrinking(ped, spot)
+    end
+
+    lib.print.info(('memuat karakter: model %d ms (%s), pasangan %d ms, lokasi %d ms, pose %d ms'):format(modelAt - began, tostring(skinFor(character.citizenid, character.gender).model), partnerAt - modelAt, placedAt - partnerAt, GetGameTimer() - placedAt))
+    Wait(250)
+
+    if child then
+        return sceneView(ped, GetEntityCoords(ped), child.coords.w, child.camera)
+    elseif bed then
+        return sceneView(ped, bed.coords.xyz, bed.coords.w, bed.camera)
+    end
+
+    return viewFor(spot, anchorOf(ped), scene ~= nil)
+end
+
+---@param build fun(...): CameraFocus
+---@param ... any
+---@return CameraFocus
+local function safely(build, ...)
+    local ok, view = pcall(build, ...)
+
+    if ok then return view end
+
+    lib.print.error(('gagal menyiapkan scene: %s'):format(view))
+
+    local spot = selection.solo[1]
+
+    return viewFor(spot, spot.xyz, false)
+end
+
+---@param index integer
+local function preview(index)
+    local character = state.characters[index]
+    if not character then return end
+
+    state.index = index
+    state.registering = false
+
+    utils.fadeOut(250)
+    camera.focus(safely(buildPreview, character))
+    utils.fadeIn(400)
+end
+
+---@return vector4
+local function registerSpot()
+    local character = state.characters[state.index]
+    local spot = character and spots[character.citizenid]
+
+    if spot and not spot.duo then return spot.coords end
+
+    return selection.solo[math.random(#selection.solo)]
+end
+
+---@return CameraFocus
+local function buildRegister()
+    state.registering = true
+
+    clearStage()
+
+    local spot = registerSpot()
+    local placeholder = selection.placeholder
+    local player = PlayerPedId()
+
+    utils.teleport(player, spot, true)
+    SetEntityVisible(player, false, false)
+
+    local ped = utils.createPed(placeholder.models[math.random(#placeholder.models)], spot)
+    local anchor = player
+
+    if ped and DoesEntityExist(ped) then
+        SetEntityAlpha(ped, placeholder.alpha, false)
+        SetEntityNoCollisionEntity(ped, player, false)
+        staged.placeholder = ped
+        stageDrinking(ped, spot)
+        anchor = ped
+        Wait(250)
+    end
+
+    return viewFor(spot, GetEntityCoords(anchor), false)
+end
+
+local function stageRegister()
+    utils.fadeOut(250)
+    camera.focus(safely(buildRegister))
+    utils.fadeIn(800)
+end
+
+---@param citizenid string
+local function refreshIfCurrent(citizenid)
+    local character = state.characters[state.index]
+
+    if state.active and not state.registering and not state.busy and character?.citizenid == citizenid then
+        state.busy = true
+        preview(state.index)
+        state.busy = false
+    end
+end
+
+---@return table|false
+function select.load()
+    received = nil
+    table.wipe(skins)
+    table.wipe(decoded)
+
+    local began = GetGameTimer()
+
+    TriggerServerEvent('sm_characters:server:fetch')
+
+    local payload = net.awaitPush(function() return received end, FETCH_TIMEOUT)
+
+    if not payload then
+        lib.print.warn(('memuat karakter: data %s (%d ms)'):format(payload == false and 'ditolak server' or 'tidak diterima', GetGameTimer() - began))
+        return false
+    end
+
+    lib.print.info(('memuat karakter: data diterima (%d ms)'):format(GetGameTimer() - began))
+
+    return payload
+end
+
+local function settleWorld()
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
+
+    pcall(lib.waitFor, function()
+        RequestCollisionAtCoord(coords.x, coords.y, coords.z)
+
+        return HasCollisionLoadedAroundEntity(ped) or nil
+    end, nil, SETTLE_TIMEOUT)
+end
+
+---@param payload table
+---@return CameraFocus
+function select.prepare(payload)
+    local began = GetGameTimer()
+
+    state.active = true
+    state.busy = true
+    state.characters = payload.characters
+    state.incoming = payload.incoming
+    state.outgoing = payload.outgoing
+    state.slots = payload.slots
+    state.canDelete = payload.canDelete
+    state.index = 1
+    state.registering = false
+
+    table.wipe(spots)
+
+    local view = #state.characters == 0 and safely(buildRegister) or safely(buildPreview, state.characters[1])
+
+    lib.print.info(('memuat karakter: scene siap (%d ms)'):format(GetGameTimer() - began))
+
+    return view
+end
+
+---@param view CameraFocus
+function select.show(view)
+    settleWorld()
+    spawn.preload()
+    world.lock(selection.hour, selection.minute, selection.weather)
+    camera.focus(view)
+    utils.fadeIn(1200)
+
+    state.busy = false
+    nui.send('select', snapshot())
+    nui.focus(true)
+end
+
+---@param keepStage? boolean
+function select.close(keepStage)
+    state.active = false
+
+    if not keepStage then
+        clearStage()
+    end
+
+    nui.send('hide')
+    nui.focus(false)
+end
+
+---@return boolean
+function select.isActive()
+    return state.active
+end
+
+---@return { config: table, anchor: vector3, heading: number, label: string }?
+function select.view()
+    return state.active and staged.view or nil
+end
+
+---@param kind string
+---@param payload table
+function select.sync(kind, payload)
+    if not state.active then return end
+
+    if kind == 'incoming' then
+        state.incoming[#state.incoming + 1] = payload
+    elseif kind == 'incomingRemoved' then
+        removeWhere(state.incoming, function(item) return item.id == payload.id end)
+    elseif kind == 'outgoingRemoved' then
+        removeWhere(state.outgoing, function(item) return item.id == payload.id end)
+    elseif kind == 'linked' then
+        local character = findCharacter(payload.citizenid)
+
+        if character then
+            character.partner = payload.partner
+            removeWhere(state.outgoing, function(item) return item.sender == payload.citizenid end)
+        end
+    elseif kind == 'unlinked' then
+        local character = findCharacter(payload.citizenid)
+
+        if character then
+            character.partner = nil
+        end
+    end
+
+    pushUpdate()
+
+    if kind == 'linked' or kind == 'unlinked' then
+        refreshIfCurrent(payload.citizenid)
+    end
+end
+
+RegisterNUICallback('preview', function(data, cb)
+    local index = math.tointeger(data?.index)
+
+    if not state.active or state.busy or not index or not state.characters[index] then
+        return cb(false)
+    end
+
+    state.busy = true
+    preview(index)
+    state.busy = false
+    cb(true)
+end)
+
+RegisterNUICallback('register', function(data, cb)
+    if not state.active or state.busy then return cb(false) end
+
+    state.busy = true
+
+    if data?.open then
+        stageRegister()
+    elseif #state.characters > 0 then
+        preview(state.index)
+    end
+
+    state.busy = false
+    cb(true)
+end)
+
+RegisterNUICallback('create', function(data, cb)
+    if not state.active or state.busy or type(data) ~= 'table' then return cb({ error = 'invalid' }) end
+
+    state.busy = true
+
+    local result = lib.callback.await('sm_characters:create', false, {
+        firstname = data.firstname,
+        lastname = data.lastname,
+        birthdate = data.birthdate,
+        gender = data.gender,
+        nationality = data.nationality,
+    })
+
+    if not result?.coords then
+        state.busy = false
+        return cb({ error = result?.error or 'failed' })
+    end
+
+    cb({ ok = true })
+
+    local gender = data.gender == 'female' and 'female' or 'male'
+
+    select.close(true)
+    utils.fadeOut(500)
+    clearStage()
+    utils.applyPlayer(utils.defaultAppearance(gender), gender)
+    spawn.newCharacter(result.coords, gender)
+end)
+
+RegisterNUICallback('play', function(data, cb)
+    local character = state.active and not state.busy and findCharacter(data?.citizenid)
+    if not character then return cb(false) end
+
+    state.busy = true
+
+    local list = lib.callback.await('sm_characters:select', false, character.citizenid)
+
+    if not list then
+        state.busy = false
+        return cb(false)
+    end
+
+    cb(true)
+    select.close(true)
+
+    local waitMs = leaveStage(PlayerPedId())
+
+    if waitMs > 0 then
+        Wait(waitMs)
+    end
+
+    local info = { name = ('%s %s'):format(character.firstname, character.lastname), child = character.child }
+
+    spawn.phone(list, info, clearStage, holdStage)
+end)
+
+RegisterNUICallback('delete', function(data, cb)
+    local character, index = findCharacter(data?.citizenid)
+    if not state.active or state.busy or not character or not state.canDelete then return cb(false) end
+
+    state.busy = true
+
+    local ok = lib.callback.await('sm_characters:delete', false, character.citizenid)
+
+    if ok then
+        table.remove(state.characters, index)
+        spots[character.citizenid] = nil
+
+        if #state.characters == 0 then
+            stageRegister()
+        else
+            preview(1)
+        end
+
+        pushUpdate()
+    end
+
+    state.busy = false
+    cb(ok == true)
+end)
+
+RegisterNUICallback('invite', function(data, cb)
+    if not state.active or type(data) ~= 'table' then return cb({ error = 'invalid' }) end
+
+    local result = lib.callback.await('sm_characters:partner:invite', false, data.from, data.target, data.type)
+
+    if result?.invite then
+        state.outgoing[#state.outgoing + 1] = result.invite
+        pushUpdate()
+    end
+
+    cb(result or { error = 'failed' })
+end)
+
+RegisterNUICallback('inviteRespond', function(data, cb)
+    local id = math.tointeger(data?.id)
+    if not id then return cb({ error = 'invalid' }) end
+
+    local result = lib.callback.await('sm_characters:partner:respond', false, id, data.accept == true)
+
+    if result?.ok and state.active then
+        removeWhere(state.incoming, function(item) return item.id == id end)
+
+        local character = result.partner and findCharacter(result.citizenid)
+
+        if character then
+            character.partner = result.partner
+
+            removeWhere(state.incoming, function(item)
+                return item.target == result.citizenid or item.sender == result.partner.citizenid
+            end)
+
+            removeWhere(state.outgoing, function(item) return item.sender == result.citizenid end)
+        end
+
+        pushUpdate()
+
+        if character then
+            refreshIfCurrent(result.citizenid)
+        end
+    end
+
+    cb(result or { error = 'failed' })
+end)
+
+RegisterNUICallback('inviteCancel', function(data, cb)
+    local id = math.tointeger(data?.id)
+    if not state.active or not id then return cb(false) end
+
+    local ok = lib.callback.await('sm_characters:partner:cancel', false, id)
+
+    if ok then
+        removeWhere(state.outgoing, function(item) return item.id == id end)
+        pushUpdate()
+    end
+
+    cb(ok == true)
+end)
+
+RegisterNUICallback('partnerRemove', function(data, cb)
+    local character = state.active and findCharacter(data?.citizenid)
+    if not character then return cb(false) end
+
+    local ok = lib.callback.await('sm_characters:partner:remove', false, character.citizenid)
+
+    if ok then
+        character.partner = nil
+        pushUpdate()
+        refreshIfCurrent(character.citizenid)
+    end
+
+    cb(ok == true)
+end)
+
+AddEventHandler('onResourceStop', function(resource)
+    if resource ~= cache.resource then return end
+
+    clearStage()
+    camera.destroy(0)
+end)
+
+
+return select
+
+
+########## FILE: \client\spawn.lua
+local config = require 'config.client'
+local camera = require 'modules.client.camera'
+local utils = require 'modules.client.utils'
+local world = require 'modules.client.world'
+local nui = require 'modules.client.nui'
+local phone = require 'client.phone'
+
+local PRESPAWN_MS <const> = 2000
+local SETTLE_MS <const> = 500
+local APPEARANCE_START_TIMEOUT <const> = 4000
+local APPEARANCE_DONE_TIMEOUT <const> = 15000
+local APPEARANCE_SETTLE_MS <const> = 300
+local RELEASE_KEY <const> = 38
+local SPAWN_LIFT <const> = 1.0
+
+local spawn = {}
+
+---@class SpawnInfo
+---@field name string
+---@field child? boolean
+
+---@type SpawnInfo?
+local current
+---@type fun()?
+local cleanup
+---@type table[]
+local locations = {}
+local busy = false
+
+---@param coords vector4
+---@return vector4
+local function lifted(coords)
+    return vec4(coords.x, coords.y, coords.z + SPAWN_LIFT, coords.w)
+end
+
+---@param ped number
+local function reveal(ped)
+    camera.destroy(0)
+    world.unlock()
+    ClearPedTasksImmediately(ped)
+    SetEntityVisible(ped, true, false)
+
+    Wait(SETTLE_MS)
+    utils.fadeIn(1000)
+end
+
+---@param ped number
+local function release(ped)
+    NetworkEndTutorialSession()
+    FreezeEntityPosition(ped, false)
+
+    TriggerServerEvent('sm_characters:server:spawned')
+    TriggerServerEvent('QBCore:Server:OnPlayerLoaded')
+    TriggerEvent('QBCore:Client:OnPlayerLoaded')
+
+    current = nil
+    cleanup = nil
+    busy = false
+end
+
+local function waitAppearance()
+    local state = LocalPlayer.state
+
+    local started = pcall(lib.waitFor, function()
+        return state.hide_itemattach == true or nil
+    end, nil, APPEARANCE_START_TIMEOUT)
+
+    if started then
+        pcall(lib.waitFor, function()
+            return state.hide_itemattach ~= true or nil
+        end, nil, APPEARANCE_DONE_TIMEOUT)
+    end
+
+    Wait(APPEARANCE_SETTLE_MS)
+end
+
+local function waitRelease()
+    lib.showTextUI('[E] Mulai bermain')
+
+    while not IsControlJustPressed(0, RELEASE_KEY) do
+        Wait(0)
+    end
+
+    lib.hideTextUI()
+end
+
+---@param isNew boolean
+local function complete(isNew)
+    pcall(lib.waitFor, function()
+        return LocalPlayer.state.isLoggedIn or nil
+    end, nil, 15000)
+
+    DisplayRadar(true)
+    config.hud.show()
+
+    TriggerEvent('rhd_spawn:client:onSpawn', isNew)
+    TriggerServerEvent('rhd_spawn:server:onSpawn', isNew)
+end
+
+---@param location { label: string, coords: vector4, freezeControl?: boolean }
+local function arrive(location)
+    utils.fadeOut(500)
+    phone.close(true)
+
+    if cleanup then
+        cleanup()
+    end
+
+    camera.destroy(0)
+    Wait(PRESPAWN_MS)
+
+    local ped = PlayerPedId()
+
+    utils.teleport(ped, lifted(location.coords))
+    reveal(ped)
+
+    nui.send('arrival', { label = location.label, duration = config.spawn.arrivalTitleMs })
+    Wait(config.spawn.arrivalTitleMs + 600)
+
+    if location.freezeControl then
+        waitRelease()
+    end
+
+    release(ped)
+    waitAppearance()
+    complete(false)
+end
+
+---@param id string
+local function onPick(id)
+    if busy then return end
+
+    busy = true
+
+    local location = lib.callback.await('sm_characters:spawn', false, id)
+
+    if not location then
+        busy = false
+        lib.notify({ description = 'Lokasi tidak valid, coba pilih lagi.', type = 'error' })
+        phone.rerender(locations, { name = current?.name })
+        return
+    end
+
+    arrive(location)
+end
+
+function spawn.preload()
+    phone.preload()
+end
+
+---@param list table[]
+---@param info SpawnInfo
+---@param onArrive? fun()
+---@param onHold? fun(): boolean
+function spawn.phone(list, info, onArrive, onHold)
+    current = info
+    cleanup = onArrive
+    locations = list
+    busy = false
+    phone.open(list, { name = info.name }, onPick, { child = info.child, steady = onHold })
+end
+
+---@param coords vector4
+---@param gender 'male'|'female'
+function spawn.newCharacter(coords, gender)
+    utils.fadeOut(500)
+    camera.destroy(0)
+    Wait(PRESPAWN_MS)
+
+    local ped = PlayerPedId()
+
+    utils.teleport(ped, lifted(coords))
+    reveal(ped)
+    release(ped)
+
+    local completed = false
+
+    local function finished()
+        if completed then return end
+
+        completed = true
+
+        CreateThread(function()
+            complete(true)
+        end)
+    end
+
+    exports.sm_appearance:createCharacter(gender, finished, finished)
+end
+
+RegisterNetEvent('sm_characters:client:forceSpawn', function(location)
+    if GetInvokingResource() or not phone.isOpen() or busy then return end
+
+    busy = true
+    arrive(location)
+end)
+
+RegisterNetEvent('sm_characters:client:rerender', function(list)
+    if GetInvokingResource() or not current then return end
+
+    locations = list
+    phone.render(list, { name = current.name })
+end)
+
+return spawn
+
+
+########## FILE: \config\client.lua
+return {
+    debug = false,
+
+    intro = {
+        hour = 19,
+        minute = 45,
+        weather = 'EXTRASUNNY',
+        uiDelay = 3000,
+        store = 'https://satu-mimpi-roleplay.tebex.io/',
+        credits = {
+            speed = 60,
+            sections = {
+                { title = 'Founder', names = { 'SM - MR' } },
+                { title = 'Ceo', names = { 'SM - GOKONG' } },
+                { title = 'Management', names = { 'SM - ILMIS', 'SM - NAGA' } },
+                { title = 'Community Manager', names = { 'SM - PIYOYO' } },
+                { title = 'Developer', names = { 'SM - AXON', 'SM - HFZ' } },
+                { title = 'Modder', names = { 'SM - NIKO', 'SM - UWA', 'SM - HANS' } },
+                { title = 'Donation Handler', names = { 'SM - RYU', 'SM - MODRA' } },
+                {
+                    title = 'Game Master',
+                    names = {
+                        'SM - KASYA', 'SM - CAKECAAA', 'SM - EVE', 'SM - KING', 'SM - THEO', 'SM - SIMON', 'SM - ARDIM',
+                        'SM - KYO', 'SM - RENATA', 'SM - SANTOS', 'SM - GAKU', 'SM - KIRA', 'SM - ADONISME', 'SM - NOK',
+                    },
+                },
+                { title = 'Badside Handler', names = { 'SM - LOPEZ', 'SM - BAS', 'SM - BARA', 'SM - FEARZY', 'SM - MONTEZ', 'SM - SWEDI', 'SM - ARVA', 'SM - Ibbo' } },
+                { title = 'Helper', names = { 'SM - Mikelpod', 'SM - Jonathan' } },
+            },
+        },
+        shots = {
+            { from = vec3(-1350.0, -1450.0, 260.0), to = vec3(-450.0, -1650.0, 230.0), target = vec3(-150.0, -800.0, 120.0), fov = 45.0, duration = 22000 },
+            { from = vec3(650.0, -350.0, 320.0), to = vec3(250.0, 150.0, 300.0), target = vec3(-250.0, -650.0, 90.0), fov = 40.0, duration = 22000 },
+            { from = vec3(-2050.0, -650.0, 180.0), to = vec3(-1550.0, -1150.0, 160.0), target = vec3(-600.0, -900.0, 60.0), fov = 50.0, duration = 22000 },
+        },
+    },
+
+    selection = {
+        hour = 21,
+        minute = 0,
+        weather = 'CLEAR',
+        solo = {
+            vec4(-980.1, 662.18, 165.66, 185.35),
+        },
+        placeholder = {
+            models = { `np_m_character_select`, `np_f_character_select` },
+            alpha = 200,
+        },
+        duo = {
+            vec4(-980.1, 662.18, 165.66, 185.35),
+        },
+        camera = {
+            solo = { position = vec3(-1.55, -2.8, 0.6), focus = vec3(-0.85, 0.0, 0.5), fov = 35.0 },
+            duo = { position = vec3(-1.55, -2.8, 0.6), focus = vec3(-0.85, 0.0, 0.5), fov = 35.0 },
+        },
+        partnerLeave = {
+            side = 6.0,
+            back = 8.0,
+            removeDistance = 3.0,
+            waitMs = 2500,
+        },
+        drinking = {
+            dict = 'safe@trevor@ig_5',
+            clip = 'drink_3',
+            idle = 'base',
+            rotation = 20.67,
+            props = {
+                { model = 1360987401, clip = 'drink_3_beer' },
+                { model = -1296774200, clip = 'drink_3_cam' },
+            },
+        },
+        couple = {
+            cp = {
+                { dict = 'timetable@trevor@ig_1', male = 'ig_1_thedontknowwhy_trevor', female = 'ig_1_thedontknowwhy_patricia' },
+                { dict = 'timetable@trevor@ig_1', male = 'ig_1_therearejustsomemoments_trevor', female = 'ig_1_therearejustsomemoments_patricia' },
+                { dict = 'timetable@trevor@ig_1', male = 'ig_1_thedesertissobeautiful_trevor', female = 'ig_1_thedesertissobeautiful_patricia' },
+            },
+            bff = {
+                { dict = 'anim@mp_player_intcelebrationpaired@f_f_sarcastic', left = 'sarcastic_left', right = 'sarcastic_right' },
+                { dict = 'anim@mp_player_intcelebrationpaired@f_f_fist_bump', left = 'fist_bump_left', right = 'fist_bump_right' },
+                { dict = 'anim@mp_player_intcelebrationpaired@m_m_manly_handshake', left = 'manly_handshake_left', right = 'manly_handshake_right' },
+                { dict = 'anim@mp_player_intcelebrationpaired@m_m_bro_hug', left = 'bro_hug_left', right = 'bro_hug_right' },
+            },
+        },
+        duoScene = { cp = 'bedroom', bff = 'rooftop' },
+        bedroom = {
+            {
+                dict = 'switch@trevor@bed',
+                coords = vec4(-595.74, 47.58, 97.0, 168.81),
+                deltaZ = -1.0,
+                idle = { player = 'bed_sleep_trevor', partner = 'bed_sleep_floyd' },
+                exits = {
+                    { player = 'bed_getup_1_trevor', partner = 'bed_getup_1_floyd' },
+                    { player = 'bed_getup_2_trevor', partner = 'bed_getup_2_floyd' },
+                },
+                camera = { position = vec3(1.15, 0.9, 1.4), fov = 32.0, shift = 1.1 },
+            },
+        },
+        child = {
+            coords = vec4(-980.1, 662.18, 165.66, 5.35),
+            dict = 'pazeee@snowzx@animations',
+            clip = 'pazeee@snowzx@clip',
+            flag = 51,
+            camera = { position = vec3(1.1, 2.0, 0.4), fov = 40.0, shift = 0.5 },
+        },
+    },
+
+    phone = {
+        model = `prop_npc_phone_02`,
+        render = 'poly',
+        txd = 'prop_npc_phone_02',
+        txn = 'phone_screen_npc',
+        resolution = { x = 540, y = 1080 },
+        powerCooldown = 5000,
+        powerButton = { left = 1.03, top = 0.08, right = 1.10, bottom = 0.21 },
+        bone = 28422,
+        offset = vec3(0.0, 0.0, 0.0),
+        rotation = vec3(0.0, 0.0, 0.0),
+        dict = 'cellphone@',
+        enter = 'cellphone_text_in',
+        exit = 'cellphone_text_out',
+        stance = {
+            male = { dict = 'amb@world_human_stand_mobile@male@text@exit', clip = 'exit' },
+            female = { dict = 'amb@world_human_hang_out_street@female_hold_arm@base', clip = 'base' },
+        },
+        camera = {
+            distance = 0.32,
+            lift = 0.02,
+            fov = 38.0,
+        },
+        childCamera = {
+            distance = 0.32,
+            lift = 0.02,
+            fov = 55.0,
+        },
+        screen = {
+            inset = { x = 0.08, top = 0.1, bottom = 0.1 },
+            offset = 0.0015,
+            uv = { left = 0.02, top = 0.05, right = 0.99, bottom = 0.88 },
+            flipX = false,
+            flipY = false,
+        },
+    },
+    
+    spawn = {
+        arrivalTitleMs = 5000,
+    },
+
+    hud = {
+        hide = function()
+            LocalPlayer.state:set('inCutscene', true, false)
+            pcall(function() exports.sm_hud:setVisible(false) end)
+            pcall(function() exports.sm_resource:toggleTrollUI(true) end)
+        end,
+        show = function()
+            LocalPlayer.state:set('inCutscene', false, false)
+            pcall(function() exports.sm_resource:toggleTrollUI(false) end)
+        end,
+    },
+
+    weatherSync = function(enabled, weather)
+        local state = LocalPlayer.state
+
+        if state.playerWeather ~= weather then
+            state:set('playerWeather', weather, false)
+        end
+
+        if state.syncWeather == enabled then return false end
+
+        state:set('syncWeather', enabled, false)
+
+        return true
+    end,
+}
+
+
+########## FILE: \config\register.lua
+return {
+    name = {
+        min = 2,
+        max = 20,
+    },
+
+    birthYear = {
+        min = 1950,
+        max = 2007,
+    },
+
+    nationalities = {
+        'Indonesian', 'Afghan', 'Albanian', 'Algerian', 'American', 'Andorran', 'Angolan', 'Antiguan', 'Argentinean',
+        'Armenian', 'Aruban', 'Australian', 'Austrian', 'Azerbaijani', 'Bahamian', 'Bahraini', 'Bangladeshi',
+        'Barbadian', 'Belarusian', 'Belgian', 'Belizean', 'Beninese', 'Bermudian', 'Bhutanese', 'Bolivian', 'Bosnian',
+        'Brazilian', 'British', 'Bruneian', 'Bulgarian', 'Burkinabe', 'Burmese', 'Burundian', 'Cambodian',
+        'Cameroonian', 'Canadian', 'Cape Verdean', 'Caymanian', 'Central African', 'Chadian', 'Chilean', 'Chinese',
+        'Colombian', 'Comoran', 'Congolese', 'Costa Rican', 'Croatian', 'Cuban', 'Cypriot', 'Czech', 'Danish',
+        'Djiboutian', 'Dominican', 'Dutch', 'East Timorese', 'Ecuadorean', 'Egyptian', 'Emirian', 'Equatorial Guinean',
+        'Eritrean', 'Estonian', 'Ethiopian', 'Fijian', 'Filipino', 'Finnish', 'French', 'Gabonese', 'Gambian',
+        'Georgian', 'German', 'Ghanaian', 'Greek', 'Grenadian', 'Guatemalan', 'Guinea-Bissauan', 'Guinean', 'Guyanese',
+        'Haitian', 'Honduran', 'Hungarian', 'Icelander', 'Indian', 'Iranian', 'Iraqi', 'Irish', 'Israeli', 'Italian',
+        'Ivorian', 'Jamaican', 'Japanese', 'Jordanian', 'Kazakhstani', 'Kenyan', 'Kuwaiti', 'Kyrgyzstani', 'Laotian',
+        'Latvian', 'Lebanese', 'Liberian', 'Libyan', 'Liechtensteiner', 'Lithuanian', 'Luxembourger', 'Macedonian',
+        'Malagasy', 'Malawian', 'Malaysian', 'Maldivan', 'Malian', 'Maltese', 'Marshallese', 'Mauritanian',
+        'Mauritian', 'Mexican', 'Micronesian', 'Moldovan', 'Monacan', 'Mongolian', 'Montenegrin', 'Moroccan',
+        'Mozambican', 'Namibian', 'Nauruan', 'Nepalese', 'New Zealander', 'Nicaraguan', 'Nigerian', 'North Korean',
+        'Northern Irish', 'Norwegian', 'Omani', 'Pakistani', 'Palauan', 'Palestinian', 'Panamanian',
+        'Papua New Guinean', 'Paraguayan', 'Peruvian', 'Polish', 'Portuguese', 'Qatari', 'Romanian', 'Russian',
+        'Rwandan', 'Saint Lucian', 'Salvadoran', 'Samoan', 'San Marinese', 'Sao Tomean', 'Saudi', 'Scottish',
+        'Senegalese', 'Serbian', 'Seychellois', 'Sierra Leonean', 'Singaporean', 'Slovakian', 'Slovenian',
+        'Solomon Islander', 'Somali', 'South African', 'South Korean', 'South Sudanese', 'Spanish', 'Sri Lankan',
+        'Sudanese', 'Surinamer', 'Swazi', 'Swedish', 'Swiss', 'Syrian', 'Taiwanese', 'Tajikistani', 'Tanzanian',
+        'Thai', 'Togolese', 'Tongan', 'Trinbagonian', 'Tunisian', 'Turkish', 'Turkmenistani', 'Tuvaluan', 'Ugandan',
+        'Ukrainian', 'Uruguayan', 'Uzbekistani', 'Venezuelan', 'Vietnamese', 'Welsh', 'Yemenite', 'Zambian',
+        'Zimbabwean'
+    },
+}
+
+
+########## FILE: \data\default.lua
+local DRAWABLE = {
+    head = 0,
+    hair = 2,
+    masks = 1,
+    hands = 3,
+    pants = 4,
+    bags = 5,
+    shoes = 6,
+    scarfAndChains = 7,
+    shirts = 8,
+    bodyArmor = 9,
+    decals = 10,
+    jackets = 11,
+}
+
+local PROPS = {
+    hats = 0,
+    glasses = 1,
+    ear = 2,
+    watches = 6,
+    bracelets = 7
+}
+
+local default = {}
+
+default.ped = {
+    'np_f_character_select',
+    'np_m_character_select'
+}
+
+default.components = {
+    male = {
+        {texture = 0, drawable = 5, component_id = DRAWABLE.shoes},
+        {texture = 0, drawable = 662, component_id = DRAWABLE.pants},
+        {texture = 0, drawable = 15, component_id = DRAWABLE.shirts},
+        {texture = 0, drawable = 1923, component_id = DRAWABLE.jackets},
+        {texture = 0, drawable = 0, component_id = DRAWABLE.hands},
+    },
+    female = {
+        {texture = 0, drawable = 477, component_id = DRAWABLE.shoes},
+        {texture = 0, drawable = 207, component_id = DRAWABLE.pants},
+        {texture = 0, drawable = 19, component_id = DRAWABLE.shirts},
+        {texture = 1, drawable = 2311, component_id = DRAWABLE.jackets},
+        {texture = 0, drawable = 14, component_id = DRAWABLE.hands},
+    }
+}
+
+default.appearance = {
+    {
+        model = `mp_m_freemode_01`,
+        components = default.components.male,
+    },
+    {
+        model = `mp_f_freemode_01`,
+        components = default.components.female,
+    }
+}
+
+return default
+
+
+########## FILE: \modules\net.lua
+local Net = {}
+
+---@param event string
+---@param player number
+---@param ... any
+function Net.emitLatentClient(event, player, ...)
+    local payload = msgpack.pack_args(...)
+    local payloadLen = #payload
+    local bps = payloadLen + 1000
+    TriggerLatentClientEventInternal(event, player --[[@as string]], payload, payloadLen, bps)
+end
+
+---@generic T
+---@param get fun(): T?
+---@param timeout number?
+---@return T?
+function Net.awaitPush(get, timeout)
+    local value = get()
+
+    if value ~= nil then return value end
+
+    local deadline = GetGameTimer() + (timeout or 5000)
+
+    repeat
+        Wait(0)
+        value = get()
+    until value ~= nil or GetGameTimer() > deadline
+
+    return value
+end
+
+return Net
+
+
+########## FILE: \modules\client\camera.lua
+local camera = {}
+
+local FOLLOW_FLAGS <const> = 17
+local FOLLOW_MARGIN <const> = 0.25
+local FOLLOW_RECENTER_MS <const> = 2000
+local DEFAULT_DOF <const> = { near = 0.5, far = 2.0 }
+
+---@class CameraView
+---@field position vector3
+---@field target vector3
+---@field fov number
+---@field dof { near: number, far: number }|false
+
+---@type number?
+local active
+---@type CameraView?
+local view
+local token = 0
+
+---@param t number
+---@return number
+local function smooth(t)
+    if t >= 1.0 then return 1.0 end
+
+    return t * t * (3.0 - 2.0 * t)
+end
+
+---@param from vector3
+---@param first vector3
+---@param second vector3
+---@param to vector3
+---@param t number
+---@return vector3
+local function bezier(from, first, second, to, t)
+    local u = 1.0 - t
+
+    return from * (u * u * u) + first * (3.0 * u * u * t) + second * (3.0 * u * t * t) + to * (t * t * t)
+end
+
+---@param position vector3
+---@param fov number
+---@return number
+local function create(position, fov)
+    return CreateCamWithParams('DEFAULT_SCRIPTED_CAMERA', position.x, position.y, position.z, 0.0, 0.0, 0.0, fov, false, 2)
+end
+
+---@param cam number
+---@param easeMs number
+local function activate(cam, easeMs)
+    local previous = active
+
+    active = cam
+    token += 1
+
+    if previous and DoesCamExist(previous) and easeMs > 0 then
+        SetCamActiveWithInterp(cam, previous, easeMs, 1, 1)
+        SetTimeout(easeMs + 100, function()
+            DestroyCam(previous, false)
+        end)
+    else
+        SetCamActive(cam, true)
+        RenderScriptCams(true, false, 0, true, false)
+
+        if previous then
+            DestroyCam(previous, false)
+        end
+    end
+
+    return token
+end
+
+---@class CameraFocus
+---@field position vector3
+---@field target vector3
+---@field fov number
+---@field dof? { near: number, far: number }|false
+---@field easeMs? number
+
+---@param data CameraFocus
+---@return promise
+function camera.focus(data)
+    local done = promise.new()
+    local cam = create(data.position, data.fov)
+    local dof = data.dof ~= false and (data.dof or DEFAULT_DOF) or false
+
+    PointCamAtCoord(cam, data.target.x, data.target.y, data.target.z)
+
+    if dof then
+        SetCamUseShallowDofMode(cam, true)
+        SetCamNearDof(cam, dof.near)
+        SetCamFarDof(cam, dof.far)
+        SetCamDofStrength(cam, 1.0)
+    end
+
+    local id = activate(cam, data.easeMs or 0)
+
+    view = { position = data.position, target = data.target, fov = data.fov, dof = dof }
+    done:resolve(true)
+
+    if dof then
+        CreateThread(function()
+            while id == token and DoesCamExist(cam) do
+                SetUseHiDof()
+                Wait(0)
+            end
+        end)
+    end
+
+    return done
+end
+
+---@param data CameraFocus
+---@param durationMs integer
+---@param via? { [1]: vector3, [2]: vector3 }
+function camera.glide(data, durationMs, via)
+    local cam, from = active, view
+
+    if not cam or not DoesCamExist(cam) or not from or durationMs <= 0 then
+        camera.focus(data)
+        return
+    end
+
+    token += 1
+
+    local id = token
+    local dof = data.dof ~= false and (data.dof or DEFAULT_DOF) or false
+    local fromDof = from.dof or dof
+    local began = GetGameTimer()
+
+    view = { position = data.position, target = data.target, fov = data.fov, dof = dof }
+
+    if dof then
+        SetCamUseShallowDofMode(cam, true)
+        SetCamDofStrength(cam, 1.0)
+    end
+
+    CreateThread(function()
+        while id == token and DoesCamExist(cam) do
+            local t = smooth(math.min(1.0, (GetGameTimer() - began) / durationMs))
+            local position = via and bezier(from.position, via[1], via[2], data.position, t) or from.position + (data.position - from.position) * t
+            local target = from.target + (data.target - from.target) * t
+
+            SetCamCoord(cam, position.x, position.y, position.z)
+            PointCamAtCoord(cam, target.x, target.y, target.z)
+            SetCamFov(cam, from.fov + (data.fov - from.fov) * t)
+
+            if dof and fromDof then
+                SetCamNearDof(cam, fromDof.near + (dof.near - fromDof.near) * t)
+                SetCamFarDof(cam, fromDof.far + (dof.far - fromDof.far) * t)
+                SetUseHiDof()
+            end
+
+            Wait(0)
+        end
+    end)
+end
+
+---@return CameraView?
+function camera.view()
+    return view
+end
+
+---@param from vector3
+---@param point vector3
+---@param amount number
+---@return vector3
+function camera.aside(from, point, amount)
+    local direction = point - from
+    local length = math.sqrt(direction.x * direction.x + direction.y * direction.y)
+
+    if amount == 0.0 or length < 0.001 then return point end
+
+    return point - vec3(direction.y / length, -direction.x / length, 0.0) * amount
+end
+
+---@param from vector3
+---@param to vector3
+---@param ignore number
+---@return vector3
+local function reachable(from, to, ignore)
+    local path = to - from
+    local length = #path
+
+    if length < 0.001 then return to end
+
+    local direction = path / length
+    local reach = to + direction * FOLLOW_MARGIN
+    local probe = StartExpensiveSynchronousShapeTestLosProbe(from.x, from.y, from.z, reach.x, reach.y, reach.z, FOLLOW_FLAGS, ignore, 4)
+    local _, hit, coords = GetShapeTestResult(probe)
+
+    if hit ~= true and hit ~= 1 then return to end
+
+    local free = #(coords - from) - FOLLOW_MARGIN
+
+    return free > 0.0 and from + direction * math.min(free, length) or from
+end
+
+---@param from vector3
+---@param point vector3
+---@param angle number
+---@return vector3
+local function turned(from, point, angle)
+    local direction = point - from
+    local cos, sin = math.cos(angle), math.sin(angle)
+
+    return from + vec3(direction.x * cos - direction.y * sin, direction.x * sin + direction.y * cos, direction.z)
+end
+
+---@param ped number
+---@param bone integer
+---@param shift? number
+function camera.follow(ped, bone, shift)
+    local cam = active
+    if not cam then return end
+
+    token += 1
+
+    local id = token
+
+    CreateThread(function()
+        local position = GetCamCoord(cam)
+        local offset = position - GetEntityCoords(ped)
+        local target = GetPedBoneCoords(ped, bone, 0.0, 0.0, 0.0)
+        local flat = target - position
+        local angle = math.atan(shift or 0.0, math.sqrt(flat.x * flat.x + flat.y * flat.y))
+        local began = GetGameTimer()
+
+        while id == token and DoesCamExist(cam) and DoesEntityExist(ped) do
+            local frame = GetFrameTime()
+            local desired = reachable(position, GetEntityCoords(ped) + offset, ped)
+            local recenter = smooth(math.min(1.0, (GetGameTimer() - began) / FOLLOW_RECENTER_MS))
+
+            position = position + (desired - position) * math.min(1.0, frame * 1.5)
+            target = target + (GetPedBoneCoords(ped, bone, 0.0, 0.0, 0.0) - target) * math.min(1.0, frame * 3.0)
+
+            local aim = turned(position, target, angle * (1.0 - recenter))
+
+            if view then
+                view.position = position
+                view.target = aim
+            end
+
+            SetCamCoord(cam, position.x, position.y, position.z)
+            PointCamAtCoord(cam, aim.x, aim.y, aim.z)
+            SetUseHiDof()
+            Wait(0)
+        end
+    end)
+end
+
+---@param easeMs? number
+function camera.destroy(easeMs)
+    token += 1
+    view = nil
+
+    if not active then return end
+
+    RenderScriptCams(false, (easeMs or 0) > 0, easeMs or 0, true, false)
+    DestroyCam(active, false)
+    active = nil
+end
+
+---@return number?
+function camera.handle()
+    return active
+end
+
+return camera
+
+
+########## FILE: \modules\client\nui.lua
+local nui = {}
+
+---@param action string
+---@param data? any
+function nui.send(action, data)
+    SendNUIMessage({ action = action, data = data })
+end
+
+---@param state boolean
+function nui.focus(state)
+    SetNuiFocus(state, state)
+end
+
+return nui
+
+
+########## FILE: \modules\client\utils.lua
+local default = require 'data.default'
+
+local appearance = exports.sm_appearance
+
+local utils = {}
+
+local sin, cos, rad = math.sin, math.cos, math.rad
+
+local MODEL_TIMEOUT <const> = 30000
+local PLAYER_TIMEOUT <const> = 300000
+local ANIM_TIMEOUT <const> = 30000
+local FADE_GRACE <const> = 1000
+local WORLD_TIMEOUT <const> = 5000
+local COLLISION_TIMEOUT <const> = 15000
+
+---@param ms number
+function utils.fadeOut(ms)
+    if IsScreenFadedOut() then return end
+
+    DoScreenFadeOut(ms)
+
+    local deadline = GetGameTimer() + ms + FADE_GRACE
+
+    while not IsScreenFadedOut() and GetGameTimer() < deadline do
+        Wait(0)
+    end
+end
+
+---@param model number|string
+---@param timeout? number
+---@return number?
+function utils.loadModel(model, timeout)
+    local ok, result = pcall(lib.requestModel, model, timeout or MODEL_TIMEOUT)
+
+    if ok then return result end
+
+    lib.print.warn(result)
+end
+
+---@param dict string
+---@param timeout? number
+---@return boolean
+function utils.loadAnimDict(dict, timeout)
+    local ok, result = pcall(lib.requestAnimDict, dict, timeout or ANIM_TIMEOUT)
+
+    if not ok then
+        lib.print.warn(result)
+    end
+
+    return ok
+end
+
+---@param ms number
+function utils.fadeIn(ms)
+    DoScreenFadeIn(ms)
+end
+
+---@param coords vector4
+---@param offset vector3
+---@return vector3
+function utils.offsetToWorld(coords, offset)
+    local angle = rad(coords.w)
+
+    return vec3(
+        coords.x + cos(angle) * offset.x - sin(angle) * offset.y,
+        coords.y + sin(angle) * offset.x + cos(angle) * offset.y,
+        coords.z + offset.z
+    )
+end
+
+---@param ped number
+---@param coords vector4
+local function waitWorld(ped, coords)
+    local timeout = GetGameTimer() + WORLD_TIMEOUT
+
+    while not HasCollisionLoadedAroundEntity(ped) and GetGameTimer() < timeout do
+        RequestCollisionAtCoord(coords.x, coords.y, coords.z)
+        Wait(0)
+    end
+
+    if not HasCollisionLoadedAroundEntity(ped) then
+        lib.print.warn(('lokasi: collision belum termuat setelah %d ms'):format(WORLD_TIMEOUT))
+    end
+
+    local interior = GetInteriorAtCoords(coords.x, coords.y, coords.z)
+
+    if interior == 0 then return end
+
+    timeout = GetGameTimer() + WORLD_TIMEOUT
+    PinInteriorInMemory(interior)
+
+    while not IsInteriorReady(interior) and GetGameTimer() < timeout do
+        Wait(0)
+    end
+end
+
+---@param ped number
+local function waitCollision(ped)
+    local ok = pcall(lib.waitFor, function()
+        return HasCollisionLoadedAroundEntity(ped) or nil
+    end, nil, COLLISION_TIMEOUT)
+
+    if not ok then
+        lib.print.warn(('collision belum termuat setelah %d ms'):format(COLLISION_TIMEOUT))
+    end
+end
+
+---@param ped number
+---@param coords vector4
+---@param waitScene? boolean
+function utils.teleport(ped, coords, waitScene)
+    FreezeEntityPosition(ped, true)
+    SetFocusPosAndVel(coords.x, coords.y, coords.z, 0.0, 0.0, 0.0)
+    SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false)
+    SetEntityHeading(ped, coords.w)
+    RequestCollisionAtCoord(coords.x, coords.y, coords.z)
+
+    if waitScene then
+        waitWorld(ped, coords)
+    else
+        waitCollision(ped)
+    end
+
+    ClearFocus()
+end
+
+---@param raw string|false|nil
+---@return table?
+function utils.decodeSkin(raw)
+    if type(raw) ~= 'string' then return end
+
+    local ok, skin = pcall(json.decode, raw)
+    if not ok or type(skin) ~= 'table' or not skin.model then return end
+
+    return skin
+end
+
+---@param gender 'male'|'female'
+---@return table
+function utils.defaultAppearance(gender)
+    return default.appearance[gender == 'female' and 2 or 1]
+end
+
+---@param ped number
+---@param skin table
+function utils.applyPed(ped, skin)
+    local ok, result = pcall(function()
+        appearance:applyAppearance(ped, skin)
+    end)
+
+    if not ok then
+        lib.print.warn(('gagal menerapkan appearance: %s'):format(result))
+    end
+end
+
+---@param skin table
+---@param gender? 'male'|'female'
+---@return number ped
+function utils.applyPlayer(skin, gender)
+    local model = utils.loadModel(skin.model, PLAYER_TIMEOUT)
+
+    if not model and gender then
+        skin = utils.defaultAppearance(gender)
+        model = utils.loadModel(skin.model, PLAYER_TIMEOUT)
+    end
+
+    if not model then return PlayerPedId() end
+
+    SetPlayerModel(cache.playerId, model)
+    SetModelAsNoLongerNeeded(model)
+
+    local ped = PlayerPedId()
+
+    SetPedDefaultComponentVariation(ped)
+    utils.applyPed(ped, skin)
+
+    return ped
+end
+
+---@param model number|string
+---@param coords vector4
+---@param timeout? number
+---@return number?
+function utils.createPed(model, coords, timeout)
+    local hash = utils.loadModel(model, timeout)
+    if not hash then return end
+
+    local ped = CreatePed(4, hash, coords.x, coords.y, coords.z, coords.w, false, false)
+
+    SetModelAsNoLongerNeeded(hash)
+
+    if ped == 0 or not DoesEntityExist(ped) then return end
+
+    SetEntityInvincible(ped, true)
+    SetBlockingOfNonTemporaryEvents(ped, true)
+    SetPedDefaultComponentVariation(ped)
+
+    return ped
+end
+
+---@param model number|string
+---@param coords vector3|vector4
+---@param timeout? number
+---@return number?
+function utils.createObject(model, coords, timeout)
+    local hash = utils.loadModel(model, timeout)
+    if not hash then return end
+
+    local object = CreateObject(hash, coords.x, coords.y, coords.z, false, false, false)
+
+    SetModelAsNoLongerNeeded(hash)
+
+    if object == 0 or not DoesEntityExist(object) then return end
+
+    SetEntityCollision(object, false, false)
+
+    return object
+end
+
+---@param entities number[]
+function utils.deleteAll(entities)
+    for i = #entities, 1, -1 do
+        local entity = entities[i]
+
+        if DoesEntityExist(entity) then
+            DeleteEntity(entity)
+        end
+
+        entities[i] = nil
+    end
+end
+
+return utils
+
+
+########## FILE: \modules\client\world.lua
+local config = require 'config.client'
+
+local world = {}
+
+---@type { hour: integer, minute: integer, weather: string }?
+local locked
+
+---@param weather string
+local function applyWeather(weather)
+    ClearOverrideWeather()
+    ClearWeatherTypePersist()
+    SetWeatherTypePersist(weather)
+    SetWeatherTypeNow(weather)
+    SetWeatherTypeNowPersist(weather)
+end
+
+---@param hour integer
+---@param minute integer
+---@param weather string
+function world.lock(hour, minute, weather)
+    local running = locked ~= nil
+
+    locked = { hour = hour, minute = minute, weather = weather }
+    config.weatherSync(false, weather)
+    applyWeather(weather)
+    NetworkOverrideClockTime(hour, minute, 0)
+    SetArtificialLightsState(false)
+
+    if running then return end
+
+    CreateThread(function()
+        while locked do
+            if config.weatherSync(false, locked.weather) then
+                applyWeather(locked.weather)
+            end
+
+            NetworkOverrideClockTime(locked.hour, locked.minute, 0)
+            SetArtificialLightsState(false)
+            Wait(250)
+        end
+    end)
+end
+
+function world.unlock()
+    if not locked then return end
+
+    locked = nil
+    NetworkClearClockTimeOverride()
+    ClearWeatherTypePersist()
+    SetArtificialLightsState(GlobalState.blackOut == true)
+    config.weatherSync(true)
+end
+
+return world
+
+
+########## FILE: \server\init.lua
+-- sm_character/server/init.lua
+-- Direkonstruksi mengikuti kontrak client/*.lua dan modul sm_core.
+-- Tabel: players (PK citizenid), playerskins, character_partners, character_invites.
+
+local QBCore = exports['qb-core']:GetCoreObject()
+
+local DEFAULT_SLOTS = 4
+local INVITE_TTL    = 60
+local DEFAULT_SPAWN = { x = -1042.57, y = -2745.72, z = 21.36, w = 330.0 }
+
+local SlotOverrides = {
+    -- ['license:xxxxxxxxxxxxxxxxx'] = 8,
+}
+
+local function getSlots(license)
+    local override = SlotOverrides[license]
+    if override then return override end
+    local convar = tonumber(GetConvar('sm_characters_slots', ''))
+    return math.max(1, convar or DEFAULT_SLOTS)
+end
+
+local function notify(src, message, kind)
+    TriggerClientEvent('sm_characters:client:notify', src, message, kind or 'error')
+end
+
+local function decode(value)
+    if type(value) == 'table' then return value end
+    if type(value) ~= 'string' or value == '' then return {} end
+    local ok, result = pcall(json.decode, value)
+    if ok and type(result) == 'table' then return result end
+    return {}
+end
+
+local function getLicense(src)
+    return QBCore.Functions.GetIdentifier(src, 'license') or GetPlayerIdentifierByType(src, 'license')
+end
+
+local function fullName(charinfo)
+    if not charinfo then return 'Warga' end
+    return ('%s %s'):format(charinfo.firstname or '', charinfo.lastname or ''):gsub('^%s*(.-)%s*$', '%1')
+end
+
+local function generatePhone()
+    for _ = 1, 25 do
+        local phone = ('%03d%04d'):format(math.random(100, 999), math.random(0, 9999))
+        local taken = MySQL.scalar.await('SELECT citizenid FROM players WHERE JSON_UNQUOTE(JSON_EXTRACT(charinfo, "$.phone")) = ?', { phone })
+        if not taken then return phone end
+    end
+    return ('%03d%04d'):format(math.random(100, 999), math.random(0, 9999))
+end
+
+local function locationById(id)
+    local shared = QBCore.Shared and QBCore.Shared.Locations
+    if shared and id and shared[id] then return shared[id] end
+    return DEFAULT_SPAWN
+end
+
+-- Tabel pendamping partner. Dibuat sendiri supaya tidak bergantung pada migrasi.
+CreateThread(function()
+    MySQL.query.await([[
+        CREATE TABLE IF NOT EXISTS `character_partners` (
+            `citizenid` VARCHAR(50) NOT NULL,
+            `partner`   VARCHAR(50) NOT NULL,
+            `since`     INT NOT NULL DEFAULT 0,
+            PRIMARY KEY (`citizenid`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    ]])
+    MySQL.query.await([[
+        CREATE TABLE IF NOT EXISTS `character_invites` (
+            `citizenid` VARCHAR(50) NOT NULL,
+            `target`    VARCHAR(50) NOT NULL,
+            `expires`   BIGINT NOT NULL DEFAULT 0,
+            PRIMARY KEY (`citizenid`, `target`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    ]])
+    MySQL.query.await('ALTER TABLE `character_partners` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
+    MySQL.query.await('ALTER TABLE `character_invites` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
+
+    MySQL.query.await([[
+        CREATE TABLE IF NOT EXISTS `playerskins` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `citizenid` varchar(255) NOT NULL,
+            `model` varchar(255) NOT NULL,
+            `skin` text NOT NULL,
+            `active` tinyint(4) NOT NULL DEFAULT 1,
+            PRIMARY KEY (`id`),
+            KEY `citizenid` (`citizenid`),
+            KEY `active` (`active`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    ]])
+end)
+
+-- ----------------------------------------------------------------------------
+-- Fetch daftar karakter
+-- ----------------------------------------------------------------------------
+
+local function buildInvites(ids, byCitizen)
+    local incoming, outgoing = {}, {}
+
+    if #ids == 0 then return incoming, outgoing end
+
+    local placeholders = {}
+    for i = 1, #ids do placeholders[i] = '?' end
+    placeholders = table.concat(placeholders, ',')
+
+    local params = {}
+    for i = 1, #ids do params[#params + 1] = ids[i] end
+    for i = 1, #ids do params[#params + 1] = ids[i] end
+    params[#params + 1] = os.time()
+
+    local rows = MySQL.query.await(([[
+        SELECT i.citizenid, i.target, i.expires,
+               p1.charinfo AS frominfo, p2.charinfo AS toinfo
+        FROM character_invites i
+        LEFT JOIN players p1 ON p1.citizenid = i.citizenid
+        LEFT JOIN players p2 ON p2.citizenid = i.target
+        WHERE (i.citizenid IN (%s) OR i.target IN (%s)) AND i.expires > ?
+    ]]):format(placeholders, placeholders), params) or {}
+
+    for _, row in ipairs(rows) do
+        local mine = byCitizen[row.target]
+        local theirs = byCitizen[row.citizenid]
+
+        if mine then
+            incoming[#incoming + 1] = {
+                citizenid = row.citizenid,
+                name = fullName(decode(row.frominfo)),
+                expires = tonumber(row.expires) or 0,
+            }
+        end
+
+        if theirs then
+            outgoing[#outgoing + 1] = {
+                citizenid = row.target,
+                name = fullName(decode(row.toinfo)),
+                expires = tonumber(row.expires) or 0,
+            }
+        end
+    end
+
+    return incoming, outgoing
+end
+
+RegisterNetEvent('sm_characters:server:fetch', function()
+    local src = source
+    local license = getLicense(src)
+
+    local payload = { characters = {}, incoming = {}, outgoing = {}, slots = 0, canDelete = false }
+
+    if not license then
+        TriggerClientEvent('sm_characters:client:characters', src, payload)
+        TriggerClientEvent('sm_characters:client:skins', src, {})
+        return
+    end
+
+    local slots = getSlots(license)
+    local rows = MySQL.query.await('SELECT * FROM players WHERE license = ? ORDER BY id ASC', { license }) or {}
+
+    local characters, ids, byCitizen = {}, {}, {}
+
+    for i = 1, #rows do
+        local row = rows[i]
+        local entry = {}
+
+        for key, value in pairs(row) do entry[key] = value end
+
+        entry.charinfo = decode(row.charinfo)
+        entry.money    = decode(row.money)
+        entry.job      = decode(row.job)
+        entry.gang     = decode(row.gang)
+        entry.position = decode(row.position)
+        entry.metadata = decode(row.metadata)
+
+        entry.firstname   = entry.charinfo.firstname
+        entry.lastname    = entry.charinfo.lastname
+        entry.gender      = entry.charinfo.gender
+        entry.birthdate   = entry.charinfo.birthdate
+        entry.phone       = entry.charinfo.phone
+        entry.nationality = entry.charinfo.nationality
+
+        characters[#characters + 1] = entry
+        ids[#ids + 1] = row.citizenid
+        byCitizen[row.citizenid] = true
+    end
+
+    local skins = {}
+
+    if #ids > 0 then
+        local placeholders = {}
+        for i = 1, #ids do placeholders[i] = '?' end
+
+        local skinOk, skinRows = pcall(function()
+            return MySQL.query.await(
+                ('SELECT citizenid, skin FROM playerskins WHERE active = 1 AND citizenid IN (%s)'):format(table.concat(placeholders, ',')), ids) or {}
+        end)
+        if not skinOk then skinRows = {} end
+
+        for _, row in ipairs(skinRows) do
+            local skin = row.skin or row.appearance
+            if not skin and row.model then skin = json.encode({ model = row.model }) end
+            if skin then skins[row.citizenid] = skin end
+        end
+    end
+
+    local incoming, outgoing = buildInvites(ids, byCitizen)
+
+    MySQL.query.await('DELETE FROM character_invites WHERE expires < ?', { os.time() })
+
+    payload.characters = characters
+    payload.incoming = incoming
+    payload.outgoing = outgoing
+    payload.slots = slots
+    payload.canDelete = #characters > 1
+
+    TriggerClientEvent('sm_characters:client:skins', src, skins)
+    TriggerClientEvent('sm_characters:client:characters', src, payload)
+end)
+
+-- ----------------------------------------------------------------------------
+-- Buat karakter
+-- ----------------------------------------------------------------------------
+
+local function sanitizeName(value)
+    if type(value) ~= 'string' then return nil end
+    value = value:gsub('^%s*(.-)%s*$', '%1')
+    if #value < 2 or #value > 20 then return nil end
+    if not value:match('^[%a][%a%s%-]*$') then return nil end
+    return value
+end
+
+local MONTHS = {
+    januari = 1, februari = 2, maret = 3, april = 4, mei = 5, juni = 6, juli = 7,
+    agustus = 8, september = 9, oktober = 10, november = 11, desember = 12,
+    jan = 1, feb = 2, mar = 3, apr = 4, jun = 6, jul = 7, agu = 8, ags = 8, sep = 9, okt = 10, nov = 11, des = 12,
+    january = 1, february = 2, march = 3, may = 5, june = 6, july = 7, august = 8, october = 10, december = 12,
+}
+
+local function sanitizeBirthdate(value)
+    if type(value) ~= 'string' then return nil end
+    value = value:gsub('^%s*(.-)%s*$', '%1')
+
+    local y, m, d
+    local a, b, c = value:match('^(%d%d%d%d)%-(%d%d)%-(%d%d)$')
+
+    if a then
+        y, m, d = tonumber(a), tonumber(b), tonumber(c)
+    else
+        local day, mon, year = value:match('^(%d%d?)%s+([%a]+)%s+(%d%d%d%d)$')
+        if not day then return nil end
+        m = MONTHS[mon:lower()]
+        if not m then return nil end
+        y, d = tonumber(year), tonumber(day)
+    end
+
+    if not y or y < 1900 or y > 2015 then return nil end
+    if m < 1 or m > 12 then return nil end
+    if not d or d < 1 or d > 31 then return nil end
+
+    return ('%04d-%02d-%02d'):format(y, m, d)
+end
+
+local function sanitizeGender(value)
+    if value == true or value == 1 or value == 'male' or value == 'm' or value == 'M' then return 'male' end
+    if value == false or value == 0 or value == 'female' or value == 'f' or value == 'F' then return 'female' end
+    return nil
+end
+
+lib.callback.register('sm_characters:create', function(source, ...)
+    local args = { ... }
+    local input = type(args[1]) == 'table' and args[1] or {
+        firstname   = args[1],
+        lastname    = args[2],
+        gender      = args[3],
+        birthdate   = args[4],
+        nationality = args[5],
+    }
+
+    local license = getLicense(source)
+    if not license then return false, 'Lisensi tidak terbaca' end
+
+    local firstname = sanitizeName(input.firstname)
+    local lastname  = sanitizeName(input.lastname)
+
+    if not firstname then return false, 'Nama depan tidak valid (2-20 huruf)' end
+    if not lastname then return false, 'Nama belakang tidak valid (2-20 huruf)' end
+
+    local gender = sanitizeGender(input.gender)
+    if not gender then return false, 'Jenis kelamin tidak valid' end
+
+    local birthdate = sanitizeBirthdate(input.birthdate)
+    if not birthdate then return false, 'Tanggal lahir harus YYYY-MM-DD' end
+
+    local slots = getSlots(license)
+    local count = MySQL.scalar.await('SELECT COUNT(*) FROM players WHERE license = ?', { license }) or 0
+    if count >= slots then return false, ('Slot karakter penuh (%d/%d)'):format(count, slots) end
+
+    local citizenid = QBCore.Player.CreateCitizenId()
+    local spawn = DEFAULT_SPAWN
+    local nationality = type(input.nationality) == 'string' and input.nationality:sub(1, 32) or 'Indonesia'
+
+    local charinfo = {
+        firstname = firstname,
+        lastname = lastname,
+        birthdate = birthdate,
+        gender = gender,
+        nationality = nationality,
+        cid = math.random(10000, 99999),
+        phone = generatePhone(),
+    }
+
+    local money = { cash = 500, bank = 5000, crypto = 0 }
+    local job = { name = 'unemployed', label = 'Pengangguran', payment = 10, onduty = true, isboss = false, grade = { name = 'Freelancer', level = 0 } }
+    local gang = { name = 'none', label = 'Tidak ada', grade = { name = 'Tidak ada', level = 0 } }
+    local metadata = { callsign = 'NO CALLSIGN', licences = {} }
+
+    local nextId = (MySQL.scalar.await('SELECT COALESCE(MAX(id), 0) + 1 FROM players') or 1)
+
+    local params = {
+        nextId,
+        citizenid,
+        charinfo.cid,
+        license,
+        ('%s %s'):format(firstname, lastname),
+        json.encode(money),
+        json.encode(charinfo),
+        json.encode(job),
+        json.encode(gang),
+        json.encode(spawn),
+        json.encode(metadata),
+    }
+
+    local ok, err = pcall(function()
+        MySQL.insert.await([[
+            INSERT INTO players (id, citizenid, cid, license, name, money, charinfo, job, gang, position, metadata)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ]], params)
+    end)
+
+    if not ok then
+        -- Skema tanpa kolom cid/name.
+        ok, err = pcall(function()
+            MySQL.insert.await([[
+                INSERT INTO players (id, citizenid, license, money, charinfo, job, gang, position, metadata)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ]], { nextId, citizenid, license, params[6], params[7], params[8], params[9], params[10], params[11] })
+        end)
+    end
+
+    if not ok then
+        lib.print.error(('gagal membuat karakter: %s'):format(err))
+        return false, 'Gagal menyimpan karakter'
+    end
+
+    return { coords = vec4(spawn.x, spawn.y, spawn.z, spawn.w), citizenid = citizenid }
+end)
+
+-- ----------------------------------------------------------------------------
+-- Pilih karakter
+-- ----------------------------------------------------------------------------
+
+lib.callback.register('sm_characters:select', function(source, citizenid)
+    local license = getLicense(source)
+    if not license then return false, 'Lisensi tidak terbaca' end
+
+    if QBCore.Functions.GetPlayer(source) then
+        return false, 'Karakter sudah dimuat'
+    end
+
+    local owner = MySQL.scalar.await('SELECT license FROM players WHERE citizenid = ?', { citizenid })
+    if not owner then return false, 'Karakter tidak ditemukan' end
+    if owner ~= license then return false, 'Karakter bukan milik Anda' end
+
+    local ok, result = pcall(QBCore.Player.Login, source, citizenid)
+    if not ok then
+        lib.print.error(('login gagal: %s'):format(result))
+        return false, 'Gagal memuat karakter'
+    end
+
+    if not result then return false, 'Gagal memuat karakter' end
+
+    return true, 'Karakter dimuat'
+end)
+
+-- ----------------------------------------------------------------------------
+-- Hapus karakter
+-- ----------------------------------------------------------------------------
+
+lib.callback.register('sm_characters:delete', function(source, citizenid)
+    local license = getLicense(source)
+    if not license then return false, 'Lisensi tidak terbaca' end
+
+    local owner = MySQL.scalar.await('SELECT license FROM players WHERE citizenid = ?', { citizenid })
+    if not owner then return false, 'Karakter tidak ditemukan' end
+    if owner ~= license then return false, 'Karakter bukan milik Anda' end
+
+    local total = MySQL.scalar.await('SELECT COUNT(*) FROM players WHERE license = ?', { license }) or 0
+    if total <= 1 then return false, 'Karakter terakhir tidak bisa dihapus' end
+
+    local player = QBCore.Functions.GetPlayer(source)
+    if player and player.PlayerData.citizenid == citizenid then
+        TriggerEvent('QBCore:Server:OnPlayerUnload', source)
+        QBCore.Players[source] = nil
+    end
+
+    MySQL.query.await('DELETE FROM players WHERE citizenid = ?', { citizenid })
+    MySQL.query.await('DELETE FROM playerskins WHERE citizenid = ?', { citizenid })
+    MySQL.query.await('DELETE FROM character_partners WHERE citizenid = ? OR partner = ?', { citizenid, citizenid })
+    MySQL.query.await('DELETE FROM character_invites WHERE citizenid = ? OR target = ?', { citizenid, citizenid })
+
+    return true, 'Karakter dihapus'
+end)
+
+-- ----------------------------------------------------------------------------
+-- Spawn
+-- ----------------------------------------------------------------------------
+
+lib.callback.register('sm_characters:spawn', function(source, id)
+    local player = QBCore.Functions.GetPlayer(source)
+    if not player then return false, 'Karakter belum dimuat' end
+
+    local position = player.PlayerData.position
+    if not position or not position.x then position = locationById(id) end
+    if not position or not position.x then position = DEFAULT_SPAWN end
+
+    local heading = position.w or position.a or 0.0
+
+    SetEntityCoords(source, position.x + 0.0, position.y + 0.0, position.z + 0.0, false, false, false, false)
+    SetEntityHeading(source, heading)
+    SetPlayerRoutingBucket(source, 0)
+
+    return true
+end)
+
+RegisterNetEvent('sm_characters:server:spawned', function()
+    local src = source
+    local player = QBCore.Functions.GetPlayer(src)
+    if not player then return end
+
+    player.PlayerData.metadata.invBusy = false
+    TriggerClientEvent('QBCore:Player:SetPlayerData', src, player.PlayerData)
+    TriggerEvent('QBCore:Server:OnPlayerSpawned', src)
+end)
+
+-- ----------------------------------------------------------------------------
+-- Partner
+-- ----------------------------------------------------------------------------
+
+local function myCitizen(source)
+    local player = QBCore.Functions.GetPlayer(source)
+    return player and player.PlayerData.citizenid or nil
+end
+
+local function partnerOf(citizenid)
+    return MySQL.scalar.await('SELECT partner FROM character_partners WHERE citizenid = ?', { citizenid })
+end
+
+local function pushPartnerState(source)
+    local citizenid = myCitizen(source)
+    if not citizenid then return end
+
+    local partner = partnerOf(citizenid)
+    local payload = { partner = nil }
+
+    if partner then
+        local info = MySQL.scalar.await('SELECT charinfo FROM players WHERE citizenid = ?', { partner })
+        payload.partner = { citizenid = partner, name = fullName(decode(info)) }
+    end
+
+    local outgoing = MySQL.query.await('SELECT target AS citizenid FROM character_invites WHERE citizenid = ?', { citizenid }) or {}
+    local incoming = MySQL.query.await('SELECT citizenid FROM character_invites WHERE target = ?', { citizenid }) or {}
+
+    payload.outgoing = outgoing
+    payload.incoming = incoming
+
+    TriggerClientEvent('sm_characters:client:partnerSync', source, payload)
+end
+
+lib.callback.register('sm_characters:partner:invite', function(source, target)
+    local citizenid = myCitizen(source)
+    if not citizenid then return false, 'Karakter belum dimuat' end
+    if type(target) ~= 'string' then return false, 'Target tidak valid' end
+    if target == citizenid then return false, 'Tidak bisa mengundang diri sendiri' end
+
+    if partnerOf(citizenid) then return false, 'Anda sudah punya partner' end
+    if partnerOf(target) then return false, 'Target sudah punya partner' end
+
+    local targetLicense = MySQL.scalar.await('SELECT license FROM players WHERE citizenid = ?', { target })
+    if not targetLicense then return false, 'Karakter target tidak ditemukan' end
+
+    local targetSrc
+    for src, player in pairs(QBCore.Players) do
+        if player.PlayerData.citizenid == target then targetSrc = src break end
+    end
+    if not targetSrc then return false, 'Target sedang offline' end
+
+    local exists = MySQL.scalar.await('SELECT citizenid FROM character_invites WHERE citizenid = ? AND target = ?', { citizenid, target })
+    if exists then return false, 'Undangan sudah dikirim' end
+
+    MySQL.insert.await('INSERT INTO character_invites (citizenid, target, expires) VALUES (?, ?, ?)',
+        { citizenid, target, os.time() + INVITE_TTL })
+
+    notify(targetSrc, 'Undangan partner masuk', 'inform')
+    pushPartnerState(targetSrc)
+    pushPartnerState(source)
+
+    return true, 'Undangan dikirim'
+end)
+
+lib.callback.register('sm_characters:partner:respond', function(source, inviter, accept)
+    local citizenid = myCitizen(source)
+    if not citizenid then return false, 'Karakter belum dimuat' end
+
+    local expires = MySQL.scalar.await('SELECT expires FROM character_invites WHERE citizenid = ? AND target = ?', { inviter, citizenid })
+    if not expires then return false, 'Undangan tidak ditemukan' end
+
+    MySQL.query.await('DELETE FROM character_invites WHERE citizenid = ? AND target = ?', { inviter, citizenid })
+
+    if not accept then
+        pushPartnerState(source)
+        return true, 'Undangan ditolak'
+    end
+
+    if expires < os.time() then return false, 'Undangan kedaluwarsa' end
+    if partnerOf(citizenid) or partnerOf(inviter) then return false, 'Salah satu sudah punya partner' end
+
+    local now = os.time()
+    MySQL.query.await('DELETE FROM character_partners WHERE citizenid IN (?, ?)', { citizenid, inviter })
+    MySQL.insert.await('INSERT INTO character_partners (citizenid, partner, since) VALUES (?, ?, ?), (?, ?, ?)',
+        { citizenid, inviter, now, inviter, citizenid, now })
+
+    local inviterSrc
+    for src, player in pairs(QBCore.Players) do
+        if player.PlayerData.citizenid == inviter then inviterSrc = src break end
+    end
+
+    if inviterSrc then
+        notify(inviterSrc, 'Undangan partner diterima', 'success')
+        pushPartnerState(inviterSrc)
+    end
+
+    pushPartnerState(source)
+    return true, 'Undangan diterima'
+end)
+
+lib.callback.register('sm_characters:partner:cancel', function(source, target)
+    local citizenid = myCitizen(source)
+    if not citizenid then return false, 'Karakter belum dimuat' end
+
+    MySQL.query.await('DELETE FROM character_invites WHERE citizenid = ? AND target = ?', { citizenid, target })
+    pushPartnerState(source)
+
+    return true, 'Undangan dibatalkan'
+end)
+
+lib.callback.register('sm_characters:partner:remove', function(source, target)
+    local citizenid = myCitizen(source)
+    if not citizenid then return false, 'Karakter belum dimuat' end
+
+    local partner = partnerOf(citizenid)
+    if not partner then return false, 'Tidak ada partner' end
+    if target and target ~= partner then return false, 'Bukan partner Anda' end
+
+    MySQL.query.await('DELETE FROM character_partners WHERE citizenid IN (?, ?)', { citizenid, partner })
+    MySQL.query.await('DELETE FROM character_invites WHERE citizenid IN (?, ?) OR target IN (?, ?)', { citizenid, partner, citizenid, partner })
+
+    pushPartnerState(source)
+
+    for src, player in pairs(QBCore.Players) do
+        if player.PlayerData.citizenid == partner then
+            notify(src, 'Partner Anda memutuskan hubungan', 'inform')
+            pushPartnerState(src)
+            break
+        end
+    end
+
+    return true, 'Partner diputus'
+end)
+
+lib.print.info('sm_character server siap')
+

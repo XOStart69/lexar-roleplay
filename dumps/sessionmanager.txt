@@ -1,0 +1,131 @@
+########## MANIFEST: A:\Lexar Roleplay\resources\[00_core]\sessionmanager
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+-- This resource is part of the default Cfx.re asset pack (cfx-server-data)
+-- Altering or recreating for local use only is strongly discouraged.
+
+version '1.0.0'
+author 'Cfx.re <root@cfx.re>'
+description 'Handles the "host lock" for non-OneSync servers. Do not disable.'
+repository 'https://github.com/citizenfx/cfx-server-data'
+
+fx_version 'cerulean'
+
+games { 'gta4', 'gta5' }
+
+server_script 'server/host_lock.lua'
+client_script 'client/empty.lua'
+
+lua54 'yes'
+
+dependency 'se_v2'
+
+
+########## FILE: \fxmanifest.lua
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+-- This resource is part of the default Cfx.re asset pack (cfx-server-data)
+-- Altering or recreating for local use only is strongly discouraged.
+
+version '1.0.0'
+author 'Cfx.re <root@cfx.re>'
+description 'Handles the "host lock" for non-OneSync servers. Do not disable.'
+repository 'https://github.com/citizenfx/cfx-server-data'
+
+fx_version 'cerulean'
+
+games { 'gta4', 'gta5' }
+
+server_script 'server/host_lock.lua'
+client_script 'client/empty.lua'
+
+lua54 'yes'
+
+dependency 'se_v2'
+
+
+########## FILE: \client\empty.lua
+-- This empty file causes the scheduler.lua to load clientside
+-- scheduler.lua when loaded inside the sessionmanager resource currently manages remote callbacks.
+-- Without this, callbacks will only work server->client and not client->server.
+
+########## FILE: \server\host_lock.lua
+-- whitelist c2s events
+RegisterServerEvent('hostingSession')
+RegisterServerEvent('hostedSession')
+
+-- event handler for pre-session 'acquire'
+local currentHosting
+local hostReleaseCallbacks = {}
+
+-- TODO: add a timeout for the hosting lock to be held
+-- TODO: add checks for 'fraudulent' conflict cases of hosting attempts (typically whenever the host can not be reached)
+AddEventHandler('hostingSession', function()
+    -- if the lock is currently held, tell the client to await further instruction
+    if currentHosting then
+        TriggerClientEvent('sessionHostResult', source, 'wait')
+
+        -- register a callback for when the lock is freed
+        table.insert(hostReleaseCallbacks, function()
+            TriggerClientEvent('sessionHostResult', source, 'free')
+        end)
+
+        return
+    end
+
+    -- if the current host was last contacted less than a second ago
+    if GetHostId() >= 1 then
+        if GetPlayerLastMsg(GetHostId()) < 1000 then
+            TriggerClientEvent('sessionHostResult', source, 'conflict')
+
+            return
+        end
+    end
+
+    hostReleaseCallbacks = {}
+
+    currentHosting = source
+
+    TriggerClientEvent('sessionHostResult', source, 'go')
+
+    -- set a timeout of 5 seconds
+    SetTimeout(5000, function()
+        if not currentHosting then
+            return
+        end
+
+        currentHosting = nil
+
+        for _, cb in ipairs(hostReleaseCallbacks) do
+            cb()
+        end
+    end)
+end)
+
+AddEventHandler('hostedSession', function()
+    -- check if the client is the original locker
+    if currentHosting ~= source then
+        -- TODO: drop client as they're clearly lying
+        print(currentHosting, '~=', source)
+        return
+    end
+
+    -- free the host lock (call callbacks and remove the lock value)
+    for _, cb in ipairs(hostReleaseCallbacks) do
+        cb()
+    end
+
+    currentHosting = nil
+end)
+
+EnableEnhancedHostSupport(true)

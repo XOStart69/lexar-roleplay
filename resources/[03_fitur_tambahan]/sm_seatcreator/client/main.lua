@@ -140,6 +140,7 @@ end
 local function LoadTarget ( data, Edit )
 
     data = data or RHD.TargetZoneData
+    RHD.TargetZoneData = data
 
     if Edit then
         for k, v in pairs(RHD.TargetZoneCreated) do

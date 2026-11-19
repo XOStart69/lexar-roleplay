@@ -9,13 +9,13 @@ author 'Polars armoury'
 description 'Made By Polar | https://discord.gg/PjNgP4tAv9'
 version '1.2'
 
--- client_scripts {
---     'client.lua',
---     "cl_weaponNames.lua"
--- }
+client_scripts {
+    'client.lua',
+    'cl_weaponNames.lua'
+}
 
--- server_script "server.lua"
--- shared_script "config.lua"
+server_script 'server.lua'
+shared_script 'config.lua'
 
 files{
 --	'**/weaponcomponents.meta',

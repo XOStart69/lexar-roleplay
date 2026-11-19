@@ -9,6 +9,12 @@ return {
 
     stash = { slots = 10, weight = 5000 },
 
+    printItem = 'paper',
+    refillPaperItem = 'paper',
+    refillInkItem = 'printer_ink',
+    refillPaperAmount = 25,
+    inkMax = 100,
+
     printerModels = {
         'v_res_printer',
         'prop_printer_02',

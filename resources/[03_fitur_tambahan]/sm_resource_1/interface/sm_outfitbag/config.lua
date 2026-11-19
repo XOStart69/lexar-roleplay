@@ -2,6 +2,9 @@ return {
     -- Masa berlaku item (hari) sejak pertama kali di-use (di-bind ke pemilik).
     ExpireDays = 30,
 
+    -- Nama item di ox_inventory.
+    Item = 'outfitbag',
+
     BagProp = `prop_cs_heist_bag_02`,
 
     InteractDistance = 2.5,

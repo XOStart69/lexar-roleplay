@@ -383,3 +383,7 @@ CreateThread(function()
         end
     end
 end)
+
+RegisterNetEvent(event('client:notify'), function(description, notifyType)
+    State.notify(description, notifyType)
+end)

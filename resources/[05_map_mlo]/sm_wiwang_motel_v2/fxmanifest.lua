@@ -14,7 +14,7 @@ shared_scripts {
 }
 
 client_scripts {
-    -- 'client.lua',
+    'client.lua',
     'dev/rooms.lua',
 }
 

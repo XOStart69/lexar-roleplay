@@ -10,6 +10,8 @@ local config_management = localmodule 'config.management'
 local blipModule = require 'modules.blipHandle.client'
 local timer = require 'modules.timers.shared'
 
+local QBCore = exports['qb-core']:GetCoreObject()
+
 ---@class libSpawnVehicleClientParams
 ---@field model string|integer
 ---@field coords vector4
@@ -147,6 +149,7 @@ local function setupTrailer(stationID)
             SetEntityCompletelyDisableCollision(trailerEntity, false, false)
             
             Entity(trailerEntity).state:set('fuel_station', stationID, true)
+            Entity(trailerEntity).state:set('fuel_owner', QBCore.Functions.GetPlayerData().citizenid, true)
             playerState.mf_trailer = trailerEntity
 
             CreateThread(function ()
@@ -252,6 +255,7 @@ lib.callback.register('fuelsystem:startMission', function ()
     end)
 
     Entity(vehicle).state:set('fuel_station', stationid, true)
+    Entity(vehicle).state:set('fuel_owner', QBCore.Functions.GetPlayerData().citizenid, true)
     playerState.mf_vehicle = vehicle
 
     lib.notify({
@@ -266,4 +270,3 @@ end)
 RegisterNetEvent('fuelsystem:resetMission', function ()
     if source == '' then return end clear()
 end)
-

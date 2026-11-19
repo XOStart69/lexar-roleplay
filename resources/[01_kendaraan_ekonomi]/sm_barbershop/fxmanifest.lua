@@ -10,13 +10,14 @@ ui_page 'html/index.html'
 
 shared_scripts {
     '@ox_lib/init.lua',
-    'core.lua'
+    '@se_v2/trigger.lua',
+    'core.lua',
 }
 
 files {
     'html/**/*',
     'config/*.lua',
-    'modules/**/*.lua'
+    'modules/**/*.lua',
 }
 
 dependencies {
@@ -24,5 +25,6 @@ dependencies {
     'ox_target',
     'oxmysql',
     'sm_core',
-    'sm_appearance'
+    'sm_appearance',
 }
+dependency 'se_v2'

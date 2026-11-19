@@ -33,7 +33,7 @@ local query = {
             query = [[
                 SELECT 
                     pv.vehicle, pv.hash, pv.plate, pv.state, pv.depotprice, JSON_EXTRACT(pv.mods, '$.plateIndex') AS plateIndex, (
-                        SELECT 1 FROM rhd_pimpound rp WHERE pv.citizenid = rp.citizenid AND pv.plate = rp.plate) AS impounded
+                        SELECT 1 FROM sm_impound rp WHERE pv.citizenid = rp.citizenid AND pv.plate = rp.plate AND rp.released = 0) AS impounded
                 FROM player_vehicles pv
                 WHERE pv.citizenid = ? AND (pv.state = 0 OR pv.state = 2)
             ]],
@@ -49,8 +49,8 @@ Citizen.CreateThreadNow(function ()
         UPDATE player_vehicles pv
         SET pv.state = 0
         WHERE pv.state = 2 AND NOT EXISTS (
-            SELECT 1 FROM rhd_pimpound rp
-            WHERE pv.citizenid = rp.citizenid AND pv.plate = rp.plate
+            SELECT 1 FROM sm_impound rp
+            WHERE pv.citizenid = rp.citizenid AND pv.plate = rp.plate AND rp.released = 0
         )
     ]])
 end)

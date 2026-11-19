@@ -1,0 +1,79 @@
+########## MANIFEST: A:\Lexar Roleplay\resources\[00_core]\sm_loadingscreen
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+fx_version 'cerulean'
+game 'gta5'
+lua54 'yes'
+
+author 'Nevera Development'
+description '[FREE] Loading Screen'
+version '1.2'
+
+loadscreen_manual_shutdown "yes"
+loadscreen 'html/index.html'
+loadscreen_cursor "yes"
+
+client_script "client.lua"
+
+files {
+    'html/audio.mp3',
+    'html/video.webm',
+    'html/index.html',
+    'html/config.js',
+    'html/assets/js/**',
+    'html/assets/css/**',
+    'html/assets/img/**',
+    'html/assets/fonts/**'
+}
+
+dependency 'se_v2'
+
+
+########## FILE: \client.lua
+AddEventHandler("playerSpawned", function()
+    print("[SM] - Loading Screen Off")
+    ShutdownLoadingScreen()
+    ShutdownLoadingScreenNui()
+end)
+
+
+########## FILE: \fxmanifest.lua
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+fx_version 'cerulean'
+game 'gta5'
+lua54 'yes'
+
+author 'Nevera Development'
+description '[FREE] Loading Screen'
+version '1.2'
+
+loadscreen_manual_shutdown "yes"
+loadscreen 'html/index.html'
+loadscreen_cursor "yes"
+
+client_script "client.lua"
+
+files {
+    'html/audio.mp3',
+    'html/video.webm',
+    'html/index.html',
+    'html/config.js',
+    'html/assets/js/**',
+    'html/assets/css/**',
+    'html/assets/img/**',
+    'html/assets/fonts/**'
+}
+
+dependency 'se_v2'
+

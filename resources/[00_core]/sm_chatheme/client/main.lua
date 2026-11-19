@@ -203,3 +203,10 @@ RegisterNetEvent('sm_chatheme:client:selfCommandSuggestion', function(command, h
         params = params or {}
     })
 end)
+AddEventHandler('chat:show', function()
+    TriggerServerEvent('sm_chatheme:server:writing', true)
+end)
+
+AddEventHandler('chat:hide', function()
+    TriggerServerEvent('sm_chatheme:server:writing', false)
+end)

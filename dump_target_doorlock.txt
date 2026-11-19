@@ -1,0 +1,2911 @@
+
+########## RESOURCE: A:\Lexar Roleplay\resources\[00_core]\ox_target
+
+########## MANIFEST
+-- FX Information
+fx_version 'cerulean'
+use_experimental_fxv2_oal 'yes'
+nui_callback_strict_mode 'true'
+lua54 'yes'
+game 'gta5'
+
+-- Resource Information
+name 'ox_target'
+author 'Overextended'
+version '1.18.1'
+repository 'https://github.com/overextended/ox_target'
+description 'Prodigy 4.0 RP Inspired Target System'
+
+-- Manifest
+ui_page 'html/index.html'
+
+shared_scripts {
+    '@ox_lib/init.lua',
+}
+
+client_scripts {
+    'client/main.lua',
+}
+
+server_scripts {
+    'server/main.lua'
+}
+
+files {
+    'html/index.html',
+    'html/**/*',
+    'locales/*.json',
+    'client/api.lua',
+    'client/utils.lua',
+    'client/state.lua',
+    'client/debug.lua',
+    'client/defaults.lua',
+    'client/framework/nd.lua',
+    'client/framework/ox.lua',
+    'client/framework/esx.lua',
+    'client/framework/qbx.lua',
+    'client/framework/qb.lua',
+    'client/compat/qtarget.lua',
+}
+
+provide 'qtarget'
+
+dependency 'ox_lib'
+
+
+
+
+########## FILE: \fxmanifest.lua
+-- FX Information
+fx_version 'cerulean'
+use_experimental_fxv2_oal 'yes'
+nui_callback_strict_mode 'true'
+lua54 'yes'
+game 'gta5'
+
+-- Resource Information
+name 'ox_target'
+author 'Overextended'
+version '1.18.1'
+repository 'https://github.com/overextended/ox_target'
+description 'Prodigy 4.0 RP Inspired Target System'
+
+-- Manifest
+ui_page 'html/index.html'
+
+shared_scripts {
+    '@ox_lib/init.lua',
+}
+
+client_scripts {
+    'client/main.lua',
+}
+
+server_scripts {
+    'server/main.lua'
+}
+
+files {
+    'html/index.html',
+    'html/**/*',
+    'locales/*.json',
+    'client/api.lua',
+    'client/utils.lua',
+    'client/state.lua',
+    'client/debug.lua',
+    'client/defaults.lua',
+    'client/framework/nd.lua',
+    'client/framework/ox.lua',
+    'client/framework/esx.lua',
+    'client/framework/qbx.lua',
+    'client/framework/qb.lua',
+    'client/compat/qtarget.lua',
+}
+
+provide 'qtarget'
+
+dependency 'ox_lib'
+
+
+
+
+########## FILE: \client\api.lua
+---@class OxTargetOption
+---@field resource? string
+
+local utils = require 'client.utils'
+
+local api = setmetatable({}, {
+    __newindex = function(self, index, value)
+        rawset(self, index, value)
+        exports(index, value)
+    end
+})
+
+---Throws a formatted type error
+---@param variable string
+---@param expected string
+---@param received string
+local function typeError(variable, expected, received)
+    error(("expected %s to have type '%s' (received %s)"):format(variable, expected, received))
+end
+
+---Checks options and throws an error on type mismatch
+---@param options OxTargetOption | OxTargetOption[]
+---@return OxTargetOption[]
+local function checkOptions(options)
+    local optionsType = type(options)
+
+    if optionsType ~= 'table' then
+        typeError('options', 'table', optionsType)
+    end
+
+    local tableType = table.type(options)
+
+    if tableType == 'hash' and options.label then
+        options = { options }
+    elseif tableType ~= 'array' then
+        typeError('options', 'array', ('%s table'):format(tableType))
+    end
+
+    return options
+end
+
+---@param data OxTargetPolyZone | table
+---@return number
+function api.addPolyZone(data)
+    if data.debug then utils.warn('Creating new PolyZone with debug enabled.') end
+
+    data.resource = GetInvokingResource()
+    data.options = checkOptions(data.options)
+    return lib.zones.poly(data).id
+end
+
+---@param data OxTargetBoxZone | table
+---@return number
+function api.addBoxZone(data)
+    if data.debug then utils.warn('Creating new BoxZone with debug enabled.') end
+
+    data.resource = GetInvokingResource()
+    data.options = checkOptions(data.options)
+    return lib.zones.box(data).id
+end
+
+---@param data OxTargetSphereZone | table
+---@return number
+function api.addSphereZone(data)
+    if data.debug then utils.warn('Creating new SphereZone with debug enabled.') end
+
+    data.resource = GetInvokingResource()
+    data.options = checkOptions(data.options)
+    return lib.zones.sphere(data).id
+end
+
+---@param id number | string The ID of the zone to check. It can be either a number or a string representing the zone's index or name, respectively.
+---@return boolean returns true if the zone with the specified ID exists, otherwise false.
+function api.zoneExists(id)
+    if not Zones or (type(id) ~= 'number' and type(id) ~= 'string') then return false end
+
+    if type(id) == 'number' and Zones[id] then return true end
+
+    for _, zone in pairs(lib.zones.getAllZones()) do
+        if type(id) == 'string' and zone.name == id then return true end
+    end
+
+    return false
+end
+
+---@param id number | string
+---@param suppressWarning boolean?
+function api.removeZone(id, suppressWarning)
+    if Zones then
+        if type(id) == 'string' then
+            local foundZone
+
+            for _, v in pairs(lib.zones.getAllZones()) do
+                if v.name == id then
+                    foundZone = true
+                    v:remove()
+                end
+            end
+
+            if foundZone then return end
+        elseif Zones[id] then
+            return Zones[id]:remove()
+        end
+    end
+
+    if suppressWarning then return end
+
+    warn(('attempted to remove a zone that does not exist (id: %s)'):format(id))
+end
+
+---@param target table
+---@param remove string | string[]
+---@param resource string
+---@param showWarning? boolean
+local function removeTarget(target, remove, resource, showWarning)
+    if type(remove) ~= 'table' then remove = { remove } end
+
+    for i = #target, 1, -1 do
+        local option = target[i]
+
+        if option.resource == resource then
+            for j = #remove, 1, -1 do
+                if option.name == remove[j] then
+                    table.remove(target, i)
+
+                    if showWarning then
+                        utils.warn(("Replacing existing target option '%s'."):format(option.name))
+                    end
+                end
+            end
+        end
+    end
+end
+
+---@param target table
+---@param options OxTargetOption | OxTargetOption[]
+---@param resource string
+local function addTarget(target, options, resource)
+    options = checkOptions(options)
+
+    local checkNames = {}
+
+    resource = resource or 'ox_target'
+
+    for i = 1, #options do
+        local option = options[i]
+        option.resource = resource
+
+        if option.name then
+            checkNames[#checkNames + 1] = option.name
+        end
+    end
+
+    if checkNames[1] then
+        removeTarget(target, checkNames, resource, true)
+    end
+
+    local num = #target
+
+    for i = 1, #options do
+        local option = options[i]
+
+        if resource == 'ox_target' then
+            if option.canInteract then
+                option.canInteract = msgpack.unpack(msgpack.pack(option.canInteract))
+            end
+
+            if option.onSelect then
+                option.onSelect = msgpack.unpack(msgpack.pack(option.onSelect))
+            end
+        end
+
+        num += 1
+        target[num] = options[i]
+    end
+end
+
+---@type table<number, OxTargetOption[]>
+local peds = {}
+
+---@param options OxTargetOption | OxTargetOption[]
+function api.addGlobalPed(options)
+    addTarget(peds, options, GetInvokingResource())
+end
+
+---@param options string | string[]
+function api.removeGlobalPed(options)
+    removeTarget(peds, options, GetInvokingResource())
+end
+
+---@type table<number, OxTargetOption[]>
+local vehicles = {}
+
+---@param options OxTargetOption | OxTargetOption[]
+function api.addGlobalVehicle(options)
+    addTarget(vehicles, options, GetInvokingResource())
+end
+
+---@param options string | string[]
+function api.removeGlobalVehicle(options)
+    removeTarget(vehicles, options, GetInvokingResource())
+end
+
+---@type table<number, OxTargetOption[]>
+local objects = {}
+
+---@param options OxTargetOption | OxTargetOption[]
+function api.addGlobalObject(options)
+    addTarget(objects, options, GetInvokingResource())
+end
+
+---@param options string | string[]
+function api.removeGlobalObject(options)
+    removeTarget(objects, options, GetInvokingResource())
+end
+
+---@type table<number, OxTargetOption[]>
+local players = {}
+
+---@param options OxTargetOption | OxTargetOption[]
+function api.addGlobalPlayer(options)
+    addTarget(players, options, GetInvokingResource())
+end
+
+---@param options string | string[]
+function api.removeGlobalPlayer(options)
+    removeTarget(players, options, GetInvokingResource())
+end
+
+---@type table<number, OxTargetOption[]>
+local models = {}
+
+---@param arr (number | string) | (number | string)[]
+---@param options OxTargetOption | OxTargetOption[]
+function api.addModel(arr, options)
+    if type(arr) ~= 'table' then arr = { arr } end
+    local resource = GetInvokingResource()
+
+    for i = 1, #arr do
+        local model = arr[i]
+        model = tonumber(model) or joaat(model)
+
+        if not models[model] then
+            models[model] = {}
+        end
+
+        addTarget(models[model], options, resource)
+    end
+end
+
+---@param arr (number | string) | (number | string)[]
+---@param options? string | string[]
+function api.removeModel(arr, options)
+    if type(arr) ~= 'table' then arr = { arr } end
+    local resource = GetInvokingResource()
+
+    for i = 1, #arr do
+        local model = arr[i]
+        model = tonumber(model) or joaat(model)
+
+        if models[model] then
+            if options then
+                removeTarget(models[model], options, resource)
+            end
+
+            if not options or #models[model] == 0 then
+                models[model] = nil
+            end
+        end
+    end
+end
+
+---@type table<number, OxTargetOption[]>
+local entities = {}
+
+---@param arr number | number[]
+---@param options OxTargetOption | OxTargetOption[]
+function api.addEntity(arr, options)
+    if type(arr) ~= 'table' then arr = { arr } end
+    local resource = GetInvokingResource()
+
+    for i = 1, #arr do
+        local netId = arr[i]
+
+        if NetworkDoesNetworkIdExist(netId) then
+            if not entities[netId] then
+                entities[netId] = {}
+
+                if not Entity(NetworkGetEntityFromNetworkId(netId)).state.hasTargetOptions then
+                    TriggerServerEvent('ox_target:setEntityHasOptions', netId)
+                end
+            end
+
+            addTarget(entities[netId], options, resource)
+        end
+    end
+end
+
+---@param arr number | number[]
+---@param options? string | string[]
+function api.removeEntity(arr, options)
+    if type(arr) ~= 'table' then arr = { arr } end
+    local resource = GetInvokingResource()
+
+    for i = 1, #arr do
+        local netId = arr[i]
+
+        if entities[netId] then
+            if options then
+                removeTarget(entities[netId], options, resource)
+            end
+
+            if not options or #entities[netId] == 0 then
+                entities[netId] = nil
+            end
+        end
+    end
+end
+
+RegisterNetEvent('ox_target:removeEntity', api.removeEntity)
+
+---@type table<number, OxTargetOption[]>
+local localEntities = {}
+
+---@param arr number | number[]
+---@param options OxTargetOption | OxTargetOption[]
+function api.addLocalEntity(arr, options)
+    if type(arr) ~= 'table' then arr = { arr } end
+    local resource = GetInvokingResource()
+
+    for i = 1, #arr do
+        local entityId = arr[i]
+
+        if DoesEntityExist(entityId) then
+            if not localEntities[entityId] then
+                localEntities[entityId] = {}
+            end
+
+            addTarget(localEntities[entityId], options, resource)
+        else
+             lib.print.warn(("No entity with id '%s' exists in %s."):format(entityId, resource))
+        end
+    end
+end
+
+---@param arr number | number[]
+---@param options? table
+function api.removeLocalEntity(arr, options)
+    if type(arr) ~= 'table' then arr = { arr } end
+    local resource = GetInvokingResource()
+
+    for i = 1, #arr do
+        local entity = arr[i]
+
+        if localEntities[entity] then
+            if options then
+                removeTarget(localEntities[entity], options, resource)
+            end
+
+            if not options or #localEntities[entity] == 0 then
+                localEntities[entity] = nil
+            end
+        end
+    end
+end
+
+CreateThread(function()
+    while true do
+        Wait(60000)
+
+        for entityId in pairs(localEntities) do
+            if not DoesEntityExist(entityId) then
+                localEntities[entityId] = nil
+            end
+        end
+    end
+end)
+
+---@param resource string
+---@param target table
+local function removeResourceGlobals(resource, target)
+    for i = 1, #target do
+        local options = target[i]
+
+        for j = #options, 1, -1 do
+            if options[j].resource == resource then
+                table.remove(options, j)
+            end
+        end
+    end
+end
+
+---@param resource string
+---@param target table
+local function removeResourceTargets(resource, target)
+    for i = 1, #target do
+        local tbl = target[i]
+
+        for key, options in pairs(tbl) do
+            for j = #options, 1, -1 do
+                if options[j].resource == resource then
+                    table.remove(options, j)
+                end
+            end
+
+            if #options == 0 then
+                tbl[key] = nil
+            end
+        end
+    end
+end
+
+---@param resource string
+AddEventHandler('onClientResourceStop', function(resource)
+    removeResourceGlobals(resource, { peds, vehicles, objects, players })
+    removeResourceTargets(resource, { models, entities, localEntities })
+
+    if Zones then
+        for _, v in pairs(Zones) do
+            if v.resource == resource then
+                v:remove()
+            end
+        end
+    end
+end)
+
+local NetworkGetEntityIsNetworked = NetworkGetEntityIsNetworked
+local NetworkGetNetworkIdFromEntity = NetworkGetNetworkIdFromEntity
+
+---@class OxTargetOptions
+local options_mt = {}
+options_mt.__index = options_mt
+options_mt.size = 1
+
+function options_mt:wipe()
+    options_mt.size = 1
+    self.globalTarget = nil
+    self.model = nil
+    self.entity = nil
+    self.localEntity = nil
+
+    if self.__global[1]?.name == 'builtin:goback' then
+        table.remove(self.__global, 1)
+    end
+end
+
+---@param entity? number
+---@param _type? number
+---@param model? number
+function options_mt:set(entity, _type, model)
+    if not entity then return end
+
+    if _type == 1 and IsPedAPlayer(entity) then
+        self:wipe()
+        self.globalTarget = players
+        options_mt.size += 1
+
+        return
+    end
+
+    local netId = NetworkGetEntityIsNetworked(entity) and NetworkGetNetworkIdFromEntity(entity)
+
+    self.globalTarget = _type == 1 and peds or _type == 2 and vehicles or objects
+    self.model = models[model]
+    self.entity = netId and entities[netId] or nil
+    self.localEntity = localEntities[entity]
+    options_mt.size += 1
+
+    if self.model then options_mt.size += 1 end
+    if self.entity then options_mt.size += 1 end
+    if self.localEntity then options_mt.size += 1 end
+end
+
+---@type OxTargetOption[]
+local global = {}
+
+---@param options OxTargetOption | OxTargetOption[]
+function api.addGlobalOption(options)
+    addTarget(global, options, GetInvokingResource())
+end
+
+---@param options string | string[]
+function api.removeGlobalOption(options)
+    removeTarget(global, options, GetInvokingResource())
+end
+
+---@class OxTargetOptions
+local options = setmetatable({
+    __global = global
+}, options_mt)
+
+---@param entity? number
+---@param _type? number
+---@param model? number
+function api.getTargetOptions(entity, _type, model)
+    if not entity then return options end
+
+    if IsPedAPlayer(entity) then
+        return {
+            global = players,
+        }
+    end
+
+    local netId = NetworkGetEntityIsNetworked(entity) and NetworkGetNetworkIdFromEntity(entity)
+
+    return {
+        global = _type == 1 and peds or _type == 2 and vehicles or objects,
+        model = models[model],
+        entity = netId and entities[netId] or nil,
+        localEntity = localEntities[entity],
+    }
+end
+
+local state = require 'client.state'
+
+function api.disableTargeting(value)
+    if value then
+        state.setActive(false)
+    end
+
+    state.setDisabled(value)
+end
+
+function api.isActive()
+    return state.isActive()
+end
+
+return api
+
+
+########## FILE: \client\debug.lua
+AddEventHandler('ox_target:debug', function(data)
+    if data.entity and GetEntityType(data.entity) > 0 then
+        data.archetype = GetEntityArchetypeName(data.entity)
+        data.model = GetEntityModel(data.entity)
+    end
+
+	print(json.encode(data, {indent=true}))
+end)
+
+if GetConvarInt('ox_target:debug', 0) ~= 1 then return end
+
+local ox_target = exports.ox_target
+local drawZones = true
+
+ox_target:addBoxZone({
+    coords = vec3(442.5363, -1017.666, 28.85637),
+    size = vec3(3, 3, 3),
+    rotation = 45,
+    debug = drawZones,
+    drawSprite = true,
+    options = {
+        {
+            name = 'debug_box',
+            event = 'ox_target:debug',
+            icon = 'fa-solid fa-cube',
+            label = locale('debug_box'),
+        }
+    }
+})
+
+ox_target:addSphereZone({
+    coords = vec3(440.5363, -1015.666, 28.85637),
+    radius = 3,
+    debug = drawZones,
+    drawSprite = true,
+    options = {
+        {
+            name = 'debug_sphere',
+            event = 'ox_target:debug',
+            icon = 'fa-solid fa-circle',
+            label = locale('debug_sphere'),
+        }
+    }
+})
+
+ox_target:addModel(`police`, {
+    {
+        name = 'debug_model',
+        event = 'ox_target:debug',
+        icon = 'fa-solid fa-handcuffs',
+        label = locale('debug_police_car'),
+    }
+})
+
+ox_target:addGlobalPed({
+    {
+        name = 'debug_ped',
+        event = 'ox_target:debug',
+        icon = 'fa-solid fa-male',
+        label = locale('debug_ped'),
+    }
+})
+
+ox_target:addGlobalVehicle({
+    {
+        name = 'debug_vehicle',
+        event = 'ox_target:debug',
+        icon = 'fa-solid fa-car',
+        label = locale('debug_vehicle'),
+    }
+})
+
+ox_target:addGlobalObject({
+    {
+        name = 'debug_object',
+        event = 'ox_target:debug',
+        icon = 'fa-solid fa-bong',
+        label = locale('debug_object'),
+    }
+})
+
+ox_target:addGlobalOption({
+    {
+        name = 'debug_global',
+        icon = 'fa-solid fa-globe',
+        label = locale('debug_global'),
+        openMenu = 'debug_global'
+    }
+})
+
+ox_target:addGlobalOption({
+    {
+        name = 'debug_global2',
+        event = 'ox_target:debug',
+        icon = 'fa-solid fa-globe',
+        label = locale('debug_global') .. ' 2',
+        menuName = 'debug_global'
+    }
+})
+
+########## FILE: \client\defaults.lua
+if GetConvarInt('ox_target:defaults', 1) ~= 1 then return end
+
+local api = require 'client.api'
+local GetEntityBoneIndexByName = GetEntityBoneIndexByName
+local GetEntityBonePosition_2 = GetEntityBonePosition_2
+local GetVehicleDoorLockStatus = GetVehicleDoorLockStatus
+
+local bones = {
+    [0] = 'dside_f',
+    [1] = 'pside_f',
+    [2] = 'dside_r',
+    [3] = 'pside_r'
+}
+
+---@param vehicle number
+---@param door number
+local function toggleDoor(vehicle, door)
+    if GetVehicleDoorLockStatus(vehicle) ~= 2 then
+        if GetVehicleDoorAngleRatio(vehicle, door) > 0.0 then
+            SetVehicleDoorShut(vehicle, door, false)
+        else
+            SetVehicleDoorOpen(vehicle, door, false, false)
+        end
+    end
+end
+
+---@param entity number
+---@param coords vector3
+---@param door number
+---@param useOffset boolean?
+---@return boolean?
+local function canInteractWithDoor(entity, coords, door, useOffset)
+    if not GetIsDoorValid(entity, door) or GetVehicleDoorLockStatus(entity) > 1 or IsVehicleDoorDamaged(entity, door) or cache.vehicle then return end
+
+    if useOffset then return true end
+
+    local boneName = bones[door]
+
+    if not boneName then return false end
+
+    local boneId = GetEntityBoneIndexByName(entity, 'door_' .. boneName)
+
+    if boneId ~= -1 then
+        return #(coords - GetEntityBonePosition_2(entity, boneId)) < 0.5 or
+            #(coords - GetEntityBonePosition_2(entity, GetEntityBoneIndexByName(entity, 'seat_' .. boneName))) < 0.72
+    end
+end
+
+local function onSelectDoor(data, door)
+    local entity = data.entity
+
+    if NetworkGetEntityOwner(entity) == cache.playerId then
+        return toggleDoor(entity, door)
+    end
+
+    TriggerServerEvent('ox_target:toggleEntityDoor', VehToNet(entity), door)
+end
+
+RegisterNetEvent('ox_target:toggleEntityDoor', function(netId, door)
+    local entity = NetToVeh(netId)
+    toggleDoor(entity, door)
+end)
+
+api.addGlobalVehicle({
+    {
+        name = 'ox_target:driverF',
+        icon = 'fa-solid fa-car-side',
+        label = locale('toggle_front_driver_door'),
+        bones = { 'door_dside_f', 'seat_dside_f' },
+        distance = 2,
+        canInteract = function(entity, distance, coords, name)
+            return canInteractWithDoor(entity, coords, 0)
+        end,
+        onSelect = function(data)
+            onSelectDoor(data, 0)
+        end
+    },
+    {
+        name = 'ox_target:passengerF',
+        icon = 'fa-solid fa-car-side',
+        label = locale('toggle_front_passenger_door'),
+        bones = { 'door_pside_f', 'seat_pside_f' },
+        distance = 2,
+        canInteract = function(entity, distance, coords, name)
+            return canInteractWithDoor(entity, coords, 1)
+        end,
+        onSelect = function(data)
+            onSelectDoor(data, 1)
+        end
+    },
+    {
+        name = 'ox_target:driverR',
+        icon = 'fa-solid fa-car-side',
+        label = locale('toggle_rear_driver_door'),
+        bones = { 'door_dside_r', 'seat_dside_r' },
+        distance = 2,
+        canInteract = function(entity, distance, coords)
+            return canInteractWithDoor(entity, coords, 2)
+        end,
+        onSelect = function(data)
+            onSelectDoor(data, 2)
+        end
+    },
+    {
+        name = 'ox_target:passengerR',
+        icon = 'fa-solid fa-car-side',
+        label = locale('toggle_rear_passenger_door'),
+        bones = { 'door_pside_r', 'seat_pside_r' },
+        distance = 2,
+        canInteract = function(entity, distance, coords)
+            return canInteractWithDoor(entity, coords, 3)
+        end,
+        onSelect = function(data)
+            onSelectDoor(data, 3)
+        end
+    },
+    {
+        name = 'ox_target:bonnet',
+        icon = 'fa-solid fa-car',
+        label = locale('toggle_hood'),
+        offset = vec3(0.5, 1, 0.5),
+        distance = 2,
+        canInteract = function(entity, distance, coords)
+            return canInteractWithDoor(entity, coords, 4, true)
+        end,
+        onSelect = function(data)
+            onSelectDoor(data, 4)
+        end
+    },
+    {
+        name = 'ox_target:trunk',
+        icon = 'fa-solid fa-car-rear',
+        label = locale('toggle_trunk'),
+        offset = vec3(0.5, 0, 0.5),
+        distance = 2,
+        canInteract = function(entity, distance, coords, name)
+            return canInteractWithDoor(entity, coords, 5, true)
+        end,
+        onSelect = function(data)
+            onSelectDoor(data, 5)
+        end
+    }
+})
+
+
+########## FILE: \client\main.lua
+if not lib.checkDependency('ox_lib', '3.30.0', true) then return end
+
+lib.locale()
+
+local utils = require 'client.utils'
+local state = require 'client.state'
+local options = require 'client.api'.getTargetOptions()
+
+require 'client.debug'
+require 'client.defaults'
+require 'client.compat.qtarget'
+
+local SendNuiMessage = SendNuiMessage
+local GetEntityCoords = GetEntityCoords
+local GetEntityType = GetEntityType
+local HasEntityClearLosToEntity = HasEntityClearLosToEntity
+local GetEntityBoneIndexByName = GetEntityBoneIndexByName
+local GetEntityBonePosition_2 = GetEntityBonePosition_2
+local GetEntityModel = GetEntityModel
+local IsDisabledControlJustPressed = IsDisabledControlJustPressed
+local DisableControlAction = DisableControlAction
+local DisablePlayerFiring = DisablePlayerFiring
+local GetModelDimensions = GetModelDimensions
+local GetOffsetFromEntityInWorldCoords = GetOffsetFromEntityInWorldCoords
+local currentTarget = {}
+local currentMenu
+local menuChanged
+local menuHistory = {}
+local nearbyZones
+
+-- Toggle ox_target, instead of holding the hotkey
+local toggleHotkey = GetConvarInt('ox_target:toggleHotkey', 0) == 1
+local mouseButton = GetConvarInt('ox_target:leftClick', 1) == 1 and 24 or 25
+local debug = GetConvarInt('ox_target:debug', 0) == 1
+local vec0 = vec3(0, 0, 0)
+
+---@param option OxTargetOption
+---@param distance number
+---@param endCoords vector3
+---@param entityHit? number
+---@param entityType? number
+---@param entityModel? number | false
+local function shouldHide(option, distance, endCoords, entityHit, entityType, entityModel)
+    if option.menuName ~= currentMenu then
+        return true
+    end
+
+    if distance > (option.distance or 7) then
+        return true
+    end
+
+    if option.groups and not utils.hasPlayerGotGroup(option.groups) then
+        return true
+    end
+
+    if option.items and not utils.hasPlayerGotItems(option.items, option.anyItem) then
+        return true
+    end
+
+    local bone = entityModel and option.bones or nil
+
+    if bone then
+        ---@cast entityHit number
+        ---@cast entityType number
+        ---@cast entityModel number
+
+        local _type = type(bone)
+
+        if _type == 'string' then
+            local boneId = GetEntityBoneIndexByName(entityHit, bone)
+
+            if boneId ~= -1 and #(endCoords - GetEntityBonePosition_2(entityHit, boneId)) <= 2 then
+                bone = boneId
+            else
+                return true
+            end
+        elseif _type == 'table' then
+            local closestBone, boneDistance
+
+            for j = 1, #bone do
+                local boneId = GetEntityBoneIndexByName(entityHit, bone[j])
+
+                if boneId ~= -1 then
+                    local dist = #(endCoords - GetEntityBonePosition_2(entityHit, boneId))
+
+                    if dist <= (boneDistance or 1) then
+                        closestBone = boneId
+                        boneDistance = dist
+                    end
+                end
+            end
+
+            if closestBone then
+                bone = closestBone
+            else
+                return true
+            end
+        end
+    end
+
+    local offset = entityModel and option.offset or nil
+
+    if offset then
+        ---@cast entityHit number
+        ---@cast entityType number
+        ---@cast entityModel number
+
+        if not option.absoluteOffset then
+            local min, max = GetModelDimensions(entityModel)
+            offset = (max - min) * offset + min
+        end
+
+        offset = GetOffsetFromEntityInWorldCoords(entityHit, offset.x, offset.y, offset.z)
+
+        if #(endCoords - offset) > (option.offsetSize or 1) then
+            return true
+        end
+    end
+
+    if option.canInteract then
+        local success, resp = pcall(option.canInteract, entityHit, distance, endCoords, option.name, bone)
+        return not success or not resp
+    end
+end
+
+local function startTargeting()
+    if state.isDisabled() or state.isActive() or IsNuiFocused() or IsPauseMenuActive() then return end
+
+    state.setActive(true)
+
+    local flag = 511
+    local hit, entityHit, endCoords, distance, lastEntity, entityType, entityModel, hasTarget, zonesChanged
+    local zones = {}
+
+    CreateThread(function()
+        local dict, texture = utils.getTexture()
+        local lastCoords
+
+        while state.isActive() do
+            lastCoords = endCoords == vec0 and lastCoords or endCoords or vec0
+
+            if debug then
+                DrawMarker(28, lastCoords.x, lastCoords.y, lastCoords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.2, 0.2,
+                    0.2,
+                    ---@diagnostic disable-next-line: param-type-mismatch
+                    255, 42, 24, 100, false, false, 0, true, false, false, false)
+            end
+
+            utils.drawZoneSprites(dict, texture)
+            DisablePlayerFiring(cache.playerId, true)
+            DisableControlAction(0, 25, true)
+            DisableControlAction(0, 140, true)
+            DisableControlAction(0, 141, true)
+            DisableControlAction(0, 142, true)
+
+            if state.isNuiFocused() then
+                DisableControlAction(0, 1, true)
+                DisableControlAction(0, 2, true)
+
+                if not hasTarget or options and IsDisabledControlJustPressed(0, 25) then
+                    state.setNuiFocus(false, false)
+                    SendNuiMessage('{"action":"setHasCursor","data":false}')
+                end
+            elseif hasTarget and IsDisabledControlJustPressed(0, mouseButton) then
+                state.setNuiFocus(true, true)
+                SendNuiMessage('{"action":"setHasCursor","data":true}')
+            end
+
+            Wait(0)
+        end
+
+        SetStreamedTextureDictAsNoLongerNeeded(dict)
+    end)
+
+    while state.isActive() do
+        if not state.isNuiFocused() and lib.progressActive() then
+            state.setActive(false)
+            break
+        end
+
+        local playerCoords = GetEntityCoords(cache.ped)
+        hit, entityHit, endCoords = lib.raycast.fromCamera(flag, 4, 20)
+        distance = #(playerCoords - endCoords)
+
+        if entityHit ~= 0 and entityHit ~= lastEntity then
+            local success, result = pcall(GetEntityType, entityHit)
+            entityType = success and result or 0
+        end
+
+        if entityType == 0 then
+            local _flag = flag == 511 and 26 or 511
+            local _hit, _entityHit, _endCoords = lib.raycast.fromCamera(_flag, 4, 20)
+            local _distance = #(playerCoords - _endCoords)
+
+            if _distance < distance then
+                flag, hit, entityHit, endCoords, distance = _flag, _hit, _entityHit, _endCoords, _distance
+
+                if entityHit ~= 0 then
+                    local success, result = pcall(GetEntityType, entityHit)
+                    entityType = success and result or 0
+                end
+            end
+        end
+
+        nearbyZones, zonesChanged = utils.getNearbyZones(endCoords)
+
+        local entityChanged = entityHit ~= lastEntity
+        local newOptions = (zonesChanged or entityChanged or menuChanged) and true
+
+        if entityHit > 0 and entityChanged then
+            currentMenu = nil
+
+            if flag ~= 511 then
+                entityHit = HasEntityClearLosToEntity(entityHit, cache.ped, 7) and entityHit or 0
+            end
+
+            if lastEntity ~= entityHit and debug then
+                if lastEntity then
+                    SetEntityDrawOutline(lastEntity, false)
+                end
+
+                if entityType ~= 1 then
+                    SetEntityDrawOutline(entityHit, true)
+                end
+            end
+
+            if entityHit > 0 then
+                local success, result = pcall(GetEntityModel, entityHit)
+                entityModel = success and result
+            end
+        end
+
+        if hasTarget and (zonesChanged or entityChanged and hasTarget > 1) then
+            if entityChanged then options:wipe() end
+
+            if debug and lastEntity > 0 then SetEntityDrawOutline(lastEntity, false) end
+
+            hasTarget = false
+        end
+
+        if newOptions and entityModel and entityHit > 0 then
+            options:set(entityHit, entityType, entityModel)
+        end
+
+        lastEntity = entityHit
+        currentTarget.entity = entityHit
+        currentTarget.coords = endCoords
+        currentTarget.distance = distance
+        local hidden = 0
+        local totalOptions = 0
+
+        for k, v in pairs(options) do
+            local optionCount = #v
+            local dist = k == '__global' and 0 or distance
+            totalOptions += optionCount
+
+            for i = 1, optionCount do
+                local option = v[i]
+                local hide = shouldHide(option, dist, endCoords, entityHit, entityType, entityModel)
+
+                if option.hide ~= hide then
+                    option.hide = hide
+                    newOptions = true
+                end
+
+                if hide then hidden += 1 end
+            end
+        end
+
+        if zonesChanged then table.wipe(zones) end
+
+        for i = 1, #nearbyZones do
+            local zoneOptions = nearbyZones[i].options
+            local optionCount = #zoneOptions
+            totalOptions += optionCount
+            zones[i] = zoneOptions
+
+            for j = 1, optionCount do
+                local option = zoneOptions[j]
+                local hide = shouldHide(option, distance, endCoords, entityHit)
+
+                if option.hide ~= hide then
+                    option.hide = hide
+                    newOptions = true
+                end
+
+                if hide then hidden += 1 end
+            end
+        end
+
+        if entityChanged and (not newOptions or hidden == totalOptions) then
+            SendNuiMessage('{"action":"setTarget","data":null}')
+        end
+
+        if newOptions then
+            if hasTarget == 1 and (totalOptions - hidden) > 1 then
+                hasTarget = true
+            end
+
+            if hasTarget and hidden == totalOptions then
+                if hasTarget and hasTarget ~= 1 then
+                    hasTarget = false
+                    SendNuiMessage('{"action":"setTarget","data":null}')
+                end
+            elseif menuChanged or hasTarget ~= 1 and hidden ~= totalOptions then
+                hasTarget = options.size
+
+                if currentMenu and options.__global[1]?.name ~= 'builtin:goback' then
+                    table.insert(options.__global, 1,
+                        {
+                            icon = 'fa-solid fa-circle-chevron-left',
+                            label = locale('go_back'),
+                            name = 'builtin:goback',
+                            menuName = currentMenu,
+                            openMenu = 'home'
+                        })
+                end
+
+                SendNuiMessage(json.encode({
+                    action = 'setTarget',
+                    data = {
+                        options = options,
+                        zones = zones,
+                    }
+                }, { sort_keys = true }))
+            end
+
+            menuChanged = false
+        end
+
+        if toggleHotkey and IsPauseMenuActive() then
+            state.setActive(false)
+        end
+
+        if not hasTarget or hasTarget == 1 then
+            flag = flag == 511 and 26 or 511
+        end
+
+        Wait(hit and 50 or 100)
+    end
+
+    if lastEntity and debug then
+        SetEntityDrawOutline(lastEntity, false)
+    end
+
+    state.setNuiFocus(false, false)
+    SendNuiMessage('{"action":"setVisible","data":false}')
+    SendNuiMessage('{"action":"setHasCursor","data":false}')
+    table.wipe(currentTarget)
+    options:wipe()
+
+    if nearbyZones then table.wipe(nearbyZones) end
+end
+
+do
+    ---@type KeybindProps
+    local keybind = {
+        name = 'ox_target',
+        defaultKey = GetConvar('ox_target:defaultHotkey', 'LMENU'),
+        defaultMapper = 'keyboard',
+        description = locale('toggle_targeting'),
+    }
+
+    if toggleHotkey then
+        function keybind:onPressed()
+            if state.isActive() then
+                return state.setActive(false)
+            end
+
+            return startTargeting()
+        end
+    else
+        keybind.onPressed = startTargeting
+
+        function keybind:onReleased()
+            state.setActive(false)
+        end
+    end
+
+    lib.addKeybind(keybind)
+end
+
+---@generic T
+---@param option T
+---@param server? boolean
+---@return T
+local function getResponse(option, server)
+    local response = table.clone(option)
+    response.entity = currentTarget.entity
+    response.zone = currentTarget.zone
+    response.coords = currentTarget.coords
+    response.distance = currentTarget.distance
+
+    if server then
+        response.entity = response.entity ~= 0 and NetworkGetEntityIsNetworked(response.entity) and
+            NetworkGetNetworkIdFromEntity(response.entity) or 0
+    end
+
+    response.icon = nil
+    response.groups = nil
+    response.items = nil
+    response.canInteract = nil
+    response.onSelect = nil
+    response.export = nil
+    response.event = nil
+    response.serverEvent = nil
+    response.command = nil
+
+    return response
+end
+
+RegisterNUICallback('select', function(data, cb)
+    cb(1)
+
+    local zone = data[3] and nearbyZones[data[3]]
+
+    ---@type OxTargetOption?
+    local option = zone and zone.options[data[2]] or options[data[1]][data[2]]
+
+    if option then
+        if option.openMenu then
+            local menuDepth = #menuHistory
+
+            if option.name == 'builtin:goback' then
+                option.menuName = option.openMenu
+                option.openMenu = menuHistory[menuDepth]
+
+                if menuDepth > 0 then
+                    menuHistory[menuDepth] = nil
+                end
+            else
+                menuHistory[menuDepth + 1] = currentMenu
+            end
+
+            menuChanged = true
+            currentMenu = option.openMenu ~= 'home' and option.openMenu or nil
+
+            options:wipe()
+        else
+            state.setNuiFocus(false, false)
+            SendNuiMessage('{"action":"setHasCursor","data":false}')
+        end
+
+        currentTarget.zone = zone?.id
+
+        if option.onSelect then
+            option.onSelect(option.qtarget and currentTarget.entity or getResponse(option))
+        elseif option.export then
+            exports[option.resource or zone.resource][option.export](nil, getResponse(option))
+        elseif option.event then
+            TriggerEvent(option.event, getResponse(option))
+        elseif option.serverEvent then
+            TriggerServerEvent(option.serverEvent, getResponse(option, true))
+        elseif option.command then
+            ExecuteCommand(option.command)
+        end
+
+        if option.menuName == 'home' then return end
+    end
+
+    if not option?.openMenu and IsNuiFocused() then
+        state.setActive(false)
+    end
+end)
+
+
+########## FILE: \client\state.lua
+local state = {}
+
+local isActive = false
+
+---@return boolean
+function state.isActive()
+    return isActive
+end
+
+---@param value boolean
+function state.setActive(value)
+    isActive = value
+
+    if value then
+        SendNuiMessage('{"action":"setVisible","data":true}')
+    end
+end
+
+local nuiFocus = false
+
+---@return boolean
+function state.isNuiFocused()
+    return nuiFocus
+end
+
+---@param value boolean
+---@param cursor? boolean
+function state.setNuiFocus(value, cursor)
+    if value then SetCursorLocation(0.5, 0.5) end
+
+    nuiFocus = value
+    SetNuiFocus(value, cursor or false)
+    SetNuiFocusKeepInput(value)
+end
+
+local isDisabled = false
+
+---@return boolean
+function state.isDisabled()
+    return isDisabled
+end
+
+---@param value boolean
+function state.setDisabled(value)
+    isDisabled = value
+end
+
+return state
+
+
+########## FILE: \client\utils.lua
+local utils = {}
+
+local GetWorldCoordFromScreenCoord = GetWorldCoordFromScreenCoord
+local StartShapeTestLosProbe = StartShapeTestLosProbe
+local GetShapeTestResultIncludingMaterial = GetShapeTestResultIncludingMaterial
+
+---@param flag number
+---@return boolean hit
+---@return number entityHit
+---@return vector3 endCoords
+---@return vector3 surfaceNormal
+---@return number materialHash
+function utils.raycastFromCamera(flag)
+    local coords, normal = GetWorldCoordFromScreenCoord(0.5, 0.5)
+    local destination = coords + normal * 10
+    local handle = StartShapeTestLosProbe(coords.x, coords.y, coords.z, destination.x, destination.y, destination.z,
+        flag, cache.ped, 4)
+
+    while true do
+        Wait(0)
+        local retval, hit, endCoords, surfaceNormal, materialHash, entityHit = GetShapeTestResultIncludingMaterial(
+        handle)
+
+        if retval ~= 1 then
+            ---@diagnostic disable-next-line: return-type-mismatch
+            return hit, entityHit, endCoords, surfaceNormal, materialHash
+        end
+    end
+end
+
+function utils.getTexture()
+    return lib.requestStreamedTextureDict('shared'), 'emptydot_32'
+end
+
+-- SetDrawOrigin is limited to 32 calls per frame. Set as 0 to disable.
+local drawZoneSprites = GetConvarInt('ox_target:drawSprite', 24)
+local SetDrawOrigin = SetDrawOrigin
+local DrawSprite = DrawSprite
+local ClearDrawOrigin = ClearDrawOrigin
+local colour = vector(155, 155, 155, 175)
+local hover = vector(98, 135, 236, 255)
+local currentZones = {}
+local previousZones = {}
+local drawZones = {}
+local drawN = 0
+local width = 0.02
+local height = width * GetAspectRatio(false)
+
+if drawZoneSprites == 0 then drawZoneSprites = -1 end
+
+---@param coords vector3
+---@return CZone[], boolean
+function utils.getNearbyZones(coords)
+    if not Zones then return currentZones, false end
+
+    local n = 0
+    local nearbyZones = lib.zones.getNearbyZones()
+    drawN = 0
+    previousZones, currentZones = currentZones, table.wipe(previousZones)
+
+    for i = 1, #nearbyZones do
+        local zone = nearbyZones[i]
+        local contains = zone:contains(coords)
+
+        if contains then
+            n += 1
+            currentZones[n] = zone
+        end
+
+        if drawN <= drawZoneSprites and zone.drawSprite ~= false and (contains or (zone.distance or 7) < 7) then
+            drawN += 1
+            drawZones[drawN] = zone
+            zone.colour = contains and hover or nil
+        end
+    end
+
+    local previousN = #previousZones
+
+    if n ~= previousN then
+        return currentZones, true
+    end
+
+    if n > 0 then
+        for i = 1, n do
+            local zoneA = currentZones[i]
+            local found = false
+
+            for j = 1, previousN do
+                local zoneB = previousZones[j]
+
+                if zoneA == zoneB then
+                    found = true
+                    break
+                end
+            end
+
+            if not found then
+                return currentZones, true
+            end
+        end
+    end
+
+    return currentZones, false
+end
+
+function utils.drawZoneSprites(dict, texture)
+    if drawN == 0 then return end
+
+    for i = 1, drawN do
+        local zone = drawZones[i]
+        local spriteColour = zone.colour or colour
+
+        if zone.drawSprite ~= false then
+            SetDrawOrigin(zone.coords.x, zone.coords.y, zone.coords.z)
+            DrawSprite(dict, texture, 0, 0, width, height, 0, spriteColour.r, spriteColour.g, spriteColour.b,
+                spriteColour.a)
+        end
+    end
+
+    ClearDrawOrigin()
+end
+
+function utils.hasExport(export)
+    local resource, exportName = string.strsplit('.', export)
+
+    return pcall(function()
+        return exports[resource][exportName]
+    end)
+end
+
+local playerItems = {}
+
+function utils.getItems()
+    return playerItems
+end
+
+---@param filter string | string[] | table<string, number>
+---@param hasAny boolean?
+---@return boolean
+function utils.hasPlayerGotItems(filter, hasAny)
+    if not playerItems then return true end
+
+    local _type = type(filter)
+
+    if _type == 'string' then
+        return (playerItems[filter] or 0) > 0
+    elseif _type == 'table' then
+        local tabletype = table.type(filter)
+
+        if tabletype == 'hash' then
+            for name, amount in pairs(filter) do
+                local hasItem = (playerItems[name] or 0) >= amount
+
+                if hasAny then
+                    if hasItem then return true end
+                elseif not hasItem then
+                    return false
+                end
+            end
+        elseif tabletype == 'array' then
+            for i = 1, #filter do
+                local hasItem = (playerItems[filter[i]] or 0) > 0
+
+                if hasAny then
+                    if hasItem then return true end
+                elseif not hasItem then
+                    return false
+                end
+            end
+        end
+    end
+
+    return not hasAny
+end
+
+---stub
+---@param filter string | string[] | table<string, number>
+---@return boolean
+function utils.hasPlayerGotGroup(filter)
+    return true
+end
+
+SetTimeout(0, function()
+    if utils.hasExport('ox_inventory.Items') then
+        setmetatable(playerItems, {
+            __index = function(self, index)
+                self[index] = exports.ox_inventory:Search('count', index) or 0
+                return self[index]
+            end
+        })
+
+        AddEventHandler('ox_inventory:itemCount', function(name, count)
+            playerItems[name] = count
+        end)
+    end
+
+    if utils.hasExport('ox_core.GetPlayer') then
+        require 'client.framework.ox'
+    elseif utils.hasExport('es_extended.getSharedObject') then
+        require 'client.framework.esx'
+    elseif utils.hasExport('qbx_core.HasGroup') then
+        require 'client.framework.qbx'
+    elseif utils.hasExport('qb-core.GetCoreObject') then
+        require 'client.framework.qb'
+    elseif utils.hasExport('ND_Core.getPlayer') then
+        require 'client.framework.nd'
+    end
+end)
+
+function utils.warn(msg)
+    local trace = Citizen.InvokeNative(`FORMAT_STACK_TRACE` & 0xFFFFFFFF, nil, 0, Citizen.ResultAsString())
+    local _, _, src = string.strsplit('\n', trace, 4)
+
+    warn(('%s ^0%s\n'):format(msg, src:gsub(".-%(", '(')))
+end
+
+return utils
+
+
+########## FILE: \client\compat\qtarget.lua
+local function exportHandler(exportName, func)
+    AddEventHandler(('__cfx_export_qtarget_%s'):format(exportName), function(setCB)
+        setCB(func)
+    end)
+end
+
+---@param options table
+---@return table
+local function convert(options)
+    local distance = options.distance
+    options = options.options
+
+    -- People may pass options as a hashmap (or mixed, even)
+    for k, v in pairs(options) do
+        if type(k) ~= 'number' then
+            table.insert(options, v)
+        end
+    end
+
+    for id, v in pairs(options) do
+        if type(id) ~= 'number' then
+            options[id] = nil
+            goto continue
+        end
+
+        v.onSelect = v.action
+        v.distance = v.distance or distance
+        v.name = v.name or v.label
+        v.groups = v.job
+        v.items = v.item or v.required_item
+
+        if v.event and v.type and v.type ~= 'client' then
+            if v.type == 'server' then
+                v.serverEvent = v.event
+            elseif v.type == 'command' then
+                v.command = v.event
+            end
+
+            v.event = nil
+            v.type = nil
+        end
+
+        v.action = nil
+        v.job = nil
+        v.item = nil
+        v.required_item = nil
+        v.qtarget = true
+
+        ::continue::
+    end
+
+    return options
+end
+
+local api = require 'client.api'
+
+exportHandler('AddBoxZone', function(name, center, length, width, options, targetoptions)
+    local z = center.z
+
+    if not options.minZ then
+        options.minZ = -100
+    end
+
+    if not options.maxZ then
+        options.maxZ = 800
+    end
+
+    if not options.useZ then
+        z = z + math.abs(options.maxZ - options.minZ) / 2
+        center = vec3(center.x, center.y, z)
+    end
+
+    return api.addBoxZone({
+        name = name,
+        coords = center,
+        size = vec3(width, length, (options.useZ or not options.maxZ) and center.z or math.abs(options.maxZ - options.minZ)),
+        debug = options.debugPoly,
+        rotation = options.heading,
+        options = convert(targetoptions),
+    })
+end)
+
+exportHandler('AddPolyZone', function(name, points, options, targetoptions)
+    local newPoints = table.create(#points, 0)
+    local thickness = math.abs(options.maxZ - options.minZ)
+
+    for i = 1, #points do
+        local point = points[i]
+        newPoints[i] = vec3(point.x, point.y, options.maxZ - (thickness / 2))
+    end
+
+    return api.addPolyZone({
+        name = name,
+        points = newPoints,
+        thickness = thickness,
+        debug = options.debugPoly,
+        options = convert(targetoptions),
+    })
+end)
+
+exportHandler('AddCircleZone', function(name, center, radius, options, targetoptions)
+    return api.addSphereZone({
+        name = name,
+        coords = center,
+        radius = radius,
+        debug = options.debugPoly,
+        options = convert(targetoptions),
+    })
+end)
+
+exportHandler('RemoveZone', function(id)
+    api.removeZone(id, true)
+end)
+
+exportHandler('AddTargetBone', function(bones, options)
+    if type(bones) ~= 'table' then bones = { bones } end
+    options = convert(options)
+
+    for _, v in pairs(options) do
+        v.bones = bones
+    end
+
+    exports.ox_target:addGlobalVehicle(options)
+end)
+
+exportHandler('AddTargetEntity', function(entities, options)
+    if type(entities) ~= 'table' then entities = { entities } end
+    options = convert(options)
+
+    for i = 1, #entities do
+        local entity = entities[i]
+
+        if NetworkGetEntityIsNetworked(entity) then
+            api.addEntity(NetworkGetNetworkIdFromEntity(entity), options)
+        else
+            api.addLocalEntity(entity, options)
+        end
+    end
+end)
+
+exportHandler('RemoveTargetEntity', function(entities, labels)
+    if type(entities) ~= 'table' then entities = { entities } end
+
+    for i = 1, #entities do
+        local entity = entities[i]
+
+        if NetworkGetEntityIsNetworked(entity) then
+            api.removeEntity(NetworkGetNetworkIdFromEntity(entity), labels)
+        else
+            api.removeLocalEntity(entity, labels)
+        end
+    end
+end)
+
+exportHandler('AddTargetModel', function(models, options)
+    api.addModel(models, convert(options))
+end)
+
+exportHandler('RemoveTargetModel', function(models, labels)
+    api.removeModel(models, labels)
+end)
+
+exportHandler('Ped', function(options)
+    api.addGlobalPed(convert(options))
+end)
+
+exportHandler('RemovePed', function(labels)
+    api.removeGlobalPed(labels)
+end)
+
+exportHandler('Vehicle', function(options)
+    api.addGlobalVehicle(convert(options))
+end)
+
+exportHandler('RemoveVehicle', function(labels)
+    api.removeGlobalVehicle(labels)
+end)
+
+exportHandler('Object', function(options)
+    api.addGlobalObject(convert(options))
+end)
+
+exportHandler('RemoveObject', function(labels)
+    api.removeGlobalObject(labels)
+end)
+
+exportHandler('Player', function(options)
+    api.addGlobalPlayer(convert(options))
+end)
+
+exportHandler('RemovePlayer', function(labels)
+    api.removeGlobalPlayer(labels)
+end)
+
+########## FILE: \client\framework\esx.lua
+local ESX = exports.es_extended:getSharedObject()
+local utils = require 'client.utils'
+local groups = { 'job', 'job2' }
+local playerGroups = {}
+local playerItems = utils.getItems()
+local usingOxInventory = utils.hasExport('ox_inventory.Items')
+
+local function setPlayerData(playerData)
+    table.wipe(playerGroups)
+    table.wipe(playerItems)
+
+    for i = 1, #groups do
+        local group = groups[i]
+        local data = playerData[group]
+
+        if data then
+            playerGroups[group] = data
+        end
+    end
+
+    if usingOxInventory or not playerData.inventory then return end
+
+    for _, v in pairs(playerData.inventory) do
+        if v.count > 0 then
+            playerItems[v.name] = v.count
+        end
+    end
+end
+
+if ESX.PlayerLoaded then
+    setPlayerData(ESX.PlayerData)
+end
+
+RegisterNetEvent('esx:playerLoaded', function(data)
+    if source == '' then return end
+    setPlayerData(data)
+end)
+
+RegisterNetEvent('esx:setJob', function(job)
+    if source == '' then return end
+    playerGroups.job = job
+end)
+
+RegisterNetEvent('esx:setJob2', function(job)
+    if source == '' then return end
+    playerGroups.job2 = job
+end)
+
+RegisterNetEvent('esx:addInventoryItem', function(name, count)
+    playerItems[name] = count
+end)
+
+RegisterNetEvent('esx:removeInventoryItem', function(name, count)
+    playerItems[name] = count
+end)
+
+---@diagnostic disable-next-line: duplicate-set-field
+function utils.hasPlayerGotGroup(filter)
+    local _type = type(filter)
+    for i = 1, #groups do
+        local group = groups[i]
+
+        if _type == 'string' then
+            local data = playerGroups[group]
+
+            if filter == data?.name then
+                return true
+            end
+        elseif _type == 'table' then
+            local tabletype = table.type(filter)
+
+            if tabletype == 'hash' then
+                for name, grade in pairs(filter) do
+                    local data = playerGroups[group]
+
+                    if data?.name == name and grade <= data.grade then
+                        return true
+                    end
+                end
+            elseif tabletype == 'array' then
+                for j = 1, #filter do
+                    local name = filter[j]
+                    local data = playerGroups[group]
+
+                    if data?.name == name then
+                        return true
+                    end
+                end
+            end
+        end
+    end
+end
+
+
+########## FILE: \client\framework\nd.lua
+local NDCore = exports["ND_Core"]
+
+local playerGroups = NDCore:getPlayer()?.groups or {}
+
+RegisterNetEvent("ND:characterLoaded", function(data)
+    playerGroups = data.groups
+end)
+
+RegisterNetEvent("ND:updateCharacter", function(data)
+    if source == '' then return end
+    playerGroups = data.groups or {}
+end)
+
+local utils = require 'client.utils'
+
+---@diagnostic disable-next-line: duplicate-set-field
+function utils.hasPlayerGotGroup(filter)
+    local _type = type(filter)
+
+    if _type == 'string' then
+        local group = playerGroups[filter]
+
+        if group then
+            return true
+        end
+    elseif _type == 'table' then
+        local tabletype = table.type(filter)
+
+        if tabletype == 'hash' then
+            for name, grade in pairs(filter) do
+                local playerGrade = playerGroups[name]?.rank
+
+                if playerGrade and grade <= playerGrade then
+                    return true
+                end
+            end
+        elseif tabletype == 'array' then
+            for i = 1, #filter do
+                local name = filter[i]
+                local group = playerGroups[name]
+
+                if group then
+                    return true
+                end
+            end
+        end
+    end
+end
+
+
+########## FILE: \client\framework\ox.lua
+if not lib.checkDependency('ox_core', '0.21.3', true) then return end
+
+local Ox = require '@ox_core.lib.init' --[[@as OxClient]]
+local utils = require 'client.utils'
+local player = Ox.GetPlayer()
+
+---@diagnostic disable-next-line: duplicate-set-field
+function utils.hasPlayerGotGroup(filter)
+    return player.getGroup(filter)
+end
+
+
+########## FILE: \client\framework\qb.lua
+local utils = require 'client.utils'
+local playerItems = utils.getItems()
+
+require '@sm_core.modules.playerdata'
+
+local function setPlayerItems()
+    if not QBPlayerData or not QBPlayerData.items then return end
+
+    table.wipe(playerItems)
+
+    for _, item in pairs(QBPlayerData.items) do
+        playerItems[item.name] = (playerItems[item.name] or 0) + (item.amount or 0)
+    end
+end
+
+local usingOxInventory = utils.hasExport('ox_inventory.Items')
+
+if not usingOxInventory then
+    setPlayerItems()
+end
+
+AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+    if not usingOxInventory then setPlayerItems() end
+end)
+
+---@diagnostic disable-next-line: duplicate-set-field
+function utils.hasPlayerGotGroup(filter)
+    local _type = type(filter)
+
+    local playerJobType = QBPlayerData.job.type
+    local playerJob = QBPlayerData.job.name
+    local playerGang = QBPlayerData.gang.name
+    local playerCitizenid = QBPlayerData.citizenid
+    local playerJobGrade = QBPlayerData.job.grade
+    local playerGangGrade = QBPlayerData.gang.grade
+
+    if _type == 'string' then
+        local job = playerJob == filter or playerJobType == filter
+        local gang = playerGang == filter
+        local citizenId = playerCitizenid == filter
+
+        return job or gang or citizenId
+    elseif _type == 'table' then
+        local tabletype = table.type(filter)
+
+        if tabletype == 'hash' then
+            local jobGrade = filter[playerJob] or filter[playerJobType]
+            local gangGrade = filter[playerGang]
+            local citizenid = filter[playerCitizenid]
+
+            local grade = (jobGrade or gangGrade) or false
+
+            if not grade then
+                return citizenid
+            end
+
+            local gradeType = type(grade)
+            local playerGrade = jobGrade and playerJobGrade or gangGrade and playerGangGrade
+
+            if gradeType == "number" then
+                return grade <= playerGrade.level
+            elseif gradeType == "table" and table.type(grade) == 'array' then
+                return lib.table.contains(grade, playerGrade.level)
+            end
+
+        elseif tabletype == 'array' then
+            for i = 1, #filter do
+                local name = filter[i]
+                local job = QBPlayerData.job.name == name
+                local gang = QBPlayerData.gang.name == name
+                local citizenId = QBPlayerData.citizenid == name
+
+                if job or gang or citizenId then
+                    return true
+                end
+            end
+        end
+    end
+end
+
+
+########## FILE: \client\framework\qbx.lua
+if not lib.checkDependency('qbx_core', '1.18.0', true) then return end
+
+local QBX = exports.qbx_core
+local utils = require 'client.utils'
+
+---@diagnostic disable-next-line: duplicate-set-field
+function utils.hasPlayerGotGroup(filter)
+    return QBX:HasGroup(filter)
+end
+
+
+########## RESOURCE: A:\Lexar Roleplay\resources\[00_core]\ox_doorlock
+
+########## MANIFEST
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+--[[ FX Information ]] --
+fx_version 'cerulean'
+
+use_experimental_fxv2_oal 'yes'
+lua54 'yes'
+game 'gta5'
+--[[ Resource Information ]] --
+name 'ox_doorlock'
+version '1.14.4'
+license 'GPL-3.0-or-later'
+author 'Overextended'
+repository 'https://github.com/overextended/ox_doorlock'
+--[[ Manifest ]] --
+shared_scripts {
+	'config.lua'
+}
+client_scripts {
+	'client/main.lua',
+	'client/utils.lua'
+}
+server_scripts {
+	'@oxmysql/lib/MySQL.lua',
+	'server/convert.lua',
+	'server/framework/*.lua',
+	'server/main.lua'
+}
+ui_page 'web/build/index.html'
+files {
+	'web/build/index.html',
+	'web/build/**/*',
+	'locales/*.json',
+	'audio/data/oxdoorlock_sounds.dat54.rel',
+	'audio/dlc_oxdoorlock/oxdoorlock.awc'
+}
+data_file 'AUDIO_WAVEPACK' 'audio/dlc_oxdoorlock'
+data_file 'AUDIO_SOUNDDATA' 'audio/data/oxdoorlock_sounds.dat'
+dependencies {
+	'oxmysql',
+	'ox_lib'
+}
+server_scripts { '@mysql-async/lib/MySQL.lua' }
+server_scripts { '@mysql-async/lib/MySQL.lua' }
+server_scripts { '@mysql-async/lib/MySQL.lua' }
+server_scripts { '@mysql-async/lib/MySQL.lua' }
+dependency 'se_v2'
+
+
+########## FILE: \config.lua
+---@type DoorlockConfig
+---@diagnostic disable-next-line: missing-fields
+Config = {}
+
+---Trigger a notification on the client when the door state is successfully updated.
+Config.Notify = false
+
+---Create a persistent notification while in-range of a door, prompting to lock/unlock.
+Config.DrawTextUI = false
+
+---Set the properties used by [DrawSprite](https://docs.fivem.net/natives/?_0xE7FFAE5EBF23D890).
+Config.DrawSprite = {
+    -- Unlocked
+    [0] = { 'mpsafecracking', 'lock_open', 0, 0, 0.018, 0.018, 0, 255, 255, 255, 100 },
+
+    -- Locked
+    [1] = { 'mpsafecracking', 'lock_closed', 0, 0, 0.018, 0.018, 0, 255, 255, 255, 100 },
+}
+
+---Allow the specified ace principal to use 'command.doorlock'.
+Config.CommandPrincipal = 'group.admin'
+
+---Allow players with the 'command.doorlock' principal to use any door.
+Config.PlayerAceAuthorised = false
+
+---The default skill check difficulty when lockpicking a door.
+Config.LockDifficulty = { 'easy', 'easy', 'medium' }
+
+---Allow lockpicks to be used to lock an unlocked door.
+Config.CanPickUnlockedDoors = false
+
+---An array of items that function as lockpicks.
+Config.LockpickItems = {
+    ''
+}
+
+---Play sounds using game audio (sound natives) instead of through NUI.
+Config.NativeAudio = true
+
+
+########## FILE: \fxmanifest.lua
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
+}
+
+
+
+--[[ FX Information ]] --
+fx_version 'cerulean'
+
+use_experimental_fxv2_oal 'yes'
+lua54 'yes'
+game 'gta5'
+--[[ Resource Information ]] --
+name 'ox_doorlock'
+version '1.14.4'
+license 'GPL-3.0-or-later'
+author 'Overextended'
+repository 'https://github.com/overextended/ox_doorlock'
+--[[ Manifest ]] --
+shared_scripts {
+	'config.lua'
+}
+client_scripts {
+	'client/main.lua',
+	'client/utils.lua'
+}
+server_scripts {
+	'@oxmysql/lib/MySQL.lua',
+	'server/convert.lua',
+	'server/framework/*.lua',
+	'server/main.lua'
+}
+ui_page 'web/build/index.html'
+files {
+	'web/build/index.html',
+	'web/build/**/*',
+	'locales/*.json',
+	'audio/data/oxdoorlock_sounds.dat54.rel',
+	'audio/dlc_oxdoorlock/oxdoorlock.awc'
+}
+data_file 'AUDIO_WAVEPACK' 'audio/dlc_oxdoorlock'
+data_file 'AUDIO_SOUNDDATA' 'audio/data/oxdoorlock_sounds.dat'
+dependencies {
+	'oxmysql',
+	'ox_lib'
+}
+server_scripts { '@mysql-async/lib/MySQL.lua' }
+server_scripts { '@mysql-async/lib/MySQL.lua' }
+server_scripts { '@mysql-async/lib/MySQL.lua' }
+server_scripts { '@mysql-async/lib/MySQL.lua' }
+dependency 'se_v2'
+
+
+########## FILE: \client\main.lua
+if not LoadResourceFile(lib.name, 'web/build/index.html') then
+	error('Unable to load UI. Build ox_doorlock or download the latest release.\n	^3https://github.com/overextended/ox_doorlock/releases/latest/download/ox_doorlock.zip^0')
+end
+
+do
+	local success, msg = lib.checkDependency('ox_lib', '3.0.0')
+	if not success then error(msg) end
+end
+
+lib.locale()
+
+local function createDoor(door)
+	local double = door.doors
+	door.zone = GetLabelText(GetNameOfZone(door.coords.x, door.coords.y, door.coords.z))
+
+	if double then
+		for i = 1, 2 do
+			AddDoorToSystem(double[i].hash, double[i].model, double[i].coords.x, double[i].coords.y, double[i].coords.z, false, false, false)
+			DoorSystemSetDoorState(double[i].hash, 4, false, false)
+			DoorSystemSetDoorState(double[i].hash, door.state, false, false)
+
+			if door.doorRate or not door.auto then
+				DoorSystemSetAutomaticRate(double[i].hash, door.doorRate or 10.0, false, false)
+			end
+		end
+	else
+		AddDoorToSystem(door.hash, door.model, door.coords.x, door.coords.y, door.coords.z, false, false, false)
+		DoorSystemSetDoorState(door.hash, 4, false, false)
+		DoorSystemSetDoorState(door.hash, door.state, false, false)
+
+		if door.doorRate or not door.auto then
+			DoorSystemSetAutomaticRate(door.hash, door.doorRate or 10.0, false, false)
+		end
+	end
+end
+
+local nearbyDoors = {}
+local Entity = Entity
+
+lib.callback('ox_doorlock:getDoors', false, function(data)
+	doors = data
+
+	for _, door in pairs(data) do
+		createDoor(door)
+	end
+
+	while true do
+		table.wipe(nearbyDoors)
+		local coords = GetEntityCoords(cache.ped)
+
+		for _, door in pairs(doors) do
+			local double = door.doors
+			door.distance = #(coords - door.coords)
+
+			if double then
+				if door.distance < 80 then
+					for i = 1, 2 do
+						if not double[i].entity and IsModelValid(double[i].model) then
+							local entity = GetClosestObjectOfType(double[i].coords.x, double[i].coords.y, double[i].coords.z, 1.0, double[i].model, false, false, false)
+
+							if entity ~= 0 then
+								double[i].entity = entity
+								Entity(entity).state.doorId = door.id
+							end
+						end
+					end
+
+					if door.distance < 20 then
+						nearbyDoors[#nearbyDoors + 1] = door
+					end
+				else
+					for i = 1, 2 do
+						double[i].entity = nil
+					end
+				end
+			elseif door.distance < 80 then
+				if not door.entity and IsModelValid(door.model) then
+					local entity = GetClosestObjectOfType(door.coords.x, door.coords.y, door.coords.z, 1.0, door.model, false, false, false)
+
+					if entity ~= 0 then
+						local min, max = GetModelDimensions(door.model)
+						local points = {
+							GetOffsetFromEntityInWorldCoords(entity, min.x, min.y, min.z).xy,
+							GetOffsetFromEntityInWorldCoords(entity, min.x, min.y, max.z).xy,
+							GetOffsetFromEntityInWorldCoords(entity, min.x, max.y, max.z).xy,
+							GetOffsetFromEntityInWorldCoords(entity, min.x, max.y, min.z).xy,
+							GetOffsetFromEntityInWorldCoords(entity, max.x, min.y, min.z).xy,
+							GetOffsetFromEntityInWorldCoords(entity, max.x, min.y, max.z).xy,
+							GetOffsetFromEntityInWorldCoords(entity, max.x, max.y, max.z).xy,
+							GetOffsetFromEntityInWorldCoords(entity, max.x, max.y, min.z).xy
+						}
+
+						local centroid = vec2(0, 0)
+
+						for i = 1, 8 do
+							centroid += points[i]
+						end
+
+						centroid = centroid / 8
+						door.coords = vec3(centroid.x, centroid.y, door.coords.z)
+						door.entity = entity
+						Entity(entity).state.doorId = door.id
+					end
+				end
+
+				if door.distance < 20 then
+					nearbyDoors[#nearbyDoors + 1] = door
+				end
+			elseif door.entity then
+				door.entity = nil
+			end
+		end
+
+		Wait(500)
+	end
+end)
+
+RegisterNetEvent('ox_doorlock:setState', function(id, state, source, data)
+	if not doors then return end
+
+	if data then
+		doors[id] = data
+		createDoor(data)
+
+		if NuiHasLoaded then
+			SendNuiMessage(json.encode({
+				action = 'updateDoorData',
+				data = data
+			}))
+		end
+	end
+
+	if Config.Notify and source == cache.serverId then
+		if state == 0 then
+			lib.notify({
+				type = 'success',
+				icon = 'unlock',
+				description = locale('unlocked_door')
+			})
+		else
+			lib.notify({
+				type = 'success',
+				icon = 'lock',
+				description = locale('locked_door')
+			})
+		end
+	end
+
+	local door = data or doors[id]
+	local double = door.doors
+	door.state = state
+
+	if double then
+		DoorSystemSetDoorState(double[1].hash, door.state, false, false)
+		DoorSystemSetDoorState(double[2].hash, door.state, false, false)
+
+		if door.holdOpen then
+			DoorSystemSetHoldOpen(double[1].hash, door.state == 0)
+			DoorSystemSetHoldOpen(double[2].hash, door.state == 0)
+		end
+
+		while door.state == 1 and (not IsDoorClosed(double[1].hash) or not IsDoorClosed(double[2].hash)) do Wait(0) end
+	else
+		DoorSystemSetDoorState(door.hash, door.state, false, false)
+
+		if door.holdOpen then DoorSystemSetHoldOpen(door.hash, door.state == 0) end
+		while door.state == 1 and not IsDoorClosed(door.hash) do Wait(0) end
+	end
+
+	if door.state == state and door.distance and door.distance < 20 then
+		if Config.NativeAudio then
+			RequestScriptAudioBank('dlc_oxdoorlock/oxdoorlock', false)
+			local sound = state == 0 and door.unlockSound or door.lockSound or 'door_bolt'
+			local soundId = GetSoundId()
+
+			PlaySoundFromCoord(soundId, sound, door.coords.x, door.coords.y, door.coords.z, 'DLC_OXDOORLOCK_SET', false, 0, false)
+			ReleaseSoundId(soundId)
+			ReleaseNamedScriptAudioBank('dlc_oxdoorlock/oxdoorlock')
+		else
+			local volume = (0.01 * GetProfileSetting(300)) / (door.distance / 2)
+			if volume > 1 then volume = 1 end
+			local sound = state == 0 and door.unlockSound or door.lockSound or 'door-bolt-4'
+
+			SendNUIMessage({
+				action = 'playSound',
+				data = {
+					sound = sound,
+					volume = volume
+				}
+			})
+		end
+	end
+end)
+
+RegisterNetEvent('ox_doorlock:editDoorlock', function(id, data)
+	if source == '' then return end
+
+	local door = doors[id]
+	local double = door.doors
+	local doorState = data and data.state or 0
+
+	if data then
+		data.zone = door.zone or GetLabelText(GetNameOfZone(door.coords.x, door.coords.y, door.coords.z))
+
+		-- hacky method to resolve a bug with "closest door" by forcing a distance recalculation
+		if door.distance < 20 then door.distance = 80 end
+	elseif ClosestDoor?.id == id then
+		ClosestDoor = nil
+	end
+
+	if double then
+		for i = 1, 2 do
+			local doorHash = double[i].hash
+
+			if data then
+				if data.doorRate or door.doorRate or not data.auto then
+					DoorSystemSetAutomaticRate(doorHash, data.doorRate or door.doorRate and 0.0 or 10.0, false, false)
+				end
+
+				DoorSystemSetDoorState(doorHash, doorState, false, false)
+
+				if data.holdOpen then DoorSystemSetHoldOpen(doorHash, doorState == 0) end
+			else
+				DoorSystemSetDoorState(doorHash, 4, false, false)
+				DoorSystemSetDoorState(doorHash, 0, false, false)
+
+				if double[i].entity then
+					Entity(double[i].entity).state.doorId = nil
+				end
+			end
+		end
+	else
+		if data then
+			if data.doorRate or door.doorRate or not data.auto then
+				DoorSystemSetAutomaticRate(door.hash, data.doorRate or door.doorRate and 0.0 or 10.0, false, false)
+			end
+
+			DoorSystemSetDoorState(door.hash, doorState, false, false)
+
+			if data.holdOpen then DoorSystemSetHoldOpen(door.hash, doorState == 0) end
+		else
+			DoorSystemSetDoorState(door.hash, 4, false, false)
+			DoorSystemSetDoorState(door.hash, 0, false, false)
+
+			if door.entity then
+				Entity(door.entity).state.doorId = nil
+			end
+		end
+	end
+
+	doors[id] = data
+
+	if NuiHasLoaded then
+		SendNuiMessage(json.encode({
+			action = 'updateDoorData',
+			data = data or id
+		}))
+	end
+end)
+
+ClosestDoor = nil
+
+lib.callback.register('ox_doorlock:inputPassCode', function()
+	return ClosestDoor?.passcode and lib.inputDialog(locale('door_lock'), {
+		{
+			type = 'input',
+			label = locale('passcode'),
+			password = true,
+			icon = 'lock'
+		},
+	})?[1]
+end)
+
+local lastTriggered = 0
+
+local function useClosestDoor()
+	if not ClosestDoor then return false end
+
+	local gameTimer = GetGameTimer()
+
+	if gameTimer - lastTriggered > 500 then
+		lastTriggered = gameTimer
+		TriggerServerEvent('ox_doorlock:setState', ClosestDoor.id, ClosestDoor.state == 1 and 0 or 1)
+	end
+end
+
+exports('useClosestDoor', useClosestDoor)
+
+CreateThread(function()
+	local lockDoor = locale('lock_door')
+	local unlockDoor = locale('unlock_door')
+	local showUI
+	local drawSprite = Config.DrawSprite
+
+	if drawSprite then
+		local sprite1 = drawSprite[0]?[1]
+		local sprite2 = drawSprite[1]?[1]
+
+		if sprite1 then
+			RequestStreamedTextureDict(sprite1, true)
+		end
+
+		if sprite2 then
+			RequestStreamedTextureDict(sprite2, true)
+		end
+	end
+
+	local SetDrawOrigin = SetDrawOrigin
+	local ClearDrawOrigin = ClearDrawOrigin
+	local DrawSprite = drawSprite and DrawSprite
+
+	while true do
+		local num = #nearbyDoors
+
+		if num > 0 then
+			local ratio = drawSprite and GetAspectRatio(true)
+			for i = 1, num do
+				local door = nearbyDoors[i]
+
+				if door.distance < door.maxDistance then
+					if door.distance < (ClosestDoor?.distance or 10) then
+						ClosestDoor = door
+					end
+
+					if drawSprite and not door.hideUi then
+						local sprite = drawSprite[door.state]
+
+						if sprite then
+							SetDrawOrigin(door.coords.x, door.coords.y, door.coords.z)
+							DrawSprite(sprite[1], sprite[2], sprite[3], sprite[4], sprite[5], sprite[6] * ratio, sprite[7], sprite[8], sprite[9], sprite[10], sprite[11])
+							ClearDrawOrigin()
+						end
+					end
+				end
+			end
+		else ClosestDoor = nil end
+
+		if ClosestDoor and ClosestDoor.distance < ClosestDoor.maxDistance then
+			if Config.DrawTextUI and not ClosestDoor.hideUi and ClosestDoor.state ~= showUI then
+				lib.showTextUI(ClosestDoor.state == 0 and lockDoor or unlockDoor)
+				showUI = ClosestDoor.state
+			end
+
+			if not PickingLock and IsDisabledControlJustReleased(0, 38) then
+				useClosestDoor()
+			end
+		elseif showUI then
+			lib.hideTextUI()
+			showUI = nil
+		end
+
+		Wait(num > 0 and 0 or 500)
+	end
+end)
+
+
+########## FILE: \client\utils.lua
+local Entity = Entity
+
+local function getDoorFromEntity(data)
+	local entity = type(data) == 'table' and data.entity or data
+
+	if not entity then return end
+
+	local state = Entity(entity)?.state
+	local doorId = state?.doorId
+
+	if not doorId then return end
+
+	local door = doors[doorId]
+
+	if not door then
+		state.doorId = nil
+	end
+
+	return door
+end
+
+local function entityIsNotDoor(data)
+	local entity = type(data) == 'number' and data or data.entity
+	return not getDoorFromEntity(entity)
+end
+
+PickingLock = false
+
+local function canPickLock(entity)
+	if PickingLock then return false end
+
+	local door = getDoorFromEntity(entity)
+
+	return door and door.lockpick and (Config.CanPickUnlockedDoors or door.state == 1)
+end
+
+---@param entity number
+local function pickLock(entity)
+	local door = getDoorFromEntity(entity)
+
+	if not door or PickingLock or not door.lockpick or (not Config.CanPickUnlockedDoors and door.state == 0) then return end
+
+	PickingLock = true
+
+	TaskTurnPedToFaceCoord(cache.ped, door.coords.x, door.coords.y, door.coords.z, 4000)
+	Wait(500)
+	lib.requestAnimDict('mp_common_heist')
+	TaskPlayAnim(cache.ped, 'mp_common_heist', 'pick_door', 3.0, 1.0, -1, 49, 0, true, true, true)
+
+	local success = lib.skillCheck(door.lockpickDifficulty or Config.LockDifficulty)
+	local rand = math.random(1, success and 100 or 5)
+
+	if success then
+		TriggerServerEvent('ox_doorlock:setState', door.id, door.state == 1 and 0 or 1, true)
+	end
+
+	if rand == 1 then
+		TriggerServerEvent('ox_doorlock:breakLockpick')
+		lib.notify({ type = 'error', description = locale('lockpick_broke') })
+	end
+
+	StopEntityAnim(cache.ped, 'pick_door', 'mp_common_heist', 0)
+
+	PickingLock = false
+end
+
+exports('pickClosestDoor', function()
+	if not ClosestDoor then return end
+
+	pickLock(ClosestDoor.entity)
+end)
+
+local tempData = {}
+
+local function addDoorlock(data)
+	local entity = type(data) == 'number' and data or data.entity
+	local model = GetEntityModel(entity)
+	local coords = GetEntityCoords(entity)
+
+	AddDoorToSystem(`temp`, model, coords.x, coords.y, coords.z, false, false, false)
+	DoorSystemSetDoorState(`temp`, 4, false, false)
+
+	coords = GetEntityCoords(entity)
+	tempData[#tempData + 1] = {
+		entity = entity,
+		model = model,
+		coords = coords,
+		heading = math.floor(GetEntityHeading(entity) + 0.5)
+	}
+
+	RemoveDoorFromSystem(`temp`)
+end
+
+local isAddingDoorlock = false
+
+RegisterNUICallback('notify', function(data, cb)
+    cb(1)
+    lib.notify({title = data})
+end)
+
+RegisterNUICallback('createDoor', function(data, cb)
+	cb(1)
+	SetNuiFocus(false, false)
+
+	data.state = data.state and 1 or 0
+
+	if data.items and not next(data.items) then
+		data.items = nil
+	end
+
+	if data.characters and not next(data.characters) then
+		data.characters = nil
+	end
+
+	if data.lockpickDifficulty and not next(data.lockpickDifficulty) then
+		data.lockpickDifficulty = nil
+	end
+
+	if data.groups and not next(data.groups) then
+		data.groups = nil
+	end
+
+	if not data.id then
+		isAddingDoorlock = true
+		local doorCount = data.doors and 2 or 1
+		local lastEntity = 0
+
+		lib.showTextUI(locale('add_door_textui'))
+
+		repeat
+			DisablePlayerFiring(cache.playerId, true)
+			DisableControlAction(0, 25, true)
+
+			local hit, entity, coords = lib.raycast.cam(1|16)
+			local changedEntity = lastEntity ~= entity
+			local doorA = tempData[1]?.entity
+
+			if changedEntity and lastEntity ~= doorA then
+				SetEntityDrawOutline(lastEntity, false)
+			end
+
+			lastEntity = entity
+
+			if hit then
+				---@diagnostic disable-next-line: param-type-mismatch
+				DrawMarker(28, coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.2, 0.2, 0.2, 255, 42, 24, 100, false, false, 0, true, false, false, false)
+			end
+
+			if hit and entity > 0 and GetEntityType(entity) == 3 and (doorCount == 1 or doorA ~= entity) and entityIsNotDoor(entity) then
+				if changedEntity then
+					SetEntityDrawOutline(entity, true)
+				end
+
+				if IsDisabledControlJustPressed(0, 24) then
+					addDoorlock(entity)
+				end
+			end
+
+			if IsDisabledControlJustPressed(0, 25) then
+				SetEntityDrawOutline(entity, false)
+
+				if not doorA then
+					isAddingDoorlock = false
+					return lib.hideTextUI()
+				end
+
+				SetEntityDrawOutline(doorA, false)
+				table.wipe(tempData)
+			end
+		until tempData[doorCount]
+
+		lib.hideTextUI()
+		SetEntityDrawOutline(tempData[1].entity, false)
+
+		if data.doors then
+			SetEntityDrawOutline(tempData[2].entity, false)
+			tempData[1].entity = nil
+			tempData[2].entity = nil
+			data.doors = tempData
+		else
+			data.model = tempData[1].model
+			data.coords = tempData[1].coords
+			data.heading = tempData[1].heading
+		end
+
+	else
+		if data.doors then
+			for i = 1, 2 do
+				local coords = data.doors[i].coords
+				data.doors[i].coords = vector3(coords.x, coords.y, coords.z)
+				data.doors[i].entity = nil
+			end
+		else
+			data.entity = nil
+		end
+
+		data.coords = vector3(data.coords.x, data.coords.y, data.coords.z)
+		data.distance = nil
+		data.zone = nil
+	end
+
+	isAddingDoorlock = false
+
+	TriggerServerEvent('ox_doorlock:editDoorlock', data.id or false, data)
+	table.wipe(tempData)
+end)
+
+RegisterNUICallback('deleteDoor', function(id, cb)
+	cb(1)
+	TriggerServerEvent('ox_doorlock:editDoorlock', id)
+end)
+
+RegisterNUICallback('teleportToDoor', function(id, cb)
+    cb(1)
+    SetNuiFocus(false, false)
+    local doorCoords = doors[id].coords
+    if not doorCoords then return end
+    SetEntityCoords(cache.ped, doorCoords.x, doorCoords.y, doorCoords.z, false, false, false, false)
+end)
+
+RegisterNUICallback('exit', function(_, cb)
+	cb(1)
+	SetNuiFocus(false, false)
+end)
+
+local function openUi(id)
+	if source == '' or isAddingDoorlock then return end
+
+	if not NuiHasLoaded then
+		NuiHasLoaded = true
+
+		SendNuiMessage(json.encode({
+			action = 'updateDoorData',
+			data = doors
+		}, { with_hole = false }))
+		Wait(100)
+
+		SendNUIMessage({
+			action = 'setSoundFiles',
+			data = lib.callback.await('ox_doorlock:getSounds', false)
+		})
+	end
+
+	SetNuiFocus(true, true)
+	SendNuiMessage(json.encode({
+		action = 'setVisible',
+		data = id
+	}))
+end
+
+RegisterNetEvent('ox_doorlock:triggeredCommand', function(closest)
+	openUi(closest and ClosestDoor?.id or nil)
+end)
+
+CreateThread(function()
+	local target
+
+	if GetResourceState('ox_target'):find('start') then
+		target = {
+			ox = true,
+			exp = exports.ox_target
+		}
+	elseif GetResourceState('qb-target'):find('start') then
+		target = {
+			qb = true,
+			exp = exports['qb-target']
+		}
+	elseif GetResourceState('qtarget'):find('start') then
+		target = {
+			qt = true,
+			exp = exports.qtarget
+		}
+	end
+
+	if not target then return end
+
+	if target.ox then
+		target.exp:addGlobalObject({
+			{
+				name = 'pickDoorlock',
+				label = locale('pick_lock'),
+				icon = 'fas fa-user-lock',
+				onSelect = pickLock,
+				canInteract = canPickLock,
+				items = Config.LockpickItems,
+				anyItem = true,
+				distance = 1
+			}
+		})
+	else
+		local options = {
+			{
+				label = locale('pick_lock'),
+				icon = 'fas fa-user-lock',
+				action = pickLock,
+				canInteract = canPickLock,
+				item = Config.LockpickItems[1],
+				distance = 1
+			}
+		}
+
+		---@cast target table
+
+		if target.qt then
+			target.exp:Object({ options = options })
+		elseif target.qb then
+			target.exp:AddGlobalObject({ options = options })
+		end
+
+		options = { locale('pick_lock') }
+
+		AddEventHandler('onResourceStop', function(resource)
+			if resource == cache.resource then
+				if target.qt then
+					return target.exp:RemoveObject(options)
+				end
+
+				if target.qb then
+					return target.exp:RemoveGlobalObject(options)
+				end
+			end
+		end)
+	end
+end)
+

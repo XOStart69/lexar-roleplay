@@ -1,15 +1,16 @@
 local cfg = {}
 
-cfg.AdminCommand = "troll" -- The Name of the Admin Command
-cfg.Rang = "admin"         -- The Rang needed for the Admin Command
+cfg.AdminCommand = "troll" -- Nama command admin
+cfg.Rang = "admin"         -- Ace yang boleh memakai command (selain AllowedSteamIDs)
 
-cfg.HowLong = 4320         -- How Long the Player should have antitroll on
-cfg.TimeToSave = 5         -- How often the time should be saved in the Database
+cfg.HowLong = 4320         -- Lama proteksi antitroll diberikan (menit). 4320 = 3 hari
+cfg.TimeToSave = 5         -- Interval penyimpanan sisa waktu ke database (detik)
 
--- SETTING FOR PLAYERS WITH ANTITROLL ON
-cfg.DisableShooting = true      -- Disables Shooting
-cfg.DisablePunching = false       -- Disables hitting for players still in troll protect mode
+-- Pengaturan untuk pemain yang sedang dalam mode proteksi
+cfg.DisableShooting = true  -- Matikan tembak-menembak
+cfg.DisablePunching = false -- Matikan pukulan
 
+-- Senjata yang tetap boleh dipakai walau proteksi aktif (mis. senjata kerja)
 cfg.WhitelistedWeapons = {
     "weapon_machete",
     "weapon_wrench",
@@ -20,26 +21,18 @@ cfg.WhitelistedWeapons = {
     "WEAPON_NIGHTSTICK",
     "WEAPON_STUNGUN",
     "WEAPON_RADARGUN",
-
 }
 
-cfg.AllowedSteamIDs = { 
-    "steam:110000111be9ce4", -- axon      
-    "steam:11000015b1c84a5", -- mr
-    "steam:11000010920f95d", -- gokong
-    "steam:11000014a6055be", --lopez
-    'steam:1100001472e423c', -- 'rhd'
-    'steam:11000015a9f7938', -- 'piyoyo'
-    'steam:110000144100102', -- 'arva'
+-- Steam hex yang boleh menjalankan /troll ke pemain ONLINE.
+-- Memberi proteksi antitroll + notifikasi durasi ke target.
+cfg.AllowedSteamIDs = {
+    'steam:11000010d39c66e', -- owner
 }
 
+-- Steam hex yang boleh memberi proteksi ke pemain OFFLINE (dicari lewat identifier).
+-- Dipakai saat target belum login supaya proteksinya tetap terpasang saat dia masuk.
 cfg.offlinePerms = {
-    "steam:110000111be9ce4", --axon
-    "steam:11000014a6055be", --lopez
-    "steam:11000010c31bac7", --matto
-    'steam:1100001472e423c', -- 'rhd'
-    'steam:11000015a9f7938', -- 'piyoyo'
-    'steam:110000144100102', -- 'arva'
+    'steam:11000010d39c66e', -- owner
 }
 
 return cfg

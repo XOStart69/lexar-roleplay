@@ -525,6 +525,22 @@ function zones.shows(zone, id)
     return not allow or allow[id] == true or (allow.extras == true and id:find('^extra_%d') ~= nil)
 end
 
-zones.load(lib.load(GetConvarBool('sm_custom:devmode', false) and 'data.zones_dev' or 'data.zones') or {})
+local function loadZones()
+    local raw = LoadResourceFile(GetCurrentResourceName(), 'data/zones.json')
+
+    if raw then
+        local ok, decoded = pcall(json.decode, raw)
+
+        if ok and type(decoded) == 'table' then return zones.decode(decoded) end
+    end
+
+    return lib.load(GetConvarBool('sm_custom:devmode', false) and 'data.zones_dev' or 'data.zones') or {}
+end
+
+zones.load(loadZones())
+
+function zones.save()
+    SaveResourceFile(GetCurrentResourceName(), 'data/zones.json', json.encode(zones.encode(zones.data)), -1)
+end
 
 return zones

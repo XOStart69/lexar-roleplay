@@ -30,6 +30,8 @@ function Pull.await(name, ...)
     pending[id] = nil
     responses[id] = nil
 
+    if type(result) == 'table' then return result[1], result[2], result[3] end
+
     return result
 end
 

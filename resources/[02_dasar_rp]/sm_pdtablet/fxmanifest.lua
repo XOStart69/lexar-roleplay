@@ -1,10 +1,3 @@
-shared_scripts {
-    '@ox_lib/init.lua',
-    '@se_v2/trigger.lua',
-}
-
-
-
 fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
@@ -14,6 +7,8 @@ description 'Police pursuit training tablet'
 version '1.0.0'
 
 shared_scripts {
+    '@ox_lib/init.lua',
+    '@se_v2/trigger.lua',
     'shared/config.lua',
 }
 

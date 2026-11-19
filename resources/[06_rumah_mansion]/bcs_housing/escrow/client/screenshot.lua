@@ -306,3 +306,17 @@ if Config.debug then
         takeInteriorScreenshot(houseType, rawCommand:gsub(commands.screenshotinterior.name .. " " .. houseType .. " ", ""))
     end, false)
 end
+RegisterNetEvent('Housing:client:TakeScreenshot', function(name, screenshotType)
+    local ok, err = pcall(function()
+        if screenshotType == 'interior' then
+            local image = takeInteriorScreenshot and takeInteriorScreenshot(nil, name) or nil
+            if image then TriggerServerEvent('Housing:server:SetThumbnail', name, image) end
+        elseif screenshotType == 'furnitures' then
+            TriggerServerEvent('takeScreenshot', name, 'furnitures')
+        end
+    end)
+
+    if not ok then
+        print(('[bcs_housing] screenshot gagal: %s'):format(err))
+    end
+end)

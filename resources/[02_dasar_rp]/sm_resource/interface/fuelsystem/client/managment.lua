@@ -71,6 +71,7 @@ end)
 
 interface.callback('exitmanagement', function (data, cb)
     interface.focus(false, false)
+    TriggerServerEvent('fuelsystem:closeManage', playerState.fuel_station_id)
     cb('ok')
 end)
 
