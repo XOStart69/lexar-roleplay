@@ -1,29 +1,13 @@
 --[[ sm_notepad / server.lua ]]
 
-local SCHEMA = [[CREATE TABLE IF NOT EXISTS `sm_notepad_notes` (
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `citizenid` VARCHAR(50) NOT NULL,
-    `title` VARCHAR(64) DEFAULT NULL,
-    `body` TEXT NOT NULL,
-    `coords` VARCHAR(128) NOT NULL,
-    `created_at` INT UNSIGNED NOT NULL,
-    `expires_at` INT UNSIGNED NOT NULL,
-    PRIMARY KEY (`id`),
-    KEY `citizenid` (`citizenid`),
-    KEY `expires_at` (`expires_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;]]
+local config = localmodule 'config'
 
-local ITEM           = 'notepad'
-local LIFETIME       = 60 * 60 * 24
-local MAX_PER_PLAYER = 10
-local MAX_TOTAL      = 150
-local COOLDOWN       = 3
-local READ_DISTANCE  = 3.0
-local GIVE_DISTANCE  = 4.0
+local ITEM = config.item
+local TABLE = 'sm_notepad_notes'
+local KEY = 'smnote:'
 
-local notes    = {}
-local owned    = {}
-local cooldown = {}
+local notes = {}
+local cooldowns = {}
 
 local function now() return os.time() end
 
@@ -40,141 +24,217 @@ local function getPlayer(src)
     if ok and player then return player end
 end
 
-local function public(note)
-    return { id = note.id, title = note.title, coords = note.coords }
+local function within(a, b, dist)
+    local pa, pb = GetPlayerPed(a), GetPlayerPed(b)
+    if pa == 0 or pb == 0 then return false end
+    return #(GetEntityCoords(pa) - GetEntityCoords(pb)) <= dist
 end
 
-local function within(src, coords, dist)
-    local ped = GetPlayerPed(src)
-    if ped == 0 then return false end
-    local c = GetEntityCoords(ped)
-    return #(c - vector3(coords.x, coords.y, coords.z)) <= dist
+local function cooldown(src)
+    local last = cooldowns[src]
+    if last and (GetGameTimer() - last) < config.actionCooldown then return false end
+    cooldowns[src] = GetGameTimer()
+    return true
 end
 
-local function purge(id)
-    local note = notes[id]
-    if not note then return end
+local function getSlot(src, slot)
+    local ok, item = pcall(function() return exports.ox_inventory:GetSlot(src, slot) end)
+    if ok and item and item.name == ITEM then return item end
+end
+
+local function setMetadata(src, slot, meta)
+    local ok = pcall(function() return exports.ox_inventory:SetMetadata(src, slot, meta) end)
+    return ok
+end
+
+local function sanitizeText(text)
+    if type(text) ~= 'string' then return '' end
+    return text:sub(1, config.maxLength)
+end
+
+local function sanitizeFont(font)
+    for _, entry in ipairs(config.fonts) do
+        if entry == font then return font end
+    end
+    return config.defaultFont
+end
+
+local function countOwn(citizenid)
+    return MySQL.scalar.await(('SELECT COUNT(*) FROM %s WHERE citizenid = ? AND expires_at > ?'):format(TABLE), { citizenid, now() }) or 0
+end
+
+local function publish(note)
+    notes[note.id] = note
+    GlobalState[KEY .. note.id] = { id = note.id, x = note.x, y = note.y, z = note.z }
+end
+
+local function unpublish(id)
     notes[id] = nil
-    owned[note.citizenid] = math.max((owned[note.citizenid] or 1) - 1, 0)
-    TriggerClientEvent('sm_notepad:client:despawn', -1, id)
+    GlobalState[KEY .. id] = nil
 end
 
-local function expireLoop()
+local function cleanup()
     while true do
-        Wait(60000)
-        local t = now()
-        for id, note in pairs(notes) do
-            if note.expires_at <= t then
-                MySQL.update.await('DELETE FROM sm_notepad_notes WHERE id = ?', { id })
-                purge(id)
-            end
+        Wait(config.cleanupInterval)
+        local expired = MySQL.query.await(('SELECT id FROM %s WHERE expires_at <= ?'):format(TABLE), { now() })
+        if expired and #expired > 0 then
+            for _, row in ipairs(expired) do unpublish(row.id) end
+            MySQL.update.await(('DELETE FROM %s WHERE expires_at <= ?'):format(TABLE), { now() })
         end
     end
 end
 
-lib.callback.register('sm_notepad:server:place', function(src, title, body, coords)
-    local player = getPlayer(src)
-    if not player then return false, 'player' end
-    if cooldown[src] and now() - cooldown[src] < COOLDOWN then return false, 'cooldown' end
-
-    local citizenid = player.PlayerData.citizenid
-    if (owned[citizenid] or 0) >= MAX_PER_PLAYER then return false, 'limit' end
-
-    local count = MySQL.scalar.await('SELECT COUNT(*) FROM sm_notepad_notes WHERE expires_at > ?', { now() })
-    if (count or 0) >= MAX_TOTAL then return false, 'full' end
-
-    title = tostring(title or ''):sub(1, 64)
-    body  = tostring(body  or ''):sub(1, 2000)
-    if body == '' then return false, 'empty' end
-
-    cooldown[src] = now()
-
-    local id = MySQL.insert.await(
-        'INSERT INTO sm_notepad_notes (citizenid, title, body, coords, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?)',
-        { citizenid, title, body, json.encode(coords), now(), now() + LIFETIME }
-    )
-    if not id then return false, 'db' end
-
-    local note = {
-        id = id, citizenid = citizenid, title = title, body = body,
-        coords = coords, expires_at = now() + LIFETIME,
-    }
-    notes[id] = note
-    owned[citizenid] = (owned[citizenid] or 0) + 1
-
-    TriggerClientEvent('sm_notepad:client:spawn', -1, public(note))
-    return true, id
+lib.callback.register('sm_notepad:getAll', function()
+    local rows = MySQL.query.await(('SELECT id, x, y, z FROM %s WHERE expires_at > ?'):format(TABLE), { now() })
+    local out = {}
+    for _, row in ipairs(rows or {}) do
+        out[#out + 1] = { id = row.id, x = row.x, y = row.y, z = row.z }
+    end
+    return out
 end)
 
-lib.callback.register('sm_notepad:server:read', function(src, id)
+lib.callback.register('sm_notepad:read', function(src, id)
     local note = notes[tonumber(id) or 0]
     if not note then return nil end
-    if not within(src, note.coords, READ_DISTANCE) then return nil end
-    return { id = note.id, title = note.title, body = note.body }
+
+    local ped = GetPlayerPed(src)
+    if ped == 0 then return nil end
+    if #(GetEntityCoords(ped) - vector3(note.x, note.y, note.z)) > config.readDistance then return nil end
+
+    return { text = note.text, font = note.font }
 end)
 
-lib.callback.register('sm_notepad:server:edit', function(src, id, body)
+lib.callback.register('sm_notepad:save', function(src, slot, text, font)
+    slot = tonumber(slot)
+    if not slot then return false end
+    if not getSlot(src, slot) then return false end
+
+    text = sanitizeText(text)
+    font = sanitizeFont(font)
+
+    local meta = { text = text, font = font }
+    if text ~= '' then meta.label = config.writtenLabel end
+
+    return setMetadata(src, slot, meta)
+end)
+
+lib.callback.register('sm_notepad:drop', function(src, slot, text, font)
+    slot = tonumber(slot)
+    if not slot then return false, 'gone' end
+    if not cooldown(src) then return false, 'cooldown' end
+    if not getSlot(src, slot) then return false, 'gone' end
+
+    text = sanitizeText(text)
+    if text == '' then return false, 'blank' end
+
+    local ped = GetPlayerPed(src)
+    if ped == 0 then return false, 'gone' end
+    if GetVehiclePedIsIn(ped, false) ~= 0 then return false, 'vehicle' end
+    if GetPlayerRoutingBucket(src) ~= 0 then return false, 'bucket' end
+
     local player = getPlayer(src)
-    if not player then return false end
+    if not player then return false, 'gone' end
 
-    local note = notes[tonumber(id) or 0]
-    if not note then return false end
-    if note.citizenid ~= player.PlayerData.citizenid then return false end
-    if not within(src, note.coords, GIVE_DISTANCE) then return false end
+    if countOwn(player.PlayerData.citizenid) >= config.maxPerPlayer then return false, 'limit' end
 
-    body = tostring(body or ''):sub(1, 2000)
-    note.body = body
-    MySQL.update.await('UPDATE sm_notepad_notes SET body = ? WHERE id = ?', { body, note.id })
+    local total = MySQL.scalar.await(('SELECT COUNT(*) FROM %s WHERE expires_at > ?'):format(TABLE), { now() }) or 0
+    if total >= config.maxTotal then return false, 'full' end
+
+    local coords = GetEntityCoords(ped)
+    local id = MySQL.insert.await(
+        ('INSERT INTO %s (citizenid, text, font, x, y, z, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'):format(TABLE),
+        { player.PlayerData.citizenid, text, sanitizeFont(font), coords.x, coords.y, coords.z, now(), now() + config.lifetime }
+    )
+
+    if not id then return false, 'gone' end
+
+    pcall(function() exports.ox_inventory:RemoveItem(src, ITEM, 1, nil, slot) end)
+
+    publish({ id = id, citizenid = player.PlayerData.citizenid, text = text, font = sanitizeFont(font), x = coords.x, y = coords.y, z = coords.z })
     return true
 end)
 
-RegisterNetEvent('sm_notepad:server:pickup', function(id)
-    local src = source
+lib.callback.register('sm_notepad:give', function(src, slot, target, text, font)
+    slot = tonumber(slot)
+    target = tonumber(target)
+    if not slot or not target then return false, 'gone' end
+    if not cooldown(src) then return false, 'cooldown' end
+    if not getSlot(src, slot) then return false, 'gone' end
+
+    text = sanitizeText(text)
+    if text == '' then return false, 'blank' end
+
     local player = getPlayer(src)
-    if not player then return end
+    if not player or not getPlayer(target) then return false, 'gone' end
+    if not within(src, target, config.giveDistance) then return false, 'distance' end
 
-    local note = notes[tonumber(id) or 0]
-    if not note then return end
-    if note.citizenid ~= player.PlayerData.citizenid then return end
-    if not within(src, note.coords, GIVE_DISTANCE) then return end
+    local canCarry = pcall(function() return exports.ox_inventory:CanCarryItem(target, ITEM, 1) end)
+    if not canCarry then return false, 'target_full' end
 
-    local ok = pcall(function()
-        return exports.ox_inventory:AddItem(src, ITEM, 1, { noteId = note.id, title = note.title })
-    end)
-    if not ok then return end
+    local removed = pcall(function() return exports.ox_inventory:RemoveItem(src, ITEM, 1, nil, slot) end)
+    if not removed then return false, 'gone' end
 
-    MySQL.update.await('DELETE FROM sm_notepad_notes WHERE id = ?', { note.id })
-    purge(note.id)
+    local meta = { text = text, font = sanitizeFont(font), label = config.writtenLabel }
+    local added = pcall(function() return exports.ox_inventory:AddItem(target, ITEM, 1, meta) end)
+
+    if not added then
+        pcall(function() exports.ox_inventory:AddItem(src, ITEM, 1, meta) end)
+        return false, 'target_full'
+    end
+
+    TriggerClientEvent('sm_notepad:client:received', target)
+    return true
 end)
 
-RegisterUsableItem(ITEM, function(src, item)
-    local meta = item and item.metadata
-    if meta and meta.noteId then
-        TriggerClientEvent('sm_notepad:client:openReader', src, meta.noteId)
-    else
-        TriggerClientEvent('sm_notepad:client:openEditor', src)
-    end
+lib.callback.register('sm_notepad:pickup', function(src, id)
+    id = tonumber(id)
+    if not id then return false, 'gone' end
+    if not cooldown(src) then return false, 'cooldown' end
+
+    local note = notes[id]
+    if not note then return false, 'gone' end
+
+    local ped = GetPlayerPed(src)
+    if ped == 0 then return false, 'gone' end
+    if #(GetEntityCoords(ped) - vector3(note.x, note.y, note.z)) > config.readDistance then return false, 'distance' end
+
+    local canCarry = pcall(function() return exports.ox_inventory:CanCarryItem(src, ITEM, 1) end)
+    if not canCarry then return false, 'full' end
+
+    local meta = { text = note.text, font = note.font, label = config.writtenLabel }
+    local added = pcall(function() return exports.ox_inventory:AddItem(src, ITEM, 1, meta) end)
+    if not added then return false, 'full' end
+
+    MySQL.update.await(('DELETE FROM %s WHERE id = ?'):format(TABLE), { id })
+    unpublish(id)
+    return true
+end)
+
+AddEventHandler('playerDropped', function()
+    cooldowns[source] = nil
 end)
 
 AddEventHandler('onResourceStart', function(res)
     if res ~= GetCurrentResourceName() then return end
-    MySQL.query.await(SCHEMA)
-    local rows = MySQL.query.await('SELECT * FROM sm_notepad_notes WHERE expires_at > ?', { now() })
-    for _, row in ipairs(rows or {}) do
-        notes[row.id] = {
-            id = row.id, citizenid = row.citizenid, title = row.title, body = row.body,
-            coords = json.decode(row.coords), expires_at = row.expires_at,
-        }
-        owned[row.citizenid] = (owned[row.citizenid] or 0) + 1
-    end
-    CreateThread(expireLoop)
-end)
 
-AddEventHandler('playerJoining', function()
-    local src = source
-    SetTimeout(3000, function()
-        local list = {}
-        for _, note in pairs(notes) do list[#list + 1] = public(note) end
-        TriggerClientEvent('sm_notepad:client:sync', src, list)
-    end)
+    MySQL.query.await([[CREATE TABLE IF NOT EXISTS `sm_notepad_notes` (
+        `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+        `citizenid` VARCHAR(50) NOT NULL,
+        `text` TEXT NOT NULL,
+        `font` VARCHAR(32) DEFAULT NULL,
+        `x` FLOAT NOT NULL,
+        `y` FLOAT NOT NULL,
+        `z` FLOAT NOT NULL,
+        `created_at` INT UNSIGNED NOT NULL,
+        `expires_at` INT UNSIGNED NOT NULL,
+        PRIMARY KEY (`id`),
+        KEY `expires_at` (`expires_at`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;]])
+
+    local rows = MySQL.query.await(('SELECT * FROM %s WHERE expires_at > ?'):format(TABLE), { now() })
+    for _, row in ipairs(rows or {}) do
+        publish({ id = row.id, citizenid = row.citizenid, text = row.text, font = row.font, x = row.x, y = row.y, z = row.z })
+    end
+
+    CreateThread(cleanup)
 end)

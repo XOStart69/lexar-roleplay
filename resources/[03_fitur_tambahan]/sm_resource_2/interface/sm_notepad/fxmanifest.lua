@@ -8,6 +8,7 @@ version '1.0.0'
 shared_scripts {
     '@ox_lib/init.lua',
     '@oxmysql/lib/MySQL.lua',
+    'config.lua',
 }
 
 client_scripts {
@@ -16,6 +17,12 @@ client_scripts {
 
 server_scripts {
     'server.lua',
+}
+
+ui_page 'web/build/index.html'
+
+files {
+    'web/build/**',
 }
 
 dependencies {
