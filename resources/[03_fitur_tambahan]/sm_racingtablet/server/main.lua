@@ -141,6 +141,19 @@ RegisterNetEvent('sm_racingtablet:server:updateRaceState', function(raceId, star
                 applyElo(first, citizenid, true)
             end
         end
+
+        local position, first = 0, nil
+
+        for citizenid, data in pairs(race.racers) do
+            position = position + 1
+            first = first or citizenid
+
+            MySQL.update.await('INSERT INTO racing_results (race, track, citizenid, racername, position) VALUES (?, ?, ?, ?, ?)', { race.id, race.name, citizenid, data.Racername, position })
+
+            if race.ranked and citizenid ~= first then
+                applyElo(first, citizenid, true)
+            end
+        end
         races[race.id] = nil
     end
 end)
@@ -161,6 +174,7 @@ cwCallback.register('sm_racingtablet:server:setupRace', function(src, trackId, l
         trackId = track.id,
         laps = math.max(tonumber(laps) or 1, 1),
         elimination = elimination == true,
+        ranked = false,
         ranked = false,
         host = citizenid,
         started = false,
