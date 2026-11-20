@@ -11,6 +11,7 @@ ui_page 'web/build/index.html'
 
 shared_scripts {
     '@ox_lib/init.lua',
+    '@oxmysql/lib/MySQL.lua',
     '@se_v2/trigger.lua',
     '@sm_core/modules/lib.lua',
     'config.lua',
