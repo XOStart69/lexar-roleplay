@@ -1,0 +1,3 @@
+--[[ entry point ]]
+-- File nyata ada di server/*.lua dan sudah dimuat lewat manifest.
+-- Dibuat karena manifest masih menyebut 'server.lua'.
