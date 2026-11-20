@@ -1,4 +1,6 @@
+-- decrypted + fixed
 fx_version 'cerulean'
+game 'gta5'
 games {'gta5'}
 description 'xTxVxTx Plasma Swords'
 
@@ -19,4 +21,3 @@ data_file 'WEAPONINFO_FILE' '**/weapons.meta'
 client_script 'cl_weaponNames.lua'
 
 lua54 'yes'
-dependency '/assetpacks'

@@ -1,3 +1,4 @@
+-- decrypted + fixed
 fx_version 'cerulean'
 game 'gta5'
 version '1.0.0'
@@ -15,5 +16,3 @@ files {
 
 
 data_file 'GTXD_PARENTING_DATA' 'data/gtxd.meta'
-
-dependency '/assetpacks'

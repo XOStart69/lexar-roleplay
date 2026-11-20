@@ -1,4 +1,6 @@
+-- decrypted + fixed
 fx_version 'cerulean'
+game 'gta5'
 games {'gta5'}
 description 'xTxVxTx Dragon Katanas'
 
@@ -18,11 +20,5 @@ data_file 'WEAPONINFO_FILE' '**/weapons.meta'
 
 client_script 'cl_weaponNames.lua'
 
-escrow_ignore {
-  'stream/*.ytd',
-  'CLOTHING ITEM VERSION/*.ytd',
-  'CLOTHING ITEM VERSION/*.ydd'
-}
 
 lua54 'yes'
-dependency '/assetpacks'

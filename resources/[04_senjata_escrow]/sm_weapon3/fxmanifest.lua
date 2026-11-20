@@ -1,6 +1,8 @@
+-- decrypted + fixed
 
 
 fx_version 'cerulean'
+game 'gta5'
 games {'gta5'}
 lua54 "yes"
 description 'Add-on Melee weapons V3'
@@ -39,4 +41,3 @@ data_file 'WEAPONINFO_FILE' 'meta/weapons.meta'
 --     "cl_weaponNames",
 -- 	"config.lua"
 -- }
-dependency '/assetpacks'

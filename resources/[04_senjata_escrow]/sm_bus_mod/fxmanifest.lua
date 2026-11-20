@@ -1,4 +1,6 @@
+-- decrypted + fixed
 fx_version 'cerulean'
+game 'gta5'
 
 games { 'gta5' }
 
@@ -13,6 +15,3 @@ data_file "DLC_ITYP_REQUEST" "sf_dlc_int_01_sec.ytyp"
 data_file "DLC_ITYP_REQUEST" "int_retail.ytyp"
 data_file "DLC_ITYP_REQUEST" "xm_x17dlc_int_02.ytyp"
 data_file "DLC_ITYP_REQUEST" "v_electrical.ytyp"
-
-
-dependency '/assetpacks'

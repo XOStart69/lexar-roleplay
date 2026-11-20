@@ -1,4 +1,4 @@
-﻿local resName = GetCurrentResourceName()
+local resName = GetCurrentResourceName()
 
 local function push(event, target)
     TriggerClientEvent(event, -1, target)

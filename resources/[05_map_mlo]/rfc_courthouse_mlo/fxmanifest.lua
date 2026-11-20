@@ -1,3 +1,4 @@
+-- decrypted + fixed
 fx_version 'cerulean'
 
 game  {'gta5'}
@@ -8,9 +9,3 @@ Author 'Rfc_Mapping'
 description 'Court House'
 
 version '1.0'
-
-
-dependency '/assetpacks'
-
-
-dependency '/assetpacks'

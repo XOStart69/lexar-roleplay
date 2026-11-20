@@ -1,7 +1,4 @@
+-- decrypted + fixed
 fx_version 'bodacious'
 games { 'gta5' }
 this_is_a_map 'yes'
-
-dependency '/assetpacks'
-dependency '/assetpacks'
-dependency '/assetpacks'

@@ -1,3 +1,4 @@
+-- decrypted + fixed
 fx_version 'bodacious'
 
 games { 'gta5' }
@@ -24,8 +25,3 @@ lua54 'yes'
 author 'Made by .argonz'
 
 version '1.0.9'
-
-escrow_ignore {
-    'stream/ydr/*.ydr',
-  }
-dependency '/assetpacks'

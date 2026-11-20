@@ -1,4 +1,6 @@
+-- decrypted + fixed
 fx_version 'cerulean'
+game 'gta5'
 games {'gta5'}
 description 'xTxVxTx M9 Bayonets'
 
@@ -20,4 +22,3 @@ client_script 'cl_weaponNames.lua'
 
 
 lua54 'yes'
-dependency '/assetpacks'

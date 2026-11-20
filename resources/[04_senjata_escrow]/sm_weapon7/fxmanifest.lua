@@ -1,4 +1,6 @@
+-- decrypted + fixed
 fx_version 'cerulean'
+game 'gta5'
 games {'gta5'}
 lua54 "yes"
 description 'Add-on Valentine weapons'
@@ -23,9 +25,3 @@ data_file 'PED_PERSONALITY_FILE' '**/pedpersonality.meta'
 data_file 'WEAPONINFO_FILE' '**/weapons.meta'
 
 client_script 'cl_weaponNames.lua'
-
-escrow_ignore {
-    "cl_weaponNames",
-}
-
-dependency '/assetpacks'

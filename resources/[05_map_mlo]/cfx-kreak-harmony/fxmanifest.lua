@@ -1,3 +1,4 @@
+-- decrypted + fixed
 
 fx_version "cerulean"
 
@@ -18,10 +19,3 @@ data_file 'DLC_ITYP_REQUEST' 'stream/v_kitchen.ytyp'
 client_scripts {
     'client.lua'
   }
-
-escrow_ignore {
-    'stream/ydr/k_harmony_ext_textlogo.ydr',
-    'stream/ydr/k_harmonylogo_base.ydr',
-    'stream/ydr/k_harmonylogo_em.ydr',
-    }
-dependency '/assetpacks'

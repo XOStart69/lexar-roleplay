@@ -1,4 +1,6 @@
+-- decrypted + fixed
 fx_version 'cerulean'
+game 'gta5'
 games {'gta5'}
 lua54 "yes"
 description 'Add-on Halloween weapons'
@@ -23,8 +25,3 @@ data_file 'PED_PERSONALITY_FILE' 'meta/pedpersonality.meta'
 data_file 'WEAPONINFO_FILE' 'meta/weapons.meta'
 
 client_script 'cl_weaponNames.lua'
-
-escrow_ignore {
-    "cl_weaponNames",
-}
-dependency '/assetpacks'

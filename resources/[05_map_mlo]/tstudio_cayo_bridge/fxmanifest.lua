@@ -1,3 +1,4 @@
+-- decrypted + fixed
 
 
 
@@ -19,9 +20,3 @@ dependencies {
     '/server:4960',     -- ⚠️PLEASE READ⚠️; Requires at least SERVER build 4960.
     '/gameBuild:2545',  -- ⚠️PLEASE READ⚠️; Requires at least GAME build 2545.
 }
-
-escrow_ignore {
-    'stream/vanilla/*/*.*',
-    'stream/ytd/*.ytd',
-}
-dependency '/assetpacks'

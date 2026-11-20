@@ -1,3 +1,4 @@
+-- decrypted + fixed
 fx_version "cerulean"
 
 game "gta5"
@@ -13,10 +14,3 @@ data_file 'DLC_ITYP_REQUEST' 'stream/int_stock.ytyp'
 data_file 'DLC_ITYP_REQUEST' 'stream/int_services.ytyp'
 data_file 'DLC_ITYP_REQUEST' 'stream/int_retail.ytyp'
 data_file 'DLC_ITYP_REQUEST' 'stream/v_kitchen.ytyp'
-
-escrow_ignore {
-    'stream/YDR/bh1_01_mall002.ydr',
-    'stream/YDR/kreaktive_digden_storesign.ydr',
-    'stream/YDR/kreaktive_digden_outdecal.ydr',
-    }
-dependency '/assetpacks'
