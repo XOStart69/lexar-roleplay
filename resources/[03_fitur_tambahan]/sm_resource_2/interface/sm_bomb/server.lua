@@ -1,4 +1,4 @@
---[[
+﻿--[[
     sm_bomb :: server
     Otoritas penuh: entity, kuota, umur bom, sesi defuse, eksekusi.
     Klien hanya kirim niat (timer, pin, posisi) - semuanya divalidasi ulang di sini.
@@ -34,7 +34,7 @@ local sessions = {}
 local counter = 0
 
 local function now()
-    return GetCloudTimeAsInt()
+    return os.time()
 end
 
 local function bombCoords(bomb)

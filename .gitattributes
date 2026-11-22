@@ -1,8 +1,21 @@
-﻿* text=auto eol=lf
+* text=auto eol=lf
+*.lnk binary
+*.key binary
+*.exe binary
+*.dll binary
 *.png binary
 *.jpg binary
+*.dds binary
 *.ytd binary
 *.ydr binary
 *.yft binary
+*.ydd binary
+*.ybn binary
+*.ycd binary
 *.awc binary
 *.ogg binary
+*.mp3 binary
+*.wav binary
+*.rpf binary
+*.webm binary
+*.mp4 binary

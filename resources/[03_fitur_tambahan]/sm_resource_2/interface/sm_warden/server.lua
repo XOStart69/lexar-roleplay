@@ -1,4 +1,4 @@
---[[
+﻿--[[
     sm_warden :: server
     Pin otoritas: kartu kosong dipakai petugas untuk menerbitkan kartu atas nama warga,
     pemegang memakainya sebagai pin, dan semua orang di sekitar bisa melihatnya.
@@ -394,7 +394,7 @@ end, false)
 
 local function registerUse(name, handler)
     pcall(function()
-        exports.ox_inventory:RegisterUsableItem(name, function(_, item, inventory, slot)
+        exports(name, function(_, event, item, inventory, slot)
             local src = inventory and tonumber(inventory.id or inventory.owner)
             if not src then return end
 
@@ -432,3 +432,4 @@ AddEventHandler('playerDropped', function()
     worn[source] = nil
     adjusting[source] = nil
 end)
+

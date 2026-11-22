@@ -1,4 +1,4 @@
---[[
+﻿--[[
     sm_pets :: server/shop
     Toko NPC statis dan toko pemain (stok, harga, riwayat penjualan), plus pembelian pet/barang.
 ]]
@@ -554,7 +554,10 @@ lib.callback.register('sm_pets:creator:delete', function(src, id)
 end)
 
 CreateThread(function()
-    MySQL.query.await(SCHEMA)
+    for stmt in string.gmatch(SCHEMA, '([^;]+)') do
+        local s = stmt:gsub('^%s+', ''):gsub('%s+$', '')
+        if s ~= '' then MySQL.query.await(s) end
+    end
 
     local rows = MySQL.query.await('SELECT * FROM sm_pets_shops') or {}
 

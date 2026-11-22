@@ -1,4 +1,4 @@
---[[
+﻿--[[
     sm_outfitbag :: server
     Tas outfit berbasis item. Satu tas aktif per karakter, hanya pemilik yang bisa buka/ambil.
     Masa berlaku dihitung sejak tas pertama kali di-use dan disimpan di metadata item.
@@ -49,8 +49,9 @@ local function toClient(bag)
     return { coords = bag.coords, heading = bag.heading, ownerSrc = bag.ownerSrc }
 end
 
-exports.ox_inventory:RegisterUsableItem(item, function(data)
-    local src = data.source or source
+exports('outfitbag', function(_, event, itemData, inventory, slot)
+    if event ~= 'usingItem' then return end
+    local src = inventory and inventory.id or source
     if not src then return end
 
     local id = cid(src)
@@ -60,22 +61,22 @@ exports.ox_inventory:RegisterUsableItem(item, function(data)
         return notify(src, Locale.already_placed, 'error')
     end
 
-    local metadata = data.metadata or {}
+    local metadata = (inventory.items[slot] and inventory.items[slot].metadata) or {}
     local now = os.time()
 
     if metadata.expires and now > tonumber(metadata.expires) then
         notify(src, Locale.expired, 'error')
-        exports.ox_inventory:RemoveItem(src, item, 1, nil, data.slot)
+        exports.ox_inventory:RemoveItem(src, item, 1, nil, slot)
         return
     end
 
     if not metadata.expires then
         metadata.expires = now + expireDays * 86400
         metadata.owner = id
-        exports.ox_inventory:SetMetadata(src, data.slot, metadata)
+        exports.ox_inventory:SetMetadata(src, slot, metadata)
     end
 
-    pending[src] = { slot = data.slot, metadata = metadata }
+    pending[src] = { slot = slot, metadata = metadata }
     TriggerClientEvent('sm_outfitbag:client:placeBag', src)
 end)
 
@@ -169,3 +170,4 @@ CreateThread(function()
 
     print(('^2[sm_outfitbag] %d tas dimuat^7'):format(#rows))
 end)
+

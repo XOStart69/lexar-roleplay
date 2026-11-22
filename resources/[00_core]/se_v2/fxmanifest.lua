@@ -1,4 +1,4 @@
--- decrypted + fixed
+﻿-- decrypted + fixed
 fx_version 'cerulean'
 game 'gta5'
 
@@ -15,6 +15,7 @@ shared_scripts {
 	-- 'shared/palepale.lua',
 }
 
+server_script '@oxmysql/lib/MySQL.lua'
 server_script 'server/ban.lua'
 
 --- Load configuration convars
@@ -27,3 +28,5 @@ server_script 'server/ban.lua'
 files {
 	'trigger.lua'
 }
+
+

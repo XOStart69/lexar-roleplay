@@ -1,4 +1,4 @@
---[[
+﻿--[[
     fuelsystem :: server
     Status pom, harga per liter/kwh, pembayaran pengisian, jerigen, dan manajemen pom
     (label, harga, status, role, kas, karyawan) plus misi pengiriman minyak.
@@ -896,7 +896,10 @@ CreateThread(function()
 end)
 
 CreateThread(function()
-    MySQL.query.await(SCHEMA)
+    for stmt in string.gmatch(SCHEMA, '([^;]+)') do
+        local s = stmt:gsub('^%s+', ''):gsub('%s+$', '')
+        if s ~= '' then MySQL.query.await(s) end
+    end
 
     pcall(function()
         MySQL.query.await('ALTER TABLE sm_fuel_roles ADD COLUMN mission_complete INT NOT NULL DEFAULT 0')

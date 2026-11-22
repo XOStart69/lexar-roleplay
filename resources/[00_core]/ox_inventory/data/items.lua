@@ -1,4 +1,4 @@
-return {
+﻿return {
 	['testburger'] = {
 		label = 'Test Burger',
 		weight = 220,
@@ -6262,7 +6262,7 @@ return {
     },
 
 	['gpipepack'] = {
-        label = 'Gentleman’s Pipe Pack',
+        label = 'Gentlemanâ€™s Pipe Pack',
         weight = 200,
         stack = true,
         close = true,
@@ -6326,7 +6326,7 @@ return {
     },
 
 	['gpipe'] = {
-        label = 'Gentleman’s Pipe',
+        label = 'Gentlemanâ€™s Pipe',
         weight = 10,
         stack = true,
         close = true,
@@ -6419,7 +6419,7 @@ return {
 	},
 
 	['ceo_badge_anim01'] = {
-		label = '•CEO Badge',
+		label = 'â€¢CEO Badge',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -6427,7 +6427,7 @@ return {
 	},
 
 	['founder_badge_anim01'] = {
-		label = '•Founder Badge',
+		label = 'â€¢Founder Badge',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -6435,7 +6435,7 @@ return {
 	},
 
 	['god_badge_anim01'] = {
-		label = '•God Badge',
+		label = 'â€¢God Badge',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -6451,7 +6451,7 @@ return {
 	},
 
 	['tulisan_bronzeknight_badge'] = {
-		label = '•Bronze Knight Badge',
+		label = 'â€¢Bronze Knight Badge',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -6479,7 +6479,7 @@ return {
 		description = 'Ban lengan badge'
 	},
 	['tulisan_admin_badge'] = {
-		label = '•Admin Badge',
+		label = 'â€¢Admin Badge',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -10999,7 +10999,7 @@ return {
 	},
 
 	['fish1'] = {
-		label = 'Pstrąg',
+		label = 'PstrÄ…g',
 		weight = 250,
 		stack = true,
 		rarity = 'common',
@@ -12834,7 +12834,7 @@ return {
 		description = "Mobile Data Terminal medis",
 	},
 	["pwine"] = {
-		label = "Château Margaux",
+		label = "ChÃ¢teau Margaux",
 		weight = 100,
 		stack = true,
 		close = true,
@@ -12850,7 +12850,7 @@ return {
 		description = "minuman alcohol",
 	},
 	["dwhiskey"] = {
-		label = "Devil’s Whiskey",
+		label = "Devilâ€™s Whiskey",
 		weight = 100,
 		stack = true,
 		close = true,
@@ -13325,7 +13325,7 @@ return {
 		description = "Jacket VRN untuk Wanita",
 	},
 	['rose_valentine'] = {
-		label = '•Rose',
+		label = 'â€¢Rose',
 		weight = 100,
 		degrade = 4320,
 		stack = false,
@@ -13333,7 +13333,7 @@ return {
 		description = 'Rose for special occasions'
 	},
 	['bouquet_valentine'] = {
-		label = '•Bouquet',
+		label = 'â€¢Bouquet',
 		weight = 100,
 		degrade = 4320,
 		stack = false,
@@ -13341,7 +13341,7 @@ return {
 		description = 'Bouquet of roses'
 	},
 	['bouquet2_valentine'] = {
-		label = '•Bouquet Premium',
+		label = 'â€¢Bouquet Premium',
 		weight = 100,
 		degrade = 4320,
 		stack = false,
@@ -13349,49 +13349,49 @@ return {
 		description = 'Bouquet of roses'
 	},
 	['bantal_valentine'] = {
-		label = '•Bantal Valentine',
+		label = 'â€¢Bantal Valentine',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Bantal untuk Valentine\'s Day'
 	},
 	['boneka_valentine'] = {
-		label = '•Boneka Valentine',
+		label = 'â€¢Boneka Valentine',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Boneka untuk Valentine\'s Day'
 	},
 	['bunga_valentine'] = {
-		label = '•Bunga Valentine',
+		label = 'â€¢Bunga Valentine',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Bunga untuk Valentine\'s Day'
 	},
 	['coklat_valentine'] = {
-		label = '•Coklat Valentine',
+		label = 'â€¢Coklat Valentine',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Coklat untuk Valentine\'s Day'
 	},
 	['permen_valentine'] = {
-		label = '•Permen Valentine',
+		label = 'â€¢Permen Valentine',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Permen untuk Valentine\'s Day'
 	},
 	['selimut_valentine'] = {
-		label = '•Selimut Valentine',
+		label = 'â€¢Selimut Valentine',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Selimut untuk Valentine\'s Day'
 	},
 	['gift_box_valentine'] = {
-		label = '•Gift Box Valentine',
+		label = 'â€¢Gift Box Valentine',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -13549,7 +13549,7 @@ return {
 
 		-- Demon Items
 	['jpx_demon_daki_fabric'] = {
-		label = '•Daki Fabric',
+		label = 'â€¢Daki Fabric',
 		weight = 300,
 		stack = true,
 		close = true,
@@ -13557,7 +13557,7 @@ return {
 	},
 
 	['jpx_demon_gyutaro_scythe'] = {
-		label = '•Gyutaro Scythe',
+		label = 'â€¢Gyutaro Scythe',
 		weight = 1500,
 		stack = false,
 		close = true,
@@ -13565,7 +13565,7 @@ return {
 	},
 
 	['jpx_demon_gyutaro_scythe2'] = {
-		label = '•Gyutaro Scythe 2',
+		label = 'â€¢Gyutaro Scythe 2',
 		weight = 1500,
 		stack = false,
 		close = true,
@@ -13573,7 +13573,7 @@ return {
 	},
 
 	['jpx_demon_rui_spider_demon'] = {
-		label = '•Spider Demon',
+		label = 'â€¢Spider Demon',
 		weight = 800,
 		stack = false,
 		close = true,
@@ -13582,7 +13582,7 @@ return {
 
 	-- Masks
 	['jpx_demon_hotaru_mask'] = {
-		label = '•Hotaru Mask',
+		label = 'â€¢Hotaru Mask',
 		weight = 400,
 		stack = false,
 		close = true,
@@ -13590,7 +13590,7 @@ return {
 	},
 
 	['jpx_demon_inosuke_mask'] = {
-		label = '•Inosuke Mask',
+		label = 'â€¢Inosuke Mask',
 		weight = 400,
 		stack = false,
 		close = true,
@@ -13598,7 +13598,7 @@ return {
 	},
 
 	['jpx_demon_kozo_mask'] = {
-		label = '•Kozo Mask',
+		label = 'â€¢Kozo Mask',
 		weight = 400,
 		stack = false,
 		close = true,
@@ -13606,7 +13606,7 @@ return {
 	},
 
 	['jpx_demon_makomo_mask'] = {
-		label = '•Makomo Mask',
+		label = 'â€¢Makomo Mask',
 		weight = 400,
 		stack = false,
 		close = true,
@@ -13614,7 +13614,7 @@ return {
 	},
 
 	['jpx_demon_rui_spider_mask'] = {
-		label = '•Spider Mask',
+		label = 'â€¢Spider Mask',
 		weight = 400,
 		stack = false,
 		close = true,
@@ -13622,7 +13622,7 @@ return {
 	},
 
 	['jpx_demon_sabito_mask'] = {
-		label = '•Sabito Mask',
+		label = 'â€¢Sabito Mask',
 		weight = 400,
 		stack = false,
 		close = true,
@@ -13630,7 +13630,7 @@ return {
 	},
 
 	['jpx_demon_urokodaki_mask'] = {
-		label = '•Urokodaki Mask',
+		label = 'â€¢Urokodaki Mask',
 		weight = 400,
 		stack = false,
 		close = true,
@@ -13639,7 +13639,7 @@ return {
 
 	-- Equipment & Accessories
 	['jpx_demon_hotaru_swordbox'] = {
-		label = '•Hotaru Swordbox',
+		label = 'â€¢Hotaru Swordbox',
 		weight = 2000,
 		stack = false,
 		close = true,
@@ -13647,7 +13647,7 @@ return {
 	},
 
 	['jpx_demon_nezuko_bamboo'] = {
-		label = '•Nezuko Bamboo',
+		label = 'â€¢Nezuko Bamboo',
 		weight = 50,
 		stack = false,
 		close = true,
@@ -13655,7 +13655,7 @@ return {
 	},
 
 	['jpx_demon_nezuko_box'] = {
-		label = '•Nezuko Box',
+		label = 'â€¢Nezuko Box',
 		weight = 1000,
 		stack = false,
 		close = true,
@@ -13663,7 +13663,7 @@ return {
 	},
 
 	['jpx_demon_obanai_snake'] = {
-		label = '•Obanai Snake',
+		label = 'â€¢Obanai Snake',
 		weight = 200,
 		stack = false,
 		close = true,
@@ -13671,7 +13671,7 @@ return {
 	},
 
 	['jpx_demon_rengoku_coat'] = {
-		label = '•Rengoku Coat',
+		label = 'â€¢Rengoku Coat',
 		weight = 800,
 		stack = false,
 		close = true,
@@ -13679,7 +13679,7 @@ return {
 	},
 
 	['jpx_demon_shinobu_butterfly'] = {
-		label = '•Shinobu Bow',
+		label = 'â€¢Shinobu Bow',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -13687,7 +13687,7 @@ return {
 	},
 
 	['jpx_demon_tanjiro_earings'] = {
-		label = '•Tanjiro Earings',
+		label = 'â€¢Tanjiro Earings',
 		weight = 20,
 		stack = false,
 		close = true,
@@ -13696,7 +13696,7 @@ return {
 
 	-- Weapons
 	['jpx_demon_tengen_sword'] = {
-		label = '•Tengen Sword',
+		label = 'â€¢Tengen Sword',
 		weight = 1400,
 		stack = false,
 		close = true,
@@ -13704,7 +13704,7 @@ return {
 	},
 
 	['jpx_demon_tengen_sword_back'] = {
-		label = '•Tengen Sword 2',
+		label = 'â€¢Tengen Sword 2',
 		weight = 1400,
 		stack = false,
 		close = true,
@@ -13713,7 +13713,7 @@ return {
 
 	-- Special Items
 	['jpx_demon_magic_circle'] = {
-		label = '•Demon Magic Circle',
+		label = 'â€¢Demon Magic Circle',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -13721,7 +13721,7 @@ return {
 	},
 
 	['jpx_susamaru_ball'] = {
-		label = '•Susamaru Ball',
+		label = 'â€¢Susamaru Ball',
 		weight = 300,
 		stack = true,
 		close = true,
@@ -13730,7 +13730,7 @@ return {
 
 		-- Duckling Items
 	['jpx_duckling_back'] = {
-		label = '•Duckling Backpack',
+		label = 'â€¢Duckling Backpack',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13738,7 +13738,7 @@ return {
 	},
 
 	['jpx_duckling_balloon'] = {
-		label = '•Duckling Balloon',
+		label = 'â€¢Duckling Balloon',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13746,7 +13746,7 @@ return {
 	},
 
 	['jpx_duckling_blow'] = {
-		label = '•Duckling Blow',
+		label = 'â€¢Duckling Blow',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13754,7 +13754,7 @@ return {
 	},
 
 	['jpx_duckling_egg'] = {
-		label = '•Duckling Egg',
+		label = 'â€¢Duckling Egg',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13762,7 +13762,7 @@ return {
 	},
 
 	['jpx_duckling_flower'] = {
-		label = '•Duckling Flower',
+		label = 'â€¢Duckling Flower',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13770,7 +13770,7 @@ return {
 	},
 
 	['jpx_duckling_headbutt'] = {
-		label = '•Duckling Headbutt',
+		label = 'â€¢Duckling Headbutt',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13778,7 +13778,7 @@ return {
 	},
 
 	['jpx_duckling_hello'] = {
-		label = '•Duckling Hello',
+		label = 'â€¢Duckling Hello',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13786,7 +13786,7 @@ return {
 	},
 
 	['jpx_duckling_hold'] = {
-		label = '•Duckling Hold',
+		label = 'â€¢Duckling Hold',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13794,7 +13794,7 @@ return {
 	},
 
 	['jpx_duckling_hug'] = {
-		label = '•Duckling Hug',
+		label = 'â€¢Duckling Hug',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13802,7 +13802,7 @@ return {
 	},
 
 	['jpx_duckling_play'] = {
-		label = '•Duckling Play',
+		label = 'â€¢Duckling Play',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13810,7 +13810,7 @@ return {
 	},
 
 	['jpx_duckling_rain'] = {
-		label = '•Duckling Rain',
+		label = 'â€¢Duckling Rain',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13818,7 +13818,7 @@ return {
 	},
 
 	['jpx_duckling_wings'] = {
-		label = '•Duckling Wings',
+		label = 'â€¢Duckling Wings',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13826,7 +13826,7 @@ return {
 	},
 		-- Light Fury Items
 	['jpx_light_fury_float'] = {
-		label = '•Light Fury Float',
+		label = 'â€¢Light Fury Float',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13834,7 +13834,7 @@ return {
 	},
 
 	['jpx_light_fury_ground'] = {
-		label = '•Light Fury Ground',
+		label = 'â€¢Light Fury Ground',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13842,7 +13842,7 @@ return {
 	},
 
 	['jpx_light_fury_hold'] = {
-		label = '•Light Fury Hold',
+		label = 'â€¢Light Fury Hold',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13850,7 +13850,7 @@ return {
 	},
 
 	['jpx_light_fury_mount'] = {
-		label = '•Light Fury Mount',
+		label = 'â€¢Light Fury Mount',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13858,7 +13858,7 @@ return {
 	},
 
 	['jpx_light_fury_shoulder'] = {
-		label = '•Light Fury Shoulder',
+		label = 'â€¢Light Fury Shoulder',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13867,7 +13867,7 @@ return {
 
 	-- Toothless Items
 	['jpx_toothless_float'] = {
-		label = '•Toothless Float',
+		label = 'â€¢Toothless Float',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13875,7 +13875,7 @@ return {
 	},
 
 	['jpx_toothless_fly'] = {
-		label = '•Toothless Fly',
+		label = 'â€¢Toothless Fly',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13883,7 +13883,7 @@ return {
 	},
 
 	['jpx_toothless_ground'] = {
-		label = '•Toothless Ground',
+		label = 'â€¢Toothless Ground',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13891,7 +13891,7 @@ return {
 	},
 
 	['jpx_toothless_head'] = {
-		label = '•Toothless Head',
+		label = 'â€¢Toothless Head',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13899,7 +13899,7 @@ return {
 	},
 
 	['jpx_toothless_hold'] = {
-		label = '•Toothless Hold',
+		label = 'â€¢Toothless Hold',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13907,7 +13907,7 @@ return {
 	},
 
 	['jpx_toothless_play'] = {
-		label = '•Toothless Play',
+		label = 'â€¢Toothless Play',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13915,7 +13915,7 @@ return {
 	},
 
 	['jpx_toothless_shoulder'] = {
-		label = '•Toothless Shoulder',
+		label = 'â€¢Toothless Shoulder',
 		weight = 1,
 		stack = true,
 		close = true,
@@ -13923,91 +13923,91 @@ return {
 	},
 		-- School Collection
 	['jpx_school_backpack'] = {
-		label = '•School Backpack',
+		label = 'â€¢School Backpack',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A sturdy school backpack'
 	},
 	['jpx_school_ballons'] = {
-		label = '•School Ballons',
+		label = 'â€¢School Ballons',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Colorful school balloons'
 	},
 	['jpx_school_book'] = {
-		label = '•School Book',
+		label = 'â€¢School Book',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Educational school book'
 	},
 	['jpx_school_handbag'] = {
-		label = '•School Handbag',
+		label = 'â€¢School Handbag',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A cute school handbag'
 	},
 	['jpx_school_handbag2'] = {
-		label = '•School Handbag 2',
+		label = 'â€¢School Handbag 2',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Another school handbag style'
 	},
 	['jpx_school_paper'] = {
-		label = '•School Paper',
+		label = 'â€¢School Paper',
 		weight = 25,
 		stack = true,
 		close = true,
 		description = 'School assignment papers'
 	},
 	['jpx_school_pencil_backpack'] = {
-		label = '•Pencil Backpack',
+		label = 'â€¢Pencil Backpack',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A backpack shaped like a pencil'
 	},
 	['jpx_school_pencil_earing'] = {
-		label = '•Pencil Earing',
+		label = 'â€¢Pencil Earing',
 		weight = 25,
 		stack = true,
 		close = true,
 		description = 'Pencil-shaped earrings'
 	},
 	['jpx_school_pencil_mask'] = {
-		label = '•Pencil Mask',
+		label = 'â€¢Pencil Mask',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'A mask shaped like a pencil'
 	},
 	['jpx_school_pet'] = {
-		label = '•School Pet',
+		label = 'â€¢School Pet',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A cute school pet'
 	},
 	['jpx_school_pet2'] = {
-		label = '•School Pet 2',
+		label = 'â€¢School Pet 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Another school pet'
 	},
 	['jpx_school_pet_flying'] = {
-		label = '•School Pet Flying',
+		label = 'â€¢School Pet Flying',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A flying school pet'
 	},
 	['jpx_school_pet2_flying'] = {
-		label = '•School Pet 2 Flying',
+		label = 'â€¢School Pet 2 Flying',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -14016,98 +14016,98 @@ return {
 
 		-- Munchkin Cat Collection
 	['jpx_munchkin_cat_dance'] = {
-		label = '•Munchkin Cat Dance',
+		label = 'â€¢Munchkin Cat Dance',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A dancing munchkin cat'
 	},
 	['jpx_munchkin_cat_hat'] = {
-		label = '•Munchkin Cat Hat',
+		label = 'â€¢Munchkin Cat Hat',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A hat with munchkin cat design'
 	},
 	['jpx_munchkin_cat_mouth'] = {
-		label = '•Munchkin Cat Mouth',
+		label = 'â€¢Munchkin Cat Mouth',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Munchkin cat mouth accessory'
 	},
 	['jpx_munchkin_cat_round_run'] = {
-		label = '•Munchkin Cat Round Run',
+		label = 'â€¢Munchkin Cat Round Run',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Munchkin cat running in circles'
 	},
 	['jpx_munchkin_cat_run_see'] = {
-		label = '•Munchkin Cat Run',
+		label = 'â€¢Munchkin Cat Run',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A running munchkin cat'
 	},
 	['jpx_munchkin_cat_see'] = {
-		label = '•Munchkin Cat See',
+		label = 'â€¢Munchkin Cat See',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A watchful munchkin cat'
 	},
 	['jpx_munchkin_cat_shoulder'] = {
-		label = '•Munchkin Cat Shoulder',
+		label = 'â€¢Munchkin Cat Shoulder',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Munchkin cat shoulder companion'
 	},
 	['jpx_munchkin_cat_angel'] = {
-		label = '•Munchkin Cat Angel',
+		label = 'â€¢Munchkin Cat Angel',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'An angelic munchkin cat'
 	},
 	['jpx_munchkin_cat_back_dance'] = {
-		label = '•Munchkin Cat Back Dance',
+		label = 'â€¢Munchkin Cat Back Dance',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Munchkin cat dancing from behind'
 	},
 	['jpx_munchkin_cat_flying'] = {
-		label = '•Munchkin Cat Flying',
+		label = 'â€¢Munchkin Cat Flying',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A flying munchkin cat'
 	},
 	['jpx_munchkin_cat_hiphop_dance'] = {
-		label = '•Munchkin Cat Hiphop Dance',
+		label = 'â€¢Munchkin Cat Hiphop Dance',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Munchkin cat doing hip-hop dance'
 	},
 	['jpx_munchkin_cat_scared'] = {
-		label = '•Munchkin Cat Scared',
+		label = 'â€¢Munchkin Cat Scared',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A scared munchkin cat'
 	},
 	['jpx_munchkin_cat_swimming'] = {
-		label = '•Munchkin Cat Swimming',
+		label = 'â€¢Munchkin Cat Swimming',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Munchkin cat swimming'
 	},
 	['jpx_munchkin_cat_head'] = {
-		label = '•Munchkin Cat Head',
+		label = 'â€¢Munchkin Cat Head',
 		weight = 75,
 		stack = true,
 		close = true,
@@ -14115,140 +14115,140 @@ return {
 	},
 	-- Halloween Collection
 	['jpx_hlw_asteria_hat'] = {
-		label = '•Asteria Hat',
+		label = 'â€¢Asteria Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A mystical asteria hat for Halloween'
 	},
 	['jpx_hlw_basket'] = {
-		label = '•Halloween Basket',
+		label = 'â€¢Halloween Basket',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A spooky Halloween basket'
 	},
 	['jpx_hlw_bat_doll'] = {
-		label = '•Bat Doll',
+		label = 'â€¢Bat Doll',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A cute bat doll'
 	},
 	['jpx_hlw_bat_headband'] = {
-		label = '•Bat Headband',
+		label = 'â€¢Bat Headband',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'A headband with bat ears'
 	},
 	['jpx_hlw_broom'] = {
-		label = '•Broom',
+		label = 'â€¢Broom',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A witch\'s flying broom'
 	},
 	['jpx_hlw_cat_doll'] = {
-		label = '•Pumpkin Black Cat',
+		label = 'â€¢Pumpkin Black Cat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A black cat with pumpkin theme'
 	},
 	['jpx_hlw_cat_doll2'] = {
-		label = '•Black Cat',
+		label = 'â€¢Black Cat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A spooky black cat doll'
 	},
 	['jpx_hlw_devil_doll'] = {
-		label = '•Devil Doll',
+		label = 'â€¢Devil Doll',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A devilish doll'
 	},
 	['jpx_hlw_devil_horns'] = {
-		label = '•Devil Horns',
+		label = 'â€¢Devil Horns',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Spooky devil horns'
 	},
 	['jpx_hlw_devil_wings'] = {
-		label = '•Devil Wings',
+		label = 'â€¢Devil Wings',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Dark devil wings'
 	},
 	['jpx_hlw_diablo_bone'] = {
-		label = '•Diable Bone',
+		label = 'â€¢Diable Bone',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A cursed diablo bone'
 	},
 	['jpx_hlw_dragon_horns'] = {
-		label = '•Dragon Horns',
+		label = 'â€¢Dragon Horns',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Fearsome dragon horns'
 	},
 	['jpx_hlw_dragon_tail'] = {
-		label = '•Dragon Tail',
+		label = 'â€¢Dragon Tail',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A powerful dragon tail'
 	},
 	['jpx_hlw_gabiru_coffin'] = {
-		label = '•Gabiru Coffin',
+		label = 'â€¢Gabiru Coffin',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A spooky gabiru coffin'
 	},
 	['jpx_hlw_gabiru_spirit'] = {
-		label = '•Gabiru Spirit',
+		label = 'â€¢Gabiru Spirit',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'The spirit of gabiru'
 	},
 	['jpx_hlw_galaxy_horns'] = {
-		label = '•Galaxy Horns',
+		label = 'â€¢Galaxy Horns',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Cosmic galaxy horns'
 	},
 	['jpx_hlw_grim'] = {
-		label = '•Halloween Grim',
+		label = 'â€¢Halloween Grim',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A grim reaper for Halloween'
 	},
 	['jpx_hlw_grim2'] = {
-		label = '•Halloween Grim 2',
+		label = 'â€¢Halloween Grim 2',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Another grim reaper variant'
 	},
 	['jpx_hlw_jack'] = {
-		label = '•Jack O Lantern',
+		label = 'â€¢Jack O Lantern',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A classic jack o\'lantern'
 	},
 	['jpx_hlw_jack_doll'] = {
-		label = '•Jack Doll',
+		label = 'â€¢Jack Doll',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -14262,154 +14262,154 @@ return {
 		description = 'A staff with jack doll'
 	},
 	['jpx_hlw_jane'] = {
-		label = '•Jane O Lantern',
+		label = 'â€¢Jane O Lantern',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A jane o\'lantern'
 	},
 	['jpx_hlw_lamp'] = {
-		label = '•Halloween Lamp',
+		label = 'â€¢Halloween Lamp',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A spooky Halloween lamp'
 	},
 	['jpx_hlw_lolipop'] = {
-		label = '•Halloween Lolipop',
+		label = 'â€¢Halloween Lolipop',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'A Halloween-themed lollipop'
 	},
 	['jpx_hlw_magic_circle'] = {
-		label = '•Halloween Magic Circle',
+		label = 'â€¢Halloween Magic Circle',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'A magical Halloween circle'
 	},
 	['jpx_hlw_magic_circle2'] = {
-		label = '•Halloween Magic Circle 2',
+		label = 'â€¢Halloween Magic Circle 2',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'Another Halloween magic circle'
 	},
 	['jpx_hlw_melissa_cursed'] = {
-		label = '•Meliisa Cursed Doll',
+		label = 'â€¢Meliisa Cursed Doll',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A cursed melissa doll'
 	},
 	['jpx_hlw_melissa_cursed2'] = {
-		label = '•Meliisa Cursed Soul',
+		label = 'â€¢Meliisa Cursed Soul',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'The cursed soul of melissa'
 	},
 	['jpx_hlw_melissa_twinge'] = {
-		label = '•Meliisa Twinge Doll',
+		label = 'â€¢Meliisa Twinge Doll',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A melissa twinge doll'
 	},
 	['jpx_hlw_melissa_twinge2'] = {
-		label = '•Meliisa Twinge Soul',
+		label = 'â€¢Meliisa Twinge Soul',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'The twinge soul of melissa'
 	},
 	['jpx_hlw_morrigan_headwings'] = {
-		label = '•Morrigan Headwings',
+		label = 'â€¢Morrigan Headwings',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Morrigan-style head wings'
 	},
 	['jpx_hlw_morrigan_wings'] = {
-		label = '•Morrigan Wings',
+		label = 'â€¢Morrigan Wings',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Morrigan-style wings'
 	},
 	['jpx_hlw_pastel_coffin'] = {
-		label = '•Pastel Coffin',
+		label = 'â€¢Pastel Coffin',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A pastel-colored coffin'
 	},
 	['jpx_hlw_reaper'] = {
-		label = '•Halloween Reaper',
+		label = 'â€¢Halloween Reaper',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'A Halloween grim reaper'
 	},
 	['jpx_hlw_spider_horn'] = {
-		label = '•Spider Horns',
+		label = 'â€¢Spider Horns',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Creepy spider horns'
 	},
 	['jpx_hlw_staff'] = {
-		label = '•Halloween Staff',
+		label = 'â€¢Halloween Staff',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A magical Halloween staff'
 	},
 	['jpx_hlw_sword'] = {
-		label = '•Halloween Sword',
+		label = 'â€¢Halloween Sword',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'A cursed Halloween sword'
 	},
 	['jpx_hlw_wings'] = {
-		label = '•Halloween Wings',
+		label = 'â€¢Halloween Wings',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Spooky Halloween wings'
 	},
 	['jpx_hlw_witch_bonewings'] = {
-		label = '•Witch Bone Wings',
+		label = 'â€¢Witch Bone Wings',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Wings made of bones'
 	},
 	['jpx_hlw_witch_book'] = {
-		label = '•Witch Spell Book',
+		label = 'â€¢Witch Spell Book',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A book of witch spells'
 	},
 	['jpx_hlw_witch_broom'] = {
-		label = '•Witch Bloom',
+		label = 'â€¢Witch Bloom',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A witch\'s magical broom'
 	},
 	['jpx_hlw_witch_soul'] = {
-		label = '•Witch Soul',
+		label = 'â€¢Witch Soul',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'The soul of a witch'
 	},
 	['jpx_halloween_eyes'] = {
-		label = '•Halloween Eyes',
+		label = 'â€¢Halloween Eyes',
 		weight = 50,
 		stack = true,
 		close = true,
@@ -14418,168 +14418,168 @@ return {
 
 	-- More Halloween Items
 	['jpx_angel_heart'] = {
-		label = '•Angel Heart',
+		label = 'â€¢Angel Heart',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A pure angel heart'
 	},
 	['jpx_baby_witch_doll'] = {
-		label = '•Baby Witch Doll',
+		label = 'â€¢Baby Witch Doll',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A cute baby witch doll'
 	},
 	['jpx_black_spell'] = {
-		label = '•Black Spell',
+		label = 'â€¢Black Spell',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'A dark magic spell'
 	},
 	['jpx_bone'] = {
-		label = '•Bone',
+		label = 'â€¢Bone',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A spooky bone'
 	},
 	['jpx_coffin_cat'] = {
-		label = '•Coffin Cat',
+		label = 'â€¢Coffin Cat',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A cat in a coffin'
 	},
 	['jpx_cute_pumpkin_cat'] = {
-		label = '•Cute Pumpkin Cat',
+		label = 'â€¢Cute Pumpkin Cat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'An adorable pumpkin cat'
 	},
 	['jpx_demon_bear'] = {
-		label = '•Demon Bear',
+		label = 'â€¢Demon Bear',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A demonic bear'
 	},
 	['jpx_devil_heart'] = {
-		label = '•Devil Heart',
+		label = 'â€¢Devil Heart',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A corrupted devil heart'
 	},
 	['jpx_devil_magic_staff'] = {
-		label = '•Devil Magic Staff',
+		label = 'â€¢Devil Magic Staff',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'A staff with devil magic'
 	},
 	['jpx_fire_soul'] = {
-		label = '•Fire Soul',
+		label = 'â€¢Fire Soul',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A soul made of fire'
 	},
 	['jpx_ghost_girl'] = {
-		label = '•Ghost Girl',
+		label = 'â€¢Ghost Girl',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'The spirit of a young girl'
 	},
 	['jpx_halloween_book'] = {
-		label = '•Halloween Book',
+		label = 'â€¢Halloween Book',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A spooky Halloween book'
 	},
 	['jpx_halloween_cat'] = {
-		label = '•Halloween Cat',
+		label = 'â€¢Halloween Cat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A Halloween-themed cat'
 	},
 	['jpx_pumpkin_cat'] = {
-		label = '•Pumpkin Cat',
+		label = 'â€¢Pumpkin Cat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A cat shaped like a pumpkin'
 	},
 	['jpx_pumpkin_maid'] = {
-		label = '•Pumpkin Maid',
+		label = 'â€¢Pumpkin Maid',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A maid with pumpkin theme'
 	},
 	['jpx_pumpkin_spirit'] = {
-		label = '•Pumpkin Spirit',
+		label = 'â€¢Pumpkin Spirit',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'The spirit of a pumpkin'
 	},
 	['jpx_scream_mask'] = {
-		label = '•Scream Mask',
+		label = 'â€¢Scream Mask',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A terrifying scream mask'
 	},
 	['jpx_soul_magic_circle'] = {
-		label = '•Soul Magic Circle',
+		label = 'â€¢Soul Magic Circle',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'A circle for soul magic'
 	},
 	['jpx_spirit'] = {
-		label = '•Spirit',
+		label = 'â€¢Spirit',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'A wandering spirit'
 	},
 	['jpx_spirit_doll'] = {
-		label = '•Spirit Doll',
+		label = 'â€¢Spirit Doll',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A doll possessed by a spirit'
 	},
 	['jpx_witch_cat'] = {
-		label = '•Witch Cat',
+		label = 'â€¢Witch Cat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A witch\'s familiar cat'
 	},
 	['jpx_witch_cauldron'] = {
-		label = '•Witch Cauldron',
+		label = 'â€¢Witch Cauldron',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A bubbling witch cauldron'
 	},
 	['jpx_witch_headwear'] = {
-		label = '•Witch Headwear',
+		label = 'â€¢Witch Headwear',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Traditional witch headwear'
 	},
 	['jpx_witch_moon'] = {
-		label = '•Witch Moon',
+		label = 'â€¢Witch Moon',
 		weight = 150,
 		stack = true,
 		close = true,
@@ -14588,42 +14588,42 @@ return {
 
 	-- Labubu Collection - Blue (Sea Salt Coconut)
 	['jpx_labubu_bag_blue'] = {
-		label = '•Labubu Bag (Sea Salt Coconut)',
+		label = 'â€¢Labubu Bag (Sea Salt Coconut)',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A blue Labubu bag in Sea Salt Coconut flavor'
 	},
 	['jpx_labubu_doll_blue'] = {
-		label = '•Labubu Doll (Sea Salt Coconut)',
+		label = 'â€¢Labubu Doll (Sea Salt Coconut)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A blue Labubu doll in Sea Salt Coconut flavor'
 	},
 	['jpx_labubu_egg_blue'] = {
-		label = '•Labubu Egg (Sea Salt Coconut)',
+		label = 'â€¢Labubu Egg (Sea Salt Coconut)',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A blue Labubu egg in Sea Salt Coconut flavor'
 	},
 	['jpx_labubu_headwear_blue'] = {
-		label = '•Labubu Headwear (Sea Salt Coconut)',
+		label = 'â€¢Labubu Headwear (Sea Salt Coconut)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Blue Labubu headwear in Sea Salt Coconut flavor'
 	},
 	['jpx_labubu_plushie_blue'] = {
-		label = '•Labubu Plushie (Sea Salt Coconut)',
+		label = 'â€¢Labubu Plushie (Sea Salt Coconut)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A blue Labubu plushie in Sea Salt Coconut flavor'
 	},
 	['jpx_labubu_slippers_blue'] = {
-		label = '•Labubu Slippers (Sea Salt Coconut)',
+		label = 'â€¢Labubu Slippers (Sea Salt Coconut)',
 		weight = 125,
 		stack = true,
 		close = true,
@@ -14632,42 +14632,42 @@ return {
 
 	-- Labubu Collection - Pink (Lychee Berry)
 	['jpx_labubu_bag_pink'] = {
-		label = '•Labubu Bag (Lychee Berry)',
+		label = 'â€¢Labubu Bag (Lychee Berry)',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A pink Labubu bag in Lychee Berry flavor'
 	},
 	['jpx_labubu_doll_pink'] = {
-		label = '•Labubu Doll (Lychee Berry)',
+		label = 'â€¢Labubu Doll (Lychee Berry)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A pink Labubu doll in Lychee Berry flavor'
 	},
 	['jpx_labubu_egg_pink'] = {
-		label = '•Labubu Egg (Lychee Berry)',
+		label = 'â€¢Labubu Egg (Lychee Berry)',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A pink Labubu egg in Lychee Berry flavor'
 	},
 	['jpx_labubu_headwear_pink'] = {
-		label = '•Labubu Headwear (Lychee Berry)',
+		label = 'â€¢Labubu Headwear (Lychee Berry)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Pink Labubu headwear in Lychee Berry flavor'
 	},
 	['jpx_labubu_plushie_pink'] = {
-		label = '•Labubu Plushie (Lychee Berry)',
+		label = 'â€¢Labubu Plushie (Lychee Berry)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A pink Labubu plushie in Lychee Berry flavor'
 	},
 	['jpx_labubu_slippers_pink'] = {
-		label = '•Labubu Slippers (Lychee Berry)',
+		label = 'â€¢Labubu Slippers (Lychee Berry)',
 		weight = 125,
 		stack = true,
 		close = true,
@@ -14676,42 +14676,42 @@ return {
 
 	-- Labubu Collection - Green (Green Grape)
 	['jpx_labubu_bag_green'] = {
-		label = '•Labubu Bag (Green Grape)',
+		label = 'â€¢Labubu Bag (Green Grape)',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A green Labubu bag in Green Grape flavor'
 	},
 	['jpx_labubu_doll_green'] = {
-		label = '•Labubu Doll (Green Grape)',
+		label = 'â€¢Labubu Doll (Green Grape)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A green Labubu doll in Green Grape flavor'
 	},
 	['jpx_labubu_egg_green'] = {
-		label = '•Labubu Egg (Green Grape)',
+		label = 'â€¢Labubu Egg (Green Grape)',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A green Labubu egg in Green Grape flavor'
 	},
 	['jpx_labubu_headwear_green'] = {
-		label = '•Labubu Headwear (Green Grape)',
+		label = 'â€¢Labubu Headwear (Green Grape)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Green Labubu headwear in Green Grape flavor'
 	},
 	['jpx_labubu_plushie_green'] = {
-		label = '•Labubu Plushie (Green Grape)',
+		label = 'â€¢Labubu Plushie (Green Grape)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A green Labubu plushie in Green Grape flavor'
 	},
 	['jpx_labubu_slippers_green'] = {
-		label = '•Labubu Slippers (Green Grape)',
+		label = 'â€¢Labubu Slippers (Green Grape)',
 		weight = 125,
 		stack = true,
 		close = true,
@@ -14720,42 +14720,42 @@ return {
 
 	-- Labubu Collection - Brown (Chestnut Cocoa)
 	['jpx_labubu_bag_brown'] = {
-		label = '•Labubu Bag (Chestnut Cocoa)',
+		label = 'â€¢Labubu Bag (Chestnut Cocoa)',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A brown Labubu bag in Chestnut Cocoa flavor'
 	},
 	['jpx_labubu_doll_brown'] = {
-		label = '•Labubu Doll (Chestnut Cocoa)',
+		label = 'â€¢Labubu Doll (Chestnut Cocoa)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A brown Labubu doll in Chestnut Cocoa flavor'
 	},
 	['jpx_labubu_egg_brown'] = {
-		label = '•Labubu Egg (Chestnut Cocoa)',
+		label = 'â€¢Labubu Egg (Chestnut Cocoa)',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A brown Labubu egg in Chestnut Cocoa flavor'
 	},
 	['jpx_labubu_headwear_brown'] = {
-		label = '•Labubu Headwear (Chestnut Cocoa)',
+		label = 'â€¢Labubu Headwear (Chestnut Cocoa)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Brown Labubu headwear in Chestnut Cocoa flavor'
 	},
 	['jpx_labubu_plushie_brown'] = {
-		label = '•Labubu Plushie (Chestnut Cocoa)',
+		label = 'â€¢Labubu Plushie (Chestnut Cocoa)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A brown Labubu plushie in Chestnut Cocoa flavor'
 	},
 	['jpx_labubu_slippers_brown'] = {
-		label = '•Labubu Slippers (Chestnut Cocoa)',
+		label = 'â€¢Labubu Slippers (Chestnut Cocoa)',
 		weight = 125,
 		stack = true,
 		close = true,
@@ -14764,42 +14764,42 @@ return {
 
 	-- Labubu Collection - White Brown (Toffee)
 	['jpx_labubu_bag_whitebrown'] = {
-		label = '•Labubu Bag (Toffee)',
+		label = 'â€¢Labubu Bag (Toffee)',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A white-brown Labubu bag in Toffee flavor'
 	},
 	['jpx_labubu_doll_whitebrown'] = {
-		label = '•Labubu Doll (Toffee)',
+		label = 'â€¢Labubu Doll (Toffee)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A white-brown Labubu doll in Toffee flavor'
 	},
 	['jpx_labubu_egg_whitebrown'] = {
-		label = '•Labubu Egg (Toffee)',
+		label = 'â€¢Labubu Egg (Toffee)',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A white-brown Labubu egg in Toffee flavor'
 	},
 	['jpx_labubu_headwear_whitebrown'] = {
-		label = '•Labubu Headwear (Toffee)',
+		label = 'â€¢Labubu Headwear (Toffee)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'White-brown Labubu headwear in Toffee flavor'
 	},
 	['jpx_labubu_plushie_whitebrown'] = {
-		label = '•Labubu Plushie (Toffee)',
+		label = 'â€¢Labubu Plushie (Toffee)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A white-brown Labubu plushie in Toffee flavor'
 	},
 	['jpx_labubu_slippers_whitebrown'] = {
-		label = '•Labubu Slippers (Toffee)',
+		label = 'â€¢Labubu Slippers (Toffee)',
 		weight = 125,
 		stack = true,
 		close = true,
@@ -14808,42 +14808,42 @@ return {
 
 	-- Labubu Collection - Cream (Soymilk)
 	['jpx_labubu_bag_cream'] = {
-		label = '•Labubu Bag (Soymilk)',
+		label = 'â€¢Labubu Bag (Soymilk)',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A cream Labubu bag in Soymilk flavor'
 	},
 	['jpx_labubu_doll_cream'] = {
-		label = '•Labubu Doll (Soymilk)',
+		label = 'â€¢Labubu Doll (Soymilk)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A cream Labubu doll in Soymilk flavor'
 	},
 	['jpx_labubu_egg_cream'] = {
-		label = '•Labubu Egg (Soymilk)',
+		label = 'â€¢Labubu Egg (Soymilk)',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A cream Labubu egg in Soymilk flavor'
 	},
 	['jpx_labubu_headwear_cream'] = {
-		label = '•Labubu Headwear (Soymilk)',
+		label = 'â€¢Labubu Headwear (Soymilk)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Cream Labubu headwear in Soymilk flavor'
 	},
 	['jpx_labubu_plushie_cream'] = {
-		label = '•Labubu Plushie (Soymilk)',
+		label = 'â€¢Labubu Plushie (Soymilk)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A cream Labubu plushie in Soymilk flavor'
 	},
 	['jpx_labubu_slippers_cream'] = {
-		label = '•Labubu Slippers (Soymilk)',
+		label = 'â€¢Labubu Slippers (Soymilk)',
 		weight = 125,
 		stack = true,
 		close = true,
@@ -14852,42 +14852,42 @@ return {
 
 	-- Labubu Collection - Gray (Sesame Bean)
 	['jpx_labubu_bag_gray'] = {
-		label = '•Labubu Bag (Sesame Bean)',
+		label = 'â€¢Labubu Bag (Sesame Bean)',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A gray Labubu bag in Sesame Bean flavor'
 	},
 	['jpx_labubu_doll_gray'] = {
-		label = '•Labubu Doll (Sesame Bean)',
+		label = 'â€¢Labubu Doll (Sesame Bean)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A gray Labubu doll in Sesame Bean flavor'
 	},
 	['jpx_labubu_egg_gray'] = {
-		label = '•Labubu Egg (Sesame Bean)',
+		label = 'â€¢Labubu Egg (Sesame Bean)',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A gray Labubu egg in Sesame Bean flavor'
 	},
 	['jpx_labubu_headwear_gray'] = {
-		label = '•Labubu Headwear (Sesame Bean)',
+		label = 'â€¢Labubu Headwear (Sesame Bean)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Gray Labubu headwear in Sesame Bean flavor'
 	},
 	['jpx_labubu_plushie_gray'] = {
-		label = '•Labubu Plushie (Sesame Bean)',
+		label = 'â€¢Labubu Plushie (Sesame Bean)',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A gray Labubu plushie in Sesame Bean flavor'
 	},
 	['jpx_labubu_slippers_gray'] = {
-		label = '•Labubu Slippers (Sesame Bean)',
+		label = 'â€¢Labubu Slippers (Sesame Bean)',
 		weight = 125,
 		stack = true,
 		close = true,
@@ -14896,35 +14896,35 @@ return {
 
 	-- Labubu Flip Collection
 	['jpx_lbb_flip_with_me'] = {
-		label = '•Labubu Flip With Me',
+		label = 'â€¢Labubu Flip With Me',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Labubu flip with me collectible'
 	},
 	['jpx_lbb_flip_with_me2'] = {
-		label = '•Labubu Flip With Me 2',
+		label = 'â€¢Labubu Flip With Me 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Second Labubu flip with me collectible'
 	},
 	['jpx_lbb_flip_with_me3'] = {
-		label = '•Labubu Flip With Me 3',
+		label = 'â€¢Labubu Flip With Me 3',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Third Labubu flip with me collectible'
 	},
 	['jpx_lbb_flip_with_me4'] = {
-		label = '•Labubu Flip With Me 4',
+		label = 'â€¢Labubu Flip With Me 4',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Fourth Labubu flip with me collectible'
 	},
 	['jpx_lbb_flip_with_me5'] = {
-		label = '•Labubu Flip With Me 5',
+		label = 'â€¢Labubu Flip With Me 5',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -14933,392 +14933,392 @@ return {
 
 	-- One Piece Collection
 	['jpx_ace_hat'] = {
-		label = '•Ace Hat',
+		label = 'â€¢Ace Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Portgas D. Ace\'s iconic hat'
 	},
 	['jpx_ace_hat2'] = {
-		label = '•Ace Hat 2',
+		label = 'â€¢Ace Hat 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Another style of Ace\'s hat'
 	},
 	['jpx_aokiji_coat'] = {
-		label = '•Aokiji Coat',
+		label = 'â€¢Aokiji Coat',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'Admiral Aokiji\'s marine coat'
 	},
 	['jpx_arlong'] = {
-		label = '•Arlong Sword',
+		label = 'â€¢Arlong Sword',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Arlong\'s fishman sword'
 	},
 	['jpx_beer_mug'] = {
-		label = '•Beer Mug',
+		label = 'â€¢Beer Mug',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A pirate\'s beer mug'
 	},
 	['jpx_bentham'] = {
-		label = '•Bentham',
+		label = 'â€¢Bentham',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Mr. 2 Bentham accessory'
 	},
 	['jpx_bigmum_napoleon_hat'] = {
-		label = '•Bigmum Hat',
+		label = 'â€¢Bigmum Hat',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Big Mom\'s Napoleon hat'
 	},
 	['jpx_bigmum_napoleon_sword'] = {
-		label = '•Bigmum Sword',
+		label = 'â€¢Bigmum Sword',
 		weight = 400,
 		stack = true,
 		close = true,
 		description = 'Big Mom\'s Napoleon sword'
 	},
 	['jpx_bigmum_weather'] = {
-		label = '•Bigmum Weather',
+		label = 'â€¢Bigmum Weather',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Big Mom\'s weather manipulation'
 	},
 	['jpx_blackbeard_coat'] = {
-		label = '•Blackbeard Coat',
+		label = 'â€¢Blackbeard Coat',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'Marshall D. Teach\'s coat'
 	},
 	['jpx_boa_hancock'] = {
-		label = '•Boa Hancock',
+		label = 'â€¢Boa Hancock',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Boa Hancock accessory'
 	},
 	['jpx_brook_hat'] = {
-		label = '•Brook Hat',
+		label = 'â€¢Brook Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Brook\'s gentleman hat'
 	},
 	['jpx_brook_scarf'] = {
-		label = '•Brook Scarf',
+		label = 'â€¢Brook Scarf',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Brook\'s feathered scarf'
 	},
 	['jpx_brook_soul'] = {
-		label = '•Brook Soul',
+		label = 'â€¢Brook Soul',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Brook\'s soul energy'
 	},
 	['jpx_chopper'] = {
-		label = '•Chopper Hat',
+		label = 'â€¢Chopper Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Tony Tony Chopper\'s hat'
 	},
 	['jpx_chopper2'] = {
-		label = '•Chopper Hat 2',
+		label = 'â€¢Chopper Hat 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Another Chopper hat style'
 	},
 	['jpx_crocodile'] = {
-		label = '•Crocodile Guantlet',
+		label = 'â€¢Crocodile Guantlet',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Sir Crocodile\'s hook'
 	},
 	['jpx_denmushi'] = {
-		label = '•Denmushi',
+		label = 'â€¢Denmushi',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Den Den Mushi snail phone'
 	},
 	['jpx_devilfruit'] = {
-		label = '•Devilfruit',
+		label = 'â€¢Devilfruit',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A mysterious devil fruit'
 	},
 	['jpx_doflamingo'] = {
-		label = '•Doflamingo Coat',
+		label = 'â€¢Doflamingo Coat',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'Donquixote Doflamingo\'s feather coat'
 	},
 	['jpx_eneru'] = {
-		label = '•Eneru',
+		label = 'â€¢Eneru',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'God Eneru accessory'
 	},
 	['jpx_eneru_trident'] = {
-		label = '•Eneru Trident',
+		label = 'â€¢Eneru Trident',
 		weight = 350,
 		stack = true,
 		close = true,
 		description = 'Eneru\'s golden trident'
 	},
 	['jpx_franky'] = {
-		label = '•Franky Guantlet',
+		label = 'â€¢Franky Guantlet',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'Franky\'s mechanical arms'
 	},
 	['jpx_garp_coat'] = {
-		label = '•Garp Coat',
+		label = 'â€¢Garp Coat',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'Vice Admiral Garp\'s coat'
 	},
 	['jpx_going_merry'] = {
-		label = '•Going Merry',
+		label = 'â€¢Going Merry',
 		weight = 500,
 		stack = true,
 		close = true,
 		description = 'The beloved Going Merry ship model'
 	},
 	['jpx_kaido_horn'] = {
-		label = '•Kaido Horn',
+		label = 'â€¢Kaido Horn',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Kaido\'s dragon horns'
 	},
 	['jpx_kozuki_oden'] = {
-		label = '•Kozuki Oden',
+		label = 'â€¢Kozuki Oden',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Kozuki Oden\'s sword'
 	},
 	['jpx_kumashi'] = {
-		label = '•Kumashi Doll',
+		label = 'â€¢Kumashi Doll',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Perona\'s Kumashi bear'
 	},
 	['jpx_laboon'] = {
-		label = '•Laboon',
+		label = 'â€¢Laboon',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Laboon the whale'
 	},
 	['jpx_law'] = {
-		label = '•Law Sword',
+		label = 'â€¢Law Sword',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Trafalgar Law\'s Kikoku sword'
 	},
 	['jpx_law_hat'] = {
-		label = '•Law Hat',
+		label = 'â€¢Law Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Trafalgar Law\'s spotted hat'
 	},
 	['jpx_luffy_coat'] = {
-		label = '•Luffy Coat',
+		label = 'â€¢Luffy Coat',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Monkey D. Luffy\'s coat'
 	},
 	['jpx_luffy_hat'] = {
-		label = '•Luffy Hat',
+		label = 'â€¢Luffy Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Luffy\'s iconic straw hat'
 	},
 	['jpx_luffy_hat2'] = {
-		label = '•Luffy Hat 2',
+		label = 'â€¢Luffy Hat 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Another style of Luffy\'s hat'
 	},
 	['jpx_luffy_meat'] = {
-		label = '•Luffy Meat',
+		label = 'â€¢Luffy Meat',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Luffy\'s favorite meat'
 	},
 	['jpx_magellan_wings'] = {
-		label = '•Magellan Wings',
+		label = 'â€¢Magellan Wings',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Magellan\'s poison wings'
 	},
 	['jpx_megalo'] = {
-		label = '•Megalo',
+		label = 'â€¢Megalo',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'Princess Shirahoshi\'s shark'
 	},
 	['jpx_mihawk_hat'] = {
-		label = '•Mihawk Hat',
+		label = 'â€¢Mihawk Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Dracule Mihawk\'s hat'
 	},
 	['jpx_nami_weapon'] = {
-		label = '•Nami Weapon',
+		label = 'â€¢Nami Weapon',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Nami\'s Clima-Tact'
 	},
 	['jpx_news_coo'] = {
-		label = '•News Coo',
+		label = 'â€¢News Coo',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'News delivery seagull'
 	},
 	['jpx_perona_ghost'] = {
-		label = '•Perona Ghost',
+		label = 'â€¢Perona Ghost',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Perona\'s negative ghost'
 	},
 	['jpx_perona_umbrella'] = {
-		label = '•Perona Umbrella',
+		label = 'â€¢Perona Umbrella',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Perona\'s cute umbrella'
 	},
 	['jpx_robin_hat'] = {
-		label = '•Robin Hat',
+		label = 'â€¢Robin Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Nico Robin\'s hat'
 	},
 	['jpx_sabo_hat'] = {
-		label = '•Sabo Hat',
+		label = 'â€¢Sabo Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Sabo\'s top hat'
 	},
 	['jpx_sanji_cigarette'] = {
-		label = '•Sanji Cigarette',
+		label = 'â€¢Sanji Cigarette',
 		weight = 25,
 		stack = true,
 		close = true,
 		description = 'Sanji\'s cigarette'
 	},
 	['jpx_smoker_weapon'] = {
-		label = '•Smoker Weapon',
+		label = 'â€¢Smoker Weapon',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Smoker\'s jitte weapon'
 	},
 	['jpx_usopp_bag'] = {
-		label = '•Usopp Bag',
+		label = 'â€¢Usopp Bag',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Usopp\'s ammunition bag'
 	},
 	['jpx_usopp_hat'] = {
-		label = '•Usopp Hat',
+		label = 'â€¢Usopp Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Usopp\'s goggles and hat'
 	},
 	['jpx_vivi_karo'] = {
-		label = '•Vivi Karo',
+		label = 'â€¢Vivi Karo',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Princess Vivi\'s Karoo duck'
 	},
 	['jpx_whtiebeard'] = {
-		label = '•Whtiebeard',
+		label = 'â€¢Whtiebeard',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Edward Newgate Whitebeard'
 	},
 	['jpx_whtiebeard_coat'] = {
-		label = '•Whtiebeard Coat',
+		label = 'â€¢Whtiebeard Coat',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Whitebeard\'s captain coat'
 	},
 	['jpx_whtiebeard_weapon'] = {
-		label = '•Whtiebeard Weapon',
+		label = 'â€¢Whtiebeard Weapon',
 		weight = 500,
 		stack = true,
 		close = true,
 		description = 'Whitebeard\'s massive bisento'
 	},
 	['jpx_yoru'] = {
-		label = '•Yoru Sword',
+		label = 'â€¢Yoru Sword',
 		weight = 400,
 		stack = true,
 		close = true,
 		description = 'Mihawk\'s supreme grade sword Yoru'
 	},
 	['jpx_zoro_samurai'] = {
-		label = '•Zoro Samurai',
+		label = 'â€¢Zoro Samurai',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Zoro\'s samurai gear'
 	},
 	['jpx_zoro_wado'] = {
-		label = '•Wado Sword',
+		label = 'â€¢Wado Sword',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Zoro\'s Wado Ichimonji sword'
 	},
 	['jpx_pirate_magic_circle'] = {
-		label = '•Pirate Magic Circle',
+		label = 'â€¢Pirate Magic Circle',
 		weight = 250,
 		stack = true,
 		close = true,
@@ -15326,280 +15326,280 @@ return {
 	},
 	-- Summer/Seaside Collection
 	['jpx_bear_water_gun'] = {
-		label = '•Bear Water Gun',
+		label = 'â€¢Bear Water Gun',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A bear-shaped water gun'
 	},
 	['jpx_duck_water_gun'] = {
-		label = '•Duck Water Gun',
+		label = 'â€¢Duck Water Gun',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A duck-shaped water gun'
 	},
 	['jpx_duckling_backpack'] = {
-		label = '•Duckling Backpack',
+		label = 'â€¢Duckling Backpack',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A cute duckling backpack'
 	},
 	['jpx_sm backpack'] = {
-		label = '•Seaside Backpack',
+		label = 'â€¢Seaside Backpack',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A summer seaside backpack'
 	},
 	['jpx_sm doll'] = {
-		label = '•Seaside Doll',
+		label = 'â€¢Seaside Doll',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A seaside-themed doll'
 	},
 	['jpx_sm_bag'] = {
-		label = '•Seaside Bag',
+		label = 'â€¢Seaside Bag',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A beach bag'
 	},
 	['jpx_sm_bag2'] = {
-		label = '•Seaside Bag 2',
+		label = 'â€¢Seaside Bag 2',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Another seaside bag style'
 	},
 	['jpx_sm_bucket'] = {
-		label = '•Seaside Bucket',
+		label = 'â€¢Seaside Bucket',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A beach sand bucket'
 	},
 	['jpx_sm_candy'] = {
-		label = '•Seaside Candy',
+		label = 'â€¢Seaside Candy',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Sweet seaside candy'
 	},
 	['jpx_sm_copter'] = {
-		label = '•Seaside Copter',
+		label = 'â€¢Seaside Copter',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A beach helicopter toy'
 	},
 	['jpx_sm_dolphin'] = {
-		label = '•Seaside Dolphin',
+		label = 'â€¢Seaside Dolphin',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A friendly dolphin'
 	},
 	['jpx_sm_duck'] = {
-		label = '•Seaside Duck',
+		label = 'â€¢Seaside Duck',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A rubber duck for the beach'
 	},
 	['jpx_sm_duck2'] = {
-		label = '•Seaside Duck 2',
+		label = 'â€¢Seaside Duck 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Another seaside duck'
 	},
 	['jpx_sm_duck_circle'] = {
-		label = '•Seaside Circle',
+		label = 'â€¢Seaside Circle',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A duck-shaped pool float'
 	},
 	['jpx_sm_duck_pipe'] = {
-		label = '•Seaside Duck Pipe',
+		label = 'â€¢Seaside Duck Pipe',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A duck-shaped water pipe'
 	},
 	['jpx_sm_duckling'] = {
-		label = '•Seaside Duckling',
+		label = 'â€¢Seaside Duckling',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A small duckling toy'
 	},
 	['jpx_sm_ducky'] = {
-		label = '•Seaside Ducky',
+		label = 'â€¢Seaside Ducky',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A cute ducky for the sea'
 	},
 	['jpx_sm_float'] = {
-		label = '•Seaside Float',
+		label = 'â€¢Seaside Float',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'An inflatable pool float'
 	},
 	['jpx_sm_floor'] = {
-		label = '•Seaside Floor',
+		label = 'â€¢Seaside Floor',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Beach floor decoration'
 	},
 	['jpx_sm_floor2'] = {
-		label = '•Seaside Floor 2',
+		label = 'â€¢Seaside Floor 2',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Another beach floor style'
 	},
 	['jpx_sm_sand_floor'] = {
-		label = '•Seaside Sand Floor',
+		label = 'â€¢Seaside Sand Floor',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Sandy beach floor'
 	},
 	['jpx_sm_glasses'] = {
-		label = '•Seaside Glasses',
+		label = 'â€¢Seaside Glasses',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Cool sunglasses for the beach'
 	},
 	['jpx_sm_glasses2'] = {
-		label = '•Seaside Glasses 2',
+		label = 'â€¢Seaside Glasses 2',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Another pair of beach sunglasses'
 	},
 	['jpx_sm_octopus'] = {
-		label = '•Seaside Octopus',
+		label = 'â€¢Seaside Octopus',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A friendly sea octopus'
 	},
 	['jpx_sm_shark'] = {
-		label = '•Seaside Shark',
+		label = 'â€¢Seaside Shark',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A toy shark for the beach'
 	},
 	['jpx_sm_snorkle'] = {
-		label = '•Seaside Snorkle',
+		label = 'â€¢Seaside Snorkle',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Snorkeling gear'
 	},
 	['jpx_sm_snorkle2'] = {
-		label = '•Seaside Snorkle 2',
+		label = 'â€¢Seaside Snorkle 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Another snorkeling set'
 	},
 	['jpx_sm_star'] = {
-		label = '•Seaside Star',
+		label = 'â€¢Seaside Star',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A beautiful starfish'
 	},
 	['jpx_sm_sun'] = {
-		label = '•Seaside Sun',
+		label = 'â€¢Seaside Sun',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A bright summer sun'
 	},
 	['jpx_sm_sun2'] = {
-		label = '•Seaside Sun 2',
+		label = 'â€¢Seaside Sun 2',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Another summer sun design'
 	},
 	['jpx_sm_sunflower'] = {
-		label = '•Seaside Sunflower',
+		label = 'â€¢Seaside Sunflower',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A bright sunflower'
 	},
 	['jpx_sm_tank'] = {
-		label = '•Seaside Tank',
+		label = 'â€¢Seaside Tank',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A water tank for the beach'
 	},
 	['jpx_sm_tank2'] = {
-		label = '•Seaside Tank 2',
+		label = 'â€¢Seaside Tank 2',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Another seaside tank'
 	},
 	['jpx_sm_wings'] = {
-		label = '•Seaside Wings',
+		label = 'â€¢Seaside Wings',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Wings for beach adventures'
 	},
 	['jpx_sm_wings2'] = {
-		label = '•Seaside Wings 2',
+		label = 'â€¢Seaside Wings 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Another pair of seaside wings'
 	},
 	['jpx_sm_wink'] = {
-		label = '•Seaside Wink',
+		label = 'â€¢Seaside Wink',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'A cute winking accessory'
 	},
 	['jpx_water_gun_ufo'] = {
-		label = '•UFO Water Gun',
+		label = 'â€¢UFO Water Gun',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A UFO-shaped water gun'
 	},
 	['jpx_water_gun_watermelon'] = {
-		label = '•Watermelon Water Gun',
+		label = 'â€¢Watermelon Water Gun',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A watermelon-shaped water gun'
 	},
 	['jpx_watermelon_cat'] = {
-		label = '•Watermelon Cat',
+		label = 'â€¢Watermelon Cat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A cat with watermelon theme'
 	},
 	['jpx_watermelon_cat2'] = {
-		label = '•Watermelon Cat 2',
+		label = 'â€¢Watermelon Cat 2',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -15607,56 +15607,56 @@ return {
 	},
 -- Unicorn Collection
 	['jpx_unicorn'] = {
-		label = '•Unicorn',
+		label = 'â€¢Unicorn',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A magical unicorn'
 	},
 	['jpx_unicorn2'] = {
-		label = '•Unicorn 2',
+		label = 'â€¢Unicorn 2',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Another magical unicorn'
 	},
 	['jpx_unicorn_ears'] = {
-		label = '•Unicorn Ears',
+		label = 'â€¢Unicorn Ears',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Mystical unicorn ears'
 	},
 	['jpx_unicorn_horn'] = {
-		label = '•Unicorn Horn',
+		label = 'â€¢Unicorn Horn',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A magical unicorn horn'
 	},
 	['jpx_unicorn_staff'] = {
-		label = '•Unicorn Staff',
+		label = 'â€¢Unicorn Staff',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'A staff with unicorn magic'
 	},
 	['jpx_unicorn_tail'] = {
-		label = '•Unicorn Tail',
+		label = 'â€¢Unicorn Tail',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A flowing unicorn tail'
 	},
 	['jpx_unicorn_wings'] = {
-		label = '•Unicorn Wings',
+		label = 'â€¢Unicorn Wings',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Ethereal unicorn wings'
 	},
 	['jpx_unicorn_wings2'] = {
-		label = '•Unicorn Wings 2',
+		label = 'â€¢Unicorn Wings 2',
 		weight = 150,
 		stack = true,
 		close = true,
@@ -17048,14 +17048,14 @@ return {
 
 	-- Music Collection
 	['jpx_acoustic_guitar'] = {
-		label = '•Acoustic Guitar',
+		label = 'â€¢Acoustic Guitar',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A beautiful acoustic guitar'
 	},
 	['jpx_acoustic_guitar_hand'] = {
-		label = '•Acoustic Guitar 2',
+		label = 'â€¢Acoustic Guitar 2',
 		weight = 300,
 		stack = true,
 		close = true,
@@ -17076,336 +17076,336 @@ return {
 		description = 'Another black guitar style'
 	},
 	['jpx_dj_headears'] = {
-		label = '•DJ Headears',
+		label = 'â€¢DJ Headears',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'DJ-style head ears'
 	},
 	['jpx_dj_puppy'] = {
-		label = '•DJ Puppy',
+		label = 'â€¢DJ Puppy',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A cute DJ puppy'
 	},
 	['jpx_dj_tarantella'] = {
-		label = '•DJ Tarantella',
+		label = 'â€¢DJ Tarantella',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'DJ Tarantella music equipment'
 	},
 	['jpx_dj_tarantella_back'] = {
-		label = '•DJ Tarantella 2',
+		label = 'â€¢DJ Tarantella 2',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Back view DJ Tarantella'
 	},
 	['jpx_dj_tarantella2'] = {
-		label = '•Summer DJ Tarantella',
+		label = 'â€¢Summer DJ Tarantella',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Summer themed DJ Tarantella'
 	},
 	['jpx_dj_tarantella2_back'] = {
-		label = '•Summer DJ Tarantella 2',
+		label = 'â€¢Summer DJ Tarantella 2',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Back view summer DJ Tarantella'
 	},
 	['jpx_electric_guitar'] = {
-		label = '•Electric Guitar',
+		label = 'â€¢Electric Guitar',
 		weight = 350,
 		stack = true,
 		close = true,
 		description = 'A powerful electric guitar'
 	},
 	['jpx_electric_guitar_hand'] = {
-		label = '•Electric Guitar 2',
+		label = 'â€¢Electric Guitar 2',
 		weight = 350,
 		stack = true,
 		close = true,
 		description = 'Another electric guitar style'
 	},
 	['jpx_funky_staff'] = {
-		label = '•Funky Staff',
+		label = 'â€¢Funky Staff',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A funky musical staff'
 	},
 	['jpx_gamer_doll'] = {
-		label = '•Gamer Doll',
+		label = 'â€¢Gamer Doll',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A gaming-themed doll'
 	},
 	['jpx_guitar_bag'] = {
-		label = '•Guitar Bag',
+		label = 'â€¢Guitar Bag',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A bag for carrying guitars'
 	},
 	['jpx_guitar_bag_hand'] = {
-		label = '•Guitar Bag 2',
+		label = 'â€¢Guitar Bag 2',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Another guitar bag style'
 	},
 	['jpx_magical_rings'] = {
-		label = '•Magical Rings',
+		label = 'â€¢Magical Rings',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Rings with magical musical powers'
 	},
 	['jpx_magical_voice'] = {
-		label = '•Magical Voice',
+		label = 'â€¢Magical Voice',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'A magical voice enhancer'
 	},
 	['jpx_marshmello_mask'] = {
-		label = '•Marshmello Mask',
+		label = 'â€¢Marshmello Mask',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A Marshmello DJ mask'
 	},
 	['jpx_megaphone'] = {
-		label = '•Megaphone',
+		label = 'â€¢Megaphone',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A loud megaphone'
 	},
 	['jpx_melody_ears'] = {
-		label = '•Melody Ears',
+		label = 'â€¢Melody Ears',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Musical melody ears'
 	},
 	['jpx_melody_magic_circle'] = {
-		label = '•Melody Magic Circle',
+		label = 'â€¢Melody Magic Circle',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'A magical circle for melodies'
 	},
 	['jpx_melody_moon'] = {
-		label = '•Melody Moon',
+		label = 'â€¢Melody Moon',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A moon that plays melodies'
 	},
 	['jpx_melody_neko'] = {
-		label = '•Melody Neko',
+		label = 'â€¢Melody Neko',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A musical cat'
 	},
 	['jpx_melody_rings'] = {
-		label = '•Melody Rings',
+		label = 'â€¢Melody Rings',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Rings that create melodies'
 	},
 	['jpx_melody_wings'] = {
-		label = '•Melody Wings',
+		label = 'â€¢Melody Wings',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Wings that sing melodies'
 	},
 	['jpx_micstand'] = {
-		label = '•Pinky Micstand',
+		label = 'â€¢Pinky Micstand',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'A pink microphone stand'
 	},
 	['jpx_micstand2'] = {
-		label = '•Yellow Micstand',
+		label = 'â€¢Yellow Micstand',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'A yellow microphone stand'
 	},
 	['jpx_micstand3'] = {
-		label = '•Blue Micstand',
+		label = 'â€¢Blue Micstand',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'A blue microphone stand'
 	},
 	['jpx_music_book'] = {
-		label = '•Musical Book',
+		label = 'â€¢Musical Book',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A book of musical notes'
 	},
 	['jpx_notesong'] = {
-		label = '•Notesong',
+		label = 'â€¢Notesong',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Musical notes that sing'
 	},
 	['jpx_notesong_star'] = {
-		label = '•Notesong Star',
+		label = 'â€¢Notesong Star',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A star-shaped musical note'
 	},
 	['jpx_piano_bag'] = {
-		label = '•Piano Bag',
+		label = 'â€¢Piano Bag',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A bag shaped like a piano'
 	},
 	['jpx_pinky_guitar'] = {
-		label = '•Pinky Guitar',
+		label = 'â€¢Pinky Guitar',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A pink guitar'
 	},
 	['jpx_pinky_guitar_hand'] = {
-		label = '•Pinky Guitar 2',
+		label = 'â€¢Pinky Guitar 2',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Another pink guitar style'
 	},
 	['jpx_popstar_bird'] = {
-		label = '•Popstar Bird',
+		label = 'â€¢Popstar Bird',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A singing popstar bird'
 	},
 	['jpx_popstar_bird2'] = {
-		label = '•Popstar Bird 2',
+		label = 'â€¢Popstar Bird 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Another popstar bird'
 	},
 	['jpx_popstar_melody_doll'] = {
-		label = '•Popstar Melody Doll',
+		label = 'â€¢Popstar Melody Doll',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A popstar melody doll'
 	},
 	['jpx_popstar_melody_wings'] = {
-		label = '•Popstar Melody Wings',
+		label = 'â€¢Popstar Melody Wings',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Popstar melody wings'
 	},
 	['jpx_popstar_tails'] = {
-		label = '•Popstar Tails',
+		label = 'â€¢Popstar Tails',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Popstar-style tails'
 	},
 	['jpx_popstar_tails2'] = {
-		label = '•Popstar Tails 2',
+		label = 'â€¢Popstar Tails 2',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Another popstar tail style'
 	},
 	['jpx_popstar_tails3'] = {
-		label = '•Popstar Tails 3',
+		label = 'â€¢Popstar Tails 3',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Third popstar tail style'
 	},
 	['jpx_rapper_doll'] = {
-		label = '•Rapper Doll',
+		label = 'â€¢Rapper Doll',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A rapper-themed doll'
 	},
 	['jpx_rockstar_wings'] = {
-		label = '•Rockstar Wings',
+		label = 'â€¢Rockstar Wings',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Wings fit for a rockstar'
 	},
 	['jpx_vivo_doll'] = {
-		label = '•Vivo Doll',
+		label = 'â€¢Vivo Doll',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A Vivo character doll'
 	},
 	['jpx_voice_doll'] = {
-		label = '•Voice Doll',
+		label = 'â€¢Voice Doll',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A doll with a beautiful voice'
 	},
 	['jpx_white_guitar'] = {
-		label = '•White Guitar',
+		label = 'â€¢White Guitar',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A pristine white guitar'
 	},
 	['jpx_white_guitar_hand'] = {
-		label = '•White Guitar 2',
+		label = 'â€¢White Guitar 2',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Another white guitar style'
 	},
 	['jpx_wolf_guitar'] = {
-		label = '•Wolf Guitar',
+		label = 'â€¢Wolf Guitar',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A guitar with wolf design'
 	},
 	['jpx_wolf_guitar_hand'] = {
-		label = '•Wolf Guitar 2',
+		label = 'â€¢Wolf Guitar 2',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Another wolf guitar style'
 	},
 	['jpx_wood_ukulele'] = {
-		label = '•Wood Ukulele',
+		label = 'â€¢Wood Ukulele',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A wooden ukulele'
 	},
 	['jpx_wood_ukulele_hand'] = {
-		label = '•Wood Ukulele 2',
+		label = 'â€¢Wood Ukulele 2',
 		weight = 200,
 		stack = true,
 		close = true,
@@ -17413,378 +17413,378 @@ return {
 	},
 	-- Chinese/Asian Collection
 	['jpx_ancient_fur'] = {
-		label = '•Ancient White Fur',
+		label = 'â€¢Ancient White Fur',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Mystical white fur from ancient creatures'
 	},
 	['jpx_ancient_fur2'] = {
-		label = '•Ancient Black Fur',
+		label = 'â€¢Ancient Black Fur',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Mystical black fur from ancient creatures'
 	},
 	['jpx_bambino_doll'] = {
-		label = '•Bambino Doll',
+		label = 'â€¢Bambino Doll',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A traditional bambino doll'
 	},
 	['jpx_blue_handfan'] = {
-		label = '•Blue Handfan',
+		label = 'â€¢Blue Handfan',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'An elegant blue handfan'
 	},
 	['jpx_blue_handfan2'] = {
-		label = '•Blue Handfan 2',
+		label = 'â€¢Blue Handfan 2',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Another style of blue handfan'
 	},
 	['jpx_chinese_handfan'] = {
-		label = '•Chinese Handfan',
+		label = 'â€¢Chinese Handfan',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A traditional Chinese handfan'
 	},
 	['jpx_chinese_hat'] = {
-		label = '•Chinese Hat',
+		label = 'â€¢Chinese Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A traditional Chinese hat'
 	},
 	['jpx_chinese_hat2'] = {
-		label = '•Chinese Hat 2',
+		label = 'â€¢Chinese Hat 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Another style of Chinese hat'
 	},
 	['jpx_chinese_hat3'] = {
-		label = '•Chinese Hat 3',
+		label = 'â€¢Chinese Hat 3',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A third style of Chinese hat'
 	},
 	['jpx_chinese_staff'] = {
-		label = '•Chinese Staff',
+		label = 'â€¢Chinese Staff',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A traditional Chinese staff'
 	},
 	['jpx_chinese_umbrella'] = {
-		label = '•Chinese Umbrella',
+		label = 'â€¢Chinese Umbrella',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A traditional Chinese umbrella'
 	},
 	['jpx_chinese_witch_hat'] = {
-		label = '•Chinese Witch Hat',
+		label = 'â€¢Chinese Witch Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A mystical Chinese witch hat'
 	},
 	['jpx_dragon'] = {
-		label = '•Dragon',
+		label = 'â€¢Dragon',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A majestic dragon figurine'
 	},
 	['jpx_dragon2'] = {
-		label = '•Dragon 2',
+		label = 'â€¢Dragon 2',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'Another dragon figurine'
 	},
 	['jpx_dragon3'] = {
-		label = '•Dragon 3',
+		label = 'â€¢Dragon 3',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A third dragon figurine'
 	},
 	['jpx_dragon4'] = {
-		label = '•Dragon 4',
+		label = 'â€¢Dragon 4',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A fourth dragon figurine'
 	},
 	['jpx_dragon5'] = {
-		label = '•Dragon 5',
+		label = 'â€¢Dragon 5',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A fifth dragon figurine'
 	},
 	['jpx_evildragon_hat'] = {
-		label = '•Evildragon Hat',
+		label = 'â€¢Evildragon Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A hat shaped like an evil dragon'
 	},
 	['jpx_firecracker'] = {
-		label = '•Firecracker',
+		label = 'â€¢Firecracker',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Traditional Chinese firecracker'
 	},
 	['jpx_firecracker_dragon'] = {
-		label = '•Firecracker Dragon',
+		label = 'â€¢Firecracker Dragon',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Dragon-themed firecracker'
 	},
 	['jpx_firecracker_fur'] = {
-		label = '•Firecracker Fur',
+		label = 'â€¢Firecracker Fur',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Fur with firecracker patterns'
 	},
 	['jpx_firecracker_liondance'] = {
-		label = '•Firecracker Liondance',
+		label = 'â€¢Firecracker Liondance',
 		weight = 250,
 		stack = true,
 		close = true,
 		description = 'Lion dance with firecracker theme'
 	},
 	['jpx_firecracker_pic'] = {
-		label = '•Firecracker Pic',
+		label = 'â€¢Firecracker Pic',
 		weight = 25,
 		stack = true,
 		close = true,
 		description = 'A picture of firecrackers'
 	},
 	['jpx_firecracker_pole'] = {
-		label = '•Firecracker Pole',
+		label = 'â€¢Firecracker Pole',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A pole with firecrackers attached'
 	},
 	['jpx_fortune_bag'] = {
-		label = '•Foretune Bag',
+		label = 'â€¢Foretune Bag',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A bag that brings good fortune'
 	},
 	['jpx_fortune_bunny'] = {
-		label = '•Foretune Bunny',
+		label = 'â€¢Foretune Bunny',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A lucky bunny figurine'
 	},
 	['jpx_fortune_cat'] = {
-		label = '•Foretune Cat',
+		label = 'â€¢Foretune Cat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A lucky cat figurine'
 	},
 	['jpx_fortune_lamp'] = {
-		label = '•Foretune Lamp',
+		label = 'â€¢Foretune Lamp',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A lamp that brings good fortune'
 	},
 	['jpx_fortune_magic_circle'] = {
-		label = '•Foretune Magic Circle',
+		label = 'â€¢Foretune Magic Circle',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A magical circle for fortune'
 	},
 	['jpx_fortune_money'] = {
-		label = '•Foretune Money',
+		label = 'â€¢Foretune Money',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Lucky money for fortune'
 	},
 	['jpx_fortune_wings'] = {
-		label = '•Foretune Wings',
+		label = 'â€¢Foretune Wings',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Wings that bring good fortune'
 	},
 	['jpx_fortune_wings2'] = {
-		label = '•Foretune Wings 2',
+		label = 'â€¢Foretune Wings 2',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Another style of fortune wings'
 	},
 	['jpx_gekko_mirrors'] = {
-		label = '•Gekko Mirrors',
+		label = 'â€¢Gekko Mirrors',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Mystical gekko mirrors'
 	},
 	['jpx_gekko_puppet'] = {
-		label = '•Gekko Puppet',
+		label = 'â€¢Gekko Puppet',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A traditional gekko puppet'
 	},
 	['jpx_kungfu_master_doll'] = {
-		label = '•Kungfu Master Doll',
+		label = 'â€¢Kungfu Master Doll',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A doll of a kungfu master'
 	},
 	['jpx_kungfu_master_doll2'] = {
-		label = '•Kungfu Master Doll 2',
+		label = 'â€¢Kungfu Master Doll 2',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Another kungfu master doll'
 	},
 	['jpx_kungfu_master_doll3'] = {
-		label = '•Kungfu Master Doll 3',
+		label = 'â€¢Kungfu Master Doll 3',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A third kungfu master doll'
 	},
 	['jpx_lunar_fest'] = {
-		label = '•Lunar Fest',
+		label = 'â€¢Lunar Fest',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Lunar festival decoration'
 	},
 	['jpx_lunar_fest_moon'] = {
-		label = '•Lunar Fest Moon',
+		label = 'â€¢Lunar Fest Moon',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'Moon decoration for lunar festival'
 	},
 	['jpx_milumu_staff'] = {
-		label = '•Milumu Staff',
+		label = 'â€¢Milumu Staff',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'A mystical milumu staff'
 	},
 	['jpx_moon_cake'] = {
-		label = '•Moon Cake',
+		label = 'â€¢Moon Cake',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Traditional moon cake'
 	},
 	['jpx_moonstuck'] = {
-		label = '•Moonstuck',
+		label = 'â€¢Moonstuck',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A moonstruck item'
 	},
 	['jpx_paopao'] = {
-		label = '•White Paopao',
+		label = 'â€¢White Paopao',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'White paopao traditional item'
 	},
 	['jpx_paopao2'] = {
-		label = '•Black Paopao',
+		label = 'â€¢Black Paopao',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'Black paopao traditional item'
 	},
 	['jpx_phoenix'] = {
-		label = '•Phoenix',
+		label = 'â€¢Phoenix',
 		weight = 300,
 		stack = true,
 		close = true,
 		description = 'A majestic phoenix figurine'
 	},
 	['jpx_shanghai_handfan'] = {
-		label = '•Shanghai Handfan',
+		label = 'â€¢Shanghai Handfan',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A Shanghai style handfan'
 	},
 	['jpx_soryu_umbrella'] = {
-		label = '•Soryu Umbrella',
+		label = 'â€¢Soryu Umbrella',
 		weight = 150,
 		stack = true,
 		close = true,
 		description = 'A soryu style umbrella'
 	},
 	['jpx_white_tiger_hat'] = {
-		label = '•White Tiger Hat',
+		label = 'â€¢White Tiger Hat',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A hat with white tiger design'
 	},
 	['jpx_xiaoqing_handfan'] = {
-		label = '•Xiaoqing Handfan',
+		label = 'â€¢Xiaoqing Handfan',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'A xiaoqing style handfan'
 	},
 	['jpx_xiaoqing_handfan2'] = {
-		label = '•Xiaoqing Handfan 2',
+		label = 'â€¢Xiaoqing Handfan 2',
 		weight = 75,
 		stack = true,
 		close = true,
 		description = 'Another xiaoqing handfan'
 	},
 	['jpx_yaksha_mask'] = {
-		label = '•Yaksha Mask',
+		label = 'â€¢Yaksha Mask',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A traditional yaksha mask'
 	},
 	['jpx_zhuge_liang_fantasy'] = {
-		label = '•Zhuge Liang Fantasy',
+		label = 'â€¢Zhuge Liang Fantasy',
 		weight = 200,
 		stack = true,
 		close = true,
 		description = 'Fantasy item of Zhuge Liang'
 	},
 	['jpx_zoe_ears'] = {
-		label = '•Zoe Ears',
+		label = 'â€¢Zoe Ears',
 		weight = 50,
 		stack = true,
 		close = true,
 		description = 'Cute zoe-style ears'
 	},
 	['jpx_zoe_yoyo'] = {
-		label = '•Zoe Yoyo',
+		label = 'â€¢Zoe Yoyo',
 		weight = 75,
 		stack = true,
 		close = true,
@@ -17792,56 +17792,56 @@ return {
 	},
 	-- Digimon Collection
 	['jpx_agumon'] = {
-		label = '•Agumon',
+		label = 'â€¢Agumon',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A brave orange dinosaur Digimon'
 	},
 	['jpx_biyomon'] = {
-		label = '•Biyomon',
+		label = 'â€¢Biyomon',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A pink bird Digimon with colorful feathers'
 	},
 	['jpx_gabumon'] = {
-		label = '•Gabumon',
+		label = 'â€¢Gabumon',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A friendly reptile Digimon with blue fur'
 	},
 	['jpx_gatomon'] = {
-		label = '•Gatomon',
+		label = 'â€¢Gatomon',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A white cat Digimon with holy powers'
 	},
 	['jpx_gomamon'] = {
-		label = '•Gomamon',
+		label = 'â€¢Gomamon',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A white seal Digimon from the ocean'
 	},
 	['jpx_palmon'] = {
-		label = '•Palmon',
+		label = 'â€¢Palmon',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A plant-type Digimon with pink flowers'
 	},
 	['jpx_patamon'] = {
-		label = '•Patamon',
+		label = 'â€¢Patamon',
 		weight = 100,
 		stack = true,
 		close = true,
 		description = 'A small flying mammal Digimon'
 	},
 	['jpx_tentomon'] = {
-		label = '•Tentomon',
+		label = 'â€¢Tentomon',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -17850,7 +17850,7 @@ return {
 
 	-- Ninja Fashion Items - Back Attachments
 	['jpx_shukaku_one_tails'] = {
-		label = '•Shukaku One Tails',
+		label = 'â€¢Shukaku One Tails',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -17858,7 +17858,7 @@ return {
 	},
 
 	['jpx_matatabi_two_tails'] = {
-		label = '•Matatabi Two Tails',
+		label = 'â€¢Matatabi Two Tails',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -17866,7 +17866,7 @@ return {
 	},
 
 	['jpx_isobu_three_tails'] = {
-		label = '•Isobu Three Tails',
+		label = 'â€¢Isobu Three Tails',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -17874,7 +17874,7 @@ return {
 	},
 
 	['jpx_songoku_four_tails'] = {
-		label = '•Son Goku Four Tails',
+		label = 'â€¢Son Goku Four Tails',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -17882,7 +17882,7 @@ return {
 	},
 
 	['jpx_kokuo_five_tails'] = {
-		label = '•Kokuo Five Tails',
+		label = 'â€¢Kokuo Five Tails',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -17890,7 +17890,7 @@ return {
 	},
 
 	['jpx_saiken_six_tails'] = {
-		label = '•Saiken Six Tails',
+		label = 'â€¢Saiken Six Tails',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -17898,7 +17898,7 @@ return {
 	},
 
 	['jpx_choumei_seven_tails'] = {
-		label = '•Choumei Seven Tails',
+		label = 'â€¢Choumei Seven Tails',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -17906,7 +17906,7 @@ return {
 	},
 
 	['jpx_gyuki_eight_tails'] = {
-		label = '•Gyuki Eight Tails',
+		label = 'â€¢Gyuki Eight Tails',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -17914,7 +17914,7 @@ return {
 	},
 
 	['jpx_kurama_nine_tails'] = {
-		label = '•Kurama Nine Tails',
+		label = 'â€¢Kurama Nine Tails',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -17923,7 +17923,7 @@ return {
 
 	-- Weapons & Tools
 	['jpx_choji_wings'] = {
-		label = '•Choji Wings',
+		label = 'â€¢Choji Wings',
 		weight = 300,
 		stack = false,
 		close = true,
@@ -17931,7 +17931,7 @@ return {
 	},
 
 	['jpx_divine_feathers'] = {
-		label = '•Divine Feathers',
+		label = 'â€¢Divine Feathers',
 		weight = 200,
 		stack = false,
 		close = true,
@@ -17939,7 +17939,7 @@ return {
 	},
 
 	['jpx_enra'] = {
-		label = '•Enra',
+		label = 'â€¢Enra',
 		weight = 400,
 		stack = false,
 		close = true,
@@ -17947,7 +17947,7 @@ return {
 	},
 
 	['jpx_gaara_gourd'] = {
-		label = '•Gaara Gourd',
+		label = 'â€¢Gaara Gourd',
 		weight = 800,
 		stack = false,
 		close = true,
@@ -17955,7 +17955,7 @@ return {
 	},
 
 	['jpx_gunbai'] = {
-		label = '•Gunbai',
+		label = 'â€¢Gunbai',
 		weight = 600,
 		stack = false,
 		close = true,
@@ -17963,7 +17963,7 @@ return {
 	},
 
 	['jpx_hidan_scythe'] = {
-		label = '•Hidan Scythe',
+		label = 'â€¢Hidan Scythe',
 		weight = 700,
 		stack = false,
 		close = true,
@@ -17971,7 +17971,7 @@ return {
 	},
 
 	['jpx_hiramekarei'] = {
-		label = '•Hiramekarei',
+		label = 'â€¢Hiramekarei',
 		weight = 900,
 		stack = false,
 		close = true,
@@ -17979,7 +17979,7 @@ return {
 	},
 
 	['jpx_jiraiya_sage_mode'] = {
-		label = '•Jiraiya Sage Mode',
+		label = 'â€¢Jiraiya Sage Mode',
 		weight = 300,
 		stack = false,
 		close = true,
@@ -17987,7 +17987,7 @@ return {
 	},
 
 	['jpx_jiraiya_scroll'] = {
-		label = '•Jiraiya Scroll',
+		label = 'â€¢Jiraiya Scroll',
 		weight = 400,
 		stack = false,
 		close = true,
@@ -17995,7 +17995,7 @@ return {
 	},
 
 	['jpx_jump_force'] = {
-		label = '•Jump Force',
+		label = 'â€¢Jump Force',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -18003,7 +18003,7 @@ return {
 	},
 
 	['jpx_kabuto_sage_mode'] = {
-		label = '•Kabuto Sage Mode',
+		label = 'â€¢Kabuto Sage Mode',
 		weight = 300,
 		stack = false,
 		close = true,
@@ -18011,7 +18011,7 @@ return {
 	},
 
 	['jpx_kamatari'] = {
-		label = '•Kamatari',
+		label = 'â€¢Kamatari',
 		weight = 600,
 		stack = false,
 		close = true,
@@ -18019,7 +18019,7 @@ return {
 	},
 
 	['jpx_killer_b_weapon'] = {
-		label = '•Killer B Weapon',
+		label = 'â€¢Killer B Weapon',
 		weight = 800,
 		stack = false,
 		close = true,
@@ -18027,7 +18027,7 @@ return {
 	},
 
 	['jpx_konan_wings'] = {
-		label = '•Konan Wings',
+		label = 'â€¢Konan Wings',
 		weight = 250,
 		stack = false,
 		close = true,
@@ -18035,7 +18035,7 @@ return {
 	},
 
 	['jpx_kubikiribocho'] = {
-		label = '•Kubikiribocho',
+		label = 'â€¢Kubikiribocho',
 		weight = 1000,
 		stack = false,
 		close = true,
@@ -18043,7 +18043,7 @@ return {
 	},
 
 	['jpx_kurama_chibi'] = {
-		label = '•Kurama Chibi',
+		label = 'â€¢Kurama Chibi',
 		weight = 200,
 		stack = false,
 		close = true,
@@ -18051,7 +18051,7 @@ return {
 	},
 
 	['jpx_samehada'] = {
-		label = '•Samehada',
+		label = 'â€¢Samehada',
 		weight = 950,
 		stack = false,
 		close = true,
@@ -18059,7 +18059,7 @@ return {
 	},
 
 	['jpx_shuriken'] = {
-		label = '•Giant Shuriken',
+		label = 'â€¢Giant Shuriken',
 		weight = 400,
 		stack = false,
 		close = true,
@@ -18067,7 +18067,7 @@ return {
 	},
 
 	['jpx_temari_fan'] = {
-		label = '•Temari Fan',
+		label = 'â€¢Temari Fan',
 		weight = 550,
 		stack = false,
 		close = true,
@@ -18075,7 +18075,7 @@ return {
 	},
 
 	['jpx_tenten_scroll'] = {
-		label = '•Tenten Scroll',
+		label = 'â€¢Tenten Scroll',
 		weight = 350,
 		stack = false,
 		close = true,
@@ -18083,7 +18083,7 @@ return {
 	},
 
 	['jpx_tonton'] = {
-		label = '•Tonton',
+		label = 'â€¢Tonton',
 		weight = 150,
 		stack = false,
 		close = true,
@@ -18091,7 +18091,7 @@ return {
 	},
 
 	['jpx_yagura_staff'] = {
-		label = '•Yagura Staff',
+		label = 'â€¢Yagura Staff',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -18100,7 +18100,7 @@ return {
 
 	-- Books
 	['jpx_makeout_mischief'] = {
-		label = '•Make-Out Mischief',
+		label = 'â€¢Make-Out Mischief',
 		weight = 150,
 		stack = true,
 		close = true,
@@ -18108,7 +18108,7 @@ return {
 	},
 
 	['jpx_makeout_paradise'] = {
-		label = '•Make-Out Paradise',
+		label = 'â€¢Make-Out Paradise',
 		weight = 150,
 		stack = true,
 		close = true,
@@ -18116,7 +18116,7 @@ return {
 	},
 
 	['jpx_makeout_tactics'] = {
-		label = '•Make-Out Tactics',
+		label = 'â€¢Make-Out Tactics',
 		weight = 150,
 		stack = true,
 		close = true,
@@ -18125,7 +18125,7 @@ return {
 
 	-- Pets
 	['jpx_akamaru'] = {
-		label = '•Akamaru',
+		label = 'â€¢Akamaru',
 		weight = 200,
 		stack = false,
 		close = true,
@@ -18134,7 +18134,7 @@ return {
 
 	-- Head Accessories - Hats
 	['jpx_akatsuki_hat'] = {
-		label = '•Akatsuki Hat',
+		label = 'â€¢Akatsuki Hat',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18142,7 +18142,7 @@ return {
 	},
 
 	['jpx_hokage_hat'] = {
-		label = '•Hokage Hat',
+		label = 'â€¢Hokage Hat',
 		weight = 150,
 		stack = false,
 		close = true,
@@ -18150,7 +18150,7 @@ return {
 	},
 
 	['jpx_kazekage_hat'] = {
-		label = '•Kazekage Hat',
+		label = 'â€¢Kazekage Hat',
 		weight = 150,
 		stack = false,
 		close = true,
@@ -18158,7 +18158,7 @@ return {
 	},
 
 	['jpx_mizukage_hat'] = {
-		label = '•Mizukage Hat',
+		label = 'â€¢Mizukage Hat',
 		weight = 150,
 		stack = false,
 		close = true,
@@ -18166,7 +18166,7 @@ return {
 	},
 
 	['jpx_raikage_hat'] = {
-		label = '•Raikage Hat',
+		label = 'â€¢Raikage Hat',
 		weight = 150,
 		stack = false,
 		close = true,
@@ -18174,7 +18174,7 @@ return {
 	},
 
 	['jpx_tsuchikage_hat'] = {
-		label = '•Tsuchikage Hat',
+		label = 'â€¢Tsuchikage Hat',
 		weight = 150,
 		stack = false,
 		close = true,
@@ -18182,7 +18182,7 @@ return {
 	},
 
 	['jpx_naruto_nightcap'] = {
-		label = '•Naruto Nightcap',
+		label = 'â€¢Naruto Nightcap',
 		weight = 50,
 		stack = false,
 		close = true,
@@ -18191,7 +18191,7 @@ return {
 
 	-- Masks
 	['jpx_anbu_bird_mask'] = {
-		label = '•ANBU Bird Mask',
+		label = 'â€¢ANBU Bird Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18199,7 +18199,7 @@ return {
 	},
 
 	['jpx_anbu_cat_mask'] = {
-		label = '•ANBU Cat Mask',
+		label = 'â€¢ANBU Cat Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18207,7 +18207,7 @@ return {
 	},
 
 	['jpx_anbu_fox_mask'] = {
-		label = '•ANBU Fox Mask',
+		label = 'â€¢ANBU Fox Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18215,7 +18215,7 @@ return {
 	},
 
 	['jpx_anbu_kappa_mask'] = {
-		label = '•ANBU Kappa Mask',
+		label = 'â€¢ANBU Kappa Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18223,7 +18223,7 @@ return {
 	},
 
 	['jpx_anbu_monkey_mask'] = {
-		label = '•ANBU Monkey Mask',
+		label = 'â€¢ANBU Monkey Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18231,7 +18231,7 @@ return {
 	},
 
 	['jpx_anbu_owl_mask'] = {
-		label = '•ANBU Owl Mask',
+		label = 'â€¢ANBU Owl Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18239,7 +18239,7 @@ return {
 	},
 
 	['jpx_anbu_ox_mask'] = {
-		label = '•ANBU Ox Mask',
+		label = 'â€¢ANBU Ox Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18247,7 +18247,7 @@ return {
 	},
 
 	['jpx_anbu_itachi_mask'] = {
-		label = '•ANBU Itachi Mask',
+		label = 'â€¢ANBU Itachi Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18255,7 +18255,7 @@ return {
 	},
 
 	['jpx_anbu_kakashi_mask'] = {
-		label = '•ANBU Kakashi Mask',
+		label = 'â€¢ANBU Kakashi Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18263,7 +18263,7 @@ return {
 	},
 
 	['jpx_naruto_mask'] = {
-		label = '•Naruto Mask',
+		label = 'â€¢Naruto Mask',
 		weight = 80,
 		stack = false,
 		close = true,
@@ -18271,7 +18271,7 @@ return {
 	},
 
 	['jpx_sasuke_mask'] = {
-		label = '•Sasuke Mask',
+		label = 'â€¢Sasuke Mask',
 		weight = 80,
 		stack = false,
 		close = true,
@@ -18279,7 +18279,7 @@ return {
 	},
 
 	['jpx_madara_mask'] = {
-		label = '•Madara Mask',
+		label = 'â€¢Madara Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18287,7 +18287,7 @@ return {
 	},
 
 	['jpx_tobi_mask'] = {
-		label = '•Tobi Mask',
+		label = 'â€¢Tobi Mask',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18295,7 +18295,7 @@ return {
 	},
 
 	['jpx_han_mask'] = {
-		label = '•Han Mask',
+		label = 'â€¢Han Mask',
 		weight = 120,
 		stack = false,
 		close = true,
@@ -18303,7 +18303,7 @@ return {
 	},
 
 	['jpx_hanzou_mask'] = {
-		label = '•Hanzou Mask',
+		label = 'â€¢Hanzou Mask',
 		weight = 120,
 		stack = false,
 		close = true,
@@ -18311,7 +18311,7 @@ return {
 	},
 
 	['jpx_death_god_mask'] = {
-		label = '•Death God Mask',
+		label = 'â€¢Death God Mask',
 		weight = 150,
 		stack = false,
 		close = true,
@@ -18319,7 +18319,7 @@ return {
 	},
 
 	['jpx_reaper_mask'] = {
-		label = '•Reaper Mask',
+		label = 'â€¢Reaper Mask',
 		weight = 120,
 		stack = false,
 		close = true,
@@ -18328,7 +18328,7 @@ return {
 
 	-- Goggles
 	['jpx_chojuro_goggles'] = {
-		label = '•Chojuro Goggles',
+		label = 'â€¢Chojuro Goggles',
 		weight = 80,
 		stack = false,
 		close = true,
@@ -18336,7 +18336,7 @@ return {
 	},
 
 	['jpx_naruto_goggles'] = {
-		label = '•Naruto Goggles',
+		label = 'â€¢Naruto Goggles',
 		weight = 80,
 		stack = false,
 		close = true,
@@ -18344,7 +18344,7 @@ return {
 	},
 
 	['jpx_obito_goggles'] = {
-		label = '•Obito Goggles',
+		label = 'â€¢Obito Goggles',
 		weight = 80,
 		stack = false,
 		close = true,
@@ -18352,7 +18352,7 @@ return {
 	},
 
 	['jpx_shino_goggles'] = {
-		label = '•Shino Goggles',
+		label = 'â€¢Shino Goggles',
 		weight = 80,
 		stack = false,
 		close = true,
@@ -18361,7 +18361,7 @@ return {
 
 	-- Food Items
 	['jpx_anko_dango'] = {
-		label = '•Anko Dango',
+		label = 'â€¢Anko Dango',
 		weight = 50,
 		stack = true,
 		close = true,
@@ -18369,7 +18369,7 @@ return {
 	},
 
 	['jpx_hanami_dango'] = {
-		label = '•Hanami Dango',
+		label = 'â€¢Hanami Dango',
 		weight = 50,
 		stack = true,
 		close = true,
@@ -18377,7 +18377,7 @@ return {
 	},
 
 	['jpx_mitarashi_dango'] = {
-		label = '•Mitarashi Dango',
+		label = 'â€¢Mitarashi Dango',
 		weight = 50,
 		stack = true,
 		close = true,
@@ -18386,7 +18386,7 @@ return {
 
 	-- Hand Items
 	['jpx_jump_force_knife'] = {
-		label = '•Jump Force Knife',
+		label = 'â€¢Jump Force Knife',
 		weight = 200,
 		stack = false,
 		close = true,
@@ -18394,7 +18394,7 @@ return {
 	},
 
 	['jpx_kakashi_book'] = {
-		label = '•Kakashi Book',
+		label = 'â€¢Kakashi Book',
 		weight = 150,
 		stack = false,
 		close = true,
@@ -18402,7 +18402,7 @@ return {
 	},
 
 	['jpx_windmill_shuriken'] = {
-		label = '•Windmill Shuriken',
+		label = 'â€¢Windmill Shuriken',
 		weight = 300,
 		stack = false,
 		close = true,
@@ -18410,7 +18410,7 @@ return {
 	},
 
 	['jpx_paper_bomb_kunai'] = {
-		label = '•Paper Bomb Kunai',
+		label = 'â€¢Paper Bomb Kunai',
 		weight = 150,
 		stack = true,
 		close = true,
@@ -18419,7 +18419,7 @@ return {
 
 	-- Special Effects
 	['jpx_ninja_magic_circle'] = {
-		label = '•Ninja Magic Circle',
+		label = 'â€¢Ninja Magic Circle',
 		weight = 100,
 		stack = false,
 		close = true,
@@ -18427,7 +18427,7 @@ return {
 	},
 
 	['jpx_katsuyu'] = {
-		label = '•Katsuyu',
+		label = 'â€¢Katsuyu',
 		weight = 200,
 		stack = false,
 		close = true,
@@ -18435,7 +18435,7 @@ return {
 	},
 	-- Collections & Special Items
 	['jpx_demon_blood_collection'] = {
-		label = '•Blood Collection',
+		label = 'â€¢Blood Collection',
 		weight = 100,
 		stack = true,
 		close = true,
@@ -18443,7 +18443,7 @@ return {
 	},
 
 	['jpx_demon_chachamaru'] = {
-		label = '•Chachamaru',
+		label = 'â€¢Chachamaru',
 		weight = 500,
 		stack = false,
 		close = true,
@@ -18451,7 +18451,7 @@ return {
 	},
 
 	['jpx_demon_rui_spider'] = {
-		label = '•Rui Spider',
+		label = 'â€¢Rui Spider',
 		weight = 200,
 		stack = true,
 		close = true,
@@ -18460,7 +18460,7 @@ return {
 
 	-- Katanas
 	['jpx_demon_giyu_katana'] = {
-		label = '•Giyu Katana',
+		label = 'â€¢Giyu Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -18468,7 +18468,7 @@ return {
 	},
 
 	['jpx_demon_muichiro_katana'] = {
-		label = '•Muichiro Katana',
+		label = 'â€¢Muichiro Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -18476,7 +18476,7 @@ return {
 	},
 
 	['jpx_demon_obanai_katana'] = {
-		label = '•Obanai Katana',
+		label = 'â€¢Obanai Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -18484,7 +18484,7 @@ return {
 	},
 
 	['jpx_demon_sanemi_katana'] = {
-		label = '•Sanemi Katana',
+		label = 'â€¢Sanemi Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -18492,7 +18492,7 @@ return {
 	},
 
 	['jpx_demon_inosuke_katana'] = {
-		label = '•Inosuke Katana',
+		label = 'â€¢Inosuke Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -18500,7 +18500,7 @@ return {
 	},
 
 	['jpx_demon_kanao_katana'] = {
-		label = '•Kanao Katana',
+		label = 'â€¢Kanao Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -18508,7 +18508,7 @@ return {
 	},
 
 	['jpx_demon_mitsuri_katana'] = {
-		label = '•Mitsuri Katana',
+		label = 'â€¢Mitsuri Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -18516,7 +18516,7 @@ return {
 	},
 
 	['jpx_demon_rengoku_katana'] = {
-		label = '•Rengoku Katana',
+		label = 'â€¢Rengoku Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -18524,7 +18524,7 @@ return {
 	},
 
 	['jpx_demon_shinobu_katana'] = {
-		label = '•Shinobu Katana',
+		label = 'â€¢Shinobu Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -18532,7 +18532,7 @@ return {
 	},
 
 	['jpx_demon_tanjiro_katana'] = {
-		label = '•Tanjiro Katana',
+		label = 'â€¢Tanjiro Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -18540,7 +18540,7 @@ return {
 	},
 
 	['jpx_demon_zenitsu_katana'] = {
-		label = '•Zenitsu Katana',
+		label = 'â€¢Zenitsu Katana',
 		weight = 1200,
 		stack = false,
 		close = true,
@@ -19621,7 +19621,8 @@ return {
 	['outfitbag'] = {
 		label = 'Outfit Bag',
 		weight = 600,
-		stack = false, -- 1 item per slot; binding ke 1 player via metadata cid
+		stack = false,
+		consume = 0, -- 1 item per slot; binding ke 1 player via metadata cid
 		close = true,
 		description = 'Tas berisi outfit. Gunakan untuk menaruh tas & ganti baju dari outfit tersimpan.',
 		client = {
@@ -20421,6 +20422,8 @@ return {
         stack = true,
         close = true,
         description = 'Warden Pin Maker',
+		consume = 0,
+		server = { export = 'sm_resource_2.warden_pin' },
     },
     ['warden_pin_final'] = {
         label = 'The Warden ID',
@@ -20428,6 +20431,8 @@ return {
         stack = true,
         close = true,
         description = 'Identification Card',
+		consume = 0,
+		server = { export = 'sm_resource_2.warden_pin_final' },
     },
     ['full_access_card'] = {
         label = 'Fully Authorization Card',
@@ -20450,6 +20455,8 @@ return {
         stack = true,
         close = true,
         description = 'Seal Maker Card',
+		consume = 0,
+		server = { export = 'sm_resource_2.seal_maker' },
         client = {
 			image = 'seal_card.png',
 		},
@@ -20460,6 +20467,8 @@ return {
         stack = true,
         close = true,
         description = 'Identification Card',
+		consume = 0,
+		server = { export = 'sm_resource_2.seal_card' },
         client = {
 			image = 'seal_card.png',
 		},
@@ -20596,3 +20605,5 @@ return {
 		},
 	},
 }
+
+

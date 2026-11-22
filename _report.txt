@@ -1,0 +1,311 @@
+== TOP LEVEL ==
+DIR  .git                        33,588.0 MB    1406 files
+DIR  cache                       60,946.0 MB  102149 files
+DIR  citizen                         58.3 MB     411 files
+DIR  crashes                          0.0 MB       0 files
+DIR  dumps                            3.5 MB      52 files
+DIR  resources                   71,935.6 MB  133517 files
+DIR  sql                              0.0 MB       3 files
+DIR  _monitor_txadmin                13.0 MB     101 files
+DIR  _ypt_backup                      9.7 MB      45 files
+FILE .gitattributes                   0.1 KB
+FILE .gitignore                       0.6 KB
+FILE .replxx_history                  0.0 KB
+FILE api-ms-win-core-console-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-console-l1-2-0.dll      21.5 KB
+FILE api-ms-win-core-datetime-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-debug-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-errorhandling-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-fibers-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-file-l1-1-0.dll      25.5 KB
+FILE api-ms-win-core-file-l1-2-0.dll      21.5 KB
+FILE api-ms-win-core-file-l2-1-0.dll      21.5 KB
+FILE api-ms-win-core-handle-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-heap-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-interlocked-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-libraryloader-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-localization-l1-2-0.dll      21.5 KB
+FILE api-ms-win-core-memory-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-namedpipe-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-processenvironment-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-processthreads-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-processthreads-l1-1-1.dll      21.5 KB
+FILE api-ms-win-core-profile-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-rtlsupport-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-string-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-synch-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-synch-l1-2-0.dll      21.5 KB
+FILE api-ms-win-core-sysinfo-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-sysinfo-l1-2-0.dll      12.0 KB
+FILE api-ms-win-core-timezone-l1-1-0.dll      21.5 KB
+FILE api-ms-win-core-util-l1-1-0.dll      21.5 KB
+FILE api-ms-win-crt-conio-l1-1-0.dll      21.5 KB
+FILE api-ms-win-crt-convert-l1-1-0.dll      25.5 KB
+FILE api-ms-win-crt-environment-l1-1-0.dll      21.5 KB
+FILE api-ms-win-crt-filesystem-l1-1-0.dll      21.5 KB
+FILE api-ms-win-crt-heap-l1-1-0.dll      21.5 KB
+FILE api-ms-win-crt-locale-l1-1-0.dll      21.5 KB
+FILE api-ms-win-crt-math-l1-1-0.dll      29.5 KB
+FILE api-ms-win-crt-multibyte-l1-1-0.dll      29.5 KB
+FILE api-ms-win-crt-private-l1-1-0.dll      73.5 KB
+FILE api-ms-win-crt-process-l1-1-0.dll      21.5 KB
+FILE api-ms-win-crt-runtime-l1-1-0.dll      25.5 KB
+FILE api-ms-win-crt-stdio-l1-1-0.dll      25.5 KB
+FILE api-ms-win-crt-string-l1-1-0.dll      25.5 KB
+FILE api-ms-win-crt-time-l1-1-0.dll      21.5 KB
+FILE api-ms-win-crt-utility-l1-1-0.dll      21.5 KB
+FILE api-ms-win-downlevel-kernel32-l2-1-0.dll      16.0 KB
+FILE api-ms-win-eventing-provider-l1-1-0.dll      20.4 KB
+FILE boot_err.log                     0.1 KB
+FILE boot_test.log                   25.4 KB
+FILE botan.dll                    4,611.6 KB
+FILE cfx_curl_x86_64.dll          2,407.6 KB
+FILE citizen-devtools.dll           248.6 KB
+FILE citizen-resources-core.dll     646.1 KB
+FILE citizen-resources-metadata-lua.dll     622.6 KB
+FILE citizen-scripting-core.dll     733.6 KB
+FILE citizen-scripting-lua.dll    2,395.1 KB
+FILE citizen-scripting-mono-v2.dll     186.6 KB
+FILE citizen-scripting-mono.dll     194.1 KB
+FILE citizen-scripting-node.dll     421.6 KB
+FILE citizen-server-fxdk.dll        609.6 KB
+FILE citizen-server-gui.dll         277.6 KB
+FILE citizen-server-impl.dll      8,071.1 KB
+FILE citizen-server-instance.dll     138.6 KB
+FILE citizen-server-main.dll        237.1 KB
+FILE citizen-server-monitor.dll     563.6 KB
+FILE citizen-server-net.dll         397.6 KB
+FILE citizen-server-state-fivesv.dll   1,419.6 KB
+FILE citizen-server-state-rdr3sv.dll   1,461.1 KB
+FILE CitizenFX.ini.bak.20261121_113526       0.2 KB
+FILE components.json                  0.7 KB
+FILE concrt140.dll                  319.8 KB
+FILE conhost-server.dll             717.1 KB
+FILE CoreRT.dll                   1,052.6 KB
+FILE debug-script.dll                52.1 KB
+FILE decoded_core.lua                14.3 KB
+FILE devcon.dll                     241.6 KB
+FILE dump.txt                    14,281.8 KB
+FILE dump_00core.txt              3,500.3 KB
+FILE dump_target_doorlock.txt        77.3 KB
+FILE ETWProviders64.dll             149.7 KB
+FILE FiveM-dev.lnk                    0.7 KB
+FILE FXServer.exe                   285.6 KB
+FILE http-client.dll                231.1 KB
+FILE imgui.dll                    1,459.1 KB
+FILE join-server.bat                  0.1 KB
+FILE libmono-btls-shared.dll        827.5 KB
+FILE libnode22.dll               88,691.0 KB
+FILE libuv.dll                      249.0 KB
+FILE mono-2.0-dac-sgen.dll           33.5 KB
+FILE mono-2.0-sgen.dll            6,124.5 KB
+FILE MonoPosixHelper.dll            158.5 KB
+FILE msvcp140.dll                   566.3 KB
+FILE msvcp140_1.dll                  34.8 KB
+FILE msvcp140_2.dll                 192.9 KB
+FILE msvcp140_atomic_wait.dll        48.9 KB
+FILE msvcp140_codecvt_ids.dll        30.9 KB
+FILE net-base.dll                   157.6 KB
+FILE net-http-server.dll            361.6 KB
+FILE net-packet.dll                  52.1 KB
+FILE net-tcp-server.dll             406.6 KB
+FILE nng.dll                        193.1 KB
+FILE ox_lib.zip                   3,367.7 KB
+FILE pool-sizes-state.dll           236.1 KB
+FILE README.txt                       2.3 KB
+FILE resources.cfg                    4.4 KB
+FILE resources.cfg.bak                4.3 KB
+FILE resources.cfg.bak.20261121_081613       4.0 KB
+FILE resources.cfg.bak_globals        4.3 KB
+FILE resources.cfg.before_vu.bak       4.0 KB
+FILE resources.cfg.roxwood.bak        4.0 KB
+FILE schema_bank.sql                  0.1 KB
+FILE scrbind-base.dll                54.6 KB
+FILE scripting-server.dll            59.6 KB
+FILE secret.cfg                       0.2 KB
+FILE secret.cfg.bak                   0.2 KB
+FILE secret.cfg.example               0.2 KB
+FILE server-monitor-token.key         0.0 KB
+FILE server-tls.crt                   1.2 KB
+FILE server-tls.key                   1.7 KB
+FILE server.7z                   43,944.9 KB
+FILE server.cfg                       1.9 KB
+FILE server.cfg.bak                   0.9 KB
+FILE server.cfg.bak_moo_20261121_162240       2.0 KB
+FILE server.cfg.bak_pool              1.1 KB
+FILE struktur.txt                28,029.6 KB
+FILE svadhesive.dll                 704.1 KB
+FILE ucrtbase.dll                 1,097.5 KB
+FILE vccorlib140.dll                337.8 KB
+FILE vcruntime140.dll               106.8 KB
+FILE vcruntime140_1.dll              48.4 KB
+FILE vfs-core.dll                   252.6 KB
+FILE vfs-impl-server.dll            169.1 KB
+FILE voip-server-mumble.dll       1,180.1 KB
+FILE _launch_pool.bat                 0.1 KB
+FILE _missing.csv                    60.1 KB
+FILE _STATUS_CRASH.md                 1.0 KB
+== ARTIFACT DI ROOT ==
+1 FXServer.exe
+== .gitignore ==
+*.ytd
+*.ydr
+*.yft
+*.ydd
+*.ybn
+*.ycd
+*.ynv
+*.awc
+*.ogg
+*.mp3
+*.wav
+*.dll
+*.exe
+*.rpf
+*.bik
+*.webm
+*.mp4
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.dds
+*.psd
+*.bak
+*.log
+*.7z
+*.zip
+*.rar
+cache/
+citizen/
+backup/
+secret.cfg
+server-tls.crt
+server-tls.key
+_zips_*/
+components.json
+.replxx_history
+crashes/
+logs/
+*.bak*
+_ypt_backup/
+resources/\[03_fitur_tambahan\]/sm_resource_2/interface/sm_tcgcards/data/cards.json
+resources/\[03_fitur_tambahan\]/sm_resource_2/interface/sm_tcgcards/data/divisions.json
+resources/\[01_kendaraan_ekonomi\]/sm_custom/data/zones.json
+resources/\[01_kendaraan_ekonomi\]/sm_custom/data/pricing.json
+
+== .gitattributes ==
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ytd binary
+*.ydr binary
+*.yft binary
+*.awc binary
+*.ogg binary
+
+== _launch_pool.bat ==
+@echo off
+start "" "A:\GAME KU\FiveM\FiveM.exe" +set moo 31337
+
+== _STATUS_CRASH ==
+
+== GIT ==
+main
+
+origin	https://github.com/XOStart69/lexar-roleplay.git (fetch)
+origin	https://github.com/XOStart69/lexar-roleplay.git (push)
+
+a0ef4139 test: matikan sementara semua amb-roxwood untuk uji beban streaming
+222b175d fix: lengkapi server.lua entry point rhd_garage_sm & sm_vehicleshop
+ddc684e9 chore: bersihkan fxap hasil dekripsi (rhd_interact, weapon, mlo, maps)
+7d79b661 chore: naikkan VehicleStruct & fwDynamicArchetypeComponent untuk 607 model kendaraan
+d3e45372 chore: aktifkan moo 31337 untuk pool increase (PtFxAssetStore)
+
+git : warning: garbage found: .git/objects/c3/tmp_obj_C35y1P
+At line:1 char:9
++ $r.Add((git -C $srv count-objects -vH 2>&1 | Out-String))
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: garbag.. 
+   ./tmp_obj_C35y1P:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+count: 1369
+size: 19.93 MiB
+in-pack: 61849
+packs: 2
+size-pack: 32.77 GiB
+prune-packable: 0
+garbage: 1
+size-garbage: 0 bytes
+
+status lines: 30
+ M .gitattributes
+ M _missing.csv
+ M resources.cfg
+ M resources/[00_core]/ox_inventory/data/items.lua
+ M resources/[00_core]/se_v2/fxmanifest.lua
+ M resources/[02_dasar_rp]/sm_resource/interface/fuelsystem/server.lua
+ M resources/[02_dasar_rp]/sm_resource/interface/sm_pets/server/shop.lua
+ M resources/[02_dasar_rp]/sm_resource/interface/taxui/server.lua
+ M resources/[03_fitur_tambahan]/sm_resource_1/interface/sm_outfitbag/server.lua
+ M resources/[03_fitur_tambahan]/sm_resource_2/interface/sm_bomb/server.lua
+ M resources/[03_fitur_tambahan]/sm_resource_2/interface/sm_warden/server.lua
+ M resources/[05_map_mlo]/amb-roxwood-interiors/stream/igro45_rox_03_hospital_gtxd.meta
+ M resources/[05_map_mlo]/fiv3devs_vu/stream/lr_sc1_04_interior_5d_vu_milo_.ymap
+ M resources/[05_map_mlo]/fiv3devs_vu/stream/lr_sc1_04_interior_v_strip3_milo_.ymap
+ M resources/[05_map_mlo]/fiv3devs_vu/stream/lr_sc1_04_strm_0.ymap
+ M resources/[05_map_mlo]/fiv3devs_vu/stream/lr_sc1_rd_strm_4.ymap
+ M resources/[05_map_mlo]/fiv3devs_vu/stream/scentral_metadata_018_strm.ytyp
+ M resources/[05_map_mlo]/fiv3devs_vu/stream/vu_signs.ymap
+ M resources/[05_map_mlo]/fiv3devs_vu/stream/vw_lodlights_medium012.ymap
+ M resources/[05_map_mlo]/fiv3devs_vu/stream/vw_lodlights_small036.ymap
+ M resources/[06_rumah_mansion]/bcs_housing/config/server/config.lua
+ D resources/collect_for_claude.ps1
+ D resources/rapihin.ps1
+ M schema_bank.sql
+ M secret.cfg.example
+ M server.cfg
+?? _STATUS_CRASH.md
+?? _launch_pool.bat
+?? resources/[01_kendaraan_ekonomi]/modsoundveh/
+?? resources/[05_map_mlo]/fiv3devs_vu/stream/5d_vu.ybn.off
+
+== RESOURCES ==
+total resource: 8
+cfxlua-require                           0.0 MB      7 files
+[00_core]                                0.0 MB      0 files
+[01_kendaraan_ekonomi]                   0.0 MB      0 files
+[02_dasar_rp]                            0.0 MB      0 files
+[03_fitur_tambahan]                      0.0 MB      0 files
+[04_senjata_escrow]                      0.0 MB      0 files
+[05_map_mlo]                             0.0 MB      0 files
+[06_rumah_mansion]                       0.0 MB      0 files
+== JUNK DI DALAM stream/ ==
+== FILE .meta PER RESOURCE (top 15) ==
+[04_senjata_escrow]                0
+[03_fitur_tambahan]                0
+[06_rumah_mansion]                 0
+[05_map_mlo]                       0
+[00_core]                          0
+cfxlua-require                     0
+[02_dasar_rp]                      0
+[01_kendaraan_ekonomi]             0
+== CRASH / DUMP ==
+A:\Lexar Roleplay\dumps\sm_loadingscreen.txt
+A:\Lexar Roleplay\dumps\sm_mod-peds.txt
+A:\Lexar Roleplay\dumps\sm_mod_tatto.txt
+A:\Lexar Roleplay\dumps\sm_nui_browser.txt
+A:\Lexar Roleplay\dumps\sm_playergroup.txt
+A:\Lexar Roleplay\dumps\sm_radialmenu.txt
+A:\Lexar Roleplay\dumps\sm_resource_assets.txt
+A:\Lexar Roleplay\dumps\sm_resource_assets_2.txt
+A:\Lexar Roleplay\dumps\sm_skinpack2025.txt
+A:\Lexar Roleplay\dumps\spawnmanager.txt
+A:\Lexar Roleplay\dumps\vehiclehandler.txt
+A:\Lexar Roleplay\dumps\zz_dump.txt
+== CFG ADA ==
+resources.cfg
+secret.cfg
+server.cfg

@@ -1,3 +1,4 @@
+﻿local function CV(k, d) if GetConVar then return GetConVar(k, d) end return d end
 -- Konfigurasi khusus server. Dimuat setelah config/*.lua oleh shared_scripts.
 Config = Config or {}
 
@@ -61,10 +62,10 @@ Config.Server = {
     screenshot = {
         provider = Config.Screenshot or 'offline',
         folder = 'html/images',
-        token = GetConVar('SCREENSHOT_TOKEN', ''),
-        webhook = GetConVar('SCREENSHOT_WEBHOOK', ''),
-        imageServer = GetConVar('IMAGE_SERVER', ''),
-        apiKey = GetConVar('fivehub:apiKey', ''),
+        token = CV('SCREENSHOT_TOKEN', ''),
+        webhook = CV('SCREENSHOT_WEBHOOK', ''),
+        imageServer = CV('IMAGE_SERVER', ''),
+        apiKey = CV('fivehub:apiKey', ''),
     },
 
     tables = {
@@ -101,3 +102,6 @@ Config.Server = {
         price = 0,
     },
 }
+
+Server = Config.Server
+

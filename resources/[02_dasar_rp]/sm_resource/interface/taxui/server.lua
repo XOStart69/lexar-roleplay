@@ -1,4 +1,4 @@
---[[
+﻿--[[
     taxui :: server
     Pajak kekayaan harian (persentase dari uang + nilai kendaraan) dan pajak bank.
     Potong otomatis dari bank lalu tunai, catat status per hari, kirim notifikasi ke pemain.
@@ -173,7 +173,10 @@ local function runBankTax()
 end
 
 CreateThread(function()
-    MySQL.query.await(SCHEMA)
+    for stmt in string.gmatch(SCHEMA, '([^;]+)') do
+        local s = stmt:gsub('^%s+', ''):gsub('%s+$', '')
+        if s ~= '' then MySQL.query.await(s) end
+    end
 
     local taxMinute, taxHour = parseCron(Config.TaxTime)
     local bankMinute, bankHour = parseCron(BANK.TaxTime)
