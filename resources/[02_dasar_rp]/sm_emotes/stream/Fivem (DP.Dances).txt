@@ -1,9 +1,0 @@
-    ["0000oudsnowman_couplef"] = {"oudoud@snowman_couple", "oudoud_snowman_couple_f", "OudOud Snowman Couple ~g~ Female", AnimationOptions =
-    {
-        EmoteLoop = true
-    }},
-
-    ["0000oudsnowman_couplem"] = {"oudoud@snowman_couple", "oudoud_snowman_couple_m", "OudOud Snowman Couple ~g~ Male", AnimationOptions =
-    {
-        EmoteLoop = true
-    }},

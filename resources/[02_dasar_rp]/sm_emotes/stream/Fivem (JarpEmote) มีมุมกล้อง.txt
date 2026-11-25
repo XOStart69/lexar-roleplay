@@ -1,8 +1,0 @@
-	   ["0000oudotsukare_summer_x_nct_wish"] = {"oudoud@otsukare_summer_x_nct_wish", "oudoud_otsukare_summer_x_nct_wish", "OudOud Otsukare Summer x ~g~ NCT WISH", AnimationOptions =
-    {
-        EmoteLoop = true,
-		EmoteTiktok = true,
-	        EmoteCamera = {
-            dict = "oudoud@otsukare_summer_x_nct_wish",
-        }
-    }},

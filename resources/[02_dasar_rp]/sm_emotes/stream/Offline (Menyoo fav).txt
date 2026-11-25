@@ -1,2 +1,0 @@
-	<Anim dict="oudoud@miniskirt" name="oudoud_miniskirt" />
-	<Anim dict="oudoud@miniskirt" name="oudoud_miniskirt_mirror" />

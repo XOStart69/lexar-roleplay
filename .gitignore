@@ -43,3 +43,41 @@ resources/\[03_fitur_tambahan\]/sm_resource_2/interface/sm_tcgcards/data/cards.j
 resources/\[03_fitur_tambahan\]/sm_resource_2/interface/sm_tcgcards/data/divisions.json
 resources/\[01_kendaraan_ekonomi\]/sm_custom/data/zones.json
 resources/\[01_kendaraan_ekonomi\]/sm_custom/data/pricing.json
+
+# === FiveM Heavy Binary Assets (3D, Texture, Map, Audio) ===
+*.ytd
+*.ydr
+*.ydd
+*.yft
+*.ybn
+*.ymap
+*.ytyp
+*.ymf
+*.ynv
+*.yvr
+*.ycd
+*.yld
+*.awc
+*.rel
+*.oac
+*.rpf
+
+# === Folder Stream (fxmanifest.lua dan script di luar stream/ tetap ke-upload) ===
+**/stream/
+
+# === Cache, Dumps, Logs & Archives ===
+cache/
+crashes/
+logs/
+dumps/
+node_modules/
+.yarn/
+*.log
+*.zip
+*.rar
+*.7z
+
+# === File Konfigurasi Sensitif ===
+server.cfg
+permissions.cfg
+*.env

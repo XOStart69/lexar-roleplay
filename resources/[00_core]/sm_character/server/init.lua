@@ -1,16 +1,49 @@
--- sm_character/server/init.lua
--- Direkonstruksi mengikuti kontrak client/*.lua dan modul sm_core.
--- Tabel: players (PK citizenid), playerskins, character_partners, character_invites.
+-- sm_character/server/init.lua  (revisi 2)
+-- Direkonstruksi dan DICOCOKKAN ke kontrak client/*.lua + web UI.
+-- Tabel yang dipakai : players, playerskins (sudah ada)
+-- Tabel baru         : sm_character_partners, sm_character_invites (dibuat otomatis)
+-- Tabel lama character_partners / character_invites tidak disentuh (partner lama dimigrasi sekali).
 
 local QBCore = exports['qb-core']:GetCoreObject()
 
-local DEFAULT_SLOTS = 4
-local INVITE_TTL    = 60
-local DEFAULT_SPAWN = { x = -1042.57, y = -2745.72, z = 21.36, w = 330.0 }
+local RESOURCE        <const> = GetCurrentResourceName()
+local DEFAULT_SLOTS   <const> = 4
+local INVITE_TTL      <const> = 60   -- detik
+local INVITE_COOLDOWN <const> = 3    -- detik antar undangan per pemain
+local LINK_TYPES      <const> = { cp = true, bff = true } -- UI: Pasangan / Sahabat
+
+local DEFAULT_POS = { x = -1042.57, y = -2745.72, z = 21.36, w = 330.0 }
+
+-- Daftar lokasi spawn untuk "phone" pemilihan lokasi.
+-- type WAJIB salah satu: 'default' | 'house' | 'motel' | 'vip'  ('last' dibuat otomatis).
+-- Rumah (bcs_housing) / motel (sm_wiwang_motel_v2) / VIP belum terhubung: tambahkan manual di sini
+-- atau sambungkan lewat resource masing-masing.
+local Locations = {
+    { id = 'bandara', label = 'Bandara', type = 'default', coords = vec4(-1042.57, -2745.72, 21.36, 330.0) },
+    -- { id = 'motel1', label = 'Motel', type = 'motel', coords = vec4(0.0, 0.0, 0.0, 0.0), freezeControl = true },
+}
 
 local SlotOverrides = {
     -- ['license:xxxxxxxxxxxxxxxxx'] = 8,
 }
+
+-- Aturan registrasi: baca config/register.lua (sama dengan yang dipakai UI) supaya server tidak beda aturan.
+local Register = { name = { min = 2, max = 20 }, birthYear = { min = 1950, max = 2007 }, nationalities = {} }
+do
+    local raw = LoadResourceFile(RESOURCE, 'config/register.lua')
+    local fn = raw and load(raw, '@config/register.lua')
+    if fn then
+        local ok, res = pcall(fn)
+        if ok and type(res) == 'table' then Register = res end
+    end
+end
+
+local NATIONALITY = {}
+for _, n in ipairs(Register.nationalities or {}) do NATIONALITY[n] = true end
+
+-- ----------------------------------------------------------------------------
+-- Helper
+-- ----------------------------------------------------------------------------
 
 local function getSlots(license)
     local override = SlotOverrides[license]
@@ -20,7 +53,8 @@ local function getSlots(license)
 end
 
 local function notify(src, message, kind)
-    TriggerClientEvent('sm_characters:client:notify', src, message, kind or 'error')
+    -- client: RegisterNetEvent('sm_characters:client:notify', function(data) lib.notify(data) end)
+    TriggerClientEvent('sm_characters:client:notify', src, { description = message, type = kind or 'error' })
 end
 
 local function decode(value)
@@ -37,7 +71,14 @@ end
 
 local function fullName(charinfo)
     if not charinfo then return 'Warga' end
-    return ('%s %s'):format(charinfo.firstname or '', charinfo.lastname or ''):gsub('^%s*(.-)%s*$', '%1')
+    local name = ('%s %s'):format(charinfo.firstname or '', charinfo.lastname or ''):gsub('^%s*(.-)%s*$', '%1')
+    return name
+end
+
+local function placeholders(n)
+    local t = {}
+    for i = 1, n do t[i] = '?' end
+    return table.concat(t, ',')
 end
 
 local function generatePhone()
@@ -49,32 +90,90 @@ local function generatePhone()
     return ('%03d%04d'):format(math.random(100, 999), math.random(0, 9999))
 end
 
-local function locationById(id)
-    local shared = QBCore.Shared and QBCore.Shared.Locations
-    if shared and id and shared[id] then return shared[id] end
-    return DEFAULT_SPAWN
+local function sourcesForLicense(license)
+    local found = {}
+    for _, id in ipairs(GetPlayers()) do
+        local src = tonumber(id)
+        if src and getLicense(src) == license then found[#found + 1] = src end
+    end
+    return found
 end
 
--- Tabel pendamping partner. Dibuat sendiri supaya tidak bergantung pada migrasi.
+local function licenseOf(citizenid)
+    return MySQL.scalar.await('SELECT license FROM players WHERE citizenid = ?', { citizenid })
+end
+
+local function ownedBy(license, citizenid)
+    if not license or type(citizenid) ~= 'string' or citizenid == '' then return false end
+    local owner = licenseOf(citizenid)
+    return owner ~= nil and owner == license
+end
+
+local function infoOf(citizenid)
+    local row = MySQL.single.await('SELECT charinfo, metadata FROM players WHERE citizenid = ?', { citizenid })
+    if not row then return nil, nil end
+    return decode(row.charinfo), decode(row.metadata)
+end
+
+local function nameOf(citizenid)
+    local charinfo = infoOf(citizenid)
+    return fullName(charinfo)
+end
+
+local function partnerRow(citizenid)
+    return MySQL.single.await('SELECT partner, type, since FROM sm_character_partners WHERE citizenid = ?', { citizenid })
+end
+
+-- Bentuk objek partner yang dibaca client: character.partner = { citizenid, name, type, child }
+local function partnerObject(citizenid, linkType)
+    local charinfo, metadata = infoOf(citizenid)
+    return {
+        citizenid = citizenid,
+        name = fullName(charinfo),
+        type = linkType or 'cp',
+        child = metadata and metadata.child == true or false,
+    }
+end
+
+local function pushToLicense(license, kind, payload)
+    if not license then return end
+    for _, src in ipairs(sourcesForLicense(license)) do
+        TriggerClientEvent('sm_characters:client:partnerSync', src, kind, payload)
+    end
+end
+
+-- ----------------------------------------------------------------------------
+-- Tabel
+-- ----------------------------------------------------------------------------
+
 CreateThread(function()
     MySQL.query.await([[
-        CREATE TABLE IF NOT EXISTS `character_partners` (
+        CREATE TABLE IF NOT EXISTS `sm_character_partners` (
             `citizenid` VARCHAR(50) NOT NULL,
             `partner`   VARCHAR(50) NOT NULL,
+            `type`      VARCHAR(8)  NOT NULL DEFAULT 'cp',
             `since`     INT NOT NULL DEFAULT 0,
             PRIMARY KEY (`citizenid`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ]])
+
     MySQL.query.await([[
-        CREATE TABLE IF NOT EXISTS `character_invites` (
-            `citizenid` VARCHAR(50) NOT NULL,
-            `target`    VARCHAR(50) NOT NULL,
-            `expires`   BIGINT NOT NULL DEFAULT 0,
-            PRIMARY KEY (`citizenid`, `target`)
+        CREATE TABLE IF NOT EXISTS `sm_character_invites` (
+            `id`      INT NOT NULL AUTO_INCREMENT,
+            `sender`  VARCHAR(50) NOT NULL,
+            `target`  VARCHAR(50) NOT NULL,
+            `type`    VARCHAR(8)  NOT NULL DEFAULT 'cp',
+            `expires` BIGINT NOT NULL DEFAULT 0,
+            PRIMARY KEY (`id`),
+            KEY `sender` (`sender`),
+            KEY `target` (`target`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ]])
-    MySQL.query.await('ALTER TABLE `character_partners` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
-    MySQL.query.await('ALTER TABLE `character_invites` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
+
+    -- Migrasi satu kali dari tabel lama (diabaikan jika tabel lama tidak ada).
+    pcall(function()
+        MySQL.query.await("INSERT IGNORE INTO sm_character_partners (citizenid, partner, type, since) SELECT citizenid, partner, 'cp', since FROM character_partners")
+    end)
 
     MySQL.query.await([[
         CREATE TABLE IF NOT EXISTS `playerskins` (
@@ -91,55 +190,38 @@ CreateThread(function()
 end)
 
 -- ----------------------------------------------------------------------------
--- Fetch daftar karakter
+-- Lokasi spawn
 -- ----------------------------------------------------------------------------
 
-local function buildInvites(ids, byCitizen)
-    local incoming, outgoing = {}, {}
+local function validPosition(pos)
+    if type(pos) ~= 'table' or not pos.x or not pos.y or not pos.z then return false end
+    return not (pos.x == 0 and pos.y == 0 and pos.z == 0)
+end
 
-    if #ids == 0 then return incoming, outgoing end
+-- Bentuk entri yang dibaca phone UI: { id:string, label:string, type:string, coords:vector4, freezeControl? }
+local function buildLocations(position)
+    local list = {}
 
-    local placeholders = {}
-    for i = 1, #ids do placeholders[i] = '?' end
-    placeholders = table.concat(placeholders, ',')
-
-    local params = {}
-    for i = 1, #ids do params[#params + 1] = ids[i] end
-    for i = 1, #ids do params[#params + 1] = ids[i] end
-    params[#params + 1] = os.time()
-
-    local rows = MySQL.query.await(([[
-        SELECT i.citizenid, i.target, i.expires,
-               p1.charinfo AS frominfo, p2.charinfo AS toinfo
-        FROM character_invites i
-        LEFT JOIN players p1 ON p1.citizenid = i.citizenid
-        LEFT JOIN players p2 ON p2.citizenid = i.target
-        WHERE (i.citizenid IN (%s) OR i.target IN (%s)) AND i.expires > ?
-    ]]):format(placeholders, placeholders), params) or {}
-
-    for _, row in ipairs(rows) do
-        local mine = byCitizen[row.target]
-        local theirs = byCitizen[row.citizenid]
-
-        if mine then
-            incoming[#incoming + 1] = {
-                citizenid = row.citizenid,
-                name = fullName(decode(row.frominfo)),
-                expires = tonumber(row.expires) or 0,
-            }
-        end
-
-        if theirs then
-            outgoing[#outgoing + 1] = {
-                citizenid = row.target,
-                name = fullName(decode(row.toinfo)),
-                expires = tonumber(row.expires) or 0,
-            }
-        end
+    if validPosition(position) then
+        list[#list + 1] = {
+            id = 'last',
+            label = 'Posisi terakhir',
+            type = 'last',
+            coords = vec4(position.x + 0.0, position.y + 0.0, position.z + 0.0, (position.w or position.a or 0.0) + 0.0),
+        }
     end
 
-    return incoming, outgoing
+    for i = 1, #Locations do
+        local loc = Locations[i]
+        list[#list + 1] = { id = loc.id, label = loc.label, type = loc.type, coords = loc.coords, freezeControl = loc.freezeControl }
+    end
+
+    return list
 end
+
+-- ----------------------------------------------------------------------------
+-- Fetch daftar karakter
+-- ----------------------------------------------------------------------------
 
 RegisterNetEvent('sm_characters:server:fetch', function()
     local src = source
@@ -153,15 +235,26 @@ RegisterNetEvent('sm_characters:server:fetch', function()
         return
     end
 
-    local slots = getSlots(license)
+    MySQL.query.await('DELETE FROM sm_character_invites WHERE expires < ?', { os.time() })
+
     local rows = MySQL.query.await('SELECT * FROM players WHERE license = ? ORDER BY id ASC', { license }) or {}
 
     local characters, ids, byCitizen = {}, {}, {}
+    for i = 1, #rows do
+        ids[#ids + 1] = rows[i].citizenid
+        byCitizen[rows[i].citizenid] = true
+    end
+
+    local partners = {}
+    if #ids > 0 then
+        local prow = MySQL.query.await(
+            ('SELECT citizenid, partner, type FROM sm_character_partners WHERE citizenid IN (%s)'):format(placeholders(#ids)), ids) or {}
+        for _, r in ipairs(prow) do partners[r.citizenid] = r end
+    end
 
     for i = 1, #rows do
         local row = rows[i]
         local entry = {}
-
         for key, value in pairs(row) do entry[key] = value end
 
         entry.charinfo = decode(row.charinfo)
@@ -178,38 +271,55 @@ RegisterNetEvent('sm_characters:server:fetch', function()
         entry.phone       = entry.charinfo.phone
         entry.nationality = entry.charinfo.nationality
 
+        entry.child   = entry.metadata.child == true
+        entry.partner = partners[row.citizenid] and partnerObject(partners[row.citizenid].partner, partners[row.citizenid].type) or nil
+
         characters[#characters + 1] = entry
-        ids[#ids + 1] = row.citizenid
-        byCitizen[row.citizenid] = true
     end
 
+    -- Client menunggu skins[citizenid] ~= nil untuk SETIAP karakter; tanpa skin kirim false
+    -- (kalau dikosongkan, client menunggu sampai timeout untuk tiap karakter).
     local skins = {}
+    for i = 1, #ids do skins[ids[i]] = false end
 
     if #ids > 0 then
-        local placeholders = {}
-        for i = 1, #ids do placeholders[i] = '?' end
-
         local skinOk, skinRows = pcall(function()
             return MySQL.query.await(
-                ('SELECT citizenid, skin FROM playerskins WHERE active = 1 AND citizenid IN (%s)'):format(table.concat(placeholders, ',')), ids) or {}
+                ('SELECT citizenid, skin FROM playerskins WHERE active = 1 AND citizenid IN (%s)'):format(placeholders(#ids)), ids) or {}
         end)
-        if not skinOk then skinRows = {} end
-
-        for _, row in ipairs(skinRows) do
-            local skin = row.skin or row.appearance
-            if not skin and row.model then skin = json.encode({ model = row.model }) end
-            if skin then skins[row.citizenid] = skin end
+        if skinOk then
+            for _, row in ipairs(skinRows) do
+                if row.skin and row.skin ~= '' then skins[row.citizenid] = row.skin end
+            end
         end
     end
 
-    local incoming, outgoing = buildInvites(ids, byCitizen)
+    -- Undangan: item = { id, sender, target, type, expires, name }
+    if #ids > 0 then
+        local params = {}
+        for i = 1, #ids do params[#params + 1] = ids[i] end
+        for i = 1, #ids do params[#params + 1] = ids[i] end
+        params[#params + 1] = os.time()
 
-    MySQL.query.await('DELETE FROM character_invites WHERE expires < ?', { os.time() })
+        local inv = MySQL.query.await(
+            ('SELECT id, sender, target, type, expires FROM sm_character_invites WHERE (sender IN (%s) OR target IN (%s)) AND expires > ?')
+                :format(placeholders(#ids), placeholders(#ids)), params) or {}
+
+        for _, row in ipairs(inv) do
+            local item = { id = row.id, sender = row.sender, target = row.target, type = row.type, expires = tonumber(row.expires) or 0 }
+
+            if byCitizen[row.target] then
+                item.name = nameOf(row.sender)
+                payload.incoming[#payload.incoming + 1] = item
+            elseif byCitizen[row.sender] then
+                item.name = nameOf(row.target)
+                payload.outgoing[#payload.outgoing + 1] = item
+            end
+        end
+    end
 
     payload.characters = characters
-    payload.incoming = incoming
-    payload.outgoing = outgoing
-    payload.slots = slots
+    payload.slots = getSlots(license)
     payload.canDelete = #characters > 1
 
     TriggerClientEvent('sm_characters:client:skins', src, skins)
@@ -217,44 +327,34 @@ RegisterNetEvent('sm_characters:server:fetch', function()
 end)
 
 -- ----------------------------------------------------------------------------
--- Buat karakter
+-- Buat karakter  -> client butuh { coords } atau { error = kode }
 -- ----------------------------------------------------------------------------
 
 local function sanitizeName(value)
     if type(value) ~= 'string' then return nil end
-    value = value:gsub('^%s*(.-)%s*$', '%1')
-    if #value < 2 or #value > 20 then return nil end
+    value = value:match('^%s*(.-)%s*$')
+    local min, max = Register.name and Register.name.min or 2, Register.name and Register.name.max or 20
+    if #value < min or #value > max then return nil end
     if not value:match('^[%a][%a%s%-]*$') then return nil end
     return value
 end
 
-local MONTHS = {
-    januari = 1, februari = 2, maret = 3, april = 4, mei = 5, juni = 6, juli = 7,
-    agustus = 8, september = 9, oktober = 10, november = 11, desember = 12,
-    jan = 1, feb = 2, mar = 3, apr = 4, jun = 6, jul = 7, agu = 8, ags = 8, sep = 9, okt = 10, nov = 11, des = 12,
-    january = 1, february = 2, march = 3, may = 5, june = 6, july = 7, august = 8, october = 10, december = 12,
-}
+local function daysIn(y, m)
+    if m == 2 then return ((y % 4 == 0 and y % 100 ~= 0) or y % 400 == 0) and 29 or 28 end
+    return ({ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 })[m]
+end
 
 local function sanitizeBirthdate(value)
     if type(value) ~= 'string' then return nil end
-    value = value:gsub('^%s*(.-)%s*$', '%1')
+    value = value:match('^%s*(.-)%s*$')
 
-    local y, m, d
-    local a, b, c = value:match('^(%d%d%d%d)%-(%d%d)%-(%d%d)$')
+    local ys, ms, ds = value:match('^(%d%d%d%d)%-(%d%d?)%-(%d%d?)$')
+    if not ys then return nil end
 
-    if a then
-        y, m, d = tonumber(a), tonumber(b), tonumber(c)
-    else
-        local day, mon, year = value:match('^(%d%d?)%s+([%a]+)%s+(%d%d%d%d)$')
-        if not day then return nil end
-        m = MONTHS[mon:lower()]
-        if not m then return nil end
-        y, d = tonumber(year), tonumber(day)
-    end
+    local y, m, d = tonumber(ys), tonumber(ms), tonumber(ds)
+    local range = Register.birthYear or { min = 1950, max = 2007 }
 
-    if not y or y < 1900 or y > 2015 then return nil end
-    if m < 1 or m > 12 then return nil end
-    if not d or d < 1 or d > 31 then return nil end
+    if y < range.min or y > range.max or m < 1 or m > 12 or d < 1 or d > daysIn(y, m) then return nil end
 
     return ('%04d-%02d-%02d'):format(y, m, d)
 end
@@ -265,38 +365,30 @@ local function sanitizeGender(value)
     return nil
 end
 
-lib.callback.register('sm_characters:create', function(source, ...)
-    local args = { ... }
-    local input = type(args[1]) == 'table' and args[1] or {
-        firstname   = args[1],
-        lastname    = args[2],
-        gender      = args[3],
-        birthdate   = args[4],
-        nationality = args[5],
-    }
+lib.callback.register('sm_characters:create', function(source, input)
+    if type(input) ~= 'table' then return { error = 'invalid' } end
 
     local license = getLicense(source)
-    if not license then return false, 'Lisensi tidak terbaca' end
+    if not license then return { error = 'failed' } end
 
     local firstname = sanitizeName(input.firstname)
     local lastname  = sanitizeName(input.lastname)
-
-    if not firstname then return false, 'Nama depan tidak valid (2-20 huruf)' end
-    if not lastname then return false, 'Nama belakang tidak valid (2-20 huruf)' end
-
-    local gender = sanitizeGender(input.gender)
-    if not gender then return false, 'Jenis kelamin tidak valid' end
-
+    local gender    = sanitizeGender(input.gender)
     local birthdate = sanitizeBirthdate(input.birthdate)
-    if not birthdate then return false, 'Tanggal lahir harus YYYY-MM-DD' end
 
-    local slots = getSlots(license)
+    if not firstname or not lastname or not gender or not birthdate then return { error = 'invalid' } end
+
+    local nationality = input.nationality
+    if next(NATIONALITY) then
+        if not NATIONALITY[nationality] then return { error = 'invalid' } end
+    else
+        nationality = type(nationality) == 'string' and nationality:sub(1, 32) or 'Indonesian'
+    end
+
     local count = MySQL.scalar.await('SELECT COUNT(*) FROM players WHERE license = ?', { license }) or 0
-    if count >= slots then return false, ('Slot karakter penuh (%d/%d)'):format(count, slots) end
+    if count >= getSlots(license) then return { error = 'full' } end
 
     local citizenid = QBCore.Player.CreateCitizenId()
-    local spawn = DEFAULT_SPAWN
-    local nationality = type(input.nationality) == 'string' and input.nationality:sub(1, 32) or 'Indonesia'
 
     local charinfo = {
         firstname = firstname,
@@ -313,20 +405,12 @@ lib.callback.register('sm_characters:create', function(source, ...)
     local gang = { name = 'none', label = 'Tidak ada', grade = { name = 'Tidak ada', level = 0 } }
     local metadata = { callsign = 'NO CALLSIGN', licences = {} }
 
-    local nextId = (MySQL.scalar.await('SELECT COALESCE(MAX(id), 0) + 1 FROM players') or 1)
+    local nextId = MySQL.scalar.await('SELECT COALESCE(MAX(id), 0) + 1 FROM players') or 1
 
     local params = {
-        nextId,
-        citizenid,
-        charinfo.cid,
-        license,
-        ('%s %s'):format(firstname, lastname),
-        json.encode(money),
-        json.encode(charinfo),
-        json.encode(job),
-        json.encode(gang),
-        json.encode(spawn),
-        json.encode(metadata),
+        nextId, citizenid, charinfo.cid, license, ('%s %s'):format(firstname, lastname),
+        json.encode(money), json.encode(charinfo), json.encode(job), json.encode(gang),
+        json.encode(DEFAULT_POS), json.encode(metadata),
     }
 
     local ok, err = pcall(function()
@@ -348,37 +432,41 @@ lib.callback.register('sm_characters:create', function(source, ...)
 
     if not ok then
         lib.print.error(('gagal membuat karakter: %s'):format(err))
-        return false, 'Gagal menyimpan karakter'
+        return { error = 'failed' }
     end
 
-    return { coords = vec4(spawn.x, spawn.y, spawn.z, spawn.w), citizenid = citizenid }
+    -- Client langsung spawn + buka sm_appearance setelah ini; pemain harus sudah ter-login
+    -- (select tidak dipanggil di jalur "buat karakter baru").
+    local loginOk, player = pcall(QBCore.Player.Login, source, citizenid)
+    if not loginOk or not player then
+        lib.print.error(('login karakter baru gagal: %s'):format(tostring(player)))
+        return { error = 'failed' }
+    end
+
+    SetPlayerRoutingBucket(source, 0)
+
+    return { coords = vec4(DEFAULT_POS.x, DEFAULT_POS.y, DEFAULT_POS.z, DEFAULT_POS.w), citizenid = citizenid }
 end)
 
 -- ----------------------------------------------------------------------------
--- Pilih karakter
+-- Pilih karakter -> client mengharapkan DAFTAR LOKASI SPAWN (atau false)
 -- ----------------------------------------------------------------------------
 
 lib.callback.register('sm_characters:select', function(source, citizenid)
     local license = getLicense(source)
-    if not license then return false, 'Lisensi tidak terbaca' end
+    if not license then return false end
 
-    if QBCore.Functions.GetPlayer(source) then
-        return false, 'Karakter sudah dimuat'
-    end
-
-    local owner = MySQL.scalar.await('SELECT license FROM players WHERE citizenid = ?', { citizenid })
-    if not owner then return false, 'Karakter tidak ditemukan' end
-    if owner ~= license then return false, 'Karakter bukan milik Anda' end
+    if QBCore.Functions.GetPlayer(source) then return false end
+    if not ownedBy(license, citizenid) then return false end
 
     local ok, result = pcall(QBCore.Player.Login, source, citizenid)
-    if not ok then
-        lib.print.error(('login gagal: %s'):format(result))
-        return false, 'Gagal memuat karakter'
+    if not ok or not result then
+        lib.print.error(('login gagal: %s'):format(tostring(result)))
+        return false
     end
 
-    if not result then return false, 'Gagal memuat karakter' end
-
-    return true, 'Karakter dimuat'
+    local player = QBCore.Functions.GetPlayer(source)
+    return buildLocations(player and player.PlayerData.position)
 end)
 
 -- ----------------------------------------------------------------------------
@@ -387,14 +475,10 @@ end)
 
 lib.callback.register('sm_characters:delete', function(source, citizenid)
     local license = getLicense(source)
-    if not license then return false, 'Lisensi tidak terbaca' end
-
-    local owner = MySQL.scalar.await('SELECT license FROM players WHERE citizenid = ?', { citizenid })
-    if not owner then return false, 'Karakter tidak ditemukan' end
-    if owner ~= license then return false, 'Karakter bukan milik Anda' end
+    if not ownedBy(license, citizenid) then return false end
 
     local total = MySQL.scalar.await('SELECT COUNT(*) FROM players WHERE license = ?', { license }) or 0
-    if total <= 1 then return false, 'Karakter terakhir tidak bisa dihapus' end
+    if total <= 1 then return false end
 
     local player = QBCore.Functions.GetPlayer(source)
     if player and player.PlayerData.citizenid == citizenid then
@@ -402,33 +486,36 @@ lib.callback.register('sm_characters:delete', function(source, citizenid)
         QBCore.Players[source] = nil
     end
 
+    local partner = partnerRow(citizenid)
+
     MySQL.query.await('DELETE FROM players WHERE citizenid = ?', { citizenid })
     MySQL.query.await('DELETE FROM playerskins WHERE citizenid = ?', { citizenid })
-    MySQL.query.await('DELETE FROM character_partners WHERE citizenid = ? OR partner = ?', { citizenid, citizenid })
-    MySQL.query.await('DELETE FROM character_invites WHERE citizenid = ? OR target = ?', { citizenid, citizenid })
+    MySQL.query.await('DELETE FROM sm_character_partners WHERE citizenid = ? OR partner = ?', { citizenid, citizenid })
+    MySQL.query.await('DELETE FROM sm_character_invites WHERE sender = ? OR target = ?', { citizenid, citizenid })
 
-    return true, 'Karakter dihapus'
+    if partner then pushToLicense(licenseOf(partner.partner), 'unlinked', { citizenid = partner.partner }) end
+
+    return true
 end)
 
 -- ----------------------------------------------------------------------------
--- Spawn
+-- Spawn -> client mengharapkan { label, coords = vector4, freezeControl? } (client yang teleport)
 -- ----------------------------------------------------------------------------
 
 lib.callback.register('sm_characters:spawn', function(source, id)
     local player = QBCore.Functions.GetPlayer(source)
-    if not player then return false, 'Karakter belum dimuat' end
+    if not player or type(id) ~= 'string' then return false end
 
-    local position = player.PlayerData.position
-    if not position or not position.x then position = locationById(id) end
-    if not position or not position.x then position = DEFAULT_SPAWN end
+    local list = buildLocations(player.PlayerData.position)
 
-    local heading = position.w or position.a or 0.0
+    for i = 1, #list do
+        if list[i].id == id then
+            SetPlayerRoutingBucket(source, 0)
+            return { label = list[i].label, coords = list[i].coords, freezeControl = list[i].freezeControl }
+        end
+    end
 
-    SetEntityCoords(source, position.x + 0.0, position.y + 0.0, position.z + 0.0, false, false, false, false)
-    SetEntityHeading(source, heading)
-    SetPlayerRoutingBucket(source, 0)
-
-    return true
+    return false
 end)
 
 RegisterNetEvent('sm_characters:server:spawned', function()
@@ -442,138 +529,136 @@ RegisterNetEvent('sm_characters:server:spawned', function()
 end)
 
 -- ----------------------------------------------------------------------------
--- Partner
+-- Partner / Sahabat
+-- Pemain berada di layar pilih karakter (belum ter-login), jadi karakter diidentifikasi lewat
+-- citizenid yang dikirim client dan DIVERIFIKASI milik license pemain.
+-- Kode error = kunci kamus UI: invalid, cooldown, self, notfound, ownchar,
+-- hasPartner, targetHasPartner, exists, failed.
 -- ----------------------------------------------------------------------------
 
-local function myCitizen(source)
-    local player = QBCore.Functions.GetPlayer(source)
-    return player and player.PlayerData.citizenid or nil
-end
+local lastInvite = {}
 
-local function partnerOf(citizenid)
-    return MySQL.scalar.await('SELECT partner FROM character_partners WHERE citizenid = ?', { citizenid })
-end
-
-local function pushPartnerState(source)
-    local citizenid = myCitizen(source)
-    if not citizenid then return end
-
-    local partner = partnerOf(citizenid)
-    local payload = { partner = nil }
-
-    if partner then
-        local info = MySQL.scalar.await('SELECT charinfo FROM players WHERE citizenid = ?', { partner })
-        payload.partner = { citizenid = partner, name = fullName(decode(info)) }
-    end
-
-    local outgoing = MySQL.query.await('SELECT target AS citizenid FROM character_invites WHERE citizenid = ?', { citizenid }) or {}
-    local incoming = MySQL.query.await('SELECT citizenid FROM character_invites WHERE target = ?', { citizenid }) or {}
-
-    payload.outgoing = outgoing
-    payload.incoming = incoming
-
-    TriggerClientEvent('sm_characters:client:partnerSync', source, payload)
-end
-
-lib.callback.register('sm_characters:partner:invite', function(source, target)
-    local citizenid = myCitizen(source)
-    if not citizenid then return false, 'Karakter belum dimuat' end
-    if type(target) ~= 'string' then return false, 'Target tidak valid' end
-    if target == citizenid then return false, 'Tidak bisa mengundang diri sendiri' end
-
-    if partnerOf(citizenid) then return false, 'Anda sudah punya partner' end
-    if partnerOf(target) then return false, 'Target sudah punya partner' end
-
-    local targetLicense = MySQL.scalar.await('SELECT license FROM players WHERE citizenid = ?', { target })
-    if not targetLicense then return false, 'Karakter target tidak ditemukan' end
-
-    local targetSrc
-    for src, player in pairs(QBCore.Players) do
-        if player.PlayerData.citizenid == target then targetSrc = src break end
-    end
-    if not targetSrc then return false, 'Target sedang offline' end
-
-    local exists = MySQL.scalar.await('SELECT citizenid FROM character_invites WHERE citizenid = ? AND target = ?', { citizenid, target })
-    if exists then return false, 'Undangan sudah dikirim' end
-
-    MySQL.insert.await('INSERT INTO character_invites (citizenid, target, expires) VALUES (?, ?, ?)',
-        { citizenid, target, os.time() + INVITE_TTL })
-
-    notify(targetSrc, 'Undangan partner masuk', 'inform')
-    pushPartnerState(targetSrc)
-    pushPartnerState(source)
-
-    return true, 'Undangan dikirim'
+AddEventHandler('playerDropped', function()
+    lastInvite[source] = nil
 end)
 
-lib.callback.register('sm_characters:partner:respond', function(source, inviter, accept)
-    local citizenid = myCitizen(source)
-    if not citizenid then return false, 'Karakter belum dimuat' end
-
-    local expires = MySQL.scalar.await('SELECT expires FROM character_invites WHERE citizenid = ? AND target = ?', { inviter, citizenid })
-    if not expires then return false, 'Undangan tidak ditemukan' end
-
-    MySQL.query.await('DELETE FROM character_invites WHERE citizenid = ? AND target = ?', { inviter, citizenid })
-
-    if not accept then
-        pushPartnerState(source)
-        return true, 'Undangan ditolak'
-    end
-
-    if expires < os.time() then return false, 'Undangan kedaluwarsa' end
-    if partnerOf(citizenid) or partnerOf(inviter) then return false, 'Salah satu sudah punya partner' end
+lib.callback.register('sm_characters:partner:invite', function(source, from, target, linkType)
+    local license = getLicense(source)
+    if not license then return { error = 'failed' } end
 
     local now = os.time()
-    MySQL.query.await('DELETE FROM character_partners WHERE citizenid IN (?, ?)', { citizenid, inviter })
-    MySQL.insert.await('INSERT INTO character_partners (citizenid, partner, since) VALUES (?, ?, ?), (?, ?, ?)',
-        { citizenid, inviter, now, inviter, citizenid, now })
+    if (lastInvite[source] or 0) + INVITE_COOLDOWN > now then return { error = 'cooldown' } end
+    lastInvite[source] = now
 
-    local inviterSrc
-    for src, player in pairs(QBCore.Players) do
-        if player.PlayerData.citizenid == inviter then inviterSrc = src break end
+    if type(from) ~= 'string' or type(target) ~= 'string' or not LINK_TYPES[linkType] then
+        return { error = 'invalid' }
     end
 
-    if inviterSrc then
-        notify(inviterSrc, 'Undangan partner diterima', 'success')
-        pushPartnerState(inviterSrc)
+    target = (target:gsub('%s', ''))
+    if target == '' then return { error = 'invalid' } end
+
+    if not ownedBy(license, from) then return { error = 'invalid' } end
+
+    local targetRow = MySQL.single.await('SELECT citizenid, license FROM players WHERE citizenid = ?', { target })
+    if not targetRow then return { error = 'notfound' } end
+
+    target = targetRow.citizenid -- bentuk kanonik dari DB
+
+    if target == from then return { error = 'self' } end
+    if targetRow.license == license then return { error = 'ownchar' } end
+
+    if partnerRow(from) then return { error = 'hasPartner' } end
+    if partnerRow(target) then return { error = 'targetHasPartner' } end
+
+    local exists = MySQL.scalar.await(
+        'SELECT id FROM sm_character_invites WHERE sender = ? AND target = ? AND expires > ?', { from, target, now })
+    if exists then return { error = 'exists' } end
+
+    local expires = now + INVITE_TTL
+    local id = MySQL.insert.await(
+        'INSERT INTO sm_character_invites (sender, target, type, expires) VALUES (?, ?, ?, ?)', { from, target, linkType, expires })
+    if not id then return { error = 'failed' } end
+
+    local incoming = { id = id, sender = from, target = target, type = linkType, expires = expires, name = nameOf(from) }
+    pushToLicense(targetRow.license, 'incoming', incoming)
+    for _, src in ipairs(sourcesForLicense(targetRow.license)) do
+        notify(src, 'Undangan masuk dari ' .. incoming.name, 'inform')
     end
 
-    pushPartnerState(source)
-    return true, 'Undangan diterima'
+    return { invite = { id = id, sender = from, target = target, type = linkType, expires = expires, name = nameOf(target) } }
 end)
 
-lib.callback.register('sm_characters:partner:cancel', function(source, target)
-    local citizenid = myCitizen(source)
-    if not citizenid then return false, 'Karakter belum dimuat' end
+lib.callback.register('sm_characters:partner:respond', function(source, id, accept)
+    local license = getLicense(source)
+    id = math.tointeger(id)
+    if not license or not id then return { error = 'invalid' } end
 
-    MySQL.query.await('DELETE FROM character_invites WHERE citizenid = ? AND target = ?', { citizenid, target })
-    pushPartnerState(source)
+    local inv = MySQL.single.await('SELECT id, sender, target, type, expires FROM sm_character_invites WHERE id = ?', { id })
+    if not inv then return { error = 'notfound' } end
+    if not ownedBy(license, inv.target) then return { error = 'invalid' } end
 
-    return true, 'Undangan dibatalkan'
-end)
+    MySQL.query.await('DELETE FROM sm_character_invites WHERE id = ?', { id })
 
-lib.callback.register('sm_characters:partner:remove', function(source, target)
-    local citizenid = myCitizen(source)
-    if not citizenid then return false, 'Karakter belum dimuat' end
+    local senderLicense = licenseOf(inv.sender)
 
-    local partner = partnerOf(citizenid)
-    if not partner then return false, 'Tidak ada partner' end
-    if target and target ~= partner then return false, 'Bukan partner Anda' end
-
-    MySQL.query.await('DELETE FROM character_partners WHERE citizenid IN (?, ?)', { citizenid, partner })
-    MySQL.query.await('DELETE FROM character_invites WHERE citizenid IN (?, ?) OR target IN (?, ?)', { citizenid, partner, citizenid, partner })
-
-    pushPartnerState(source)
-
-    for src, player in pairs(QBCore.Players) do
-        if player.PlayerData.citizenid == partner then
-            notify(src, 'Partner Anda memutuskan hubungan', 'inform')
-            pushPartnerState(src)
-            break
-        end
+    if accept ~= true then
+        pushToLicense(senderLicense, 'outgoingRemoved', { id = id })
+        return { ok = true }
     end
 
-    return true, 'Partner diputus'
+    if (tonumber(inv.expires) or 0) < os.time() then return { error = 'failed' } end
+    if partnerRow(inv.target) then return { error = 'hasPartner' } end
+    if partnerRow(inv.sender) then return { error = 'targetHasPartner' } end
+
+    local now = os.time()
+    MySQL.insert.await(
+        'INSERT INTO sm_character_partners (citizenid, partner, type, since) VALUES (?, ?, ?, ?), (?, ?, ?, ?)',
+        { inv.target, inv.sender, inv.type, now, inv.sender, inv.target, inv.type, now })
+
+    MySQL.query.await('DELETE FROM sm_character_invites WHERE sender IN (?, ?) OR target IN (?, ?)',
+        { inv.sender, inv.target, inv.sender, inv.target })
+
+    pushToLicense(senderLicense, 'linked', { citizenid = inv.sender, partner = partnerObject(inv.target, inv.type) })
+    for _, src in ipairs(sourcesForLicense(senderLicense)) do
+        notify(src, 'Undangan diterima', 'success')
+    end
+
+    return { ok = true, citizenid = inv.target, partner = partnerObject(inv.sender, inv.type) }
+end)
+
+lib.callback.register('sm_characters:partner:cancel', function(source, id)
+    local license = getLicense(source)
+    id = math.tointeger(id)
+    if not license or not id then return false end
+
+    local inv = MySQL.single.await('SELECT id, sender, target FROM sm_character_invites WHERE id = ?', { id })
+    if not inv or not ownedBy(license, inv.sender) then return false end
+
+    MySQL.query.await('DELETE FROM sm_character_invites WHERE id = ?', { id })
+    pushToLicense(licenseOf(inv.target), 'incomingRemoved', { id = id })
+
+    return true
+end)
+
+-- client mengirim citizenid karakter MILIK SENDIRI yang ingin diputus hubungannya.
+lib.callback.register('sm_characters:partner:remove', function(source, citizenid)
+    local license = getLicense(source)
+    if not ownedBy(license, citizenid) then return false end
+
+    local row = partnerRow(citizenid)
+    if not row then return false end
+
+    MySQL.query.await('DELETE FROM sm_character_partners WHERE citizenid IN (?, ?)', { citizenid, row.partner })
+    MySQL.query.await('DELETE FROM sm_character_invites WHERE sender IN (?, ?) OR target IN (?, ?)',
+        { citizenid, row.partner, citizenid, row.partner })
+
+    local partnerLicense = licenseOf(row.partner)
+    pushToLicense(partnerLicense, 'unlinked', { citizenid = row.partner })
+    for _, src in ipairs(sourcesForLicense(partnerLicense)) do
+        notify(src, 'Hubungan Anda diputus', 'inform')
+    end
+
+    return true
 end)
 
 lib.print.info('sm_character server siap')

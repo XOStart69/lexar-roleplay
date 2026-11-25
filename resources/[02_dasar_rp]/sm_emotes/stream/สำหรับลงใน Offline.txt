@@ -1,4 +1,0 @@
-<Anim dict="jarp_barbie_left" name="jarp_barbie_left_clip" />
-<Anim dict="jarp_barbie_right" name="jarp_barbie_right_clip" />
-
-
